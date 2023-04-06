@@ -38,3 +38,9 @@ void printPrimes (int n)
            printf("Prime:    %d \n",primes[j]);
    }
 }
+void main (int argc, char *argv[])
+{
+   int integer = 0;
+   integer = atoi(argv[1]);
+   printPrimes(integer);
+}
