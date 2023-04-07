@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+
 STRING_1 = 'Given this original program code: \n\n'
 STRING_2 = 'And this mutant code: \n'
 STRING_3 = 'Return me in a JSON format, only, the name of the mutant program being the name of the function; identify if the mutant code is equivalent to the original program code; provide test set for both programs to run; provide the output of the original program according to the suggested test set and the output of the mutated program; NO explanations!!\n\n'
@@ -27,24 +30,49 @@ STRING_5 = '''Follow an example
 }'''
 
 
-def get_big_string(program_folder, program_file, mutant_folder, mutante_file):
-    with open(f'{program_folder}/{program_file}', 'r') as f1, open(f'{mutant_folder}/{mutante_file}', 'r') as f2:
-        str1 = STRING_1 + f1.read().strip() + '\n\n'
-        str2 = STRING_2 + f2.read().strip() + '\n\n'
-    str3 = STRING_3
-    str4 = STRING_4
-    str5 = STRING_5
+def read_file(file_path):
+    with open(file_path, "r") as file:
+        content = file.read()
+    return content
+
+
+def get_big_string(original, mutant):
+    str1 = f"{STRING_1}\n{original}\n\n"
+    str2 = f"{STRING_2}\n{mutant}\n\n"
+    str3 = f"{STRING_3}\n"
+    str4 = f"{STRING_4}\n"
+    str5 = f"{STRING_5}\n"
     return str1 + str2 + str3 + str4 + str5
 
 
 def main():
-    program_folder = '/mnt/c/Users/renat/Desktop/TCC/projeto/TCC/programs/sum'
-    program_file = 'sum.c'
-    mutant_folder = '/mnt/c/Users/renat/Desktop/TCC/projeto/TCC/programs/sum/mutants'
-    mutante_file = 'muta0_sum.c'
-    big_string = get_big_string(
-        program_folder, program_file, mutant_folder, mutante_file)
-    print(big_string)
+    programs_path = Path("programs")
+    programs = [prog for prog in programs_path.iterdir() if prog.is_dir()]
+
+    previous_program = ""
+    
+    for program in programs:
+        os.chdir(program)
+        caminho_atual = Path.cwd()
+        program_file = program.name + ".c"
+        original_program = read_file(program_file)
+
+        if program.name != previous_program:
+            print(f"Starting questions for {program.name}...")
+            previous_program = program.name
+
+        mutants_path = caminho_atual / "mutants"
+        if mutants_path.exists():
+            mutants = [mutant for mutant in mutants_path.iterdir() if mutant.is_file()]
+        else:
+            mutants = []
+
+        for mutant in mutants:
+            question = get_big_string(original_program, read_file(mutant))
+            print(f"Question for mutant: {mutant.name}")
+            print(question)
+        
+        os.chdir("../..")
 
 
 if __name__ == '__main__':

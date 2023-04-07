@@ -26,7 +26,6 @@ def main():
     for MUT in range(firstMutant, lastMutant+1):
         cmd = "cd " + baseDir + ";awk \'{if($3==\""+stringPattern+"\"){flag=1;next} else if (flag){print $0}}\' muta"+str(
             MUT)+"_"+prog+".c > " + outputDir + "/muta"+str(MUT)+"_" + prog+".c; rm muta" +str(MUT)+"_" + prog+".c"
-        print(".", end="")
         os.system(cmd)
 
 
