@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import requests
 import json
 import os
+import re
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
@@ -20,7 +21,7 @@ def generate_response(content):
     try:
         response = requests.post(link, headers=headers, data=body_message)
         #Test to see the results
-        # print(response.text)
+        #print(response.text)
         response_json = response.json()
     except requests.exceptions.RequestException as e:
         print(f"Error occurred: {e}")
@@ -33,6 +34,12 @@ def generate_response(content):
 
     return response_json
 
+def handle_response(string):
+    match = re.search(r'{.*}', string, re.DOTALL)
+    if match:
+        return match.group(0)
+    else:
+        return None
 
 def read_file(file_path):
     with open(file_path, "r") as file:
@@ -49,6 +56,8 @@ def array_to_json(txt_file, program_name):
 
     with open(f"{program_name}.json", 'w') as f:
         f.write(json_data)
+    
+    os.remove(txt_file)
 
 
 def write_responses_to_file(responses, program_name):
@@ -73,8 +82,7 @@ def analise(json_file, txt_file, output_file):
         equiv1 = mutante1['equivalent']
         equiv2 = str(num_mutante1) in dados2
         acertou_equiv = equiv1 == equiv2
-        ultima_explicacao = mutante1['tests'][-1]['explanation']
-        resultado.append([num_mutante1, equiv1, equiv2, acertou_equiv, ultima_explicacao])
+        resultado.append([num_mutante1, equiv1, equiv2, acertou_equiv])
 
     with open(output_file, 'w') as f:
         for re in resultado:

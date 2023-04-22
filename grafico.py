@@ -1,7 +1,7 @@
 import sys
 import matplotlib.pyplot as plt
 
-#example: python3 .\grafico.py programs\sum\analise.txt
+#example: python3 .\grafico.py programs\sum\analise_sum.txt
 
 filename = sys.argv[1]
 
