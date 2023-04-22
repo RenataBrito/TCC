@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 import argparse
 import json
-from api_utils import *
+from question_utils import *
 
 #example: python3 .\question.py sum
 
@@ -80,14 +80,14 @@ def main(program_name):
     #Escrevendo em um arquivo txt o que vem do ChatGPT
     write_responses_to_file(responses, program_name)
     #Transformando em um arquivo no formado JSON valido o que vem do ChatGPT
-    array_to_json(f"{program_name}.txt", program_name)
+    txt_to_json(f"{program_name}.txt", program_name)
     #Cria um arquivo que contem um vetor de analise 
     #[1,2,3,4]
     #1 = Numero do mutante
     #2 = Resultado da equivalencia do ChatGPT
     #3 = Resultado da equivalencia arquivo
     #4 = ChatGPT acertou?
-    analise(f"{program_name}.json",f"equivalents_{program_name}.txt",f"analise_{program_name}.txt")
+    analysis(f"{program_name}.json",f"equivalents_{program_name}.txt",f"analysis_{program_name}.txt")
     os.chdir("../..")
 
 

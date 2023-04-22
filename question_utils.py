@@ -46,7 +46,7 @@ def read_file(file_path):
         content = file.read()
     return content
 
-def array_to_json(txt_file, program_name):
+def txt_to_json(txt_file, program_name):
     with open(txt_file, 'r') as f:
         data = f.read()
 
@@ -59,13 +59,12 @@ def array_to_json(txt_file, program_name):
     
     os.remove(txt_file)
 
-
 def write_responses_to_file(responses, program_name):
     with open(f"{program_name}.txt", "w") as file:
         for response in responses:
             file.write(f"{response}\n")
 
-def analise(json_file, txt_file, output_file):
+def analysis(json_file, txt_file, output_file):
     with open(json_file, 'r') as f1:
         dados1 = json.load(f1)
 

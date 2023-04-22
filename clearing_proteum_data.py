@@ -5,7 +5,6 @@ import os
 def main():
     if len(sys.argv) < 6:
         print("error: clearing_proteum_data.py <base_dir> <prog> <firstMutant> <lastMutant> <stringPattern>")
-        print("Example ubuntu: ?")
         print("Example ubuntu in windows: python3 clearing_proteum_data.py /mnt/c/Users/renat/Desktop/TCC/projeto/TCC/programs/sum sum 0 2 funlockfile")
         sys.exit(1)
 
@@ -22,8 +21,8 @@ def main():
         cmd = "mkdir " + outputDir
         os.system(cmd)
 
-    print("\nRemoving pre-processing code from mutant")
     for MUT in range(firstMutant, lastMutant+1):
+        print("\nRemoving pre-processing code from mutant: ", MUT)
         cmd = "cd " + baseDir + ";awk \'{if($3==\""+stringPattern+"\"){flag=1;next} else if (flag){print $0}}\' muta"+str(
             MUT)+"_"+prog+".c > " + outputDir + "/muta"+str(MUT)+"_" + prog+".c; rm muta" +str(MUT)+"_" + prog+".c"
         os.system(cmd)
