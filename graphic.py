@@ -2,7 +2,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
-#example: python3 .\grafico.py programs\sum\analise_sum.txt
+#example: python3 .\graphic.py programs\sum\analise_sum.txt
 
 filename = sys.argv[1]
 
@@ -39,7 +39,7 @@ width = 0.35
 rects1 = [counts[i][1] if i in counts else 0 for i in range(len(x))]
 colors = ['lightgreen' if h > 0 else 'gray' for h in rects1]
 rects1 = ax2.bar(x, rects1, width, color=colors)
-ax2.set_ylabel('Acertou?')
+ax2.set_ylabel('Acertou?', labelpad=-25)
 ax2.set_xlabel('Mutante')
 ax2.set_xticks(x)
 ax2.set_xticklabels([str(i) for i in x])

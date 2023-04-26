@@ -1,0 +1,65 @@
+[
+    {
+        "mutant_program": "muta0_totinfo.c",
+        "equivalent": true,
+        "tests": [
+            {
+                "input": {
+                    "r": 2,
+                    "c": 3,
+                    "f": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6
+                    ]
+                },
+                "original_output": 14.5529,
+                "mutant_output": 14.5529,
+                "explanation": "Both original and mutant code receive the same input and produce the same output, indicating equivalence."
+            },
+            {
+                "input": {
+                    "r": 4,
+                    "c": 4,
+                    "f": [
+                        10,
+                        -5,
+                        0,
+                        7,
+                        3,
+                        12,
+                        1,
+                        8,
+                        0,
+                        5,
+                        9,
+                        2,
+                        2,
+                        3,
+                        1,
+                        6
+                    ]
+                },
+                "original_output": -2.0,
+                "mutant_output": -2.0,
+                "explanation": "Both original and mutant code receive the same input and produce the same output, indicating equivalence."
+            },
+            {
+                "input": {
+                    "r": 1,
+                    "c": 2,
+                    "f": [
+                        0,
+                        0
+                    ]
+                },
+                "original_output": -1.0,
+                "mutant_output": -1.0,
+                "explanation": "Both original and mutant code receive the same input and produce the same output, indicating equivalence."
+            }
+        ]
+    }
+]

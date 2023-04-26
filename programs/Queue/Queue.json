@@ -1,0 +1,29 @@
+[
+    {
+        "mutant_program": "muta0_Queue.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [],
+                "original_output": "Invalid Queue\n",
+                "mutant_output": "Segmentation fault (core dumped)\n",
+                "explanation": "When called with an empty queue, the original program correctly returns an error message. However, the mutant code attempts to access the null pointer, resulting in a segmentation fault."
+            },
+            {
+                "input": [
+                    "2",
+                    "3"
+                ],
+                "original_output": "Invalid Queue\n",
+                "mutant_output": "Invalid Queue\n",
+                "explanation": "When called with two arguments, both original and mutant programs return the same output - indicating that the error checking is functioning correctly."
+            },
+            {
+                "input": [],
+                "original_output": "Invalid Queue\n",
+                "mutant_output": "Segmentation fault (core dumped)\n",
+                "explanation": "When called with an empty queue, the original program correctly returns an error message. However, the mutant code attempts to access the null pointer, resulting in a segmentation fault."
+            }
+        ]
+    }
+]
