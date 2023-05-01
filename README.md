@@ -1,5 +1,7 @@
 # Explorando o poder dos Large Language Models na identificação de mutantes equivalentes em programas escritos em linguagem C
 
+```pip install -r requirements.txt```
+
 ## clearing_proteum_data.py
 A função **clearing_proteum_data** serve para limpar o codigo dos mutantes gerados pela Proteum, você deverá passar como parametro os seguitens itens: 
 - **base_dir** : Pasta que contem o codigo original e seus mutantes e o nome da pasta é igual ao nome do mutante
