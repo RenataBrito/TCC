@@ -4,7 +4,7 @@ import argparse
 import json
 from question_utils import *
 
-#example: python3 .\question.py sum
+#example: python3 .\question_and_analysis.py sum
 
 STRING_1 = 'Given this original program code: \n\n'
 STRING_2 = 'And this mutant code: \n'

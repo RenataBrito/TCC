@@ -20,8 +20,6 @@ def generate_response(content):
 
     try:
         response = requests.post(link, headers=headers, data=body_message)
-        #Test to see the results
-        #print(response.text)
         response_json = response.json()
     except requests.exceptions.RequestException as e:
         print(f"Error occurred: {e}")
