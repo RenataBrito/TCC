@@ -1,0 +1,4 @@
+[126, False, False, True]
+[127, False, False, True]
+[12, False, False, True]
+[57, False, False, True]

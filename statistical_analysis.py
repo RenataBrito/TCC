@@ -23,19 +23,24 @@ y_true = data[:, 2]
 y_pred = data[:, 1]
 
 # Calcula a matriz de confusão
-confusion = confusion_matrix(y_true, y_pred)
-
-# Calcula as métricas de desempenho
-tp = confusion[1, 1]
-tn = confusion[0, 0]
-fp = confusion[0, 1]
-fn = confusion[1, 0]
+if np.array_equal(y_true, y_pred):
+    confusion = np.array([[len(y_true)]])
+    tp = len(y_true)
+    tn = 0
+    fp = 0
+    fn = 0
+else:
+    confusion = confusion_matrix(y_true, y_pred)
+    tp = confusion[1, 1]
+    tn = confusion[0, 0]
+    fp = confusion[0, 1]
+    fn = confusion[1, 0]
 
 accuracy = (tp + tn) / (tp + tn + fp + fn)
-precision = tp / (tp + fp)
-recall = tp / (tp + fn)
-specificity = tn / (tn + fp)
-f1_score = 2 * precision * recall / (precision + recall)
+precision = tp / (tp + fp) if tp + fp > 0 else 0
+recall = tp / (tp + fn) if tp + fn > 0 else 0
+specificity = tn / (tn + fp) if tn + fp > 0 else 0
+f1_score = 2 * precision * recall / (precision + recall) if precision + recall > 0 else 0
 
 print('Matriz de Confusão:')
 print(confusion)

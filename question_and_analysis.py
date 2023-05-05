@@ -4,7 +4,7 @@ import argparse
 import json
 from question_utils import *
 
-#example: python3 .\question_and_analysis.py sum
+#example: python3 .\question_and_analysis.py sum minimal
 
 STRING_1 = 'Given this original program code: \n\n'
 STRING_2 = 'And this mutant code: \n'
@@ -44,13 +44,15 @@ def get_big_string(original, mutant, program):
     str4 = f"{STRING_4}\n"
     str5 = f"{STRING_5}\n"
     big_string = str1 + str2 + str3 + str4 + str5
+    print("pergunta: ",big_string)
+    print("\n"*2)
     response = generate_response(big_string)
     message_json = None
     if response:
         message_content = response["choices"][0]["message"]["content"]
         #print to see all response
-        #print("message_content: ", message_content)
-        #print("\n"*2)
+        print("message_content: ", message_content)
+        print("\n"*2)
         message_content_handled = handle_response(message_content)
         message_json = json.loads(message_content_handled)
     return message_json
@@ -69,7 +71,7 @@ def main(program_name):
         mutants = []
     
     # Testar sem chamar a api
-    # responses = [{'mutant_program': 'muta0_sum.c', 'equivalent': False, 'tests': [{'input': [1, 2, 3], 'original_output': 6, 'mutant_output': 1, 'explanation': 'The original program correctly adds all the elements in the array to calculate the sum, while the mutant program has an infinite loop because the condition for the loop (0 < size) is always true, resulting in an incorrect and smaller output.'}, {'input': [4, 5, 6], 'original_output': 15, 'mutant_output': 4, 'explanation': 'Similarly to the previous test, the original program correctly calculates the sum, while the mutant program has an infinite loop resulting in an incorrect and smaller output.'}, {'input': [7, 8, 9], 'original_output': 24, 'mutant_output': 7, 'explanation': 'The original program correctly calculates the sum of the array, but the mutant program has an infinite loop resulting in an incorrect and smaller output.'}]}, {'mutant_program': 'muta1_sum.c', 'equivalent': False, 'tests': [{'input': [1, 2, 3], 'original_output': 6, 'mutant_output': 0, 'explanation': 'The original program correctly calculates the sum of the input array, which is 6. The mutant code, on the other hand, has an incorrect loop termination condition (i < 0), causing the loop to never execute and s to be returned as 0.'}, {'input': [4, 5, 6], 'original_output': 15, 'mutant_output': 0, 'explanation': 'The original program correctly calculates the sum of the input array, which is 15. The mutant code, however, has an incorrect loop termination condition (i < 0), causing the loop to never execute and s to be returned as 0.'}, {'input': [7, 8, 9], 'original_output': 24, 'mutant_output': 0, 'explanation': 'The original program correctly calculates the sum of the input array, which is 24. The mutant code, however, has an incorrect loop termination condition (i < 0), causing the loop to never execute and s to be returned as 0.'}]}]
+    #responses = [{'mutant_program': 'muta0_sum.c', 'equivalent': False, 'tests': [{'input': [1, 2, 3], 'original_output': 6, 'mutant_output': 1, 'explanation': 'The original program correctly adds all the elements in the array to calculate the sum, while the mutant program has an infinite loop because the condition for the loop (0 < size) is always true, resulting in an incorrect and smaller output.'}, {'input': [4, 5, 6], 'original_output': 15, 'mutant_output': 4, 'explanation': 'Similarly to the previous test, the original program correctly calculates the sum, while the mutant program has an infinite loop resulting in an incorrect and smaller output.'}, {'input': [7, 8, 9], 'original_output': 24, 'mutant_output': 7, 'explanation': 'The original program correctly calculates the sum of the array, but the mutant program has an infinite loop resulting in an incorrect and smaller output.'}]}, {'mutant_program': 'muta1_sum.c', 'equivalent': False, 'tests': [{'input': [1, 2, 3], 'original_output': 6, 'mutant_output': 0, 'explanation': 'The original program correctly calculates the sum of the input array, which is 6. The mutant code, on the other hand, has an incorrect loop termination condition (i < 0), causing the loop to never execute and s to be returned as 0.'}, {'input': [4, 5, 6], 'original_output': 15, 'mutant_output': 0, 'explanation': 'The original program correctly calculates the sum of the input array, which is 15. The mutant code, however, has an incorrect loop termination condition (i < 0), causing the loop to never execute and s to be returned as 0.'}, {'input': [7, 8, 9], 'original_output': 24, 'mutant_output': 0, 'explanation': 'The original program correctly calculates the sum of the input array, which is 24. The mutant code, however, has an incorrect loop termination condition (i < 0), causing the loop to never execute and s to be returned as 0.'}]}]
     responses = []
     #comenta esse for se nao quer chamar a api
     for mutant in mutants:
@@ -87,7 +89,8 @@ def main(program_name):
     #2 = Resultado da equivalencia do ChatGPT
     #3 = Resultado da equivalencia arquivo
     #4 = ChatGPT acertou?
-    analysis(f"{program_name}.json",f"equivalents_{program_name}.txt",f"analysis_{program_name}.txt")
+    analysis(f"{program_name}.json",f"equivalents_{program_name}.txt",f"analysis_equivalents_{program_name}.txt")
+    analysis_minimal(f"{program_name}.json",f"minimal_{program_name}.txt",f"analysis_minimal_{program_name}.txt")
     os.chdir("../..")
 
 

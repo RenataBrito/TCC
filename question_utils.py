@@ -84,3 +84,27 @@ def analysis(json_file, txt_file, output_file):
     with open(output_file, 'w') as f:
         for re in resultado:
             f.write(str(re) + '\n')
+
+def analysis_minimal(json_file, txt_file, output_file):
+    with open(json_file, 'r') as f1:
+        dados1 = json.load(f1)
+
+    with open(txt_file, 'r') as f2:
+        dados2 = f2.read().split()
+
+    def extrair_numero_mutante(nome_arquivo):
+        return int(nome_arquivo.split('_')[0].split('muta')[1])
+
+    resultado = []
+
+    for mutante1 in dados1:
+        num_mutante1 = extrair_numero_mutante(mutante1['mutant_program'])
+        equiv1 = mutante1['equivalent']
+        if str(num_mutante1) in dados2:
+            equiv2 = False
+            acertou_equiv = equiv1 == equiv2
+            resultado.append([num_mutante1, equiv1, equiv2, acertou_equiv])
+
+    with open(output_file, 'w') as f:
+        for re in resultado:
+            f.write(str(re) + '\n')
