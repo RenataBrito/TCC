@@ -9,8 +9,7 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/question.py",
-            "args": ["printPrimes"],
+            "program": "$teste.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }
