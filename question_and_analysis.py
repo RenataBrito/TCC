@@ -89,8 +89,7 @@ def main(program_name):
     #2 = Resultado da equivalencia do ChatGPT
     #3 = Resultado da equivalencia arquivo
     #4 = ChatGPT acertou?
-    analysis(f"{program_name}.json",f"equivalents_{program_name}.txt",f"analysis_equivalents_{program_name}.txt")
-    analysis_minimal(f"{program_name}.json",f"minimal_{program_name}.txt",f"analysis_minimal_{program_name}.txt")
+    analysis(f"{program_name}.json",f"equivalents_{program_name}.txt", f"minimal_{program_name}.txt",f"analysis_{program_name}.txt")
     os.chdir("../..")
 
 

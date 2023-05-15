@@ -24,12 +24,14 @@ y_pred = data[:, 1]
 
 # Calcula a matriz de confusão
 if np.array_equal(y_true, y_pred):
+    classes = np.unique(y_true)
     confusion = np.array([[len(y_true)]])
     tp = len(y_true)
     tn = 0
     fp = 0
     fn = 0
 else:
+    classes = ["False", "True"]
     confusion = confusion_matrix(y_true, y_pred)
     tp = confusion[1, 1]
     tn = confusion[0, 0]
@@ -50,9 +52,6 @@ print('Sensibilidade:', recall)
 print('Especificidade:', specificity)
 print('F1 Score:', f1_score)
 
-# Define as classes
-classes = np.unique(y_true)
-
 # Plota a matriz de confusão
 fig, ax = plot_confusion_matrix(conf_mat=confusion,
                                 colorbar=True,
@@ -60,7 +59,7 @@ fig, ax = plot_confusion_matrix(conf_mat=confusion,
                                 show_normed=True,
                                 class_names=classes)
 
-ax.set_xlabel("Previsões")
-ax.set_ylabel("Respostas Verdadeiras")
+ax.set_xlabel("ChatGPT")
+ax.set_ylabel("Oráculo")
 
 plt.show()

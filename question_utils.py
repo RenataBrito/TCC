@@ -62,35 +62,15 @@ def write_responses_to_file(responses, program_name):
         for response in responses:
             file.write(f"{response}\n")
 
-def analysis(json_file, txt_file, output_file):
+def analysis(json_file, equivalent_file, minimal_file, output_file):
     with open(json_file, 'r') as f1:
         dados1 = json.load(f1)
 
-    with open(txt_file, 'r') as f2:
+    with open(equivalent_file, 'r') as f2:
         dados2 = f2.read().split()
-
-    def extrair_numero_mutante(nome_arquivo):
-        return int(nome_arquivo.split('_')[0].split('muta')[1])
-
-    resultado = []
-
-    for mutante1 in dados1:
-        num_mutante1 = extrair_numero_mutante(mutante1['mutant_program'])
-        equiv1 = mutante1['equivalent']
-        equiv2 = str(num_mutante1) in dados2
-        acertou_equiv = equiv1 == equiv2
-        resultado.append([num_mutante1, equiv1, equiv2, acertou_equiv])
-
-    with open(output_file, 'w') as f:
-        for re in resultado:
-            f.write(str(re) + '\n')
-
-def analysis_minimal(json_file, txt_file, output_file):
-    with open(json_file, 'r') as f1:
-        dados1 = json.load(f1)
-
-    with open(txt_file, 'r') as f2:
-        dados2 = f2.read().split()
+    
+    with open(minimal_file, 'r') as f3:
+        dados3 = f3.read().split()
 
     def extrair_numero_mutante(nome_arquivo):
         return int(nome_arquivo.split('_')[0].split('muta')[1])
@@ -101,9 +81,11 @@ def analysis_minimal(json_file, txt_file, output_file):
         num_mutante1 = extrair_numero_mutante(mutante1['mutant_program'])
         equiv1 = mutante1['equivalent']
         if str(num_mutante1) in dados2:
+            equiv2 = str(num_mutante1) in dados2
+        elif str(num_mutante1) in dados3:
             equiv2 = False
-            acertou_equiv = equiv1 == equiv2
-            resultado.append([num_mutante1, equiv1, equiv2, acertou_equiv])
+        acertou_equiv = equiv1 == equiv2
+        resultado.append([num_mutante1, equiv1, equiv2, acertou_equiv])
 
     with open(output_file, 'w') as f:
         for re in resultado:
