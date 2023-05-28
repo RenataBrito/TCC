@@ -1,1 +1,652 @@
-[{"mutant_program": "muta0_CheckPalindrome.c", "equivalent": false, "tests": [{"input": ["racecar"], "original_output": "racecar is a palindrome", "mutant_output": "racecar is not a palindrome", "explanation": "The mutant code returns '1' when s[low] != s[high]', which means that the function always returns 'true' even when the input string is not a palindrome. This is different from the original code that returns 'false' when s[low] != s[high]'. Therefore, the mutant code is not equivalent to the original code."}, {"input": ["hello"], "original_output": "hello is not a palindrome", "mutant_output": "hello is a palindrome", "explanation": "The mutant code always returns 'true', regardless of the input string. Therefore, it gives the wrong output compared to the original code. This test shows that the mutant code is not equivalent to the original."}, {"input": ["aba"], "original_output": "aba is a palindrome", "mutant_output": "aba is a palindrome", "explanation": "This test shows that both the original and the mutant code return the correct output for an input string that is a palindrome. However, the mutant code is still not equivalent to the original code due to its flawed implementation."}]}]
+[{
+  "mutant_program": "muta109_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome and outputs 'racecar is a palindrome'. However, the mutant program has an empty statement after the while loop in the isPalindrome function, which causes it to not return a value. Therefore, the mutant program would output the input 'racecar', which is not the correct output."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "",
+      "explanation": "The original program correctly identifies 'hello' as not a palindrome and outputs 'hello is not a palindrome'. However, the mutant program does not return a value from the isPalindrome function because of the empty statement after the while loop, so it outputs an empty string."
+    }
+  ]
+},{
+  "mutant_program": "muta121_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is a palindrome",
+      "explanation": "The original program and mutant program output the same result as 'racecar' is a palindrome."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "The original program and mutant program output the same result as 'hello' is not a palindrome."
+    },
+    {
+      "input": [
+        ""
+      ],
+      "original_output": " is a palindrome",
+      "mutant_output": " is a palindrome",
+      "explanation": "The original program and mutant program output the same result as an empty string is considered a palindrome."
+    }
+  ]
+},{
+  "mutant_program": "muta123_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome, but the mutant code incorrectly identifies it as not a palindrome due to the addition of the TRAP_ON_NEGATIVE function call. The test input is a simple example of a palindrome."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both the original program and the mutant code correctly identify 'hello' as not a palindrome. The test input is a simple example of a non-palindrome."
+    },
+    {
+      "input": [
+        "A man a plan a canal Panama"
+      ],
+      "original_output": "A man a plan a canal Panama is a palindrome",
+      "mutant_output": "A man a plan a canal Panama is not a palindrome",
+      "explanation": "The original program correctly identifies 'A man a plan a canal Panama' as a palindrome, but the mutant code incorrectly identifies it as not a palindrome due to the addition of the TRAP_ON_NEGATIVE function call. The test input is a more complex example of a palindrome with spaces and capitalization."
+    }
+  ]
+},{
+  "mutant_program": "muta126_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome, but the mutant program always returns 'false' because of the addition of the 'TRAP_ON_NEGATIVE' function around 'high'."
+    },
+    {
+      "input": [
+        "deified"
+      ],
+      "original_output": "deified is a palindrome",
+      "mutant_output": "deified is not a palindrome",
+      "explanation": "The original program correctly identifies 'deified' as a palindrome, but the mutant program always returns 'false' because of the addition of the 'TRAP_ON_NEGATIVE' function around 'high'."
+    }
+  ]
+},{
+  "mutant_program": "muta129_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome. However, the mutant code includes a call to TRAP_ON_NEGATIVE, which is not defined in the program and will result in a compilation error. Therefore, the output of the mutant program will always be an error message."
+    },
+    {
+      "input": [
+        "level"
+      ],
+      "original_output": "level is palindrome",
+      "mutant_output": "level is not a palindrome",
+      "explanation": "The original program correctly identifies 'level' as a palindrome. However, the mutant code includes a condition that checks if the index of the first character is negative, which is unnecessary since an array index is always non-negative. This will cause the mutant program to return a false negative for 'level'."
+    },
+    {
+      "input": [
+        "moon"
+      ],
+      "original_output": "moon is not a palindrome",
+      "mutant_output": "moon is a palindrome",
+      "explanation": "The original program correctly identifies 'moon' as not a palindrome. However, the mutant code has a negated condition that will always return true, resulting in a false positive for 'moon'."
+    }
+  ]
+},{
+  "mutant_program": "muta132_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original code correctly identifies 'racecar' as a palindrome, while the mutated code incorrectly identifies it as not a palindrome due to the addition of an unnecessary 'TRAP_ON_NEGATIVE' function call."
+    },
+    {
+      "input": [
+        "12321"
+      ],
+      "original_output": "12321 is a palindrome",
+      "mutant_output": "12321 is a palindrome",
+      "explanation": "Both the original and mutated code correctly identify '12321' as a palindrome."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both the original and mutated code correctly identify 'hello' as not being a palindrome."
+    }
+  ]
+},{
+  "mutant_program": "muta133_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original code identifies 'racecar' as a palindrome, but the mutant code does not because it includes a new function TRAP_ON_ZERO which modifies the comparison."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both the original and mutant code correctly identify 'hello' as not being a palindrome."
+    },
+    {
+      "input": [
+        "kayak"
+      ],
+      "original_output": "kayak is a palindrome",
+      "mutant_output": "kayak is not a palindrome",
+      "explanation": "The original code identifies 'kayak' as a palindrome, but the mutant code does not because it includes a new function TRAP_ON_ZERO which modifies the comparison."
+    }
+  ]
+},{
+  "mutant_program": "muta135_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome, but the mutant code mistakenly changes the comparison of characters in the string by calling a function with an unexpected argument, resulting in incorrect results."
+    },
+    {
+      "input": [
+        "amanaplanacanalpanama"
+      ],
+      "original_output": "amanaplanacanalpanama is a palindrome",
+      "mutant_output": "amanaplanacanalpanama is a palindrome",
+      "explanation": "Both the original and mutated programs correctly identify 'amanaplanacanalpanama' as a palindrome."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both the original and mutated programs correctly identify 'hello' as not a palindrome."
+    }
+  ]
+},{
+  "mutant_program": "muta136_CheckPalindrome.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta138_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome, while the mutant code applies an unknown function TRAP_ON_NEGATIVE to the second character in the string, resulting in 'racecar' being identified as not a palindrome."
+    },
+    {
+      "input": [
+        "level"
+      ],
+      "original_output": "level is a palindrome",
+      "mutant_output": "level is not a palindrome",
+      "explanation": "The original program correctly identifies 'level' as a palindrome, while the mutant code applies an unknown function TRAP_ON_NEGATIVE to the first character in the string, resulting in 'level' being identified as not a palindrome."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both the original program and the mutant code correctly identify 'hello' as not a palindrome."
+    }
+  ]
+},{
+  "mutant_program": "muta139_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": "racecar",
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome, while the mutant program returns a false negative by changing the isPalindrome function to include a call to the undefined function TRAP_ON_ZERO."
+    },
+    {
+      "input": "hello",
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both the original and mutant programs correctly identify 'hello' as not a palindrome."
+    },
+    {
+      "input": "Neveroddoreven",
+      "original_output": "Neveroddoreven is a palindrome",
+      "mutant_output": "Neveroddoreven is not a palindrome",
+      "explanation": "The original program correctly identifies 'Neveroddoreven' as a palindrome, while the mutant program returns a false negative by changing the isPalindrome function to include the undefined function TRAP_ON_ZERO."
+    }
+  ]
+},{
+  "mutant_program": "muta14_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is a palindromee",
+      "explanation": "The original program correctly identifies the input string 'racecar' as a palindrome and outputs 'racecar is a palindrome', while the mutant program incorrectly outputs 'racecar is a palindromee'. This is due to the addition of unnecessary characters in the mutant program's output statement. "
+    },
+    {
+      "input": [
+        "deified"
+      ],
+      "original_output": "deified is a palindrome",
+      "mutant_output": "deified is a palindrome",
+      "explanation": "Both the original and mutant programs correctly identify the input string 'deified' as a palindrome and output 'deified is a palindrome', indicating that the mutation does not affect the program output in this case. "
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both the original and mutant programs correctly identify the input string 'hello' as not being a palindrome and output 'hello is not a palindrome', indicating that the mutation does not affect the program output in this case. "
+    }
+  ]
+},{
+  "mutant_program": "muta150_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is a palindrome",
+      "explanation": "The input string 'racecar' is a palindrome, so both the original and mutant code will output the same result."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "The input string 'hello' is not a palindrome, so both the original and mutant code will output the same result."
+    },
+    {
+      "input": [
+        "radar"
+      ],
+      "original_output": "radar is a palindrome",
+      "mutant_output": "radar is not a palindrome",
+      "explanation": "The input string 'radar' is a palindrome, but the mutant code has an additional parameter in the isPalindrome function that is not needed and causes an error. Therefore, the mutant program outputs a different result than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta153_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome, but the mutant program incorrectly identifies it as not a palindrome because it introduces an undefined function SUCC()."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both programs correctly identify 'hello' as not a palindrome, since the characters are not the same forwards and backwards."
+    },
+    {
+      "input": [
+        "tenet"
+      ],
+      "original_output": "tenet is a palindrome",
+      "mutant_output": "tenet is not a palindrome",
+      "explanation": "The original program correctly identifies 'tenet' as a palindrome, but the mutant program incorrectly identifies it as not a palindrome due to the use of SUCC()."
+    }
+  ]
+},{
+  "mutant_program": "muta163_CheckPalindrome.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is a palindrome",
+      "explanation": "Both programs take a string input and check if it's a palindrome. The mutant code only changed the function signature of strlen() but didn't affect the core functionality of the program."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both programs take a non-palindrome string input and return that it's not a palindrome."
+    }
+  ]
+},{
+  "mutant_program": "muta16_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is a palindrome",
+      "explanation": "Both original and mutant programs should output that 'racecar' is a palindrome"
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is a palindrome",
+      "explanation": "The original program correctly identifies that 'hello' is not a palindrome, but the mutant program incorrectly identifies it as a palindrome"
+    }
+  ]
+},{
+  "mutant_program": "muta2_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome, while the mutant program incorrectly states that it is not a palindrome."
+    }
+  ]
+},{
+  "mutant_program": "muta3_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The input string 'racecar' is a palindrome, so the original program should output 'racecar is a palindrome'. However, the mutated program negates the condition in the while loop, causing it to exit early and return the incorrect output 'racecar is not a palindrome'"
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "The input string 'hello' is not a palindrome, so both the original and mutated programs should output 'hello is not a palindrome'"
+    }
+  ]
+},{
+  "mutant_program": "muta49_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is a palindrome",
+      "explanation": "Both the original and mutant program should output that 'racecar' is a palindrome, since the mutation (adding a parameter to the function prototype) does not affect the behavior of the program."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is a palindrome",
+      "explanation": "The original program correctly identifies that 'hello' is not a palindrome, while the mutant program incorrectly identifies it as a palindrome. This is because the mutation adds an unnecessary parameter to the function prototype, but does not update any function calls or logic in the program to use this parameter."
+    }
+  ]
+},{
+  "mutant_program": "muta53_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome, but the mutant program incorrectly identifies it as not a palindrome due to the while loop condition being changed from 'low < high' to '(low - high)' which will always evaluate to true."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both programs correctly identify 'hello' as not a palindrome."
+    },
+    {
+      "input": [
+        "level"
+      ],
+      "original_output": "level is a palindrome",
+      "mutant_output": "level is a palindrome",
+      "explanation": "Both programs correctly identify 'level' as a palindrome."
+    }
+  ]
+},{
+  "mutant_program": "muta58_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies racecar as a palindrome, while the mutant program incorrectly identifies it as not a palindrome. This is because the mutant program is subtracting the ASCII values of the characters at the low and high indices, which does not correctly check for a palindrome."
+    },
+    {
+      "input": [
+        "happy"
+      ],
+      "original_output": "happy is not a palindrome",
+      "mutant_output": "happy is not a palindrome",
+      "explanation": "Both the original and mutant programs correctly identify happy as not a palindrome, since the word is not the same when read backwards."
+    },
+    {
+      "input": [
+        "deified"
+      ],
+      "original_output": "deified is a palindrome",
+      "mutant_output": "deified is a palindrome",
+      "explanation": "Both the original and mutant programs correctly identify deified as a palindrome, since the word is the same when read forwards and backwards."
+    }
+  ]
+},{
+  "mutant_program": "muta5_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies the input 'racecar' as a palindrome, while the mutant code returns that it is not a palindrome. This is because the while loop condition in the mutant code always evaluates to false, causing the function to only check the first and last characters of the input string."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both programs correctly identify the input 'hello' as not a palindrome. The mutant code does not affect the output in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta61_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome, but the mutant program uses a non-equivalent condition in the if statement by using the modulo operator instead of inequality. This causes the mutant to incorrectly identify 'racecar' as not a palindrome."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is a palindrome",
+      "explanation": "Both programs correctly identify 'hello' as not a palindrome."
+    },
+    {
+      "input": [
+        "radar"
+      ],
+      "original_output": "radar is a palindrome",
+      "mutant_output": "radar is a palindrome",
+      "explanation": "Both programs correctly identify 'radar' as a palindrome."
+    }
+  ]
+},{
+  "mutant_program": "muta67_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies 'racecar' as a palindrome while the mutant program erroneously identifies it as not a palindrome due to the changed condition in the if statement."
+    },
+    {
+      "input": [
+        "deified"
+      ],
+      "original_output": "deified is a palindrome",
+      "mutant_output": "deified is a palindrome",
+      "explanation": "Both programs correctly identify 'deified' as a palindrome."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both programs correctly identify 'hello' as not a palindrome."
+    }
+  ]
+},{
+  "mutant_program": "muta73_CheckPalindrome.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is a palindrome",
+      "explanation": "Both original and mutant codes should output that 'racecar' is a palindrome."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both original and mutant codes should output that 'hello' is not a palindrome."
+    },
+    {
+      "input": [
+        ""
+      ],
+      "original_output": " is a palindrome",
+      "mutant_output": " is a palindrome",
+      "explanation": "Both original and mutant codes should output an empty input as a palindrome."
+    }
+  ]
+},{
+  "mutant_program": "muta86_CheckPalindrome.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "racecar"
+      ],
+      "original_output": "racecar is a palindrome",
+      "mutant_output": "racecar is not a palindrome",
+      "explanation": "The original program correctly identifies the input 'racecar' as a palindrome and returns the expected output of 'racecar is a palindrome'. However, the mutant program incorrectly identifies 'racecar' as not a palindrome and returns the output of 'racecar is not a palindrome'. This is due to the addition of the unnecessary FALSE_AFTER_N_INTER macro, which affects the while loop condition and causes incorrect output."
+    },
+    {
+      "input": [
+        "hello"
+      ],
+      "original_output": "hello is not a palindrome",
+      "mutant_output": "hello is not a palindrome",
+      "explanation": "Both the original and mutant programs correctly identify the input 'hello' as not a palindrome and return the expected output of 'hello is not a palindrome'. This confirms that the mutant code change does not affect the program's functionality in this case, resulting in equivalent programs."
+    },
+    {
+      "input": [
+        "madam"
+      ],
+      "original_output": "madam is a palindrome",
+      "mutant_output": "madam is not a palindrome",
+      "explanation": "The original program correctly identifies the input 'madam' as a palindrome and returns the expected output of 'madam is a palindrome'. However, the mutant program incorrectly identifies 'madam' as not a palindrome and returns the output of 'madam is not a palindrome'. This confirms that the mutant code change affects the program's functionality and results in a different output, validating the non-equivalence of the programs."
+    }
+  ]
+}]
