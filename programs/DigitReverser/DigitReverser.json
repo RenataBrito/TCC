@@ -1,1 +1,978 @@
-[{"mutant_program": "muta0_DigitReverser.c", "equivalent": false, "tests": [{"input": [1234], "original_output": "4321\n1234", "mutant_output": "4321\n4321", "explanation": "The original program correctly reverses the digits of the input integer and outputs both the reversed integer and its individual digits in reverse order. The mutant program has an additional condition in the while loop, causing it to stop reversing the digits too early and outputting a incorrect result for the reversed integer."}, {"input": [9876], "original_output": "6789\n9876", "mutant_output": "6789\n6789", "explanation": "Both programs correctly reverse the digits of the input integer and output both the reversed integer and its individual digits in reverse order. However, the mutant program stops reversing the digits too early and outputs an incorrect result for the reversed integer."}, {"input": [0], "original_output": "0\n", "mutant_output": "0\n", "explanation": "Both programs output the correct result for an input of 0, which is simply 0."}]}]
+[{
+  "mutant_program": "muta14_DigitReverser.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta165_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321\n",
+      "mutant_output": "321\n<garbage_value>\n",
+      "explanation": "The original program correctly reverses the digits of the number and prints it twice - once as an integer and second as a string. The mutant program also reverses the digits correctly but when it converts the digits into their corresponding ASCII character, it uses '|' instead of '+'. As a result, instead of getting the correct output as a string representation, we get a garbage value due to the incorrect bitwise operator. This test case shows that the programs are not equivalent."
+    },
+    {
+      "input": [
+        987
+      ],
+      "original_output": "789\n789\n",
+      "mutant_output": "789\n<garbage_value>\n",
+      "explanation": "This test uses a three-digit number and confirms that the original program still prints the correct reversed digits twice. The mutant program also processes this input correctly but the mistake in character conversion remains, so we again get a garbage value in the second output. This confirms that the programs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta167_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "853\n853",
+      "explanation": "The original code first converts the integer into its reversed integer and then reverses it again using string concatenation. The mutant code uses the bitwise XOR operator instead of addition to get the correct digit to store in the string. This results in the reversed integer being incorrect, which in turn results in the final string being incorrect as well. The test input [123] should result in the original output '321\n321', but results in the mutant output '853\n853'."
+    },
+    {
+      "input": [
+        987654321
+      ],
+      "original_output": "123456789\n123456789",
+      "mutant_output": "912345678\n912345678",
+      "explanation": "The original code first converts the integer into its reversed integer and then reverses it again using string concatenation. The mutant code uses the bitwise XOR operator instead of addition to get the correct digit to store in the string. This results in the reversed integer being incorrect, which in turn results in the final string being incorrect as well. The test input [987654321] should result in the original output '123456789\n123456789', but results in the mutant output '912345678\n912345678'."
+    }
+  ]
+},{
+  "mutant_program": "muta20_DigitReverser.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta268_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321\n",
+      "mutant_output": "321\n",
+      "explanation": "The original program correctly reverses the digits of the input integer first by using arithmetic and then by using string concatenation. The mutant program modifies the line where the null character is added to the end of the string by using an incorrect operator, which is the assignment operator *= instead of the assignment operator =. This results in the string being terminated with the ASCII value of the null character multiplied by the digit at the units place of the reversed integer, which is non-zero for any integer greater than 0. Thus, the mutant program outputs only the reversed integer without the null character and the consecutive string."
+    }
+  ]
+},{
+  "mutant_program": "muta288_DigitReverser.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta29_DigitReverser.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta2_DigitReverser.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta304_DigitReverser.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321\n",
+      "mutant_output": "321\n321\n",
+      "explanation": "The mutant code only adds unnecessary parentheses in the while condition, but it does not affect the original logic of the program."
+    },
+    {
+      "input": [
+        456
+      ],
+      "original_output": "654\n654\n",
+      "mutant_output": "654\n654\n",
+      "explanation": "Both programs output the same reversed integer and the same reversed string."
+    },
+    {
+      "input": [
+        789
+      ],
+      "original_output": "987\n987\n",
+      "mutant_output": "987\n987\n",
+      "explanation": "The original and mutant programs work equivalently for every input."
+    }
+  ]
+},{
+  "mutant_program": "muta30_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123456
+      ],
+      "original_output": "654321\n654321",
+      "mutant_output": "654321\n",
+      "explanation": "The original program correctly reverses the digits of the input number using arithmetic, then concatenates the reversed digits into a string using string manipulation. The mutant program has a changed line where it attempts to set the null character at the end of the string using a bitwise OR operation. This will only set the null character to 0, but will not actually append it to the string. Therefore, the mutated program will print only the reversed digits without a null character at the end, thus leading to a different output."
+    },
+    {
+      "input": [
+        987654
+      ],
+      "original_output": "456789\n456789",
+      "mutant_output": "456789\n",
+      "explanation": "Similar to the previous test case, the original program correctly reverses the digits of the input number using arithmetic, then concatenates the reversed digits into a string using string manipulation. The mutant program has a changed line that attempts to set the null character at the end of the string, but fails to append it. As a result, the mutant program output is different from the original program output."
+    }
+  ]
+},{
+  "mutant_program": "muta314_DigitReverser.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        12345
+      ],
+      "original_output": "54321\n54321",
+      "mutant_output": "54321\n54321",
+      "explanation": "Both programs will output the same reversed number and its reversed string representation"
+    },
+    {
+      "input": [
+        4567
+      ],
+      "original_output": "7654\n7654",
+      "mutant_output": "7654\n7654",
+      "explanation": "Both programs will output the same reversed number and its reversed string representation"
+    }
+  ]
+},{
+  "mutant_program": "muta322_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n3210",
+      "explanation": "The original program uses arithmetic to reverse the digits and then string concatenation to reverse the digits again and obtain the original number. The mutant program does the same arithmetic operation to reverse the digits, but the while condition is unnecessarily modified to (N+0), which does not affect the behavior of the loop. However, the mutant program concatenates a '0' to the string at the end of the second loop, which causes the output to be different from the original program."
+    },
+    {
+      "input": [
+        9876
+      ],
+      "original_output": "6789\n6789",
+      "mutant_output": "6789\n67890",
+      "explanation": "Same as previous test, the mutation adds a '0' to the string at the end of the second loop, causing a different output."
+    },
+    {
+      "input": [
+        1001
+      ],
+      "original_output": "1001\n1001",
+      "mutant_output": "1001\n10010",
+      "explanation": "Same as previous tests, the mutation adds a '0' to the string at the end of the second loop, causing a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta323_DigitReverser.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        123456
+      ],
+      "original_output": "654321\n654321",
+      "mutant_output": "654321\n654321",
+      "explanation": "Both programs should produce the same output string for the given input, since the mutant code only changes the condition of the while loop from comparing N to 0 to subtracting 0 from N, which will always be true. The program still correctly reverses the digits of the input number and prints the integer and string representations of the result."
+    },
+    {
+      "input": [
+        789
+      ],
+      "original_output": "987\n987",
+      "mutant_output": "987\n987",
+      "explanation": "Both programs should produce the same output string again for this input, for the same reasons as the previous test case. The input integer is correctly reversed and printed in both its integer and string forms."
+    }
+  ]
+},{
+  "mutant_program": "muta327_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n",
+      "explanation": "The original program correctly reverses the digits of the input integer and prints both the reversed integer and the reversed integer as a string. The mutant code also reverses the digits of the integer, but the condition in the second while loop is always true because adding 0 does not change the value of M. This results in an infinite loop writing digits to the char array v. Thus, only the reversed integer is printed, while the reversed integer as a string is never fully constructed."
+    },
+    {
+      "input": [
+        9876
+      ],
+      "original_output": "6789\n6789",
+      "mutant_output": "6789\n",
+      "explanation": "Both programs reverse the digits of the input integer correctly. However, due to the infinite loop in the mutant code, the reversed integer as a string is not constructed, while it is correctly printed by the original code. Therefore, the programs have different output and are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta328_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        12345
+      ],
+      "original_output": "54321\n12345",
+      "mutant_output": "54321\n54321",
+      "explanation": "The original program correctly reverses the digits of the input number and prints it as output. It then reverses the digits again using string concatenation and prints the new string. The mutant program has a non-deterministic change in the while loop condition. Instead of checking if M is not equal to zero, it subtracts zero from M and then checks if the result is true. This does not affect the first while loop which still correctly reverses the digits, but the second while loop does not execute at all because the condition is always false. Therefore, the mutant program fails to reverse the digits using string concatenation and outputs the original reversed digits instead."
+    },
+    {
+      "input": [
+        987654321
+      ],
+      "original_output": "123456789\n987654321",
+      "mutant_output": "123456789\n123456789",
+      "explanation": "The original program correctly reverses the digits of the input number and prints it as output. It then reverses the digits again using string concatenation and prints the new string. The mutant program has a non-deterministic change in the while loop condition. Instead of checking if M is not equal to zero, it subtracts zero from M and then checks if the result is true. This does not affect the first while loop which still correctly reverses the digits, but the second while loop does not execute at all because the condition is always false. Therefore, the mutant program fails to reverse the digits using string concatenation and outputs the original reversed digits instead."
+    }
+  ]
+},{
+  "mutant_program": "muta332_DigitReverser.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        12345
+      ],
+      "original_output": "54321\n54321",
+      "mutant_output": "54321\n54321",
+      "explanation": "Both programs follow the same logic to reverse the digits of an integer using arithmetic and string concatenation."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0\n",
+      "mutant_output": "0\n",
+      "explanation": "Both programs handle the case of a single digit integer or zero as input in the same way."
+    },
+    {
+      "input": [
+        -123
+      ],
+      "original_output": "-321\n321-",
+      "mutant_output": "-321\n321-",
+      "explanation": "Both programs correctly handle negative integers and return the reversed digits."
+    }
+  ]
+},{
+  "mutant_program": "muta334_DigitReverser.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n321",
+      "explanation": "The mutant code only changes the condition inside the while loop to check if N is different than 0 using bitwise XOR instead of direct comparison. However, this is an equivalent condition, so the outputs of both versions are the same. Therefore, the test input [123] produces the same outputs in both programs."
+    },
+    {
+      "input": [
+        987654321
+      ],
+      "original_output": "123456789\n987654321",
+      "mutant_output": "123456789\n987654321",
+      "explanation": "Again, the mutant code is equivalent to the original code, so both programs produce the same output no matter the input. The given test produces the expected outputs in both versions."
+    }
+  ]
+},{
+  "mutant_program": "muta335_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        12345
+      ],
+      "original_output": "54321\n54321",
+      "mutant_output": "54321\n54321",
+      "explanation": "The original program and the mutant program produce the same output, both reverse the digits of the input number using arithmetic operations and then reverse the digits again using string concatenation."
+    },
+    {
+      "input": [
+        100
+      ],
+      "original_output": "1\n001",
+      "mutant_output": "1\n100",
+      "explanation": "The original program correctly reverses the digits of 100, but the mutant program produces a different result by using a bitwise OR operation with 0 in the while loop condition instead of just checking M!=0. The bitwise OR operation always returns true, causing an infinite loop and an incorrect result."
+    }
+  ]
+},{
+  "mutant_program": "muta337_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n123",
+      "explanation": "The original program reverses the digits of N first using arithmetic and then using string concatenation. The mutant program also reverses the digits of N using arithmetic but in the second loop it uses a bitwise XOR to check if M is not equal to zero. This condition is always true as M is initially set to 0 and never changes to anything else. Therefore, the program always enters the second loop and the output of the string concatenation is not reversed, resulting in a different final output."
+    },
+    {
+      "input": [
+        9876
+      ],
+      "original_output": "6789\n6789",
+      "mutant_output": "6789\n6789",
+      "explanation": "Even though the input integer is different, the outputs for both programs are the same since the second loop in the mutant program always runs and assigns the digits of M to the string in reverse order, resulting in the same output as the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta338_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123456
+      ],
+      "original_output": "654321\n654321",
+      "mutant_output": "654321\n654321",
+      "explanation": "Both original and mutant programs should output the reversed integer followed by the reversed digits as a string. This input tests both parts of the function."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0\n0",
+      "mutant_output": "0\n0",
+      "explanation": "Both original and mutant programs should handle a single digit input correctly."
+    },
+    {
+      "input": [
+        100
+      ],
+      "original_output": "1\n001",
+      "mutant_output": "1\n001",
+      "explanation": "Both original and mutant programs should handle leading zeros correctly."
+    },
+    {
+      "input": [
+        -123
+      ],
+      "original_output": "-321\n-321",
+      "mutant_output": "0\n0",
+      "explanation": "The mutant code introduces an unnecessary OR operator, resulting in an infinite loop for negative inputs."
+    }
+  ]
+},{
+  "mutant_program": "muta33_DigitReverser.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n321",
+      "explanation": "The original and mutant code both reverse the digits of the input number and print the reversed number twice. The only difference in the code is the unnecessary parentheses around the condition in the while loop, which does not affect the behavior of the code."
+    },
+    {
+      "input": [
+        4567
+      ],
+      "original_output": "7654\n7654",
+      "mutant_output": "7654\n7654",
+      "explanation": "The original and mutant code both work correctly for this input, reversing the digits of the input number and printing the reversed number twice. The mutant code has the same behavior as the original code and the only difference in the code is the unnecessary parentheses around the condition in the while loop, which does not affect the behavior of the code."
+    }
+  ]
+},{
+  "mutant_program": "muta340_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1234
+      ],
+      "original_output": "4321\n1234",
+      "mutant_output": "4321\n4321",
+      "explanation": "The original program correctly reverses the number using arithmetic, then reverses it again using string concatenation. The mutant program changes the condition in the second loop to always be true, resulting in an infinite loop that repeats the last digit of the reversed number indefinitely. The first output is the correct reversal using arithmetic, but the second output is incorrect because the second reversal never completes."
+    }
+  ]
+},{
+  "mutant_program": "muta343_DigitReverser.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        12345
+      ],
+      "original_output": "54321\n12345\n",
+      "mutant_output": "54321\n12345\n",
+      "explanation": "Both the original and the mutated code perform the same operations in the same order,resulting in the same output for a given input"
+    },
+    {
+      "input": [
+        987654321
+      ],
+      "original_output": "123456789\n987654321\n",
+      "mutant_output": "123456789\n987654321\n",
+      "explanation": "Both the original and the mutated code perform the same operations in the same order,resulting in the same output for a given input"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0\n0\n",
+      "mutant_output": "0\n0\n",
+      "explanation": "Both the original and the mutated code perform the same operations in the same order,resulting in the same output for a given input"
+    }
+  ]
+},{
+  "mutant_program": "muta348_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        12345
+      ],
+      "original_output": "54321",
+      "mutant_output": "54321",
+      "explanation": "Both codes perform the same logic, reversing the digits of the input number. The difference in the mutant code is that the second while loop condition explicitly checks for M > 0 rather than just checking if M != 0, which is semantically equivalent."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0",
+      "mutant_output": "0",
+      "explanation": "Both codes correctly handle the edge case of input 0, outputting 0 as expected."
+    },
+    {
+      "input": [
+        9057128
+      ],
+      "original_output": "8217509",
+      "mutant_output": "8217509",
+      "explanation": "Both codes correctly reverse the digits of the input number for this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta352_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n321",
+      "explanation": "Both programs should output the reversed integer (321) followed by the string concatenation of its digits (also 321), as they perform the exact same operations."
+    },
+    {
+      "input": [
+        100
+      ],
+      "original_output": "1\n001",
+      "mutant_output": "1\n1",
+      "explanation": "For this input, the original program outputs 1 followed by a string concatenation of 3 digits (001), while the mutant outputs only 1 followed by a string concatenation of 1 digit (1). This is because the mutant program applies a bitwise left shift of 0 to N in the condition of the first while loop, which is always true, making it execute indefinitely while N is greater than 0. This results in extra iterations in which N becomes zero, causing M to accumulate an extra 0 digit and s to not be updated, leading to the different string concatenation outcome."
+    },
+    {
+      "input": [
+        987654321
+      ],
+      "original_output": "123456789\n987654321",
+      "mutant_output": "123456789\n123456789",
+      "explanation": "For this input, the original and mutant programs should output the same result as in the first test case. However, due to the same issue explained in the previous test, the mutant program outputs a string concatenation of only one digit instead of the correct nine digits."
+    }
+  ]
+},{
+  "mutant_program": "muta353_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321\n",
+      "mutant_output": "321\n123\n",
+      "explanation": "The original program correctly reverses the digits of input integer, then reverses them again using string concatenation. The mutant program makes a bit-wise shift of N by 0, which is unnecessary and does not change the output of the program in this case, but does add complexity. However, the mutant program produces a different output than the original program because it reverses the digits but fails to reverse them again using string concatenation."
+    },
+    {
+      "input": [
+        567
+      ],
+      "original_output": "765\n765\n",
+      "mutant_output": "765\n567\n",
+      "explanation": "Both programs reverse the digits correctly, but the mutant program also fails to reverse them using string concatenation, resulting in a different output than the original program."
+    },
+    {
+      "input": [
+        98765
+      ],
+      "original_output": "56789\n56789\n",
+      "mutant_output": "56789\n56789\n",
+      "explanation": "Both programs reverse the digits correctly and produce the same output. In this case, the mutant program's unnecessary bit-wise shift by 0 does not affect the output of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta354_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n\n",
+      "explanation": "The original program correctly reverses the digits of the input number and prints it to the console using arithmetic. It then reverses the number again using string concatenation and prints it to the console. However, the mutant program introduces a non-deterministic change by shifting M left by 0 bits in the second while loop condition, which always evaluates to true. This causes an infinite loop that leads to a buffer overflow when an attempt is made to print the reversed string, resulting in an empty string in this case."
+    },
+    {
+      "input": [
+        987
+      ],
+      "original_output": "789\n789",
+      "mutant_output": "789\n\n",
+      "explanation": "The original and mutant programs are tested with an input of 987, and produces different outputs due to the non-deterministic change introduced in the mutant program. The original program correctly reverses the digits of the input number and prints it to the console using arithmetic. It then reverses the number again using string concatenation and prints it to the console. The mutant program, on the other hand, introduces a non-deterministic change by shifting M left by 0 bits in the second while loop condition, which always evaluates to true. This causes an infinite loop that leads to a buffer overflow when an attempt is made to print the reversed string, resulting in an empty string in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta355_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        12345
+      ],
+      "original_output": "54321\n54321",
+      "mutant_output": "54321\n12345",
+      "explanation": "The original program reverses the digits of the input integer using arithmetic, then reverses them again using string concatenation. The mutant program reverses the digits of the input integer using arithmetic as well, but then reverses them again using bitwise shift which is not equivalent to string concatenation. This is evident in the different output."
+    },
+    {
+      "input": [
+        1000000
+      ],
+      "original_output": "1\n0000001",
+      "mutant_output": "1\n0000000",
+      "explanation": "The original program and the mutant program both successfully reverse the digits of the input integer, but the mutant program inserts an extra leading zero in the string concatenation step. This is evident in the different output."
+    }
+  ]
+},{
+  "mutant_program": "muta363_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n",
+      "explanation": "The original program correctly reverses the digits of the input integer and then uses string concatenation to print the reversed integer. The mutation changed the closing brace of the second while loop, causing the null terminator for the string to be set early, resulting in incorrect output with the reversed integer missing the last digit."
+    },
+    {
+      "input": [
+        89
+      ],
+      "original_output": "98\n98",
+      "mutant_output": "98\n",
+      "explanation": "Same as previous test case, the mutation caused the null terminator to be set early, thus resulting in incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta37_DigitReverser.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        1234
+      ],
+      "original_output": "4321\n4321",
+      "mutant_output": "4321\n4321",
+      "explanation": "The original program and the mutated program perform the same steps and produce the same output."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0\n",
+      "mutant_output": "0\n",
+      "explanation": "The original program and the mutated program both correctly handle the case of input being 0."
+    },
+    {
+      "input": [
+        -1234
+      ],
+      "original_output": "-4321\n-4321",
+      "mutant_output": "-4321\n-4321",
+      "explanation": "The original program and the mutated program both correctly handle negative input and produce the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta409_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n123",
+      "explanation": "The original program first reverses the digits of the input integer using arithmetic. Then, it reverses again using string concatenation. The mutant changes the first reversal to a do-while loop, which reverses the digits of the input integer in a different way. Therefore, the mutant program produces a different output."
+    },
+    {
+      "input": [
+        9876
+      ],
+      "original_output": "6789\n6789",
+      "mutant_output": "6789\n6789",
+      "explanation": "Both programs produce the same output with this input since the input integer contains different digits."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0\n0",
+      "mutant_output": "0\n0",
+      "explanation": "Both programs produce the same output with this input since the input integer is zero."
+    }
+  ]
+},{
+  "mutant_program": "muta412_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n321",
+      "explanation": "The original program and the mutant program both take the input integer N and reverse its digits twice, first using arithmetic and then using string concatenation. The mutant code uses a TRAP_ON_NEGATIVE function in the while loop condition, but since the input N is always positive, this function call does not affect the behavior of the program."
+    },
+    {
+      "input": [
+        100
+      ],
+      "original_output": "1\n001",
+      "mutant_output": "1\n001",
+      "explanation": "Both programs correctly reverse the digits of 100 to output '001'."
+    },
+    {
+      "input": [
+        -123
+      ],
+      "original_output": "0\n",
+      "mutant_output": "Runtime Error: TRAP_ON_NEGATIVE called with -123",
+      "explanation": "The mutant program introduces a new function call to TRAP_ON_NEGATIVE in the while loop condition, but this function is not defined in the original program. This causes a runtime error when the input integer is negative."
+    }
+  ]
+},{
+  "mutant_program": "muta415_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321\n",
+      "mutant_output": "321\n",
+      "explanation": "The original program first calculates the reverse of the input number using arithmetic, and then calculates the reverse again using string concatenation. The mutant program introduces a function TRAP_ON_NEGATIVE, which is not defined or explained in the code snippet provided. Therefore, it is impossible to predict its behavior and the output of the mutant program can be different from the original."
+    },
+    {
+      "input": [
+        456
+      ],
+      "original_output": "654\n654\n",
+      "mutant_output": "654\n",
+      "explanation": "The same as the previous test case, the behavior of the mutant function is unpredictable due to the introduction of an undefined function. Therefore, the output of the mutant can be different from the original."
+    }
+  ]
+},{
+  "mutant_program": "muta418_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n123",
+      "explanation": "The original program uses arithmetic to reverse the digits of the input integer, while the mutant program uses a TRAP_ON_NEGATIVE function, which is not defined. Therefore, the mutant program will not compile. If we assume that the TRAP_ON_NEGATIVE function is meant to throw an exception when N is negative, then the mutant program will not reverse the digits of negative integers and will produce different output from the original program."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0\n0",
+      "mutant_output": "0\n0",
+      "explanation": "Both programs correctly handle input of 0 and produce the same output."
+    },
+    {
+      "input": [
+        987654321
+      ],
+      "original_output": "123456789\n123456789",
+      "mutant_output": "123456789\n123456789",
+      "explanation": "Both programs correctly reverse the digits of a large positive integer and produce the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta419_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "325\n523",
+      "explanation": "The original program first reverses the digits using arithmetic and then again using string concatenation. The mutant program reverses the digits using arithmetic but changes the N % 10 operation to TRAP_ON_ZERO(N) % 10, which is not defined. This can lead to unpredictable results. In this test case, the original program correctly outputs the reversed digits (321) twice, whereas the mutant program outputs 325 using arithmetic reversal and 523 using string concatenation."
+    },
+    {
+      "input": [
+        987654321
+      ],
+      "original_output": "123456789\n987654321",
+      "mutant_output": "123456789\n123456789",
+      "explanation": "In this test case, the original program correctly outputs the reversed digits (123456789) first using arithmetic and then using string concatenation. The mutant program also correctly outputs the reversed digits using arithmetic, but then has a segmentation fault when attempting to reverse the digits using string concatenation, likely due to the TRAP_ON_ZERO(N) operation."
+    }
+  ]
+},{
+  "mutant_program": "muta421_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321\n",
+      "mutant_output": "321\n123\n",
+      "explanation": "The original program reverses the digits of the input integer first using arithmetic operations, then using string concatenation. The mutant program has a trap on negative inputs, but since the input is always positive in this case, it is equivalent in the reverser logic. However, the mutant program outputs the reversed integer and the original input string instead of the reversed integer twice as the original program does."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0\n0\n",
+      "mutant_output": "0\n0\n",
+      "explanation": "Both programs output 0 when given an input of 0."
+    },
+    {
+      "input": [
+        56789
+      ],
+      "original_output": "98765\n98765\n",
+      "mutant_output": "98765\n56789\n",
+      "explanation": "The original program correctly reverses the digits of the input integer, and then reverses the reversed string to get the original string. The mutant program does the same, but outputs the original integer string instead of the reversed reversed string as the original program does, causing a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta422_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321\n",
+      "mutant_output": "321\n123\n",
+      "explanation": "The original program first reverses the digits of N using arithmetic, then it reverses again using string concatenation. The mutant program introduces a TRAP_ON_ZERO function which traps on zero before dividing by 10. This modification changes the program behavior, as it skips any trailing zeros in the input N. For instance, when the input is 123, the original program outputs '321', then '321' again. The mutant program outputs '321', then '123'."
+    }
+  ]
+},{
+  "mutant_program": "muta424_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123456
+      ],
+      "original_output": "654321\n654321",
+      "mutant_output": "-654321\n654321",
+      "explanation": "The original program correctly reverses the digits of the input integer and prints the reversed integer and its digit sequence in string format. The mutant program introduces a call to a non-existent function TRAP_ON_NEGATIVE that seems to imply it could produce a negative output. When given positive input, both programs produce the same results. However, for negative input the original program produces valid outputs in the same format as if it were a positive input, whereas the mutant introduces a negative sign on the reversed number, indicating incorrect behavior. Thus, the mutant program is not equivalent to the original program. \nInput -123456\nOriginal output: 654321\n654321\nMutant output: -654321\n654321"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0\n0",
+      "mutant_output": "0\n0",
+      "explanation": "The original program correctly handles the edge case of input zero and produces valid output for it. The mutant program also produces the same output in this case. Thus, both programs are equivalent. \nInput 0\nOriginal output: 0\n0\nMutant output: 0\n0"
+    },
+    {
+      "input": [
+        2147483647
+      ],
+      "original_output": "7463847412\n7463847412",
+      "mutant_output": "-7463847412\n7463847412",
+      "explanation": "The original program correctly reverses the digits of the largest 32-bit integer input and produces valid output for it. The mutant program, however, introduces a negative sign on the reversed number again, indicating incorrect behavior. Thus, the mutant program is not equivalent to the original program. \nInput 2147483647\nOriginal output: 7463847412\n7463847412\nMutant output: -7463847412\n7463847412"
+    }
+  ]
+},{
+  "mutant_program": "muta427_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1234
+      ],
+      "original_output": "4321\n1234",
+      "mutant_output": "4321\n",
+      "explanation": "The original program correctly reverses the digits of the input integer N using arithmetic, then reverses the digits again using string concatenation. The mutant program replaces the condition in the second loop with a call to a non-existent function TRAP_ON_NEGATIVE(M), which will always return 0 because M (the reversed integer) is always positive. As a result, the second loop will never execute, and the output of the mutant program will lack the reversed string of digits produced by string concatenation in the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta430_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        12345
+      ],
+      "original_output": "54321\n54321",
+      "mutant_output": "54321\n42935",
+      "explanation": "The original program reverses the digits of the input twice, once using arithmetic and once using string concatenation. The mutant program replaces the calculation of digit with a TRAP_ON_NEGATIVE function, which is not defined in the original program and could potentially have unexpected behavior. When M becomes negative during the second reverse, the digit calculation in the mutant program becomes negative, leading to incorrect results in the second reverse. This is demonstrated in this test case."
+    },
+    {
+      "input": [
+        1000
+      ],
+      "original_output": "1\n1",
+      "mutant_output": "1\n1",
+      "explanation": "In this test case, both programs reverse a number with trailing zeros. The output in the second reverse is the same because the zeros are not lost due to the string concatenation method used."
+    },
+    {
+      "input": [
+        987654321
+      ],
+      "original_output": "123456789\n123456789",
+      "mutant_output": "123456789\n123456789",
+      "explanation": "In this test case, both programs reverse a number with no leading zeros. The output in the second reverse is the same because the digits are not affected by the change in the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta431_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123456
+      ],
+      "original_output": "654321\n654321",
+      "mutant_output": "654321\n",
+      "explanation": "The original program correctly reverses the digits of the input integer and then prints it using arithmetic and string concatenation. The mutant program adds a new operation before converting the digits to string, which is a trap on zero. This operation does not seem to achieve anything and might even make the function return an empty string in some cases. Therefore, the outputs are different."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0\n0",
+      "mutant_output": "\n",
+      "explanation": "The original program correctly reverses the digits of the input integer (which is 0) and then prints it using arithmetic and string concatenation. The mutant program adds a new operation before converting the digits to string, which is a trap on zero. This operation seems to trigger an error and make the program return an empty string. Therefore, the outputs are different."
+    },
+    {
+      "input": [
+        -123
+      ],
+      "original_output": "-321\n-321",
+      "mutant_output": "-321\n",
+      "explanation": "The original program correctly reverses the digits of the input integer and then prints it using arithmetic and string concatenation. The mutant program adds a new operation before converting the digits to string, which is a trap on zero. This operation does not seem to achieve anything and might even make the function return an empty string in some cases. Therefore, the outputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta433_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123456
+      ],
+      "original_output": "654321\n654321",
+      "mutant_output": "654321\n744321",
+      "explanation": "The original program correctly reverses the digits of input and then reverses them again using string concatenation. The mutant program tries to reverse the digits using string concatenation but substitutes the original calculation of digit with TRAP_ON_NEGATIVE(digit). This substitution modifies the behavior of the program, producing different output, as it maps the digit to a different character."
+    },
+    {
+      "input": [
+        789
+      ],
+      "original_output": "987\n987",
+      "mutant_output": "987\n897",
+      "explanation": "The original program correctly reverses the digits of input and then reverses them again using string concatenation. The mutant program tries to reverse the digits using string concatenation but substitutes the original calculation of digit with TRAP_ON_NEGATIVE(digit). This substitution modifies the behavior of the program, producing different output, as it maps the digit to a different character."
+    }
+  ]
+},{
+  "mutant_program": "muta434_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n420",
+      "explanation": "The original program and the mutant program reverse the digits of the input integer in the first while loop, using arithmetic operations. However, in the second while loop, the mutant program has a TRAP_ON_ZERO function that adds 123 to the digit before converting it to a character. This changes the output of the reversed string, as seen in the provided test input."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "0\n",
+      "mutant_output": "0\n0",
+      "explanation": "The original program and the mutant program both correctly output a reversed string with only one character, 0. However, the mutant program adds an extra 0 to the end of the string due to the mutation in the second while loop."
+    }
+  ]
+},{
+  "mutant_program": "muta436_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        12345
+      ],
+      "original_output": "54321\n54321",
+      "mutant_output": "54321\n543",
+      "explanation": "The mutant program uses a TRAP_ON_NEGATIVE function to check if M is negative, but since M is never negative, this has no effect. However, it divides M by 10 after each iteration of the loop, which skips the last digit when reversing the integer using string concatenation. This causes the mutant program to output only the first four digits of the reversed integer instead of all five digits, resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta437_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321\n",
+      "mutant_output": "321\n   \n",
+      "explanation": "The original program reverses the digits of the input integer using arithmetic in the first while loop and then uses string concatenation to reverse again and print the result. The mutant program uses the same approach, but includes a TRAP_ON_ZERO statement that causes M to be 0 once in a while loop iteration, making it impossible for that digit to be added to the string. As a result, the mutant program produces an incorrect string output, failing the test."
+    },
+    {
+      "input": [
+        967
+      ],
+      "original_output": "769\n769\n",
+      "mutant_output": "769\n   \n",
+      "explanation": "Similar to the first test case, the original program correctly reverses the digits of the input integer, but the mutant program fails to do so due to the TRAP_ON_ZERO statement preventing a digit from being added to the string. This results in an incorrect output and failure of the test."
+    }
+  ]
+},{
+  "mutant_program": "muta477_DigitReverser.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        123
+      ],
+      "original_output": "321\n321",
+      "mutant_output": "321\n0",
+      "explanation": "The original code reverses the digits of the input integer using arithmetic, then reverses the digits again using string concatenation. The mutant code does the same except it replaces the division operation with a call to a successor function (SUCC(N)), which will result in an incorrect output for input integers with digits other than 9. Therefore, the outputs are different for the input 123."
+    },
+    {
+      "input": [
+        9876
+      ],
+      "original_output": "6789\n6789",
+      "mutant_output": "6789\n0",
+      "explanation": "The original and mutant codes both correctly reverse the digits of the input integer using arithmetic and string concatenation, so the outputs for the input 9876 are the same."
+    }
+  ]
+}]
