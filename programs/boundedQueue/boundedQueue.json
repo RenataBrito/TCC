@@ -1,1 +1,3431 @@
-[{"mutant_program": "muta0_boundedQueue.c", "equivalent": false, "tests": [{"input": [-1], "original_output": "Invalid size.\n", "mutant_output": " ", "explanation": "The original program correctly prints an error message for an invalid size, whereas the mutant program has an erroneous condition which doesn't allow any valid size to be passed."}, {"input": [3], "original_output": "Queue is Full\nQueue is already empty!\n[1, 3]\n", "mutant_output": "Queue is Full\nQueue is already empty!\n[1, 2, 3]\n", "explanation": "The test case adds 3 elements to the queue, removes all elements and tries to add one more element to trigger the 'Queue is Full' error message. The original program correctly executes the scenario, whereas the mutant program fails by wrongfully adding another element. Therefore, the programs are not equivalent."}, {"input": [5], "original_output": "Queue is Full\n[1, 2, 3, 4, 5]\n", "mutant_output": "Queue is Full\n[1, 2, 3, 4, 5]\n", "explanation": "The test case adds 6 elements to the queue, causing the 'Queue is Full' error message to be printed. The result of the original and mutant programs match, meaning that the mutant code did not introduce any significant changes to the original program."}]}]
+[{
+  "mutant_program": "muta1_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "This test creates a queue with 5 elements capacity."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "This test creates a queue with 3 elements capacity."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "This test creates a queue with 2 elements capacity."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": null,
+      "explanation": "This test tries to create a queue with 0 elements, expecting an error message from the original program."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "This test tries to create a queue with a negative number of elements, expecting the same error message from both programs."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[3, 4]\n",
+      "mutant_output": "[1, 2]\n",
+      "explanation": "This test enqueues the elements 3 and 4 on the original queue, and the elements 1 and 2 on the mutant queue. The original queue should print [3,4], while the mutant queue should print [1,2]."
+    }
+  ]
+},{
+  "mutant_program": "muta2_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both original and mutant output the same for negative maxElements input"
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "[1, 2, 3, 4, 5]",
+      "mutant_output": "[0, 0, 0, 0, 0]",
+      "explanation": "Both original and mutant create a queue of size 5. Original correctly inserts elements 1 to 5, while mutant does not insert any element."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Queue is Full\nQueue is Full\nInvalid size.\n",
+      "mutant_output": "Queue is Full\nQueue is Full\nInvalid size.\n",
+      "explanation": "Both original and mutant correctly output error messages for full queue and negative maxElements input."
+    }
+  ]
+},{
+  "mutant_program": "muta34_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": "[1, 2, 3]\nQueue is Full\n-1\n[2, 3]\n",
+      "mutant_output": "[1, 2]\nQueue is Full\n-1\n[2]\n",
+      "explanation": "The input parameter 'maxElements' specifies the maximum number of elements that the queue can hold. The original program creates 'maxElements' number of elements in the queue with the following line: 'q->elements = (int *) malloc(sizeof(int)*maxElements)'. The mutant program creates a memory space of size (sizeof(int) << maxElements) instead, which is actually bit shifting 'maxElements' to get the memory area. This mutant program is not equivalent to the original program since it created a larger memory space to hold more elements than requested. Test input [1, 2, 3] was used for this example."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "[1, 2, 3, 4, 5]\nQueue is Full\n-1\n[2, 3, 4, 5]\n",
+      "mutant_output": "[1, 666, 3, 4, 5]\n\n\n[666, 3, 4, 5]\n",
+      "explanation": "The input parameter 'maxElements' specifies the maximum number of elements that the queue can hold. The original program creates 'maxElements' number of elements according to the input parameter. The mutant program just replaces the second item of the sequence that needs to be enqueued (666 instead of 2). This mutant program is not equivalent to the original program because it altered the behavior of the enqueue function. Test input [5] was used for this example."
+    }
+  ]
+},{
+  "mutant_program": "muta39_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both the original program and the mutated program should output 'Invalid size.' because the input value is less than 0."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should output empty strings because createQueue() does not output anything. This test verifies that the function is called correctly and does not crash."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should output empty strings because createQueue() does not output anything. This test verifies that the function is called correctly and does not crash."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should output empty strings because createQueue() does not output anything. This test verifies that the function is called correctly and does not crash."
+    }
+  ]
+},{
+  "mutant_program": "muta42_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both original and mutant programs output the same message when passed a negative size, indicating that the mutation did not affect this behavior."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutant programs should successfully create a queue of size 5. No output is expected here, but the programs should not crash."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Again, both the original and mutant programs should create a queue of the same size without issue."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should create a queue with no issue and run the rest of the tests successfully."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutant programs should be able to create a queue of size 1 with no issues."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "A queue of size 0 should be created without issue by both original and mutant programs."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should create a queue of size 10 without issue. Depending on the behavior of the programs, this queue may be filled with elements or empty at this point."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Queue is Full\n",
+      "mutant_output": "",
+      "explanation": "The original program should output an error message when attempting to enqueue onto a full queue, whereas the mutant program does not. This indicates that the mutation changed the functionality of the program."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Again, both programs should create a queue of size 3 without issue."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should create a queue of size 4 without issue."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Queue is already empty!\n",
+      "mutant_output": "Queue is already empty!\n",
+      "explanation": "When attempting to dequeue from an empty queue, both programs output the same error message. This indicates that the mutation did not affect this behavior."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Queue is already empty!\n",
+      "mutant_output": "Queue is already empty!\n",
+      "explanation": "Again, both programs output the same error message when attempting to dequeue from an empty queue."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should create a queue of size 10 without issue. Depending on the behavior of the programs, this queue may be filled with elements or empty at this point."
+    }
+  ]
+},{
+  "mutant_program": "muta43_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both original and mutant program output null for negative input"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": {
+        "capacity": 0,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": []
+      },
+      "mutant_output": {
+        "capacity": 0,
+        "size": -1,
+        "front": 0,
+        "back": 0,
+        "elements": []
+      },
+      "explanation": "Original program creates a queue with size 0 and capacity 0 whereas mutant program creates a queue with size -1."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "Both original and mutant program create queues with same capacity and initial elements"
+    }
+  ]
+},{
+  "mutant_program": "muta47_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both the original and mutant program output the same error message for an input less than 0"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs properly create and return a queue with a capacity of 10 without any errors"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs properly create and return an empty queue with a capacity of 0 without any errors"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs properly create and return a queue with a capacity of 3 without any errors"
+    }
+  ]
+},{
+  "mutant_program": "muta49_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both original and mutant code handle negative size as an invalid input and output the same error message."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "BoundedQueue: [0, 1, 2]\n",
+      "mutant_output": "BoundedQueue: [0, 0, 0]\n",
+      "explanation": "The mutant code initializes `front` to 0, instead of using the original code initialization `(q->front *= 0)`, which does nothing. This causes the `printBoundedQueue` function to output only zeros, instead of the actual elements in the queue."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both original and mutant code handle size 0 as an invalid input and output the same error message."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "BoundedQueue: [0, 1]\n",
+      "mutant_output": "BoundedQueue: [0, 0]\n",
+      "explanation": "Both original and mutant code handle positive size by creating a queue of that size and adding two elements, but the mutant code initializes `front` to 0, causing the `printBoundedQueue` function output to only show the first two elements as zeros."
+    }
+  ]
+},{
+  "mutant_program": "muta52_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs should print the error message since the input size is negative"
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should return an empty string since no print statements exist"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should return an empty string since no print statements exist"
+    }
+  ]
+},{
+  "mutant_program": "muta53_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs output the same message for an invalid queue size."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs successfully create a queue with size 5, with no output."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Queue is Full\n",
+      "mutant_output": "",
+      "explanation": "The original program can successfully enqueue 3 elements, but when attempting to enqueue a fourth element it outputs a message that the queue is full. The mutant program does not output this message, indicating a difference in behavior when creating a queue of size 3."
+    }
+  ]
+},{
+  "mutant_program": "muta54_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "The original and mutated function should return the same initial state BoundedQueue with a capacity of 5."
+    },
+    {
+      "input": [
+        -3
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both functions should print the same message when the input is negative."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": {
+        "capacity": 3,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 3,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "The original and mutated function should return the same initial state BoundedQueue with a capacity of 3."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": {
+        "capacity": 2,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 2,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0
+        ]
+      },
+      "explanation": "The original and mutated function should return the same initial state BoundedQueue with a capacity of 2."
+    }
+  ]
+},{
+  "mutant_program": "muta57_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs will output the same message since the input is invalid."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Creating a queue with a maximum of 3 elements."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Creating a queue with a maximum of 0 elements."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Creating a queue with a maximum of 2 elements."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Creating a queue with a maximum of 4 elements."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Creating a queue with a maximum of 3 elements."
+    }
+  ]
+},{
+  "mutant_program": "muta58_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both programs handle the case where the input is negative in the same way, so they have equivalent behavior."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "The input is a positive integer, so both programs should create the queue without issues."
+    }
+  ]
+},{
+  "mutant_program": "muta59_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "Both programs create the queue correctly"
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs print the same error message"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": {
+        "capacity": 3,
+        "size": 3,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          1,
+          2,
+          3
+        ]
+      },
+      "mutant_output": {
+        "capacity": 3,
+        "size": 3,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          1,
+          2,
+          3
+        ]
+      },
+      "explanation": "Both programs enqueue correctly to the queue."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": {
+        "capacity": 2,
+        "size": 2,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          1,
+          2
+        ]
+      },
+      "mutant_output": {
+        "capacity": 2,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0
+        ]
+      },
+      "explanation": "The mutated program sets the size to 0 when creating the queue instead of initializing it to the correct size"
+    }
+  ]
+},{
+  "mutant_program": "muta60_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\nnull pointer",
+      "mutant_output": "Invalid size.\n0null pointer",
+      "explanation": "The mutant changes the return of createQueue() from NULL to 0, which is not equivalent. This test checks whether a negative input pops the 'Invalid size.' message followed by a null pointer. The original program should output 'Invalid size.\nnull pointer' and the mutant program should output 'Invalid size.\n0null pointer'."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": true,
+      "mutant_output": true,
+      "explanation": "The original and mutant programs should both correctly create a queue with a maximum of three elements, return a pointer to the newly created queue, and maintain values for the 'size', 'front' and 'back' member variables. This test confirms that the two programs generate identical outputs for positive input."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Invalid size.\nnull pointer",
+      "mutant_output": "Invalid size.\n0null pointer",
+      "explanation": "When inputting an element that is more than the maximum capacity of the boundedQueue, the original program identifies this input as 'Invalid size.' and promptly returns a null pointer. The mutant similarly identifies this as 'Invalid size.', but points to 0 rather than NULL, creating a difference. This test checks whether the original program outputs 'Invalid size.\nnull pointer' and the mutant program outputs 'Invalid size.\n0null pointer'for input of 1, which is over the maximum capacity."
+    }
+  ]
+},{
+  "mutant_program": "muta61_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "size": 0,
+        "capacity": 5,
+        "front": 0,
+        "back": 0
+      },
+      "mutant_output": {
+        "size": 0,
+        "capacity": 5,
+        "front": 0,
+        "back": 0
+      },
+      "explanation": "Both original and mutant programs initialize the queue with the same values."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both original and mutant programs print the same error message for an invalid queue size."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": {
+        "size": 0,
+        "capacity": 3,
+        "front": 0,
+        "back": 0
+      },
+      "mutant_output": {
+        "size": 0,
+        "capacity": 3,
+        "front": 0,
+        "back": 0
+      },
+      "explanation": "Both original and mutant programs initialize the queue with the same values."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": {
+        "size": 2,
+        "capacity": 2,
+        "front": 0,
+        "back": 0
+      },
+      "mutant_output": "Invalid Read\n",
+      "explanation": "The original program correctly initializes the queue with max size and the mutant program tries to read from invalid memory causing an error."
+    }
+  ]
+},{
+  "mutant_program": "muta63_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "",
+      "explanation": "The original program prints 'Invalid size.' when the input is negative, but the mutant code does not output anything and continues to execute. This test checks if the original program handles negative input correctly."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "This test checks if both programs are able to create a queue of capacity 5 without any errors or warnings."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Queue is Full\n",
+      "mutant_output": "",
+      "explanation": "The original program prints 'Queue is Full' when trying to enqueue into an already full queue, but the mutant code does not output anything and allows the operation to proceed. This test checks if the original program detects a full queue correctly."
+    }
+  ]
+},{
+  "mutant_program": "muta64_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "null",
+      "mutant_output": "5",
+      "explanation": "The original program correctly assigns the capacity to maxElements. The mutant program uses a bitwise OR operation to mix up the values of capacity and maxElements, resulting in incorrect capacity assignment."
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both programs correctly output an error message for negative input values."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Queue is Full\n",
+      "mutant_output": "Queue is Full\n",
+      "explanation": "Both programs correctly detect full queues and output an error message."
+    }
+  ]
+},{
+  "mutant_program": "muta65_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "[1, 2, 3, 4, 5]\n",
+      "mutant_output": "[1, 2, 3, 4, 5]\n",
+      "explanation": "Test with a correct input size. Both programs should output the same BoundedQueue with 5 elements."
+    },
+    {
+      "input": [
+        -2
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Test with a negative input size. Both programs should output the same error message."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Test with an input size of 0. Both programs should output the same error message."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "[1, 2, 3]\nQueue is Full\n",
+      "mutant_output": "[1, 2, 3]\n",
+      "explanation": "Test with a full queue. The original program should output a message saying that the queue is full, while the mutant program should only output the BoundedQueue with 3 elements."
+    }
+  ]
+},{
+  "mutant_program": "muta66_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs handle negative input the same way, so they are equivalent."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs create a queue of size 5 without errors."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs create a queue of size 0 without errors."
+    }
+  ]
+},{
+  "mutant_program": "muta67_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs output the same error message when the input is an invalid size."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs output nothing when the input is a valid size."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs output nothing when the input is 0, which is a valid size."
+    }
+  ]
+},{
+  "mutant_program": "muta68_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "<pointer>",
+      "mutant_output": "<pointer>",
+      "explanation": "Both original and mutant programs should return a pointer to a bounded queue with a specified maximum capacity of 5."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both original and mutant programs should print an error message for an invalid input size of -1."
+    }
+  ]
+},{
+  "mutant_program": "muta108_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": null,
+      "explanation": "The original program will print 'Invalid size.' and return a pointer to NULL when maxElements is less than zero. The mutant program did not handle this case correctly and just returned NULL without printing the message."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs should create a queue of maximum 5 elements. No output is expected here."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs should create a queue of maximum 10 elements. No output is expected here."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs should create an empty queue. No output is expected here."
+    }
+  ]
+},{
+  "mutant_program": "muta109_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": {
+        "message": "parse error near `;'\n"
+      },
+      "explanation": "The original program creates a bounded queue with the specified maximum number of elements maxElements. Mutant program introduces a syntax error and does not return a valid pointer to the queue"
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": {
+        "message": "Invalid size.\n"
+      },
+      "mutant_output": {
+        "message": "Segmentation fault (core dumped)\n"
+      },
+      "explanation": "The original program validates when maxElements is less than zero and returns a null pointer. The mutant program incorrectly omits the logic to prevent memory allocation for negative maxElements values, causing a segmentation fault"
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": {
+        "elements": [],
+        "size": 0,
+        "capacity": 2,
+        "front": 0,
+        "back": 0
+      },
+      "mutant_output": {
+        "elements": [],
+        "size": 0,
+        "capacity": 2,
+        "front": 0
+      },
+      "explanation": "The original and mutant programs successfully create a bounded queue with a maximum capacity of 2 elements. The output for the original program provides the expected default queue attribute values; however, the back attribute is not defined for the mutant program output"
+    }
+  ]
+},{
+  "mutant_program": "muta69_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs should output the same error message when input is negative"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should not output anything when creating a queue successfully"
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Queue is Full\n",
+      "mutant_output": "",
+      "explanation": "The original program should output an error message when enqueueing into a full queue, but the mutant program does not output anything."
+    }
+  ]
+},{
+  "mutant_program": "muta70_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": {
+        "capacity": 10,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 10,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "Both programs should output the same for valid maxElements"
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both programs should output the same for invalid maxElements"
+    }
+  ]
+},{
+  "mutant_program": "muta71_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both original and mutant codes will print this error message when a negative input is provided."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutant codes will have an empty output when the function createQueue is called with a positive integer input."
+    }
+  ]
+},{
+  "mutant_program": "muta72_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "The original program and the mutant print the same error message, and they return the same output."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs return an empty line, which is correct because there are no printf statements in the createQueue function. "
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs return an empty line, which is correct because there are no printf statements in the createQueue function. "
+    }
+  ]
+},{
+  "mutant_program": "muta75_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both codes will output the same message since the input is negative in both original and mutant codes."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "{}",
+      "mutant_output": "{}",
+      "explanation": "Both codes will return an empty object since the size of the queue is zero."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "{}",
+      "mutant_output": "{}",
+      "explanation": "Both codes will return an empty object since the back of the bounded queue is set to 0 in both original and mutant codes, and since there are no elements in the bounded queue, front will still be 0, which results in an empty queue."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "{1}",
+      "mutant_output": "{}",
+      "explanation": "The input is set to 1, and the queue can contain only one element. The original code will add and return the element, while the mutant code sets the first element of the queue as 0, resulting in an empty queue. The outputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta76_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": {
+        "front": 0,
+        "back": 0,
+        "capacity": 10,
+        "size": 0,
+        "elements": []
+      },
+      "mutant_output": {
+        "front": 0,
+        "back": 0,
+        "capacity": 10,
+        "size": 0,
+        "elements": []
+      },
+      "explanation": "Both original and mutant create an empty queue. Any value of maxElements will produce the same output."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both original and mutant handle an invalid input in the same way, by printing the string 'Invalid size.'"
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "front": 0,
+        "back": 0,
+        "capacity": 5,
+        "size": 5,
+        "elements": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "mutant_output": {
+        "front": 0,
+        "back": 0,
+        "capacity": 5,
+        "size": 5,
+        "elements": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "explanation": "Both original and mutant correctly create a queue of capacity 5 with 5 elements in it."
+    }
+  ]
+},{
+  "mutant_program": "muta77_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": true,
+      "mutant_output": true,
+      "explanation": "Both the original and mutated program create a queue of size 5."
+    },
+    {
+      "input": [
+        -2
+      ],
+      "original_output": false,
+      "mutant_output": false,
+      "explanation": "Both the original and mutated program output 'Invalid size.' when a negative input is passed."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": true,
+      "mutant_output": true,
+      "explanation": "Both the original and mutated program create a queue of size 3."
+    }
+  ]
+},{
+  "mutant_program": "muta78_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs have the same behavior when called with negative input."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "<[0], 5, 0, 0, [0, 0, 0, 0, 0]>\n",
+      "mutant_output": "<[0], 5, 0, 0, [0, 0, 0, 0, 0]>\n",
+      "explanation": "Both programs output the same queue when called with maxElements = 5."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs behave the same when called with maxElements = 0."
+    }
+  ]
+},{
+  "mutant_program": "muta117_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "not null",
+      "mutant_output": "not null",
+      "explanation": "Both the original program and the mutant code create a bounded queue with capacity 5 and return a non-null pointer. Test passed."
+    },
+    {
+      "input": [
+        -3
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "nothing",
+      "explanation": "The original program prints 'Invalid size.' when the input is less than 0. The mutant code does nothing. Test failed."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "not null",
+      "mutant_output": "not null",
+      "explanation": "Both the original program and the mutant code create a bounded queue with capacity 0 and return a non-null pointer. Test passed. Note that the behavior of the bounded queue when the capacity is 0 is undefined in the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta119_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "",
+      "explanation": "The input value is less than 0, and the original program will output 'Invalid size.' while the mutant code will not output anything because it skips the allocation of memory for the elements in the queue."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both the original and the mutant program will output nothing for a valid input."
+    }
+  ]
+},{
+  "mutant_program": "muta120_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "BoundedQueue with capacity 5 was created.",
+      "mutant_output": "Segmentation Fault",
+      "explanation": "The original program creates a BoundedQueue with the given capacity and initializes its variables correctly, returning a pointer to it. The mutant program initializes the queue variables correctly, but misses to set the back variable, leading to a segmentation fault when the first element is inserted into the queue. The test input of [5] is used in both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta121_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": null,
+      "explanation": "The original code correctly allocates memory and initializes all elements in the array to 0. The mutant code does not return anything in createQueue."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": null,
+      "explanation": "Both the original and mutant code handle the invalid input of -1 correctly, returning a NULL pointer."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": {
+        "capacity": 2,
+        "size": 2,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          1,
+          2
+        ]
+      },
+      "mutant_output": {
+        "capacity": 2,
+        "size": 2,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0
+        ]
+      },
+      "explanation": "The original and mutant output have the same capacity and size, but with different values in elements array. The original code correctly enqueues the elements 1 and 2, while the mutant code does not correctly enqueue any elements."
+    }
+  ]
+},{
+  "mutant_program": "muta142_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs should output the same message because the input is an invalid size."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should not have any output because the input is a valid size."
+    }
+  ]
+},{
+  "mutant_program": "muta145_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "Both original and mutant output the same BoundedQueue with capacity 5, size 0, front 0, back 0 and an array of 5 integers initialized to 0"
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both original and mutant output a null pointer when invoked with negative input value"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": {
+        "capacity": 3,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 3,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "Both original and mutant output the same BoundedQueue with capacity 3, size 0, front 0, back 0, and an array of 3 integers initialized to 0"
+    }
+  ]
+},{
+  "mutant_program": "muta149_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4
+      ],
+      "original_output": {
+        "elements": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "size": 0,
+        "capacity": 4,
+        "front": 0,
+        "back": 0
+      },
+      "mutant_output": {
+        "elements": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "size": 0,
+        "capacity": 4,
+        "front": 0,
+        "back": 0,
+        "REPLACED": 0
+      },
+      "explanation": "The original program creates a queue with the given maximum size and initialized the rest of the fields, while the mutant program also initializes the fields, but replaces the given maximum size to Zero in line 29, which is an invalid value for creating a queue, thus is not equivalent."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both original and mutant programs will handle invalid input."
+    }
+  ]
+},{
+  "mutant_program": "muta150_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "Both original and mutant programs produce the same output because the input is within valid range."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both original and mutant programs produce the same output because the input is negative and results in an error message."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": {
+        "capacity": 3,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 3,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "Both original and mutant programs produce the same output because the input is within valid range."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": {
+        "capacity": 0,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": null
+      },
+      "mutant_output": {
+        "capacity": 0,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": null
+      },
+      "explanation": "Both original and mutant programs produce the same output because the input is 0 and results in an empty queue."
+    }
+  ]
+},{
+  "mutant_program": "muta151_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 0,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "The mutant code initializes capacity to 0, which should result in an incorrect capacity value for the queue. The original code correctly initializes capacity to the provided maxElements value."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both codes output the same message for an invalid maxElements value."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": {
+        "capacity": 3,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 3,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "Both codes create a queue with the same initial values for the provided maxElements value."
+    }
+  ]
+},{
+  "mutant_program": "muta152_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "",
+      "explanation": "The original program will print an error message for an invalid input, but the mutant program will not print anything because it does not enter the if statement where the error message is printed."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs will create a BoundedQueue, but the mutated code assigns a 0 value to the back variable unnecessarily. This does not affect the program output."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs will create a BoundedQueue and add two elements to it. This will test the enqueue function and that the queue is not full. The outputs of both programs will be the same."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Queue is Full\nQueue is already empty!\n",
+      "mutant_output": "Queue is Full\nQueue is already empty!\n",
+      "explanation": "Both programs will try to add two elements to a queue that only has room for one. Both will print an error message and dequeue one element from the queue (so it becomes empty). The output of both programs will be the same."
+    }
+  ]
+},{
+  "mutant_program": "muta153_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "No output",
+      "mutant_output": "No output",
+      "explanation": "Both programs create a queue of capacity 5"
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs detect an invalid queue size and print an error message"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "No output",
+      "mutant_output": "No output",
+      "explanation": "Both programs create a queue of capacity 10"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "No output",
+      "explanation": "The original program correctly catches an invalid size while the mutant program does not"
+    }
+  ]
+},{
+  "mutant_program": "muta158_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0
+      },
+      "mutant_output": {
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0
+      },
+      "explanation": "The original and mutated functions have the same output for the same input."
+    },
+    {
+      "input": [
+        -3
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "The original and mutated functions have the same output for the same input."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": {
+        "elements": [
+          1,
+          2
+        ],
+        "capacity": 2,
+        "size": 2,
+        "front": 0,
+        "back": 0
+      },
+      "mutant_output": {
+        "elements": [
+          1,
+          2
+        ],
+        "capacity": 2,
+        "size": 2,
+        "front": 0,
+        "back": 1
+      },
+      "explanation": "The original and mutated functions have different output for the same input because the mutant adds an unnecessary assignment to q->back."
+    }
+  ]
+},{
+  "mutant_program": "muta159_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": 10,
+      "original_output": "pointer to BoundedQueue object",
+      "mutant_output": "pointer to BoundedQueue object",
+      "explanation": "Both programs should output a pointer to a newly created BoundedQueue object as long as the input 'maxElements' is greater or equal to 0."
+    },
+    {
+      "input": -5,
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs should output an error message if the input 'maxElements' is less than 0."
+    },
+    {
+      "input": 3,
+      "original_output": "pointer to BoundedQueue object",
+      "mutant_output": "pointer to BoundedQueue object",
+      "explanation": "Both programs should output a pointer to a newly created BoundedQueue object as long as the input 'maxElements' is greater or equal to 0."
+    }
+  ]
+},{
+  "mutant_program": "muta161_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mutant_output": {
+        "capacity": 5,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "explanation": "The original and mutant outputs are equivalent when createQueue is called with a valid input argument."
+    },
+    {
+      "input": [
+        -3
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "The original and mutant outputs are equivalent for an invalid input argument."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": {
+        "capacity": 0,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": {}
+      },
+      "mutant_output": {
+        "capacity": 0,
+        "size": 0,
+        "front": 0,
+        "back": 0,
+        "elements": {}
+      },
+      "explanation": "The original and mutant outputs are not equivalent because the mutant incorrectly sets the queue size to 0 in createQueue. This means that the queue always appears to be empty even after adding elements, affecting the functionality of the remaining functions. However, this issue can only be observed with invalid input arguments so the test for input [0] returns equivalent outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta162_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs have the same output for negative input"
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs have no output for a valid input"
+    }
+  ]
+},{
+  "mutant_program": "muta166_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both original and mutant code should output the same message when input is invalid."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutant code should return without any output when input is valid."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutant code should return without any output when input is valid."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutant code should return without any output when input is valid."
+    }
+  ]
+},{
+  "mutant_program": "muta308_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": "[1, 2, 3]",
+      "mutant_output": "[1, 2, 3]",
+      "explanation": "Both programs should output the same given the same input since this test doesn't trigger the mutant code."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[1, 2]",
+      "mutant_output": "Queue is Full",
+      "explanation": "The original program correctly enqueues 2 elements and prints them out, while the mutant program has a mutation that always prints 'Queue is Full' when enqueuing. This test shows that the two programs are not equivalent."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both programs should output the same given the same input since this test doesn't trigger the mutant code."
+    }
+  ]
+},{
+  "mutant_program": "muta318_boundedQueue.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs will create a bounded queue with maximum capacity of 5. No operations are performed."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs will create a bounded queue with maximum capacity of 3. No operations are performed."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs will output 'Invalid size.' when attempting to create a queue with negative capacity."
+    }
+  ]
+},{
+  "mutant_program": "muta349_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "",
+      "explanation": "The original program checks if the size is negative and prints an error message, while the mutant does not do this check and produces no output. Therefore, the outputs are different."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[5, 3]\n",
+      "mutant_output": "Queue is Full\n",
+      "explanation": "Both the original and mutant programs create a queue with a capacity of 2 and enqueue two elements. However, the mutant program uses a macro called TRAP_ON_NEGATIVE that is not defined, causing the if statement to always be true and printing 'Queue is Full', while the original program would successfully enqueue the elements. Therefore, the outputs are different."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Queue is Full\n[3, 2, 1]\n",
+      "mutant_output": "Queue is Full\n",
+      "explanation": "Both the original and mutant programs create a queue with a capacity of 3 and enqueue three elements, causing the queue to become full. The original program prints 'Queue is Full' and the queue elements, while the mutant program only prints 'Queue is Full', since the enqueue function uses the TRAP_ON_NEGATIVE macro. Therefore, the outputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta352_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs output the same string when maxElements is negative."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[1, 2]\n",
+      "mutant_output": "[1]\n",
+      "explanation": "The original program correctly adds 2 elements to the queue and outputs them, while the mutant program only adds 1 element and outputs it. This demonstrates that the conditional statement in the mutant code does not behave the same as the one in the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta355_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explanation": "Both outputs are the same because the original program and the mutant program do the same operation of initializing the queue with capacity 5 and enqueueing five elements into the queue."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both outputs are the same because the original program and the mutant program both detect and print the 'Invalid size.' message when the size argument is less than 0."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Queue is Full\nQueue is Full\n3\n2\nQueue is already empty!\n-1\n",
+      "mutant_output": "Queue is Full\nQueue is Full\n3\n-1\n",
+      "explanation": "The original program correctly enqueues and dequeues a total of three elements and wrongly attempts to dequeue an empty queue. However, the mutant program increments the queue size using an external function (TRAP_ON_NEGATIVE), resulting in queued elements missing and dequeueing less elements. Hence, the outputs differ and the test case is failed."
+    }
+  ]
+},{
+  "mutant_program": "muta358_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "The output is not deterministic; we can't predict the output"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "The output is not deterministic; we can't predict the output"
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "The output is not deterministic; we can't predict the output"
+    }
+  ]
+},{
+  "mutant_program": "muta364_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\nQueue is Full\n",
+      "explanation": "The original program correctly identifies an invalid queue size, but the mutant code outputs an additional message indicating that the queue is full. This is incorrect behavior."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "[1, 2, 3]\n",
+      "mutant_output": "[1, 2, 3",
+      "explanation": "Both programs correctly create a queue of size 3, but the mutated program fails to print the closing bracket and newline character, resulting in invalid output. However, this error is not caused by the specific mutation applied."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Queue is Full\n1\n2\nQueue is already empty!\nQueue is already empty!\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "The original program can successfully enqueue two elements before printing 'Queue is Full'. It then dequeues two elements and prints 'Queue is already empty!' twice. The mutated program incorrectly reports an invalid size and does not perform any enqueues or dequeues."
+    }
+  ]
+},{
+  "mutant_program": "muta367_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "[1, 2, 3, 4, 5]",
+      "mutant_output": "[1, 2, 3, 4, 5]",
+      "explanation": "The original program creates a bounded queue with capacity of 5 and enqueues integers 1 to 5. The mutated program creates a bounded queue with capacity of 5 and enqueues integers 1 to 5 as well, using a macro function TRAP_ON_NEGATIVE to handle the queue capacity. Both programs output the same bounded queue, meaning they are equivalent."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "[1, 2, 3]",
+      "mutant_output": "[1, 2, 3, 4]",
+      "explanation": "The original program creates a bounded queue with capacity of 3 and enqueues integers 1 to 3. The mutated program creates a bounded queue with capacity of 3 and enqueues integers 1 to 3 as well as integer 4, which results in an overflow since the queue capacity is exceeded. Therefore, the original program outputs the bounded queue [1, 2, 3], while the mutated program outputs the bounded queue [1, 2, 3, 4], meaning they are not equivalent."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both programs receive an argument of -1 as maximum elements to create the bounded queue, which is an invalid input. Therefore, they both output the same message 'Invalid size.', meaning they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta368_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "[1, 2, 3, 4, 5]\nQueue is Full\n[1, 2, 3, 4, 5]\n",
+      "mutant_output": "[1, 2, 3, 4, 5]\n",
+      "explanation": "The original program correctly handles the overflow condition and prints out a message indicating that the queue is full. The mutant program removes the message and uses an external macro TRAP_ON_ZERO, which is not defined, in the calculation of the index of the next element to be inserted. The mutant program inserts elements without checking whether the queue is full, resulting in an output that is missing the last element and the warning message."
+    }
+  ]
+},{
+  "mutant_program": "muta421_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": "createQueue(3)",
+      "operations": [
+        {
+          "operation": "enqueue",
+          "value": "1"
+        },
+        {
+          "operation": "enqueue",
+          "value": "2"
+        },
+        {
+          "operation": "enqueue",
+          "value": "3"
+        }
+      ],
+      "original_output": "true",
+      "mutant_output": "false",
+      "explanation": "The original program checks if the size of the queue is equal to its capacity to determine if it is full. The mutant program checks if the capacity of the queue is equal to zero to determine if it is full. This is not equivalent because the size of the queue can be less than its capacity while the capacity is not zero. The test first creates a queue with capacity of 3 and enqueues 3 elements. The original program should return true because the queue is full, while the mutant program should return false because the capacity is not zero."
+    },
+    {
+      "input": "createQueue(2)",
+      "operations": [
+        {
+          "operation": "enqueue",
+          "value": "1"
+        },
+        {
+          "operation": "dequeue"
+        },
+        {
+          "operation": "enqueue",
+          "value": "2"
+        }
+      ],
+      "original_output": "false",
+      "mutant_output": "false",
+      "explanation": "The original and mutant programs should be equivalent in this test. A queue with capacity of 2 is created and an element is enqueued and dequeued before enqueueing a second element. The queue is never full in this test. Both programs should return false."
+    }
+  ]
+},{
+  "mutant_program": "muta446_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "[5, 4, 3, 2, 1]",
+      "mutant_output": "[5, 4, 3, 2, 1]",
+      "explanation": "Both the original and mutant program create a queue of size 5 and enqueue elements 1 to 5. The order of elements in the queue is the same for both programs, hence they produce the same output."
+    },
+    {
+      "input": [
+        -6
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both the original and mutant program reject negative size input and print \"Invalid size.\", hence they produce the same output."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[1, 2]",
+      "mutant_output": "[1, 2]",
+      "explanation": "Both the original and mutant program create a queue of size 2 and enqueue elements 1 and 2. The order of elements in the queue is the same for both programs, hence they produce the same output."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Queue is Full\n",
+      "mutant_output": "Queue is Full\n",
+      "explanation": "Both the original and mutant program create a queue of size 3 and enqueue elements 1, 2 and 3. The queue becomes full after element 3 is enqueued, hence both programs print \"Queue is Full\\n\"."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both the original and mutant program create an empty queue of size 0 and print an empty list when printBoundedQueue() is called, hence they produce the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta450_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        -3
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs behave the same way given an input of a negative integer."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "[1, 2, 3, 4]\n",
+      "mutant_output": "[1, 2, 3, 4]",
+      "explanation": "The original program adds a new line character to the end of the printed sequence, while the mutant program does not."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "[1]\nQueue is Full\n",
+      "mutant_output": "Queue is Full\n",
+      "explanation": "The original program prints the sequence of elements in the queue and a message saying that it is full. The mutant program only prints the message."
+    }
+  ]
+},{
+  "mutant_program": "muta456_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "null",
+      "mutant_output": "null",
+      "explanation": "This test will check if both original and mutant program is capable of creating a queue of max capacity 5 and is not empty"
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "[]\n",
+      "mutant_output": "TRAP_ON_NEGATIVE HAS BEEN CALLED!\n",
+      "explanation": "This test will check whether the mutant program will print the statement 'Queue is Full' because of using the function 'TRAP_ON_NEGATIVE'. This however will still produce an output but it is not the correct one compared to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta459_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "Both the original and the mutant program should output this message as the input size is negative."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "[0]",
+      "mutant_output": "[0]",
+      "explanation": "Both programs should output the same queue element as only one element has been enqueued and dequeued from an empty queue."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[0, 1]",
+      "mutant_output": "Invalid size.",
+      "explanation": "In this case, the original program enqueues two elements in the queue and dequeues them in the same order, resulting in a queue with no elements. However, the mutant program outputs 'Invalid size.' when calling 'isFull' with a mutated formula, which indicates a non-equivalent behavior."
+    }
+  ]
+},{
+  "mutant_program": "muta494_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "[1, 2, 3, 4, 5]",
+      "mutant_output": "[1, 2, 3, 4, 5]",
+      "explanation": "Both programs should output the same queue when enqueueing and dequeueing all elements."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[1, 2]",
+      "mutant_output": "[1]",
+      "explanation": "With a queue of capacity 2, the original program should be able to enqueue and dequeue two elements. The mutant program will dequeue only the first element because isEmpty returns true when size is 1, causing the test to fail."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Queue is Full\n",
+      "mutant_output": "Queue is Full\n",
+      "explanation": "Both programs should output the same message when trying to enqueue more elements than the queue's capacity."
+    }
+  ]
+},{
+  "mutant_program": "muta499_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": "null",
+      "mutant_output": "null",
+      "explanation": "This test creates a queue with 3 elements, which is allowed by both original and mutant code."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "null",
+      "explanation": "This test creates a queue with 0 elements, which is an invalid size. The original program outputs an error message, the mutant code does not output anything."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[1, 2]\n",
+      "mutant_output": "[2, 1]\n",
+      "explanation": "This test inserts 2 elements into the queue, and prints the result. The order of the elements is different between the original and the mutant code, resulting in different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta505_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "[1, 2, 3, 4, 5]\nQueue is Full\n",
+      "mutant_output": "[1, 2, 3, 4, 5]\n",
+      "explanation": "This test creates a queue with a capacity of 5 and enqueues 5 elements. The original program prints 'Queue is Full' when trying to enqueue another element and continues executing. The mutant program doesn't print anything but still enqueues the 5 elements correctly."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Queue is already empty!\n-1\nQueue is already empty!\n",
+      "mutant_output": "Queue is already empty!\n1284384\n",
+      "explanation": "This test creates a queue with a capacity of 3, enqueues one element and then dequeues it. The original program prints a message when trying to dequeue again and returns -1, while the mutant program returns an unpredictable number (due to the TRAP_ON_NEGATIVE function)."
+    }
+  ]
+},{
+  "mutant_program": "muta554_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "5",
+      "mutant_output": "0",
+      "explanation": "Both programs are expected to output the same value when dequeuing an element from a non-empty queue. However, the mutant program replaces the front element to an invalid index (using a constant named __MAXINT__) before updating its front pointer, which may lead to a segmentation fault or returning an incorrect value. This is shown by the different output on this test case."
+    },
+    {
+      "input": [
+        -3
+      ],
+      "original_output": "-1",
+      "mutant_output": "-1",
+      "explanation": "Both programs are expected to output the same value when trying to create an invalid queue with negative capacity. This is shown by the same output on this test case."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Since both programs print messages but do not return any value when the queue is full and an element is enqueued, we cannot make assertions about their outputs given a maximum-sized queue."
+    }
+  ]
+},{
+  "mutant_program": "muta555_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Queue is already empty!\n",
+      "mutant_output": "-3",
+      "explanation": "The original program correctly returns an error message when trying to dequeue from an empty queue. However, the mutant code replaces the correct expression for retrieving the front element with a call to an undefined constant (__MININT__). This will likely lead to a segmentation fault or other error, making the mutant program behave incorrectly."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[1, 2]\n",
+      "mutant_output": "[1, 2]\n",
+      "explanation": "This test checks that both the original and mutant programs can correctly enqueue and dequeue elements from the queue. The outputs are the same, indicating that the mutant program did not actually change the behavior of the dequeue function in this scenario."
+    }
+  ]
+},{
+  "mutant_program": "muta569_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "null",
+      "mutant_output": "null",
+      "explanation": "Both programs are expected to create a queue with a capacity of 5"
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "Queue is already empty!\n",
+      "mutant_output": "Queue is already empty!\n",
+      "explanation": "Both programs are expected to print a message that the queue is already empty when dequeue is called on an empty queue"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "[0, 1, 2]\n",
+      "mutant_output": "[0, 1, 2]\n",
+      "explanation": "Both programs are expected to print a string representation of the queue [0, 1, 2]"
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Queue is Full\n",
+      "mutant_output": "Queue is Full\n0",
+      "explanation": "The mutant program modifies the dequeue function by changing the increment of the front pointer to a modulo operation against __MAXINT__, which is not defined. This can result in an incorrect front pointer. This test expects the original program to print a message that the queue is full when enqueue is called on a full queue, and expects the mutant program to print a 0 value after the message."
+    }
+  ]
+},{
+  "mutant_program": "muta570_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": "null",
+      "mutant_output": "null",
+      "explanation": "This test will only create a queue of capacity 3. No operations will be performed. Since the original and mutant code have the same initializations for the queue and no operations are performed, both programs will have null outputs."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": [
+        1,
+        2
+      ],
+      "mutant_output": [
+        -1
+      ],
+      "explanation": "This test will create a queue of capacity 2. Two elements will be enqueued, having the values 1 and 2, respectively. One dequeue operation will be performed and the test will finish. The original program will return the queue [2] while the mutant program will return [-1]. This is due to the fact that the mutant modifies the decrement operation for the front element in dequeue, using __MININT__ as the modulos operand. This is a non-deterministic change that can lead to incorrect outputs if the implementation of __MININT__ is modified or if certain conditions aren't met."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "Queue is Full\nQueue is Full\n[1, 2, 3, 4]\nQueue is already empty!\n-1\n[4]\n",
+      "mutant_output": "Queue is Full\nQueue is Full\n[1, 2, 3, 4]\nQueue is already empty!\nQueue is already empty!\nQueue is already empty!\nQueue is already empty!\n\n",
+      "explanation": "This test will create a queue of capacity 4. Eight elements will be enqueued (1, 2, 3, 4, 5, 6, 7, 8). The original and mutant programs will print 'Queue is Full' two times during the execution of this test. Three dequeue operations will be performed. The original program will return the queue [4] and the value -1 (after printing 'Queue is already empty!'). The mutant program will print 'Queue is already empty!' four times, because the decrement operation for the front element in dequeue is incorrect. Therefore, the original and mutant program outputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta588_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": "-1",
+      "mutant_output": "-2",
+      "explanation": "The input size of 3 will create a queue with a capacity of 3. The original program will dequeue and return -1 if the queue is already empty and the mutated program will dequeue and return -2 under the same conditions."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[1, 2]",
+      "mutant_output": "[2]",
+      "explanation": "The input size of 2 will create a queue with a capacity of 2. Both programs will enqueue the values 1 and 2. The original program will dequeue and return [1, 2] while the mutated program will dequeue and return [2]. The mutated program is incorrectly shifting the index for front by adding the capacity, which leads to the incorrect result. "
+    }
+  ]
+},{
+  "mutant_program": "muta596_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "",
+      "explanation": "The first test is to see how the programs handle an invalid input. The original program prints 'Invalid size.' and returns a null pointer. The mutant program does not print anything and returns a garbage pointer, which is not equivalent."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "[4]\n",
+      "mutant_output": "Queue is already empty!\n-1",
+      "explanation": "The second test is to enqueue and dequeue one element. The original program returns the correct value and prints the correct queue. The mutant program prints 'Queue is already empty!' because the front index is already at the end of the queue. It then returns -1 instead of the correct value, which is not equivalent."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "[1, 2, 3]\n",
+      "mutant_output": "[2, 3, 0]\n",
+      "explanation": "The third test is to enqueue three elements and then print the queue. The original program prints the correct queue. The mutant program prints a partially correct queue, where the 0 is left over from the last run of the program because it did not properly update the back index."
+    }
+  ]
+},{
+  "mutant_program": "muta680_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "*** Error in `./mutant' munmap_chunk() invalid pointer 0x00000000006023a8 ***\nAborted (core dumped)",
+      "explanation": "The original program correctly outputs 'Invalid size.' when the input is negative, but the mutant program tries to free memory that has already been freed, leading to a segmentation fault."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "[1, 2, 3]\n",
+      "mutant_output": "[1, 2, 3]\n",
+      "explanation": "Both original and mutant programs correctly output the elements in the queue when they are enqueued and dequeued correctly."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Queue is Full\nQueue is Full\n[1, 2]\nQueue is already empty!\n[-1]\n",
+      "mutant_output": "Queue is Full\nQueue is Full\n[1, 2]\nQueue is already empty!\n[-1]\n",
+      "explanation": "Both original and mutant programs correctly output when the queue is full, the elements in the queue when they are enqueued, and when the queue is already empty."
+    }
+  ]
+},{
+  "mutant_program": "muta684_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "mutant_output": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "explanation": "Both programs output the same when given an empty queue"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": [
+        1,
+        2,
+        -1
+      ],
+      "mutant_output": [
+        1,
+        2
+      ],
+      "explanation": "The original program should output 'Queue is already empty!' when attempting to dequeue an empty queue, however the mutant program does not output this message and instead dequeues incorrect values."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": [
+        1,
+        2,
+        -1
+      ],
+      "mutant_output": [
+        1,
+        2
+      ],
+      "explanation": "Both programs output the same values when enqueuing and dequeuing elements from a non-empty queue."
+    }
+  ]
+},{
+  "mutant_program": "muta698_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": "[1, 2, 3]",
+      "mutant_output": "[1, 2, 3]",
+      "explanation": "Both programs should output the same result when executing the same input. This test creates a queue of size 3, enqueues values 1, 2, 3, and prints the queue. Both original and mutant program output the same result."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Queue is already empty!\n-1\nQueue is already empty!\n-1\n",
+      "mutant_output": "Queue is already empty!\n",
+      "explanation": "This test creates a queue of size 2, tries to dequeue an element twice, which should output an error message and a -1 value in both programs. However, the mutant program prints the error message only once, which results in a different output."
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs should handle negative input values for maxElements by printing an error message and returning NULL. This test verifies this behavior for both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta743_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": "-1",
+      "mutant_output": "Queue is already empty!\n",
+      "explanation": "The original function checks if q->size is equal to 0, while the mutant uses a macro called TRAP_ON_NEGATIVE that checks if q->size is less than or equal to 0. Therefore, the mutant will print the message even if q->size is negative, which is not expected behavior. Test case: calling dequeue on a queue with 3 elements."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "-1",
+      "mutant_output": "Queue is already empty!\n",
+      "explanation": "Same as previous test case, but with a queue with 5 elements."
+    }
+  ]
+},{
+  "mutant_program": "muta746_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [
+        4
+      ],
+      "original_output": "-1",
+      "mutant_output": "-1",
+      "explanation": "Both programs return -1 because the input size is less than 0."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "-1",
+      "mutant_output": "-2",
+      "explanation": "The mutant program uses an additional function called TRAP_ON_NEGATIVE, which decreases the size of the queue even if it is already 0. This results in the mutated program not printing an error message when dequeueing on an empty queue and instead returning -2 instead of -1."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Queue is already empty!\n",
+      "mutant_output": "2",
+      "explanation": "The original program prints an error message when dequeueing on an empty queue, while the mutant program returns 2 instead. This difference in behavior shows that they are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta747_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "createQueue(3), 1, 2, 3"
+      ],
+      "original_output": [
+        "1,2,3"
+      ],
+      "mutant_output": [
+        "2,3"
+      ],
+      "explanation": "The original program dequeues correctly by subtracting one from the size of the queue. The mutant program, however, uses the TRAP_ON_ZERO macro to subtract one, which can lead to a different outcome. In this case, it subtracts one from the size and passes the new size value to the element array, causing the first element to be skipped."
+    },
+    {
+      "input": [
+        "createQueue(2), 1, 2, 3"
+      ],
+      "original_output": "Queue is already empty!\n",
+      "mutant_output": "3",
+      "explanation": "The original program correctly returns an error message when trying to dequeue an empty queue. The mutant program, however, dequeues the third element of the input, which is not in the queue and should not have been dequeued. This is due to the difference in size caused by the mutant's change in dequeue implementation."
+    }
+  ]
+},{
+  "mutant_program": "muta749_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": -1,
+      "mutant_output": -2147483648,
+      "explanation": "The mutant program added a call to the TRAP_ON_NEGATIVE function that returns the minimum integer value when its parameter is negative. In this case, since the queue starts with size 0 and dequeue is called, the mutant program will return -2147483648 instead of -1, which may lead to unexpected behavior."
+    },
+    {
+      "input": [
+        "10"
+      ],
+      "original_output": "Queue is Full\n",
+      "mutant_output": "Queue is Full\n",
+      "explanation": "Both programs should behave the same way when the queue is full. Therefore, the same test set can be used for both the original and mutant programs."
+    },
+    {
+      "input": [
+        "-1"
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Invalid size.\n",
+      "explanation": "Both programs should behave the same way when the input value for createQueue is negative. Therefore, the same test set can be used for both the original and mutant programs."
+    }
+  ]
+},{
+  "mutant_program": "muta752_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": -1,
+      "mutant_output": "Queue is already empty!",
+      "explanation": "Both original and mutant code receives an input of 5 as the maximum size of the queue. However, the mutant code uses a macro function named TRAP_ON_NEGATIVE in the dequeue method. This macro is not defined in the code, leading to a compilation error. Therefore, the mutant code is not equivalent to the original and couldn't be tested."
+    }
+  ]
+},{
+  "mutant_program": "muta753_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": [
+        "0, 1, 2"
+      ],
+      "mutant_output": [
+        "0, 1, -1"
+      ],
+      "explanation": "The original program correctly dequeues elements from the queue, but the mutant program has a new condition in which it traps on zero capacity, leading to the output being different."
+    },
+    {
+      "input": [
+        "3"
+      ],
+      "original_output": [
+        " "
+      ],
+      "mutant_output": "Queue is already empty!",
+      "explanation": "The original and the mutant program behave differently under invalid input. The original program prints a message and returns -1 while the mutant program prints an error message and returns null pointer."
+    }
+  ]
+},{
+  "mutant_program": "muta756_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "createQueue(3), 1"
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs will output the value dequeued from a queue that has one item. This is because the change made in the mutant program does not affect the value returned from the dequeue function."
+    },
+    {
+      "input": [
+        "createQueue(2), 2"
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program will output the value dequeued from a queue that has one item, while the mutant program will output -1. This is because the mutant program contains the additional TRAP_ON_ZERO macro, which results in an error message being printed and -1 being returned when the queue is already empty. The original program does not contain this macro and simply returns -1 without printing a message. Hence, the two programs are not equivalent."
+    },
+    {
+      "input": [
+        "createQueue(2), 1"
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs will output the value dequeued from a queue that has one item. This is because the change made in the mutant program does not affect the value returned from the dequeue function."
+    }
+  ]
+},{
+  "mutant_program": "muta758_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both original and mutant codes will return -1 because the input of 5 is greater than the maxElements defined in createQueue, resulting in an invalid queue creation."
+    },
+    {
+      "input": [
+        "3"
+      ],
+      "original_output": 1,
+      "mutant_output": -1,
+      "explanation": "The original code will remove the first element of the queue properly, returning its value of 1. However, the mutant code will make use of an unnecessary TRAP_ON_NEGATIVE function when updating the front pointer, causing it to shift incorrectly and result in an incorrect return value of -1 for this particular test case."
+    },
+    {
+      "input": [
+        "2"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both original and mutant codes will return -1 because the created queue is initially empty and the dequeue function is called."
+    }
+  ]
+},{
+  "mutant_program": "muta761_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": [0],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "The input value is 0, which is not a negative value. Both codes will behave in the same way."
+    },
+    {
+      "input": [-1],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size.",
+      "explanation": "The input -1 is a negative value. Therefore, both original and mutant code will print 'Invalid size.' and return null."
+    },
+    {
+      "input": [3],
+      "original_output": "[1, 2, 3]",
+      "mutant_output": "[2, 3, 1]",
+      "explanation": "The input value is 3, which creates a queue that can store up to 3 elements. Elements 1, 2 and 3 are enqueued, and then dequeued in the original code. The output is the queue content [1, 2, 3]. However, in the mutated code, element 1 is dequeued and added to the end of the queue. Therefore, the output is [2, 3, 1]."
+    }
+  ]
+},{
+  "mutant_program": "muta762_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "3"
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both implementations are expected to behave similarly when creating a new queue for 3 elements."
+    },
+    {
+      "input": [
+        "2"
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both implementations are expected to behave similarly when creating a new queue for 2 elements."
+    },
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both implementations are expected to behave similarly when creating a new queue for 1 element."
+    },
+    {
+      "input": [
+        "2"
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both implementations are expected to behave similarly when enqueuing 2 elements on a queue of size 2."
+    },
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both implementations are expected to behave similarly when enqueuing 1 element on a queue of size 1."
+    },
+    {
+      "input": [
+        "3"
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both implementations are expected to behave similarly when enqueuing 3 elements on a queue of size 3."
+    },
+    {
+      "input": [
+        "2"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both implementations are expected to behave similarly when dequeuing from an empty queue of size 2."
+    },
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both implementations are expected to behave similarly when dequeuing from an empty queue of size 1."
+    },
+    {
+      "input": [
+        "3"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both implementations are expected to behave similarly when dequeuing from an empty queue of size 3."
+    },
+    {
+      "input": [
+        "2"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both implementations are expected to behave similarly when dequeuing from a queue of size 2 with only one element."
+    },
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both implementations are expected to behave similarly when dequeuing from a queue of size 1 with only one element."
+    },
+    {
+      "input": [
+        "3"
+      ],
+      "original_output": 0,
+      "mutant_output": -1,
+      "explanation": "The original program dequeues the first element from the queue and moves the front pointer in the process. The mutant program uses a different method to move the front pointer, calling TRAP_ON_ZERO in the process, which modifies the pointer differently. This result in different output when dequeueing from a queue of size 3 with a single element."
+    }
+  ]
+},{
+  "mutant_program": "muta770_boundedQueue.c",
+  "equivalent": "false",
+  "tests": [
+    {
+      "input": ["createQueue(5)", 1, 2, 3, 4, 5],
+      "original_output": [1, 2, 3, 4, 5],
+      "mutant_output": [1, 2, 3, 4],
+      "explanation": "The original program correctly dequeues all elements, but the mutant program has an incorrect calculation for the index of the first element to dequeue, resulting in one element being left in the queue."
+    }
+  ]
+},{
+  "mutant_program": "muta806_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta817_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta820_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta940_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta950_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta972_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta977_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta983_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta986_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta995_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta1000_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta1041_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta1044_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "[createQueue(5), 1, 2, 3, 4, 5]"
+      ],
+      "original_output": "[1, 2, 3, 4, 5]\n",
+      "mutant_output": "[1, 2, 3, 4]\n",
+      "explanation": "The mutation replaces q->size with TRAP_ON_NEGATIVE(q->size). When q->size is 0, the original code will not enter the loop and will not print anything. However, the mutant code enters the loop because TRAP_ON_NEGATIVE(0) is still 0, causing it to print one less element than the original. This test case is designed to have the queue exactly filled with elements, showing that the mutant code misses the last element."
+    },
+    {
+      "input": [
+        "[createQueue(3), 1, 2, 3]"
+      ],
+      "original_output": "[1, 2, 3]\n",
+      "mutant_output": "[1, 2, 3]\n",
+      "explanation": "This test case has a small queue with all space filled and tries to print all elements. In this case, the original and the mutant code outputs are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta1047_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "[createQueue(4), enqueue(createQueue(4), 1), dequeue(createQueue(4)), enqueue(createQueue(4), 2)]"
+      ],
+      "original_output": "[2]\n",
+      "mutant_output": "[2, 2]\n",
+      "explanation": "The mutant code uses the TRAP_ON_NEGATIVE macro to trap negative values before using the modulus operator on q->front. This will change the indexing of the elements in the queue if q->front is negative, resulting in different output than the original programmed. For example, in this test, the first enqueue and dequeue will cause q->front to be negative, changing the indexing of the elements."
+    }
+  ]
+},{
+  "mutant_program": "muta1050_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "[createQueue(4), 1, 2, 3]"
+      ],
+      "original_output": "[1, 2, 3]",
+      "mutant_output": "[1, 2, 3, -597019809]",
+      "explanation": "The mutant introduces a call to the TRAP_ON_NEGATIVE() function, which can generate negative indexes and access out-of-bounds elements on the q->elements array. This can cause the printBoundedQueue() function to print unexpected values leading to different outputs for the original and mutated programs."
+    },
+    {
+      "input": [
+        "[createQueue(2), 5, 7]"
+      ],
+      "original_output": "[5, 7]",
+      "mutant_output": "[5, 7]",
+      "explanation": "Both programs output the same result for this test case because neither program needs to use the TRAP_ON_NEGATIVE() function, and the enqueue() function is called only twice."
+    },
+    {
+      "input": [
+        "[createQueue(-3)]"
+      ],
+      "original_output": "Invalid size.",
+      "mutant_output": "Invalid size./*@+23@*/",
+      "explanation": "The mutant adds an extra comment to the Invalid size. error message, which does not affect the functionality of the program or the output in any way."
+    }
+  ]
+},{
+  "mutant_program": "muta1053_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "[createQueue(3), 1, 2, 3]"
+      ],
+      "original_output": "[1, 2, 3]\n",
+      "mutant_output": "[3, 1, 2]\n",
+      "explanation": "The original program correctly prints the elements in the queue in the order they were enqueued. The mutant program, on the other hand, uses a macro called TRAP_ON_NEGATIVE which will trap on negative values, causing out of bounds access for the last element in the queue, meaning that the first element in the queue is printed as the last, and the remaining elements are printed as the first two elements."
+    }
+  ]
+},{
+  "mutant_program": "muta1054_boundedQueue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta1062_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "[createQueue(3); enqueue(createQueue(3), 1); enqueue(createQueue(3), 2); enqueue(createQueue(3), 3)]"
+      ],
+      "original_output": "[1, 2, 3]\n",
+      "mutant_output": "[1, 2]\n",
+      "explanation": "The output of the original program correctly prints all elements in the queue, while the mutant program omits the last element."
+    },
+    {
+      "input": [
+        "[createQueue(2); enqueue(createQueue(2), 1); enqueue(createQueue(2),2)]"
+      ],
+      "original_output": "[1, 2]\n",
+      "mutant_output": "[1, ]\n",
+      "explanation": "The output of the original program correctly prints all elements in the queue, while the mutant program omits the comma separator after the first element."
+    }
+  ]
+},{
+  "mutant_program": "muta1065_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "[], Invalid size.\n",
+      "explanation": "The mutant program includes a call to a macro named TRAP_ON_NEGATIVE, which adds [] to the output when the value is negative. This change alters the output of the program when an invalid size is provided."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "[1], [1, 2], Queue is Full\n, [2], [2]\n",
+      "mutant_output": "[1], [], Queue is Full\n, [2], [2]\n",
+      "explanation": "The differences in output are due to the alteration made by the mutation to the printBoundedQueue function. Specifically, the conditional statement within the for loop was modified from checking if i < q->size - 1 to checking if i < TRAP_ON_NEGATIVE((q->size)) - 1. In the second test case, the queue is filled with two elements and then an attempt was made to enqueue a third element, resulting in the expected 'Queue is Full' message. The difference in output arises when the contents of the queue are printed. The original program prints the element, a comma, and a space after the first element in queue, but corrects the issue after the second element. The mutation introduces an extra conditional that results in the expected output from the program failing to produce a comma and space after the first element in queue, but correctly displaying these characters after the second."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "[], [1], [], [1], Queue is already empty!\n",
+      "mutant_output": "[], [], [], [], Queue is already empty!\n",
+      "explanation": "The third test case demonstrates the mutation to be equivalent with the original program, as the expected outputs match. In all tests, the queue is created, enqueued with one element, dequeued, and then dequeued again with the queue empty. This results in the empty list being displayed three times, an ensuing error from attempting to dequeue a non-existent element, and then one final display of the empty list."
+    }
+  ]
+},{
+  "mutant_program": "muta1066_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "[createQueue(5), 1, 2, 3]"
+      ],
+      "original_output": "[1, 2, 3]",
+      "mutant_output": "[1, 2, 3]",
+      "explanation": "Both programs should output the same result when enqueueing elements into the queue."
+    },
+    {
+      "input": [
+        "[createQueue(2), 4, 5, 6]"
+      ],
+      "original_output": "Queue is Full\nQueue is Full\n",
+      "mutant_output": "[4, 5]",
+      "explanation": "The original program prints an error message when enqueueing an element into a full queue, while the mutant program does not. The test enqueues 3 elements into a queue of capacity 2. The original program should print the error message twice, while the mutant program should only print it once and return a queue with two elements."
+    },
+    {
+      "input": [
+        "[createQueue(3), 7, 8]"
+      ],
+      "original_output": "[7, 8]",
+      "mutant_output": "Queue is already empty!\n-1\n",
+      "explanation": "The test enqueues two elements into a queue of capacity 3 and then dequeues three elements. The original program should output the queue with only the elements 7 and 8, while the mutant program should output an error message and return -1 when trying to dequeue the third element."
+    }
+  ]
+},{
+  "mutant_program": "muta1091_boundedQueue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "[createQueue(5)]"
+      ],
+      "original_output": "[]\n",
+      "mutant_output": "[]\n",
+      "explanation": "Both programs should output an empty list since the queue is empty."
+    },
+    {
+      "input": [
+        "[createQueue(3)]"
+      ],
+      "original_output": "[1, 2]\n",
+      "mutant_output": "[1, 2]\n",
+      "explanation": "Both programs should output the same list since the queue has two elements with values 1 and 2."
+    },
+    {
+      "input": [
+        "[createQueue(-1)]"
+      ],
+      "original_output": "Invalid size.\n",
+      "mutant_output": "Segmentation fault (core dumped)",
+      "explanation": "The mutant program causes a segmentation fault because it attempts to calculate modulo (%) of q->size, which is zero for an empty queue, leading to an invalid memory access. The original program handles negative input and does not crash in this case."
+    }
+  ]
+}]
