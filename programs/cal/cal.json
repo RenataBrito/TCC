@@ -1,1 +1,2939 @@
-[{"mutant_program": "muta0_cal.c", "equivalent": false, "tests": [{"input": [1, 1, 1, 1, 2022], "original_output": 0, "mutant_output": -365, "explanation": "Both programs should output 0 since the two given days are the same day. The original program outputs 0 correctly, but the mutant program outputs -365 which is incorrect."}, {"input": [1, 1, 2, 1, 2022], "original_output": 31, "mutant_output": -334, "explanation": "Both programs calculate the number of days between two days in the same year. In this test, the two days are in different months, so the program calculates the sum of days in those months. The original program calculates correctly that there are 31 days between January 1 and February 1 in 2022, and outputs 31. However, the mutant program wrongly assumes that February always has 28 days, so it calculates that there are -334 days between the same two days, which is incorrect."}, {"input": [1, 1, 3, 1, 2024], "original_output": 60, "mutant_output": 60, "explanation": "Both programs calculate the number of days between two days in the same year. In this test, the two days are in different months, and one of the months is February in a leap year. The original program correctly identifies that 2024 is a leap year, so February has 29 days, and calculates that there are 60 days between January 1 and March 1 in 2024, and outputs 60. The mutant program also correctly identifies that 2024 is a leap year, but it uses the wrong condition to calculate the number of days in February. However, the result happens to be correct for this specific test, so it also outputs 60."}]}, {"mutant_program": "muta1_cal.c", "equivalent": false, "tests": [{"input": [1, 1, 3, 3, 2020], "original_output": 62, "mutant_output": 61, "explanation": "The original program calculates correctly the number of days between two given dates in the same year, even taking into account leap years. However, the mutant program modifies the code to check if the year is a leap year, but using the incorrect condition. Instead of checking if the remainder of the year divided by 4 is different than 0, it checks if it is different than 28, which will lead to incorrect results. The test set used has two different months and the year is not a leap year, where the mutant program outputs one day less than the original program."}, {"input": [2, 15, 3, 10, 2040], "original_output": 24, "mutant_output": 24, "explanation": "This test is designed to show that, in some cases, the original and mutant programs may give equivalent output. In this case, the date range is within the same month, so both programs will execute the same code and return the same result."}, {"input": [12, 24, 1, 1, 9999], "original_output": 8, "mutant_output": 8, "explanation": "This test is designed to show that, in some cases, the original and mutant programs may give equivalent output. In this case, the input dates are during new year change, so the difference is 8 days, which is unaffected by the differences in the mutant code."}]}]
+[{
+  "mutant_program": "muta254_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6,
+        1,
+        8,
+        2,
+        2021
+      ],
+      "original_output": 62,
+      "mutant_output": 63,
+      "explanation": "The original program correctly sums up the number of days between June 1st and August 2nd, 2021, which is 62. However, in the mutant code the for loop starts with an incorrect value (month1 | 1) instead of (month1 + 1), which results in daysIn[6] not being included in the sum since 6 | 1 equals 7 and there are no months with index 7 in the array. Therefore, the mutated program outputs 63 instead of 62."
+    },
+    {
+      "input": [
+        3,
+        15,
+        6,
+        20,
+        2022
+      ],
+      "original_output": 97,
+      "mutant_output": 97,
+      "explanation": "For this test, the original and mutant programs correctly calculate the number of days between March 15th and June 20th, 2022, which is 97. Therefore, they are equivalent."
+    },
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2023
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "For this test, the original and mutant programs correctly calculate the number of days between February 28th and March 1st, 2023, which is 1. Therefore, they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta334_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        12,
+        1,
+        1,
+        1,
+        2022
+      ],
+      "original_output": 365,
+      "mutant_output": 364,
+      "explanation": "The input values represent the first day of December and January of the same year. The original program correctly calculates the number of days between the two dates as 365, but the mutant program incorrectly calculates it as 364 due to the incorrect modification made to the daysIn array in the if block, which changes the number of days in February to 28."
+    },
+    {
+      "input": [
+        2,
+        1,
+        2,
+        28,
+        2021
+      ],
+      "original_output": 27,
+      "mutant_output": 27,
+      "explanation": "The input values represent the first day of February and the last day of February of a non-leap year. Both the original and mutant programs correctly calculate the number of days between the two dates as 27, since February has 28 days in non-leap years."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 29,
+      "mutant_output": 29,
+      "explanation": "The input values represent the first day of February and the first day of March of a leap year. Both the original and mutant programs correctly calculate the number of days between the two dates as 29, since February has 29 days in leap years."
+    }
+  ]
+},{
+  "mutant_program": "muta339_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        4,
+        30,
+        2020
+      ],
+      "original_output": 89,
+      "mutant_output": 90,
+      "explanation": "In this test case, the original program correctly identifies the number of days between February 1st and April 30th of 2020 as 89. However, the mutant code incorrectly adds an extra day to the number of days in February for leap years, resulting in an incorrect output of 90."
+    },
+    {
+      "input": [
+        5,
+        15,
+        8,
+        31,
+        2021
+      ],
+      "original_output": 108,
+      "mutant_output": 108,
+      "explanation": "In this test case, both the original program and mutant code correctly identify the number of days between May 15th and August 31st of 2021 as 108."
+    },
+    {
+      "input": [
+        12,
+        1,
+        1,
+        1,
+        10000
+      ],
+      "original_output": 31,
+      "mutant_output": 31,
+      "explanation": "In this test case, both the original program and mutant code correctly identify the number of days between December 1st and January 1st of 10000 as 31, taking into account the change in year."
+    }
+  ]
+},{
+  "mutant_program": "muta349_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        5,
+        2,
+        12,
+        2022
+      ],
+      "original_output": 37,
+      "mutant_output": 46,
+      "explanation": "The original program considers all the months between the start and end month when calculating the number of days, whereas the mutant only considers the months between the start and end month. This causes a discrepancy in the calculated number of days."
+    },
+    {
+      "input": [
+        1,
+        31,
+        3,
+        1,
+        2022
+      ],
+      "original_output": 29,
+      "mutant_output": 29,
+      "explanation": "Both the original and mutant program calculates the same number of days for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta360_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2000
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly identifies the number of days between January 1 and January 2 of 2000 as 1, but the mutant program incorrectly identifies it as 0 since it modifies the daysIn array by using a bitwise XOR operator (^=) instead of an assignment (=) in the case where the year is not a leap year."
+    },
+    {
+      "input": [
+        6,
+        15,
+        6,
+        17,
+        1996
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The original program correctly identifies the number of days between June 15 and June 17 of 1996 as 2, but the mutant program incorrectly identifies it as 0 since it modifies the daysIn array by using a bitwise XOR operator (^=) instead of an assignment (=) in the case where the year is not a leap year."
+    },
+    {
+      "input": [
+        2,
+        15,
+        3,
+        15,
+        2001
+      ],
+      "original_output": 28,
+      "mutant_output": 29,
+      "explanation": "The original program correctly identifies the number of days between February 15 and March 15 of 2001 as 28, but the mutant program incorrectly identifies it as 29 since it modifies the daysIn array by using a bitwise XOR operator (^=) instead of an assignment (=) in the case where the year is not a leap year."
+    }
+  ]
+},{
+  "mutant_program": "muta361_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly calculates the number of days between January 1, 2021 and January 2, 2021, which should be 1. However, the mutant program changes the bitwise OR operator to assign the value of 28 to daysIn[2] instead of replacing it, which results in daysIn[2] being 29 (as it is a leap year), but then also being 28 due to the mutated line of code. This causes the mutant program to incorrectly calculate the number of days between the two dates and output 0 instead of 1."
+    },
+    {
+      "input": [
+        4,
+        15,
+        5,
+        3,
+        2021
+      ],
+      "original_output": 18,
+      "mutant_output": 18,
+      "explanation": "Both the original program and mutated program correctly calculate the number of days between April 15, 2021 and May 3, 2021, which should be 18. Therefore, the mutant program is equivalent to the original program in this case."
+    },
+    {
+      "input": [
+        12,
+        25,
+        1,
+        1,
+        2022
+      ],
+      "original_output": 7,
+      "mutant_output": 7,
+      "explanation": "Both the original program and mutated program correctly calculate the number of days between December 25, 2021 and January 1, 2022, which should be 7. Therefore, the mutant program is equivalent to the original program in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta363_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        31,
+        1
+      ],
+      "original_output": 30,
+      "mutant_output": 30,
+      "explanation": "Both programs are equivalent because it tests the simplest case when both input days are in the same month, and the same year, January, with the starting day being the first and the final day being the last in the month."
+    },
+    {
+      "input": [
+        1,
+        10,
+        3,
+        15,
+        1
+      ],
+      "original_output": 44,
+      "mutant_output": 43,
+      "explanation": "The mutant code is not equivalent to the original code. In this test we have days in two different months (January and March). The mutant introduces a bitwise XOR operator instead of an assignment with 29. The expected result is 44, but it returns 43 because after using the XOR operator daysIn[2] is equal to 29 for the first input (month1=1) and it is then used as input for the month of February which must have 28 or 29 days depending whether it's a leap year or not."
+    }
+  ]
+},{
+  "mutant_program": "muta364_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2000
+      ],
+      "original_output": 29,
+      "mutant_output": 28,
+      "explanation": "The input represents February 1, 2000 and March 1, 2000. The original program correctly identifies that it is a leap year and sets daysIn[2]=29 accordingly. The mutant program changes the line to 'daysIn[2] |= 29', which sets the 5th bit to 1. This results in daysIn[2] being equal to 61, which is incorrect for a leap year. Therefore, the mutant program output is 28 instead of 29."
+    },
+    {
+      "input": [
+        1,
+        1,
+        6,
+        30,
+        2021
+      ],
+      "original_output": 181,
+      "mutant_output": 181,
+      "explanation": "The input represents January 1, 2021 and June 30, 2021. Both the original and the mutant program correctly identify that it is not a leap year and set daysIn[2]=28. Therefore, both programs produce the same output of 181."
+    }
+  ]
+},{
+  "mutant_program": "muta369_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2000
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should output 1 since it is the difference between January 1 and January 2 of the same year."
+    },
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2000
+      ],
+      "original_output": 31,
+      "mutant_output": 60,
+      "explanation": "Original program calculates the days between January 1 and February 1 which is equal to 31. Mutant program outputs 60 which is the sum of days between 1 and 31 of January and 1 and 29 of February (leap year)."
+    },
+    {
+      "input": [
+        1,
+        15,
+        2,
+        15,
+        2021
+      ],
+      "original_output": 31,
+      "mutant_output": 31,
+      "explanation": "Both programs should output 31 since it is the difference between January 15 and February 15 of the same year."
+    }
+  ]
+},{
+  "mutant_program": "muta36_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        10,
+        3,
+        15,
+        2020
+      ],
+      "original_output": 35,
+      "mutant_output": 46,
+      "explanation": "The original code evaluates if the year is a leap year correctly with the condition (m4 != 0) || ((m100 == 0) && (m400 != 0)). However, the mutant code uses an incorrect condition ( (m4 || ((m100 == 0) && (m400 != 0))) ), which always evaluates to true for any year, changing the value of daysIn[2] for non-leap years from 28 to 29. The test set input has different dates for the same year that cover both February and non-February dates."
+    }
+  ]
+},{
+  "mutant_program": "muta370_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2022
+      ],
+      "original_output": 31,
+      "mutant_output": 60,
+      "explanation": "The test case checks if the program returns the correct number of days between January 1st and February 1st in a non-leap year. The original program calculates the number of days correctly as 31, while the mutant program incorrectly calculates it as 60 by using a bitwise or instead of a regular or in the for loop, leading to an infinite loop. Therefore, the mutant program is not equivalent to the original program."
+    },
+    {
+      "input": [
+        3,
+        15,
+        10,
+        10,
+        2023
+      ],
+      "original_output": 209,
+      "mutant_output": 209,
+      "explanation": "The test case checks if the program returns the correct number of days between a date in March and a date in October in a non-leap year. Both the original and the mutant program use the correct algorithm to calculate the number of days, so they are equivalent."
+    },
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2024
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "The test case checks if the program returns the correct number of days between the last day of February and the first day of March in a leap year. Both the original and the mutant program use the correct algorithm and set the correct number of days in February, so they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta389_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        14,
+        2022
+      ],
+      "original_output": 44,
+      "mutant_output": 45,
+      "explanation": "The original program sets daysIn[2] to 29 if (m4 == 0 && m100 != 0) || (m100 == 0 && m400 == 0) and to 28 otherwise. The mutant code uses an invalid operator * instead of &&, which leads to a different condition being checked. In this case, if m4 is not equal to 0 or m100 is equal to 0 and m400 is equal to 0, then daysIn[2] is set to 28. As a result, February has 28 days in the mutant program instead of 29, which leads to a one-day difference in the test case input [1, 1, 2, 14, 2022]."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2023
+      ],
+      "original_output": 28,
+      "mutant_output": 28,
+      "explanation": "Both programs will correctly determine that February 2023 has 28 days, since it is not a leap year."
+    },
+    {
+      "input": [
+        11,
+        1,
+        12,
+        31,
+        2024
+      ],
+      "original_output": 60,
+      "mutant_output": 60,
+      "explanation": "Both programs will correctly determine that November and December 2024 have 30 and 31 days, respectively, resulting in a total of 60 days."
+    }
+  ]
+},{
+  "mutant_program": "muta38_cal.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta392_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        31,
+        2022
+      ],
+      "original_output": 30,
+      "mutant_output": 30,
+      "explanation": "Both programs should output the same since the input falls on the same month with the same amount of days"
+    },
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2020
+      ],
+      "original_output": 31,
+      "mutant_output": 31,
+      "explanation": "Both programs should output the same since the year 2020 is a leap year and February has 29 days."
+    },
+    {
+      "input": [
+        1,
+        31,
+        2,
+        1,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should output the same since the year 2021 is not a leap year and February has 28 days."
+    },
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2024
+      ],
+      "original_output": 32,
+      "mutant_output": 28,
+      "explanation": "The original program should output 32 because February has 29 days in 2024. The mutant program would output 28 as it sets daysIn[2] to 28 regardless of the year being leap year or not, leading to a wrong number of days in the calculation."
+    }
+  ]
+},{
+  "mutant_program": "muta393_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        21,
+        2022
+      ],
+      "original_output": 50,
+      "mutant_output": 51,
+      "explanation": "The original program correctly considers February as having 28 days since 2022 is not a leap year. The mutant program incorrectly assigns 28 days to February because the condition (m4 != 0) - ((m100 == 0) && (m400 != 0)) returns a boolean value (either 0 or 1) that is used to calculate the days in February, resulting in an incorrect value."
+    },
+    {
+      "input": [
+        6,
+        15,
+        6,
+        20,
+        2022
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both the original program and the mutant program correctly return 6 since the two dates are in the same month."
+    },
+    {
+      "input": [
+        3,
+        1,
+        7,
+        31,
+        2022
+      ],
+      "original_output": 153,
+      "mutant_output": 153,
+      "explanation": "Both the original program and the mutant program correctly return 153 since the input dates are in different months within the same year and the year is not a leap year."
+    }
+  ]
+},{
+  "mutant_program": "muta398_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 29,
+      "mutant_output": 28,
+      "explanation": "The original program correctly identifies if a year is a leap year or not, by checking the remainder of its division by 4, 100, and 400. However, the mutant program uses the bitwise AND operator (&) instead of the logical AND operator (&&) to combine the conditions, resulting in a different output for the input [2, 1, 3, 1, 2020]. This input works for this test because February has 29 days in 2020, which is a leap year."
+    },
+    {
+      "input": [
+        6,
+        1,
+        7,
+        1,
+        2022
+      ],
+      "original_output": 30,
+      "mutant_output": 30,
+      "explanation": "This input works for both the original program and the mutant program, as the year 2022 is not a leap year and therefore June and July have 30 and 31 days respectively."
+    },
+    {
+      "input": [
+        12,
+        31,
+        1,
+        1,
+        2025
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "This input works for both the original program and the mutant program, as it spans only one day, from December 31 to January 1 of the next year. Both programs correctly handle the rollover of the year."
+    }
+  ]
+},{
+  "mutant_program": "muta400_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly calculate the difference between two days in the same month of a non-leap year"
+    },
+    {
+      "input": [
+        1,
+        1,
+        4,
+        2,
+        2020
+      ],
+      "original_output": 92,
+      "mutant_output": 93,
+      "explanation": "The original program correctly determines that year 2020 is a leap year and adjusts that February has 29 days. The mutant program uses a binary or instead of a logical or and therefore is always evaluating true. As a consequence, it assumes February has 28 days and calculates 1 day more for the second month."
+    },
+    {
+      "input": [
+        5,
+        1,
+        6,
+        30,
+        2021
+      ],
+      "original_output": 60,
+      "mutant_output": 60,
+      "explanation": "Both programs correctly calculate the number of days between two days in different months of the same year and a non-leap year"
+    }
+  ]
+},{
+  "mutant_program": "muta402_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2020
+      ],
+      "original_output": 31,
+      "mutant_output": 0,
+      "explanation": "The original program correctly identifies the number of days between January 1st and February 1st in a non-leap year as 31. The mutant program incorrectly identifies this number as 0, since the XOR operator used in the if condition evaluates to true when it should be false."
+    },
+    {
+      "input": [
+        2,
+        15,
+        3,
+        31,
+        2021
+      ],
+      "original_output": 44,
+      "mutant_output": 44,
+      "explanation": "The original and mutant programs correctly identify the number of days between February 15th and March 31st in a non-leap year as 44."
+    },
+    {
+      "input": [
+        2,
+        29,
+        3,
+        31,
+        2000
+      ],
+      "original_output": 31,
+      "mutant_output": 31,
+      "explanation": "The original and mutant programs correctly identify the number of days between February 29th and March 31st in a leap year as 31."
+    }
+  ]
+},{
+  "mutant_program": "muta415_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2022
+      ],
+      "original_output": 31,
+      "mutant_output": 60,
+      "explanation": "The expected output for the original program is 31 since it calculates the number of days between January 1st and February 1st of 2022. The mutant program, on the other hand, returns 60 which is incorrect. This is because the mutant changes the condition in the if statement to ((m4 != 0) || ((m100 == 0) == (m400 != 0))) which is not equivalent to the original condition. The mutated condition checks if m100 == 0 XOR m400 != 0 while the original condition checks m100 == 0 AND m400 != 0. Therefore, the mutant program assigns 28 to daysIn[2] when it should be 29 for leap years resulting in the incorrect output."
+    },
+    {
+      "input": [
+        11,
+        30,
+        12,
+        1,
+        2020
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and mutant programs should output 1 since there is one day between November 30th and December 1st of 2020 and the year is a leap year. The mutant code did not affect this test case."
+    },
+    {
+      "input": [
+        7,
+        1,
+        7,
+        31,
+        2021
+      ],
+      "original_output": 30,
+      "mutant_output": 30,
+      "explanation": "Both the original and mutant programs should output 30 since there are 30 days in July of 2021. The mutant code did not affect this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta422_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "2",
+        "1",
+        "3",
+        "1",
+        "2021"
+      ],
+      "original_output": 28,
+      "mutant_output": 31,
+      "explanation": "The original program correctly calculates the number of days between February 1st and March 1st in a non-leap year (28 days). However, the mutant code changes the condition for leap years, which causes it to always return 31 days, even in non-leap years."
+    },
+    {
+      "input": [
+        "11",
+        "15",
+        "12",
+        "25",
+        "2022"
+      ],
+      "original_output": 40,
+      "mutant_output": 40,
+      "explanation": "Both programs correctly calculate the number of days between November 15th and December 25th in a non-leap year (40 days)."
+    },
+    {
+      "input": [
+        "6",
+        "1",
+        "9",
+        "1",
+        "2000"
+      ],
+      "original_output": 92,
+      "mutant_output": 92,
+      "explanation": "Both programs correctly calculate the number of days between June 1st and September 1st in a leap year (92 days)."
+    }
+  ]
+},{
+  "mutant_program": "muta431_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "When calculating the number of days between two days in the same month, the original code specifies that the number of days is equal to the difference between the second day and the first day. The mutant code does not include an equal sign, so the number of days is calculated erroneously as the difference between the second day and the first day minus one."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2022
+      ],
+      "original_output": 28,
+      "mutant_output": 28,
+      "explanation": "In this test case, both programs calculate the number of days between two days in consecutive months, but neither program should enter the if-else statement that recalculates the days in February since the months are not adjacent to February."
+    },
+    {
+      "input": [
+        5,
+        11,
+        6,
+        11,
+        1998
+      ],
+      "original_output": 31,
+      "mutant_output": 31,
+      "explanation": "In this test case, both programs calculate the number of days between two days in consecutive months separated by February on a non-leap year."
+    }
+  ]
+},{
+  "mutant_program": "muta435_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        15,
+        5,
+        15,
+        2021
+      ],
+      "original_output": 30,
+      "mutant_output": 31,
+      "explanation": "Both programs should calculate the number of days between April 15th, 2021 and May 15th, 2021 in a non-leap year. The mutated code incorrectly calculates the number of days as 31, instead of 30, resulting in a different output."
+    },
+    {
+      "input": [
+        2,
+        1,
+        2,
+        28,
+        1999
+      ],
+      "original_output": 27,
+      "mutant_output": 27,
+      "explanation": "Both programs should calculate the number of days between February 1st, 1999 and February 28th, 1999 in a non-leap year. The mutated code and the original code should produce the same output because the mutant code modification did not affect this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta458_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "1",
+        "1",
+        "2",
+        "1",
+        "2021"
+      ],
+      "original_output": 31,
+      "mutant_output": 32,
+      "explanation": "The original code correctly calculates the number of days between January 1st and February 1st of the same year. The mutant code has a non-deterministic change in the if statement that determines if it is a leap year, resulting in 29 being added to the number of days in February if the condition is true. This causes the mutant program to output 32 instead of 31 for the given input."
+    },
+    {
+      "input": [
+        "4",
+        "15",
+        "5",
+        "20",
+        "2021"
+      ],
+      "original_output": 35,
+      "mutant_output": 35,
+      "explanation": "Both the original and mutant code correctly calculate the number of days between April 15th and May 20th of the same year. The mutant code does not make any changes that alter this calculation."
+    },
+    {
+      "input": [
+        "2",
+        "28",
+        "3",
+        "5",
+        "2021"
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "Both the original and mutant code correctly calculate the number of days between February 28th and March 5th of the same year. The mutant code does not make any changes that alter this calculation."
+    }
+  ]
+},{
+  "mutant_program": "muta459_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2000
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should output 1 because the input dates are only one day apart and in the same month. This test case is to verify that both programs handle the base case."
+    },
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2000
+      ],
+      "original_output": 31,
+      "mutant_output": 59,
+      "explanation": "The original program calculates correctly the number of days between January 1st and February 1st of the same year (31 days), but the mutant program calculates 59 days, which is incorrect. This is because the mutant program has a non-equivalent condition in the leap year check (m4-0 instead of m4!=0)."
+    },
+    {
+      "input": [
+        1,
+        1,
+        3,
+        1,
+        2000
+      ],
+      "original_output": 60,
+      "mutant_output": 60,
+      "explanation": "Both programs should output 60 because the input dates are in January and March of a leap year, with February having 29 days. This test case is to verify that the mutant program handles correctly a leap year."
+    }
+  ]
+},{
+  "mutant_program": "muta45_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2022
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs are equivalent since they execute the same if statement with the same condition."
+    },
+    {
+      "input": [
+        1,
+        15,
+        2,
+        15,
+        2022
+      ],
+      "original_output": 31,
+      "mutant_output": 60,
+      "explanation": "The mutated program doesn't correctly consider leap years, so it will calculate February as having 31 days instead of 28/29, causing it to output an incorrect result."
+    },
+    {
+      "input": [
+        7,
+        1,
+        10,
+        31,
+        2022
+      ],
+      "original_output": 92,
+      "mutant_output": 92,
+      "explanation": "Both programs are equivalent since they execute the same operations with the same inputs."
+    }
+  ]
+},{
+  "mutant_program": "muta468_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        14,
+        2,
+        14,
+        2020
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs are equivalent for this specific input because it is asking for the number of days between the same day, which is 0."
+    },
+    {
+      "input": [
+        2,
+        14,
+        3,
+        14,
+        2020
+      ],
+      "original_output": 29,
+      "mutant_output": 28,
+      "explanation": "This input tests whether the programs can handle leap years. The original program correctly determines the days between the two dates and takes into account the leap year. The mutant program is not taking into account the leap year properly and returns 28 instead of 29."
+    },
+    {
+      "input": [
+        1,
+        1,
+        12,
+        31,
+        9999
+      ],
+      "original_output": 365,
+      "mutant_output": 365,
+      "explanation": "Both programs are equivalent for this specific input because it is asking for the number of days between the first and last day of the year, which is 365 for all years that are not leap years."
+    }
+  ]
+},{
+  "mutant_program": "muta469_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should output the same result, since they are not different enough for this test set."
+    },
+    {
+      "input": [
+        1,
+        1,
+        12,
+        31,
+        2021
+      ],
+      "original_output": 364,
+      "mutant_output": 364,
+      "explanation": "Both programs should output the same result, since they are not different enough for this test set."
+    },
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2004
+      ],
+      "original_output": 2,
+      "mutant_output": 28,
+      "explanation": "The mutant program uses a subtraction (-) instead of a comparison (==) in the if statement, leading to incorrect condition evaluation and wrong output."
+    }
+  ]
+},{
+  "mutant_program": "muta481_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        9,
+        1,
+        11,
+        30,
+        2021
+      ],
+      "original_output": 90,
+      "mutant_output": 91,
+      "explanation": "In this case, the mutation changes the bitwise OR operator '|' to a logical OR operator '||' in the if statement for determining if it is a leap year. This causes the condition to always be true, leading to daysIn[2] always being set to 28 and resulting in an incorrect output for the mutant program."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 29,
+      "mutant_output": 29,
+      "explanation": "This test case checks for a leap year and a non-leap year which covers both branches of the if statement that was mutated. Both programs should output the same number of days between the two dates."
+    }
+  ]
+},{
+  "mutant_program": "muta483_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        30,
+        2022
+      ],
+      "original_output": 29,
+      "mutant_output": 28,
+      "explanation": "The original program correctly identifies that 2022 is not a leap year and February should have 28 days. The mutant program uses the exclusive or operator (^) instead of the logical or (||) operator, which results in an incorrect evaluation of the leap year condition, causing February to have 29 days instead of 28. This misclassification causes the function to return an incorrect output."
+    },
+    {
+      "input": [
+        2,
+        10,
+        3,
+        5,
+        2021
+      ],
+      "original_output": 22,
+      "mutant_output": 22,
+      "explanation": "Both the original and mutant program correctly identify that 2021 is not a leap year and February should have 28 days. The test inputs cover a span of two different months in the same year, and the outputs from both programs are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta487_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2004
+      ],
+      "original_output": 29,
+      "mutant_output": 60,
+      "explanation": "For a leap year, the mutant code has a logical operator error, where it should have been using '==' instead of '|=0'. As a result, this error makes the if statement always true, so it returns 28 instead of 29. Hence, the mutant code produced an incorrect result."
+    },
+    {
+      "input": [
+        4,
+        1,
+        6,
+        15,
+        2021
+      ],
+      "original_output": 75,
+      "mutant_output": 75,
+      "explanation": "This is a test where both the original and mutant programs should produce the same results since there is no mutation on this input range. The original program will output 75, the same as the mutant program."
+    },
+    {
+      "input": [
+        1,
+        2,
+        12,
+        30,
+        2022
+      ],
+      "original_output": 362,
+      "mutant_output": 362,
+      "explanation": "This is another test where both the original and mutant programs should produce the same results since there is no mutation on this input range. The original program will output 362, the same as the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta36_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        2000
+      ],
+      "original_output": 59,
+      "mutant_output": 59,
+      "explanation": "Both programs calculate the same amount of days between day 2 of month 1 and day 4 of month 3 of year 2000"
+    },
+    {
+      "input": [
+        2,
+        2,
+        3,
+        4,
+        2200
+      ],
+      "original_output": 30,
+      "mutant_output": 29,
+      "explanation": "The original program calculates 30 days between day 2 of month 2 and day 4 of month 3 of year 2200 taking into account that year 2200 is not a leap year. The mutant program sets daysIn[2] to 28 when it was supposed to be 29, so it calculates 29 days instead."
+    },
+    {
+      "input": [
+        3,
+        31,
+        4,
+        1,
+        1988
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program calculates 1 day between day 31 of month 3 and day 1 of month 4 of year 1988 taking into account that year 1988 is a leap year. The mutant program sets daysIn[2] to 28 when it was supposed to be 29, so it calculates 0 days instead."
+    }
+  ]
+},{
+  "mutant_program": "muta489_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2000
+      ],
+      "original_output": 31,
+      "mutant_output": 28,
+      "explanation": "This test case verifies if the program can properly calculate the number of days between 01/01/2000 and 01/02/2000. The original program should output 31, as January has 31 days and the dates are consecutive. The mutant program, however, changes the condition from (m400 != 0) to (m400 ^ 0), which is a bitwise exclusive OR and will always return true, resulting in daysIn[2] being set to 28. Therefore, the mutant program outputs 28, which is incorrect."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        1999
+      ],
+      "original_output": 28,
+      "mutant_output": 28,
+      "explanation": "This test case verifies if the program can properly calculate the number of days between 01/02/1999 and 01/03/1999. Both the original and mutant programs should output 28, as February has 28 days in non-leap years and the dates are consecutive."
+    },
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2004
+      ],
+      "original_output": 31,
+      "mutant_output": 32,
+      "explanation": "This test case verifies if the program can properly calculate the number of days between 01/01/2004 and 01/02/2004. The year 2004 is a leap year and February has 29 days, so both the original and mutant programs should output 31+29=60. However, the mutant program has a non-deterministic change that may affect the output, so we need to run both programs to confirm."
+    }
+  ]
+},{
+  "mutant_program": "muta495_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3,
+        4,
+        5,
+        2001
+      ],
+      "original_output": 91,
+      "mutant_output": 91,
+      "explanation": "Both programs should produce the same output for this test case. It tests for days calculation in consecutive months without involving a leap year."
+    },
+    {
+      "input": [
+        2,
+        3,
+        3,
+        5,
+        2021
+      ],
+      "original_output": 28,
+      "mutant_output": 28,
+      "explanation": "Both programs should produce the same output for this test case. It tests for days calculation in the same month without involving a leap year."
+    },
+    {
+      "input": [
+        2,
+        3,
+        4,
+        5,
+        2000
+      ],
+      "original_output": 63,
+      "mutant_output": 62,
+      "explanation": "This is a test where the mutant code produces a different output from the original program. It tests the calculation of days between two months that are in a leap year. The mutant code has an error on the leap year calculation condition."
+    }
+  ]
+},{
+  "mutant_program": "muta499_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        2,
+        1999
+      ],
+      "original_output": 31,
+      "mutant_output": 0,
+      "explanation": "This test case checks the correct calculation of days between two different months in a non-leap year. The original program will correctly identify that it is not a leap year and calculate the number of days between the two months as 31. The mutant, however, will always set February to have 28 days, resulting in a calculation of 0 days between the two months."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2000
+      ],
+      "original_output": 29,
+      "mutant_output": 29,
+      "explanation": "This test case checks the correct calculation of days between two different months in a leap year. Both the original program and the mutant should correctly identify that it is a leap year and calculate the number of days between the two months as 29, resulting in equivalent outputs."
+    },
+    {
+      "input": [
+        4,
+        15,
+        5,
+        5,
+        2021
+      ],
+      "original_output": 20,
+      "mutant_output": 20,
+      "explanation": "This test case checks the correct calculation of days between two different months in a non-leap year. Both the original program and the mutant should correctly identify that it is not a leap year and calculate the number of days between the two months as 20, resulting in equivalent outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta4_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        7,
+        2021
+      ],
+      "original_output": 37,
+      "mutant_output": 38,
+      "explanation": "The original program considers a leap year if year % 4 != 0 or (year % 100 == 0 and year % 400 != 0), while the mutant program has changed the condition to year % 100 == 2. This will result in the mutant output to be different from the original output when a year that is a leap year and not divisible by 100 is provided as input. For the test case [1, 1, 2, 7, 2021], the original program correctly treats 2021 as a common year and outputs 37, whereas the mutant program treats it as a leap year and outputs 38."
+    },
+    {
+      "input": [
+        3,
+        14,
+        6,
+        30,
+        2024
+      ],
+      "original_output": 108,
+      "mutant_output": 108,
+      "explanation": "Both programs consider 2024 as a leap year, which is correct. The input test case [3, 14, 6, 30, 2024] is chosen to make sure that both programs update daysIn[2] to 29, which is the number of days in February for leap years."
+    }
+  ]
+},{
+  "mutant_program": "muta505_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        3,
+        2000
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both programs will output the same result, since it is a leap year, and it is only dealing with January and February"
+    },
+    {
+      "input": [
+        1,
+        20,
+        2,
+        10,
+        2001
+      ],
+      "original_output": 21,
+      "mutant_output": 19,
+      "explanation": "This test will result in different outputs, since February 2001 has 28 days, and the mutant sets daysIn[2] to 29, leading to a wrong result."
+    },
+    {
+      "input": [
+        5,
+        1,
+        6,
+        1,
+        2025
+      ],
+      "original_output": 31,
+      "mutant_output": 31,
+      "explanation": "Both programs will output the same result, since it is dealing with May and June, which have the correct number of days according to a regular year."
+    }
+  ]
+},{
+  "mutant_program": "muta509_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2022
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs calculate the number of days between 01/01/2022 and 02/01/2022, which is 1."
+    },
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2022
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program sets the daysIn array to [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], since it is a leap year. The mutant program incorrectly sets the daysIn array to [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], since it checks if m4 > 0 instead of m4 != 0. Therefore, the mutant program returns 0 instead of 1."
+    },
+    {
+      "input": [
+        12,
+        31,
+        1,
+        1,
+        2023
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs calculate the number of days between 12/31/2022 and 01/01/2023, which is 1. Since 2022 is not a leap year, the second element of daysIn array is 31 for both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta515_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should output 1, as it is the difference between January 1st and January 2nd of the same year."
+    },
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 2,
+      "mutant_output": 1,
+      "explanation": "The original program considers 2020 as a leap year (divisible by 4 but not by 100 unless it's also divisible by 400), so February has 29 days, and the output should be 2. However, the mutant code incorrectly changes the condition to m100 <= 0, causing February to have 28 days and the output to be 1. "
+    },
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2001
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should output 1, as it is the difference between February 28th and March 1st of a non-leap year."
+    }
+  ]
+},{
+  "mutant_program": "muta519_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        30,
+        2021
+      ],
+      "original_output": 29,
+      "mutant_output": 30,
+      "explanation": "In this test case, the original program correctly calculates the number of days between January 1st and January 30th, 2021, which is 29. However, the mutant program returns 30 because it incorrectly assigns 28 to daysIn[2] when (m4 != 0) is true and (m100 == 0) && (m400 > 0) is true, which means the year is a leap year and should have 29 days in February."
+    },
+    {
+      "input": [
+        2,
+        14,
+        3,
+        3,
+        2022
+      ],
+      "original_output": 17,
+      "mutant_output": 17,
+      "explanation": "In this test case, both the original and mutant programs correctly calculate the number of days between February 14th and March 3rd, 2022, which is 17."
+    },
+    {
+      "input": [
+        11,
+        1,
+        12,
+        31,
+        2023
+      ],
+      "original_output": 60,
+      "mutant_output": 60,
+      "explanation": "In this test case, both the original and mutant programs correctly calculate the number of days between November 1st and December 31st, 2023, which is 60."
+    }
+  ]
+},{
+  "mutant_program": "muta530_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        5,
+        2021
+      ],
+      "original_output": 4,
+      "mutant_output": 5,
+      "explanation": "In this case, the original program and the mutant program differ in the calculation of days in February. The mutant program uses a bitwise shift operator instead of a logical OR operator. This results in a different condition being evaluated and therefore a different value (28 instead of 29) being assigned to the daysIn array at index 2. This leads to one extra day being added to the final result."
+    },
+    {
+      "input": [
+        12,
+        25,
+        12,
+        31,
+        2022
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "In this case, both the original program and the mutant program correctly identify that the year 2022 is not a leap year and assign 28 to daysIn[2]. Therefore, the output is the same for both programs."
+    },
+    {
+      "input": [
+        2,
+        1,
+        2,
+        28,
+        2000
+      ],
+      "original_output": 27,
+      "mutant_output": 28,
+      "explanation": "In this case, the original program and the mutant program differ in the calculation of days in February. The mutant program uses a different conditional expression than the original program, which leads to a different value (28 instead of 29) being assigned to the daysIn array at index 2. This results in one extra day being added to the final result."
+    }
+  ]
+},{
+  "mutant_program": "muta531_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2020
+      ],
+      "original_output": 31,
+      "mutant_output": 32,
+      "explanation": "The original code correctly calculates the number of days between January 1 and February 1 of 2020, which is 31. However, the mutant code incorrectly sets 29 days for February if the year is a leap year, which is not the same as setting 28 days if the year is not a leap year."
+    },
+    {
+      "input": [
+        2,
+        15,
+        3,
+        17,
+        2021
+      ],
+      "original_output": 30,
+      "mutant_output": 30,
+      "explanation": "This test case checks the number of days between February 15 and March 17, both non-leap year months, of the year 2021. Both the original and mutant code correctly calculate that there are 30 days between these two dates."
+    },
+    {
+      "input": [
+        12,
+        25,
+        1,
+        1,
+        2025
+      ],
+      "original_output": 7,
+      "mutant_output": 243,
+      "explanation": "This test case checks the number of days between December 25, 2025 and January 1, 2026, which are in the same year. The original code correctly calculates that there are 7 days between these two dates. However, the mutant code sets February with 29 days, which affects the total number of days, resulting in 243 instead of 7."
+    }
+  ]
+},{
+  "mutant_program": "muta534_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        10,
+        2022
+      ],
+      "original_output": 9,
+      "mutant_output": 10,
+      "explanation": "The original program correctly calculates the number of days between January 1 and January 10 in a non-leap year. The mutant code also returns a close output but with an additional day."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2000
+      ],
+      "original_output": 29,
+      "mutant_output": 28,
+      "explanation": "The original program calculates the number of days between February 1 and March 1 in a leap year. The mutant code changes one part of the if condition from (m400 != 0) to (m400 << 0), causing it to always be true. Therefore, the daysIn[2] is set to 28 instead of 29, resulting in one fewer day."
+    }
+  ]
+},{
+  "mutant_program": "muta535_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        4,
+        10,
+        10,
+        2021
+      ],
+      "original_output": 6,
+      "mutant_output": 7,
+      "explanation": "The original program correctly computes the number of days between 4th October and 10th October of 2021, which is 6. However, the mutant program changes the condition in the if statement of line 14, using `m400 >> 0` instead of `m400 != 0`, which is not equivalent. As a consequence, the mutant program does not correctly identify leap years and produces a wrong value of 7 instead of 6."
+    },
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "The original program correctly computes the number of days between 28th of February and 1st of March of leap year 2020, which is 2. However, the mutant program changes the condition in line 14, which checks if a year is leap or not, introducing a bitwise shift operator instead of the inequality check used in the original program. The new condition falsely returns true for non-leap years, leading the program to incorrectly compute the number of days as 3 instead of 2."
+    },
+    {
+      "input": [
+        6,
+        10,
+        9,
+        5,
+        2022
+      ],
+      "original_output": 87,
+      "mutant_output": 87,
+      "explanation": "Both the original and mutant programs correctly compute the number of days between 10th June and 5th September of 2022, which is 87. This test case covers a normal scenario where the months are different and the years are not leap."
+    }
+  ]
+},{
+  "mutant_program": "muta576_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2022
+      ],
+      "original_output": 1,
+      "mutant_output": 2,
+      "explanation": "The original program will correctly calculate the number of days between January 1st and January 2nd of 2022, which is 1. The mutant program will also change the behavior for any input of equal months. In this case, month1 is equal to month2 and the trap condition will always be satisfied, meaning that it will always output that there are two days between the two dates, which is incorrect."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 29,
+      "mutant_output": 30,
+      "explanation": "The original program will correctly calculate the number of days between February 1st and March 1st of 2020, which is 29. The mutant program will also output 30, which is incorrect, because it will always add an extra day in case the months are different."
+    },
+    {
+      "input": [
+        12,
+        24,
+        12,
+        31,
+        2021
+      ],
+      "original_output": 7,
+      "mutant_output": 2,
+      "explanation": "The original program will correctly calculate the number of days between December 24th and December 31st of 2021, which is 7. The mutant program will output 2 because it will always satisfy the trap condition of having month2 be negative."
+    }
+  ]
+},{
+  "mutant_program": "muta577_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2021
+      ],
+      "original_output": 30,
+      "mutant_output": 0,
+      "explanation": "The original program calculates the number of days between 1/1/2021 and 2/1/2021 by correctly adding the days in January and February. The mutant program, however, uses a TRAP_ON_ZERO function in the if statement that checks if the months are the same, which always returns 0, causing the output to be incorrect."
+    },
+    {
+      "input": [
+        2,
+        15,
+        3,
+        12,
+        2022
+      ],
+      "original_output": 25,
+      "mutant_output": 25,
+      "explanation": "Both original and mutant programs calculate the number of days between 2/15/2022 and 3/12/2022 correctly because the if statement is not executed in this case."
+    },
+    {
+      "input": [
+        6,
+        1,
+        8,
+        1,
+        2030
+      ],
+      "original_output": 61,
+      "mutant_output": 61,
+      "explanation": "Both original and mutant programs calculate the number of days between 6/1/2030 and 8/1/2030 correctly because the if statement is not executed in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta579_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1,
+        2022
+      ],
+      "original_output": 0,
+      "mutant_output": 30,
+      "explanation": "The original program correctly calculates the difference between two dates within the same month. The mutant program replaces the month comparison in the if statement with an undefined function call, resulting in an incorrect calculation for dates within the same month."
+    },
+    {
+      "input": [
+        2,
+        14,
+        4,
+        20,
+        2022
+      ],
+      "original_output": 65,
+      "mutant_output": 65,
+      "explanation": "Both the original and mutant programs correctly calculate the difference between two dates across different months and possibly different years, as well as taking into account leap years. Therefore, the outputs of both programs are the same."
+    },
+    {
+      "input": [
+        5,
+        30,
+        6,
+        1,
+        2022
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both the original and mutant programs correctly calculate the difference between two dates when the number of days are in consecutive order. Therefore, the outputs of both programs are the same."
+    }
+  ]
+},{
+  "mutant_program": "muta57_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        2,
+        3,
+        30,
+        2021
+      ],
+      "original_output": 56,
+      "mutant_output": 54,
+      "explanation": "Both programs should calculate the number of days between February 2 and March 30 of 2021. The original program considers correctly the leap year condition to update the number of days in February and returns 56, but the mutant program makes a non-deterministic change by subtracting 2 from the calculated number of days without any apparent reason, returning 54 instead of 56."
+    },
+    {
+      "input": [
+        12,
+        25,
+        1,
+        1,
+        2022
+      ],
+      "original_output": 7,
+      "mutant_output": 7,
+      "explanation": "Both programs should calculate the number of days between December 25 of 2021 and January 1 of 2022. Since the two dates belong to different years, there is no leap year condition to be satisfied. Both programs return 7, which is the correct result."
+    },
+    {
+      "input": [
+        9,
+        30,
+        10,
+        1,
+        2037
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should calculate the number of days between September 30 and October 1 of 2037. Since the two dates belong to the same month, there is no leap year condition to be satisfied. Both programs return 1, which is the correct result."
+    }
+  ]
+},{
+  "mutant_program": "muta580_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 30,
+      "explanation": "The original code correctly calculates the number of days between January 1st and January 2nd, 2021, which is 1. However, the mutant code uses a function TRAP_ON_ZERO that is not defined in this program and will likely result in a compilation error. Even if this function was defined, it would not change the behavior of the code."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 29,
+      "mutant_output": 60,
+      "explanation": "The original code calculates the number of days between February 1st and March 1st, 2020, which is 29. The mutant code should also calculate 29, since it only modifies a conditional statement that is not triggered by this test case. However, it produces an incorrect output of 60, which suggests that the mutant has an error that affects the program's behavior for other inputs."
+    },
+    {
+      "input": [
+        12,
+        30,
+        12,
+        31,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code calculates the number of days between December 30th and December 31st, 2021, which is 1. The mutant code modifies the same conditional statement as the previous test case, but in this case it produces an incorrect output of 0 instead of 1. This confirms that the mutant has a bug that affects the program's behavior for some inputs."
+    }
+  ]
+},{
+  "mutant_program": "muta582_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": -1,
+      "explanation": "The test checks the case when both dates (month1/day1 and month2/day2) are in the same month and the distance between them is only 1 day. The original program calculates the difference correctly, which is 1. However, the mutant program uses an undefined macro called TRAP_ON_NEGATIVE that makes the program output a negative number instead of the correct difference. Therefore, the programs are not equivalent."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2022
+      ],
+      "original_output": 28,
+      "mutant_output": 28,
+      "explanation": "The test checks the case when the difference between the dates spans over a single month in a common year (not leap year). Both programs should output the same result (28), which is the difference between the first of February and the first of March. Therefore, the programs are equivalent."
+    },
+    {
+      "input": [
+        12,
+        31,
+        1,
+        1,
+        2023
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The test checks the case when the difference between the dates spans over two different years, which are not leap years. Both programs should output the same result (1), which is the difference between the last day of December 2022 and the first day of January 2023. Therefore, the programs are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta583_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "2",
+        "1",
+        "3",
+        "1",
+        "2000"
+      ],
+      "original_output": 29,
+      "mutant_output": 30,
+      "explanation": "The original program calculates correctly the number of days between February 1st and March 1st of a leap year. The mutant changes the calculation of the number of days in the same month and adds the macro TRAP_ON_ZERO, which does not affect the result of this test case. The difference in output comes from the calculation of the number of days between February 1st and March 1st of a non-leap year, which the mutant does not handle correctly."
+    },
+    {
+      "input": [
+        "1",
+        "1",
+        "1",
+        "15",
+        "9999"
+      ],
+      "original_output": 15,
+      "mutant_output": 15,
+      "explanation": "This test case involves dates in the same month, so the mutant's modification on how the number of days in the same month is calculated does not come into play. Both programs are expected to return the same output, which is the difference between January 1st and January 15th of a non-leap year."
+    },
+    {
+      "input": [
+        "11",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "original_output": 306,
+      "mutant_output": 306,
+      "explanation": "This test case involves dates in different months but in the same year, so the calculation of leap year does not affect the result of both programs. Both programs are expected to return the same output, which is the number of days between November 1st and January 1st of the year 1."
+    }
+  ]
+},{
+  "mutant_program": "muta585_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        31,
+        2022
+      ],
+      "original_output": 30,
+      "mutant_output": -1,
+      "explanation": "In this case, the original program calculates the number of days between January 1st and January 31st of 2022, which is 30, while the mutant program subtracts the function TRAP_ON_NEGATIVE from day1, which is not defined in the original program, resulting in an incorrect calculation and negative output."
+    },
+    {
+      "input": [
+        2,
+        15,
+        4,
+        10,
+        2022
+      ],
+      "original_output": 54,
+      "mutant_output": 54,
+      "explanation": "In this case, the original program and mutant program both calculate the number of days between February 15th and April 10th of 2022, which is 54, as the mutant program only affects the calculation of days when month2 and month1 are equal."
+    },
+    {
+      "input": [
+        12,
+        20,
+        1,
+        5,
+        2022
+      ],
+      "original_output": 16,
+      "mutant_output": 16,
+      "explanation": "In this case, the original program and mutant program both calculate the number of days between December 20th of 2022 and January 5th of 2023, which is 16, as the mutant program only affects the calculation of days when month2 and month1 are equal."
+    }
+  ]
+},{
+  "mutant_program": "muta586_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1,
+        2000
+      ],
+      "original_output": 0,
+      "mutant_output": -1,
+      "explanation": "The original program will return 0 because the days are the same, but the mutant program will return -1 due to the use of the TRAP_ON_ZERO function which subtracts 1 from day1, resulting in a negative number of days."
+    },
+    {
+      "input": [
+        2,
+        15,
+        5,
+        1,
+        2021
+      ],
+      "original_output": 75,
+      "mutant_output": 75,
+      "explanation": "Both programs calculate the correct number of days between the two dates."
+    }
+  ]
+},{
+  "mutant_program": "muta588_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2022
+      ],
+      "original_output": 31,
+      "mutant_output": 32,
+      "explanation": "In this test, the original code should return 31 as the number of days between January 1st and February 1st of 2022. However, the mutant code will return 32 instead. This is because of the addition of the TRAP_ON_NEGATIVE function call in the conditional statement that checks whether the year is a leap year or not. This function call does not exist in the original code and will always evaluate to true, causing the program to always assign 28 to daysIn[2], even when it should be 29. Therefore, the mutant code will always calculate the number of days between February 1st and 2nd as 1 day more than it should, resulting in an incorrect output."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2024
+      ],
+      "original_output": 29,
+      "mutant_output": 29,
+      "explanation": "In this test, both the original and mutant code should return 29 as the number of days between February 1st and March 1st of 2024. This is because 2024 is a leap year and the code will correctly assign 29 to daysIn[2]. Therefore, both programs will calculate the correct number of days between the two dates."
+    },
+    {
+      "input": [
+        12,
+        15,
+        1,
+        1,
+        2025
+      ],
+      "original_output": 17,
+      "mutant_output": 17,
+      "explanation": "In this test, both the original and mutant code should return 17 as the number of days between December 15th, 2025 and January 1st, 2025. This is because both programs will correctly assign 31 to daysIn[12] and calculate the number of days as the sum of the remaining days in December (16) and the entire month of January (31), which equals 17."
+    }
+  ]
+},{
+  "mutant_program": "muta591_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        4,
+        2021
+      ],
+      "original_output": 3,
+      "mutant_output": 31,
+      "explanation": "Both the original and the mutant program calculate the number of days between two dates that are in the same month and year, that is January 1st and January 4th of 2021. The difference between them is related to a modification in the 'if statement' in line 17. The original has (m4 != 0) || ((m100 == 0) && (m400 != 0)) while the mutant has ((m4 != 0) || ((TRAP_ON_NEGATIVE(m100) == 0) && (m400 != 0)))). The function 'TRAP_ON_NEGATIVE' is not defined in the code provided and could potentially generate some kind of error in the program. The test demonstrates this inconsistency."
+    },
+    {
+      "input": [
+        2,
+        15,
+        4,
+        15,
+        2021
+      ],
+      "original_output": 59,
+      "mutant_output": 60,
+      "explanation": "Both the original and the mutant program calculate the number of days between two dates that are in different months, but in the same year. February of 2021 has 28 days. In the original, the condition in the 'if statement' of line 17 evaluates as true and sets daysIn[2] to 28, omitting the fact that 2021 is not a leap year. In the mutant program, the condition in line 17 also evaluates as true and sets daysIn[2] to 28, producing the same output as the original."
+    },
+    {
+      "input": [
+        6,
+        1,
+        9,
+        30,
+        2021
+      ],
+      "original_output": 122,
+      "mutant_output": 122,
+      "explanation": "Both the original and the mutant program calculate the number of days between two dates that are in different months, but in the same year. The months evaluated have the same number of days. The mutant program has the same structure of the original program, the mutation in the 'if statement' of line 17 does not affect the calculation, and the output is the same."
+    }
+  ]
+},{
+  "mutant_program": "muta594_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2000
+      ],
+      "original_output": 31,
+      "mutant_output": 30,
+      "explanation": "The original program correctly identifies February 2000 as a leap year and returns the correct number of days. The mutant program uses a modified condition to check if a year is a leap year, by applying a trap function on the modulo of 400 which always returns a positive value, thus generating the wrong result for the input year 2000."
+    },
+    {
+      "input": [
+        3,
+        1,
+        4,
+        1,
+        2021
+      ],
+      "original_output": 31,
+      "mutant_output": 31,
+      "explanation": "Both programs return the correct result for a non-leap year, as March and April both have 31 days."
+    }
+  ]
+},{
+  "mutant_program": "muta597_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        2,
+        5,
+        2022
+      ],
+      "original_output": 4,
+      "mutant_output": -6,
+      "explanation": "The original program correctly calculates the number of days between February 1st and February 5th of 2022, which is 4. However, the mutant program includes a TRAP_ON_NEGATIVE function that causes an incorrect result of -6 to be returned instead. This function is not present in the original program and causes the test case to fail."
+    },
+    {
+      "input": [
+        12,
+        12,
+        12,
+        31,
+        2021
+      ],
+      "original_output": 19,
+      "mutant_output": 19,
+      "explanation": "Both the original program and the mutant program should return the same result for this input because the month, year, and number of days are the same. This test case is useful for verifying that the code changes in the mutant program did not introduce unintended behavior."
+    }
+  ]
+},{
+  "mutant_program": "muta598_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2022
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program calculates the number of days between January 1st and January 2nd of 2022, which should be 1. The mutant program behaves differently when day2 is 0, it traps on zero (TRAP_ON_ZERO) and returns 0 instead of calculating the difference between the days."
+    },
+    {
+      "input": [
+        2,
+        14,
+        2,
+        13,
+        2022
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "This test case is equivalent for both programs because it is testing the same month, and the expected result is -1 since day2 is less than day1."
+    },
+    {
+      "input": [
+        12,
+        31,
+        1,
+        1,
+        2023
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "This test case is equivalent for both programs because it is testing the difference between two years. The expected result is 1 since there is only one day between December 31st of 2022 and January 1st of 2023."
+    }
+  ]
+},{
+  "mutant_program": "muta600_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        12,
+        31,
+        2021
+      ],
+      "original_output": 364,
+      "mutant_output": 365,
+      "explanation": "The test set includes the whole year and it is not a leap year, so the original program returns 364 days and the mutant program returns 365 days due to a change in the daysIn array that affects the computation of the number of days in February."
+    },
+    {
+      "input": [
+        2,
+        14,
+        5,
+        20,
+        2022
+      ],
+      "original_output": 95,
+      "mutant_output": 97,
+      "explanation": "The test set includes months from February to May in a leap year, so the original program returns 95 days and the mutant program returns 97 days due to a change in the computation of the number of days in the first month of the range."
+    }
+  ]
+},{
+  "mutant_program": "muta601_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        15,
+        3,
+        10,
+        2021
+      ],
+      "original_output": 23,
+      "mutant_output": 24,
+      "explanation": "The input represents two dates in 2021, February 15th and March 10th. The original program correctly calculates the number of days between these two dates, which is 23. However, the mutant program uses the function TRAP_ON_ZERO, which is not defined in the original program, to compute the index for the daysIn array in line 17. The output is therefore different, with the mutant program returning 24 instead of 23."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1,
+        2020
+      ],
+      "original_output": 30,
+      "mutant_output": 31,
+      "explanation": "The input represents two dates in 2020, January 1st and February 1st. The original program correctly calculates the number of days between these two dates, which is 30. However, the mutant program uses 0 as the index for the daysIn array when the month is zero, which triggers an out of bounds error as there is no element at index 0. The output is therefore different, with the mutant program returning 31 instead of 30 due to the uninitialized numDays variable."
+    }
+  ]
+},{
+  "mutant_program": "muta603_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2000
+      ],
+      "original_output": 31,
+      "mutant_output": 29,
+      "explanation": "The original program correctly calculates the number of days between the given dates in the same year. However, the mutant program includes a trap on negative number function call on the daysIn array, which can change the value of daysIn[2]. In this test case, daysIn[2] is set to 29 because it is a leap year (2000), but the trap on negative number function call on daysIn[2] results in it being changed to 1 (31 - 28), leading to a incorrect calculation and output of 29 instead of 31."
+    },
+    {
+      "input": [
+        12,
+        25,
+        1,
+        1,
+        2000
+      ],
+      "original_output": 7,
+      "mutant_output": 7,
+      "explanation": "Both the original and mutant programs correctly calculate the number of days between the given dates, considering the change in year from 2000 to 2001. In this test case, the output is 7 for both."
+    },
+    {
+      "input": [
+        5,
+        31,
+        6,
+        1,
+        100
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and mutant programs correctly calculate the number of days between the given dates, considering a non-leap year (100). In this test case, the output is 1 for both."
+    }
+  ]
+},{
+  "mutant_program": "muta604_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly calculates the difference in days between two dates in the same month within a non-leap year. However, the mutant program introduces a TRAP_ON_ZERO function call, which is not defined in the program and causes a compilation error. Hence, the mutant program is not equivalent to the original program."
+    },
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly calculates the difference in days between two dates in consecutive months of a leap year. However, the mutant program introduces a TRAP_ON_ZERO function call, which is not defined in the program and causes a compilation error. Hence, the mutant program is not equivalent to the original program."
+    },
+    {
+      "input": [
+        12,
+        31,
+        1,
+        1,
+        2022
+      ],
+      "original_output": 1,
+      "mutant_output": -30,
+      "explanation": "The original program correctly calculates the difference in days between two dates in consecutive months of two different years. However, the mutant program introduces a subtraction of day1 to an uninitialized variable (numDays), which causes an undefined behavior and results in an incorrect output. Hence, the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta606_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        3,
+        2,
+        2020
+      ],
+      "original_output": 31,
+      "mutant_output": 30,
+      "explanation": "The original program calculates numDays as day2 + (daysIn[month1] - day1), while the mutant program subtracts TRAP_ON_NEGATIVE(day1) from daysIn[month1], causing numDays to have a different value"
+    },
+    {
+      "input": [
+        9,
+        9,
+        10,
+        10,
+        2022
+      ],
+      "original_output": 31,
+      "mutant_output": 32,
+      "explanation": "In this case, the original and mutant programs calculate numDays differently due to the change made in the mutant program. Therefore, the outputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta607_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6,
+        1,
+        6,
+        30,
+        2021
+      ],
+      "original_output": 29,
+      "mutant_output": 28,
+      "explanation": "The original program correctly calculates the number of days between June 1st and June 30th, 2021, taking into account that it is not a leap year. The mutant program, however, applies the TRAP_ON_ZERO function to the day1 parameter, subtracting it from the daysIn array and causing the test to fail by outputting 28 instead of 29."
+    },
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        1996
+      ],
+      "original_output": 31,
+      "mutant_output": 30,
+      "explanation": "The original program correctly calculates the number of days between January 1st and February 1st, 1996, taking into account that it is a leap year. The mutant program, however, applies the TRAP_ON_ZERO function to the day1 parameter, subtracting it from the daysIn array and causing the test to fail by outputting 30 instead of 31."
+    }
+  ]
+},{
+  "mutant_program": "muta609_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 29,
+      "mutant_output": 31,
+      "explanation": "The original program correctly calculates the number of days between February 1st and March 1st, 2020, which is 29. However, the mutant program has a different implementation in the for loop on line 23, where it applies an additional function called TRAP_ON_NEGATIVE to month1, causing the loop to start at the negative value for January and resulting in the incorrect output of 31."
+    },
+    {
+      "input": [
+        10,
+        5,
+        12,
+        10,
+        2023
+      ],
+      "original_output": 66,
+      "mutant_output": 66,
+      "explanation": "For this test case, both the original and mutant programs calculate the number of days correctly between October 5th and December 10th, 2023, which is 66. Therefore, the mutant program is equivalent to the original program for this input."
+    },
+    {
+      "input": [
+        3,
+        20,
+        3,
+        1,
+        2024
+      ],
+      "original_output": -19,
+      "mutant_output": -17,
+      "explanation": "For this test case, the original program calculates the number of days incorrectly because day2 is less than day1, resulting in a negative value of -19. On the other hand, the mutant program also calculates the number of days incorrectly because of the same mistake, but with the modified for loop the result is -17. Therefore, both programs are not equivalent and the mutant program does not fix the original bug."
+    }
+  ]
+},{
+  "mutant_program": "muta610_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        2,
+        2000
+      ],
+      "original_output": 31,
+      "mutant_output": 60,
+      "explanation": "The test case is to calculate the number of days between January 1, 2000 and February 2, 2000. The original program calculates it correctly, but the mutant program has a TRAP_ON_ZERO() function call inserted in the for loop which increments the value of i. This call disrupts the loop and makes the mutant program add days incorrectly, resulting in a mutated output of 60 days."
+    },
+    {
+      "input": [
+        5,
+        10,
+        7,
+        15,
+        2022
+      ],
+      "original_output": 66,
+      "mutant_output": 66,
+      "explanation": "The test case is to calculate the number of days between May 10, 2022 and July 15, 2022. The original program and the mutant program both correctly calculate it as 66 days, even though the mutant program has a difference in the way the for loop is written. Thus, the mutated program is equivalent to the original program in this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta612_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 2,
+      "mutant_output": 1,
+      "explanation": "The test consists in calculating the number of days between February 28th and March 1st, 2020. In the original program, February has 29 days since 2020 is a leap year. In the mutant, a TRAP_ON_NEGATIVE function was added to the loop statement, but it does not affect the output in this specific scenario."
+    },
+    {
+      "input": [
+        12,
+        31,
+        1,
+        1,
+        2021
+      ],
+      "original_output": 1,
+      "mutant_output": 32,
+      "explanation": "The test consists in calculating the number of days between December 31st, 2020 and January 1st, 2021. In the original program, it correctly considers the difference as 1 day due to the change of year. In the mutant, the loop condition was changed from 'i <= month2-1' to 'TRAP_ON_NEGATIVE(i) <= (month2-1)'. This results in an off by one error, causing the output to be 32 instead of 1."
+    },
+    {
+      "input": [
+        6,
+        15,
+        6,
+        20,
+        2022
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "The test consists in calculating the number of days between June 15th and June 20th, 2022. This scenario is a common scenario in which both programs behave correctly. Therefore, they both produce the same output for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta613_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 29,
+      "mutant_output": 30,
+      "explanation": "The original program is calculating the number of days between February 1st and March 1st correctly, considering February has 29 days in a leap year. However, the mutant program has a TRAP_ON_ZERO macro wrapping the condition in the for loop of the numDays calculation. This macro may alter the expected behavior of the loop, leading to a different output. In this case, the loop stops one iteration before it should, resulting in the mutant program outputting 30 instead of 29."
+    },
+    {
+      "input": [
+        1,
+        1,
+        2,
+        10,
+        2021
+      ],
+      "original_output": 40,
+      "mutant_output": 40,
+      "explanation": "Both programs are equivalent for this input, because the execution only involves one month and there are no leap years involved, so the loop in the else statement is not executed."
+    },
+    {
+      "input": [
+        12,
+        25,
+        1,
+        1,
+        2023
+      ],
+      "original_output": 7,
+      "mutant_output": 7,
+      "explanation": "Both programs are equivalent for this input, because the months are swapped but in consecutive years, so there are no leap years, which could affect the output."
+    }
+  ]
+},{
+  "mutant_program": "muta615_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2022
+      ],
+      "original_output": 31,
+      "mutant_output": 60,
+      "explanation": "In this test case, the mutant program uses a mutant operator TRAP_ON_NEGATIVE that can alter the loop condition. In this case, the loop condition becomes i <= -1, which is always true in the first iteration. Therefore, the mutant program will enter an infinite loop and never return the expected output. In contrast, the original program will calculate the correct number of days between the two given dates."
+    },
+    {
+      "input": [
+        5,
+        15,
+        7,
+        20,
+        2021
+      ],
+      "original_output": 66,
+      "mutant_output": 66,
+      "explanation": "In this test case, the mutant program and the original program produce the same output because the input values are within the valid range specified by the preconditions, and the mutant operator does not affect the calculation of the number of days between the two dates."
+    }
+  ]
+},{
+  "mutant_program": "muta616_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        3,
+        2,
+        2020
+      ],
+      "original_output": 31,
+      "mutant_output": 60,
+      "explanation": "The original program correctly calculates the number of days between February 1st and March 2nd, which is 31. However, the mutant code changes the for loop condition to include a call to the TRAP_ON_ZERO function, which would not alter the behavior of the loop unless the TRAP_ON_ZERO function is designed to return 0 when given the argument month2-1. Since we don't know the behavior of this function, we can only assume that the mutant program is not equivalent to the original program given this test set."
+    },
+    {
+      "input": [
+        9,
+        23,
+        12,
+        25,
+        2021
+      ],
+      "original_output": 93,
+      "mutant_output": 93,
+      "explanation": "This test set calculates the number of days between September 23rd and December 25th of 2021. Both the original and mutant program use the same output value of 93, so we can assume that the mutant program was not able to alter the behavior of the loop and is therefore equivalent to the original program for this test set."
+    }
+  ]
+},{
+  "mutant_program": "muta618_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        2,
+        2022
+      ],
+      "original_output": 31,
+      "mutant_output": 60,
+      "explanation": "In this test, both original and mutant programs should calculate the number of days between January 1st and February 2nd of 2022. However, the mutant program includes a call to a TRAP_ON_NEGATIVE function (not present in the original code), which could cause an unexpected behavior. In this specific case, the mutant changes the value of 'numDays' in the for loop, adding an extra day in all months. Therefore, the mutant output (60) is different from the original output (31)."
+    },
+    {
+      "input": [
+        3,
+        15,
+        5,
+        20,
+        2023
+      ],
+      "original_output": 67,
+      "mutant_output": 67,
+      "explanation": "In this test, both original and mutant programs should calculate the number of days between March 15th and May 20th of 2023. The mutant code does not modify the functionality of the original code, and therefore produces the same output."
+    },
+    {
+      "input": [
+        7,
+        4,
+        10,
+        12,
+        2021
+      ],
+      "original_output": 100,
+      "mutant_output": 100,
+      "explanation": "In this test, both original and mutant programs should calculate the number of days between July 4th and October 12th of 2021. The mutant code does not modify the functionality of the original code, and therefore produces the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta619_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1,
+        2021
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs are expected to return 0 since the start and end dates are the same."
+    },
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2021
+      ],
+      "original_output": 31,
+      "mutant_output": 31,
+      "explanation": "Both programs are expected to return 31 since there is only one intervening month, February, which has 28 days in the original program and mutant code. "
+    },
+    {
+      "input": [
+        1,
+        1,
+        3,
+        1,
+        2021
+      ],
+      "original_output": 59,
+      "mutant_output": 89,
+      "explanation": "The original program correctly calculates 59 days between January 1 and March 1, since February has 28 days in this non-leap year. However, the mutant program incorrectly calls a TRAP_ON_ZERO function on the loop index in the for loop which results in an off-by-one error, causing it to incorrectly calculate 89 days instead of 59."
+    },
+    {
+      "input": [
+        1,
+        1,
+        4,
+        1,
+        2020
+      ],
+      "original_output": 91,
+      "mutant_output": 91,
+      "explanation": "Both programs are expected to return 91 since there are no issues with the leap year calculation as February has 29 days in both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta61_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        30,
+        2020
+      ],
+      "original_output": 29,
+      "mutant_output": 30,
+      "explanation": "The original program correctly identifies 2020 as a leap year, thus February has 29 days, but the mutant code has a typo in the if condition and always sets February with 28 days, leading to the wrong output."
+    },
+    {
+      "input": [
+        4,
+        20,
+        7,
+        25,
+        2021
+      ],
+      "original_output": 96,
+      "mutant_output": 96,
+      "explanation": "Both programs correctly deal with non-leap years and calculate the same number of days between April 20 and July 25, 2021."
+    },
+    {
+      "input": [
+        2,
+        1,
+        2,
+        2,
+        10000
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly identify that 10000 is not a leap year and calculate the number of days between February 1 and February 2, 10000."
+    }
+  ]
+},{
+  "mutant_program": "muta621_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2000
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should output 1 since the days are consecutive and in the same year."
+    },
+    {
+      "input": [
+        2,
+        10,
+        3,
+        15,
+        2001
+      ],
+      "original_output": 33,
+      "mutant_output": 46,
+      "explanation": "The mutant program uses the TRAP_ON_NEGATIVE function which is not present in the original program. This causes a different calculation of the number of days between the two input dates."
+    },
+    {
+      "input": [
+        12,
+        31,
+        1,
+        1,
+        2022
+      ],
+      "original_output": 1,
+      "mutant_output": 32,
+      "explanation": "The original program correctly recognizes that the input dates are in different years and handles the leap year accordingly. The mutant program does not correctly update the daysIn array for February when it is a leap year and results in the wrong number of days between the two input dates."
+    }
+  ]
+},{
+  "mutant_program": "muta622_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        3,
+        1,
+        2020
+      ],
+      "original_output": 60,
+      "mutant_output": 59,
+      "explanation": "The original code calculates the number of days from March 1st to January 1st of the same year as 59 days. The mutant program changes the calculation of intervening months from 'numDays = daysIn[i] + numDays;' to '(numDays = (TRAP_ON_ZERO(daysIn[i]) + numDays))'. Therefore, when month2 is equal to 2, daysIn[2] = 0, resulting in a wrong calculation of the number of days, 60 - 59 = 1 day of difference."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2000
+      ],
+      "original_output": 29,
+      "mutant_output": 29,
+      "explanation": "The original code calculates the number of days from March 1st to February 1st of 2000 as 31 days, but from February 1st to March 1st it calculates 29 days as February has 29 days in leap years. The mutant program has no effect on the output of this case."
+    },
+    {
+      "input": [
+        1,
+        15,
+        8,
+        20,
+        5000
+      ],
+      "original_output": 218,
+      "mutant_output": 218,
+      "explanation": "The original code calculates the number of days from January 15th to August 20th of 5000 as 218, excluding the days from month 0. The mutant program has no effect on the output of this case."
+    }
+  ]
+},{
+  "mutant_program": "muta624_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2,
+        1,
+        2021
+      ],
+      "original_output": 31,
+      "mutant_output": 31,
+      "explanation": "Both programs will produce the same output since the mutation only adds a call to an undefined function 'TRAP_ON_NEGATIVE', which will have no effect on the program execution."
+    },
+    {
+      "input": [
+        6,
+        1,
+        8,
+        1,
+        2021
+      ],
+      "original_output": 62,
+      "mutant_output": 91,
+      "explanation": "The mutant code modifies the for loop on line 26 by adding the 'TRAP_ON_NEGATIVE' function which will result in adding 1 to 'numDays' for every negative value generated by the sum of the days in each month. The error is not evident in the first test where all the results are positive, but on this test (june to august) the sum of the days is -31, and it generates 31 additional days resulting in an incorrect output for the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta625_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        10,
+        3,
+        15,
+        2020
+      ],
+      "original_output": 44,
+      "mutant_output": 47,
+      "explanation": "The original program and the mutated program are not equivalent. The mutant program includes a TRAP_ON_ZERO function that adds an extra day to numDays for each intervening month. The provided input [1,10,3,15,2020] tests for intervening months and is expected to have an output of 44 for the original program, whereas the mutant program would have 47. "
+    },
+    {
+      "input": [
+        5,
+        20,
+        8,
+        1,
+        2021
+      ],
+      "original_output": 73,
+      "mutant_output": 73,
+      "explanation": "The original program and the mutated program are equivalent since there are no intervening months in the input provided. The output of the original and mutated programs is the same as expected with an input of [5,20,8,1,2021]: 73."
+    }
+  ]
+},{
+  "mutant_program": "muta627_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        2,
+        28,
+        2020
+      ],
+      "original_output": 27,
+      "mutant_output": null,
+      "explanation": "This test checks the number of days between February 1st and February 28th on a leap year. The original program will correctly output 27, but the mutant program has an added TRAP_ON_NEGATIVE function that is not defined, causing a compilation error and no output."
+    },
+    {
+      "input": [
+        2,
+        14,
+        4,
+        30,
+        2021
+      ],
+      "original_output": 75,
+      "mutant_output": -9,
+      "explanation": "This test checks the number of days between February 14th and April 30th on a non-leap year. The original program will correctly output 75, but the mutant program will output -9 due to an added TRAP_ON_NEGATIVE function that will return a negative value if numDays is negative."
+    }
+  ]
+},{
+  "mutant_program": "muta66_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2000
+      ],
+      "original_output": 1,
+      "mutant_output": 2,
+      "explanation": "The test calculates the number of days between January 1st and 2nd of 2000, which is 1 day in the original program, but 2 days in the mutant program. This is because the mutant program changed the condition to check if the year is a leap year, making it always evaluate to true."
+    },
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2000
+      ],
+      "original_output": 2,
+      "mutant_output": 1,
+      "explanation": "The test calculates the number of days between February 28th and March 1st of a leap year (2000), which is 2 days in the original program, but 1 day in the mutant program. This is because the mutant program swapped the values of m100 and 0 in the condition to check if the year is a leap year, making it always evaluate to false in leap years."
+    },
+    {
+      "input": [
+        2,
+        28,
+        3,
+        1,
+        2001
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The test calculates the number of days between February 28th and March 1st of a non-leap year (2001), which is 1 day in both the original and mutant programs. This tests that the mutant program still works correctly in non-leap years."
+    }
+  ]
+},{
+  "mutant_program": "muta8_cal.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1,
+        2,
+        2000
+      ],
+      "original_output": 1,
+      "mutant_output": 2,
+      "explanation": "With the given input, the original program will correctly calculate the number of days between January 1st and 2nd in a leap year (2000). However, the mutant program will incorrectly calculate that year as a non-leap year and output 2 instead of 1."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1,
+        2021
+      ],
+      "original_output": 28,
+      "mutant_output": 28,
+      "explanation": "This test will result in the same output for both the original and mutant program because February, which is the second month, always has 28 or 29 days in a leap year depending on the year. In this case, 2021 is not a leap year so February has 28 days."
+    }
+  ]
+}]
