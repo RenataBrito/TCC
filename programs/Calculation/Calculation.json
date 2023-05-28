@@ -1,1 +1,3481 @@
-[{"mutant_program": "muta0_Calculation.c", "equivalent": false, "tests": [{"input": [-5], "original_output": 5, "mutant_output": -5, "explanation": "The original program correctly negates the sign of the number passed as argument, while the mutant code seems to be stuck in an infinite loop on line 5 due to the condition 'while((a))'."}, {"input": [10], "original_output": -10, "mutant_output": -10, "explanation": "Both programs should correctly flip the sign from positive to negative, but the test shows they both return the same result."}, {"input": [-8], "original_output": 8, "mutant_output": -8, "explanation": "The original program correctly negates the sign of the number passed as argument, while the mutant code seems to be stuck in an infinite loop on line 5 due to the condition 'while((a))'."}]}]
+[{"mutant_program": "muta0_Calculation.c", "equivalent": false, "tests": [{"input": [-5], "original_output": 5, "mutant_output": -5, "explanation": "The original program correctly negates the sign of the number passed as argument, while the mutant code seems to be stuck in an infinite loop on line 5 due to the condition 'while((a))'."}, {"input": [10], "original_output": -10, "mutant_output": -10, "explanation": "Both programs should correctly flip the sign from positive to negative, but the test shows they both return the same result."}, {"input": [-8], "original_output": 8, "mutant_output": -8, "explanation": "The original program correctly negates the sign of the number passed as argument, while the mutant code seems to be stuck in an infinite loop on line 5 due to the condition 'while((a))'."}]},{
+  "mutant_program": "muta120_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": -2,
+      "explanation": "The original code subtracts b from a by adding the negation of b to a. The mutant code subtracts b from a simply by adding 0 to the negation of b. This results in a different output when b is positive, as the original code will add a positive value to a, while the mutant code will subtract a negative value from a."
+    },
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 5,
+      "mutant_output": -5,
+      "explanation": "The same as the previous test but with different input values."
+    },
+    {
+      "input": [
+        7,
+        7
+      ],
+      "original_output": 0,
+      "mutant_output": -7,
+      "explanation": "The original code correctly outputs 0 when a and b are equal. The mutant code incorrectly outputs -7."
+    }
+  ]
+},{
+  "mutant_program": "muta149_Calculation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both the original program and the mutant program perform the subtraction operation through the FnMinus function. Therefore, the output of both programs should be the same."
+    },
+    {
+      "input": [
+        10,
+        8
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both the original program and the mutant program perform the subtraction operation through the FnMinus function. Therefore, the output of both programs should be the same."
+    },
+    {
+      "input": [
+        4,
+        -6
+      ],
+      "original_output": 10,
+      "mutant_output": 10,
+      "explanation": "Both the original program and the mutant program perform the subtraction operation through the FnMinus function. Therefore, the output of both programs should be the same."
+    }
+  ]
+},{
+  "mutant_program": "muta167_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        -2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program used logical 'or' to check if a and b are different signs, while the mutated program used bitwise 'and', resulting in different output. This test case has two different signs, and should be classified as different by the original program, but the mutated program will classify it as non-different because of the changed condition."
+    },
+    {
+      "input": [
+        2,
+        2
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should classify two equal numbers as non-different and return 0. The test passes."
+    },
+    {
+      "input": [
+        -4,
+        -5
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The original program should classify -4 and -5 as non-different, while the mutated program will classify them as different due to the changed condition. The test fails."
+    }
+  ]
+},{
+  "mutant_program": "muta169_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -2,
+        5
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant output 1 because -2 is less than 0 and 5 is greater than 0, and only 1 of them needs to be different to be considered different signs."
+    },
+    {
+      "input": [
+        0,
+        -3
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code returns 1 because 0 is not greater than 0 nor less than 0, but the mutant code returns 0 because it checks if a is greater than 1 instead of 0. Thus, the mutant code considers 0 and -3 to be the same sign, while the original code considers them different."
+    },
+    {
+      "input": [
+        4,
+        -6
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant output 1 because 4 is greater than 0 and -6 is less than 0, and only 1 of them needs to be different to be considered different signs."
+    }
+  ]
+},{
+  "mutant_program": "muta170_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        -5
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly determines that the values \u200b\u200bare of different signals, however, the mutated program will evaluate the negation of b less than 1, causing that in some cases they are set as opposite signs when they are not."
+    },
+    {
+      "input": [
+        -2,
+        8
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly identify a and b as opposite signals, so they have equivalent behavior for this input."
+    },
+    {
+      "input": [
+        4,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly identify that a and b have the same sign, so they also have equivalent behavior for this input."
+    },
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "The program prints the error message 'ERROR: Divide by Zero.' and returns 0.",
+      "mutant_output": "The program prints the error message 'ERROR: Divide by Zero.' and returns 0.",
+      "explanation": "Both programs print the same error message and return the same output when b is 0, so they have equivalent behavior for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta173_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        -2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly identifies the inputs as having different signs, but the mutant code always returns 0 due to an error in the logical expression."
+    },
+    {
+      "input": [
+        -3,
+        5
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly identify the inputs as having different signs, and return the same output."
+    },
+    {
+      "input": [
+        8,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly detect a divide by zero error and output 0."
+    }
+  ]
+},{
+  "mutant_program": "muta174_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        -3
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original function returns 1 because 2 and -3 have different signs, while the mutant function returns 0 because the logic for determining different sign conditions is incorrect."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutated function should return 0 since they have the same implementation. "
+    },
+    {
+      "input": [
+        -6,
+        -9
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutated function should return 0 since they have the same implementation. "
+    }
+  ]
+},{
+  "mutant_program": "muta208_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        -5
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code returns 1 because 3 and -5 have different signs. The mutant code uses a different logical operation that does not properly check for different signs, resulting in a 0 output."
+    },
+    {
+      "input": [
+        0,
+        9
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code correctly identifies that 0 and 9 have different signs and returns 1. The mutant code does not properly handle the case of 0, resulting in an incorrect output of 0."
+    },
+    {
+      "input": [
+        -4,
+        -4
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "The original code correctly identifies that -4 and -4 are the same sign and returns 0. The mutant code incorrectly uses the AND operator instead of OR, resulting in an incorrect output of 0."
+    }
+  ]
+},{
+  "mutant_program": "muta213_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs output the same value because the input numbers have different signs."
+    },
+    {
+      "input": [
+        0,
+        -1
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly identifies that the two numbers have different signs whereas the mutant program does not because of the incorrect use of the * operator instead of &&."
+    },
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "The test case checks the behavior of the program when dividing by zero. The original program correctly prints an error message, but the mutant program does not have any output related to dividing by zero."
+    }
+  ]
+},{
+  "mutant_program": "muta216_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and mutant code would return 1 since 2 and 3 have different signs."
+    },
+    {
+      "input": [
+        -3,
+        -2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "This test would demonstrate that the mutant code does not work as expected, since it would return 0 instead of 1 since -3 and -2 have different signs."
+    },
+    {
+      "input": [
+        0,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should return 0 since both 0 and 0 do not have different signs."
+    }
+  ]
+},{
+  "mutant_program": "muta217_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        -1
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code calculates the difference between the two expressions (a < 0 && b > 0) and (a > 0 && b < 0) by subtracting the second from the first. The mutant code uses a different approach of subtracting the second expression from the first instead of subtraction, it uses addition and subtraction with parentheses to flip the signs. This results in a different output for inputs that result in the difference between both expressions not being 0 or 1."
+    },
+    {
+      "input": [
+        7,
+        8
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "Similar to the previous test, this test presents input that results in a difference that is not 0 or 1 between the results of both codes."
+    },
+    {
+      "input": [
+        -2,
+        -3
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "Another test that shows the difference between the two codes."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Input that should result in the same output for both original and mutant codes."
+    }
+  ]
+},{
+  "mutant_program": "muta222_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        -2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly identifies that 3 and -2 have different signs, but the mutant code uses bitwise AND operator instead of logical AND, which does not produce the desired result in this case."
+    },
+    {
+      "input": [
+        -5,
+        5
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly identify that -5 and 5 have different signs, producing the same output."
+    },
+    {
+      "input": [
+        0,
+        -2
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly identify that 0 and -2 have different signs, producing the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta225_Calculation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        3,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant code return the correct output for the given input, as 3-2=1."
+    },
+    {
+      "input": [
+        -6,
+        -4
+      ],
+      "original_output": -2,
+      "mutant_output": -2,
+      "explanation": "Both original and mutant code return the correct output for the given input, as -6-(-4)=-2."
+    },
+    {
+      "input": [
+        8,
+        -3
+      ],
+      "original_output": 11,
+      "mutant_output": 11,
+      "explanation": "Both original and mutant code return the correct output for the given input, as 8-(-3)=11."
+    }
+  ]
+},{
+  "mutant_program": "muta227_Calculation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both original and mutant codes perform the same operation for the FnMinus function, which is subtracting b from a."
+    },
+    {
+      "input": [
+        -4,
+        7
+      ],
+      "original_output": -11,
+      "mutant_output": -11,
+      "explanation": "For this test case, both original and mutant codes perform the same operation for the FnMinus function, which is subtracting b from a."
+    },
+    {
+      "input": [
+        10,
+        10
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "For this test case, both original and mutant codes perform the same operation for the FnMinus function, which is subtracting b from a."
+    }
+  ]
+},{
+  "mutant_program": "muta229_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        -3
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program returns 1 indicating that the numbers have different signs. The mutant program, on the other hand, uses an XOR gate instead of an OR gate in the condition to check if the numbers have different signs, which leads to the incorrect output of 0."
+    },
+    {
+      "input": [
+        0,
+        4
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly identify that the numbers have different signs."
+    },
+    {
+      "input": [
+        -5,
+        -2
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "Both programs incorrectly identify that the numbers have the same sign."
+    }
+  ]
+},{
+  "mutant_program": "muta246_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5,
+        10
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program returns 1 because different signs (-5 < 0 and 10 > 0) but the mutant code returns 0 because of the added parentheses to the condition which makes it always evaluate to false if both a and b have different signs. "
+    },
+    {
+      "input": [
+        15,
+        -20
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program returns 1 because different signs (15 > 0 and -20 < 0) but the mutant code returns 0 because of the added parentheses to the condition which makes it always evaluate to false if both a and b have different signs. "
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant codes should return 0 because the inputs have the same sign."
+    }
+  ]
+},{
+  "mutant_program": "muta252_Calculation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        5,
+        2
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutant code subtract b from a to get the result and the mutant code only changes a boolean value to a compact version, which doesn't affect the functionality of the code."
+    },
+    {
+      "input": [
+        -3,
+        -6
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutant code subtract b from a to get the result and the mutant code only changes a boolean value to a compact version, which doesn't affect the functionality of the code."
+    },
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "Both the original and mutant code subtract b from a to get the result and the mutant code only changes a boolean value to a compact version, which doesn't affect the functionality of the code."
+    }
+  ]
+},{
+  "mutant_program": "muta259_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        -1
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program returns 1 since the given numbers have different signs, however, the mutant code checks for inequality between two boolean expressions which could be true/false for different inputs. Thus the output is different."
+    },
+    {
+      "input": [
+        5,
+        6
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original program and mutant program have the same output since both inputs have the same signs."
+    },
+    {
+      "input": [
+        -8,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program returns 1 since the given numbers have different signs, however, the mutant code checks for inequality between two boolean expressions which could be true/false for different inputs. Thus the output is different."
+    }
+  ]
+},{
+  "mutant_program": "muta321_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -2,
+        5
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "For this input, the original program should return 1, indicating that the two numbers have different signs. However, the mutant program will return 0, indicating that two numbers do not have different signs."
+    },
+    {
+      "input": [
+        0,
+        8
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "For this input, both the original and mutant program should return 0, indicating that the two numbers have the same sign or one of them is zero."
+    },
+    {
+      "input": [
+        3,
+        -9
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "For this input, the original program should return 1, indicating that the two numbers have different signs. However, the mutant program will return 0, indicating that two numbers do not have different signs."
+    }
+  ]
+},{
+  "mutant_program": "muta327_Calculation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        4,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should output the result of subtracting b from a, which is 1."
+    },
+    {
+      "input": [
+        10,
+        8
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both programs should output the result of subtracting b from a, which is 2."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should output the result of subtracting b from a, which is 0."
+    },
+    {
+      "input": [
+        -3,
+        2
+      ],
+      "original_output": -5,
+      "mutant_output": -5,
+      "explanation": "Both programs should output the result of subtracting b from a, which is -5."
+    }
+  ]
+},{
+  "mutant_program": "muta332_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        10
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program output is correct, as a and b are different signs."
+    },
+    {
+      "input": [
+        -3,
+        6
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs output the same result, as a and b are different signs."
+    },
+    {
+      "input": [
+        7,
+        -2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program output is correct, as a and b are different signs."
+    },
+    {
+      "input": [
+        0,
+        4
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs output the same result, as a and b are not different signs."
+    }
+  ]
+},{
+  "mutant_program": "muta336_Calculation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        15,
+        8
+      ],
+      "original_output": 7,
+      "mutant_output": 7,
+      "explanation": "Both programs should output the same value when subtracting 8 from 15 using FnMinus."
+    },
+    {
+      "input": [
+        3,
+        7
+      ],
+      "original_output": -4,
+      "mutant_output": -4,
+      "explanation": "Both programs should output the same value when subtracting 7 from 3 using FnMinus."
+    },
+    {
+      "input": [
+        0,
+        9
+      ],
+      "original_output": -9,
+      "mutant_output": -9,
+      "explanation": "Both programs should output the same value when subtracting 9 from 0 using FnMinus."
+    }
+  ]
+},{
+  "mutant_program": "muta348_Calculation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "Both programs will output the correct result (5) as FnMinus is not mutated in any way."
+    },
+    {
+      "input": [
+        6,
+        8
+      ],
+      "original_output": -2,
+      "mutant_output": -2,
+      "explanation": "Both programs will output the correct result (-2) as FnMinus is not mutated in any way."
+    },
+    {
+      "input": [
+        -9,
+        -2
+      ],
+      "original_output": -7,
+      "mutant_output": -7,
+      "explanation": "Both programs will output the correct result (-7) as FnMinus is not mutated in any way."
+    }
+  ]
+},{
+  "mutant_program": "muta358_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        -3
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code returns 1 because 5 and -3 have different signs, while the mutant code uses a TRAP_ON_ZERO macro which could potentially cause different behavior if b happens to be zero."
+    },
+    {
+      "input": [
+        1,
+        8
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant code should return the same output since 1 and 8 have the same sign."
+    },
+    {
+      "input": [
+        -2,
+        6
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant code should return the same output since -2 and 6 have different signs."
+    }
+  ]
+},{
+  "mutant_program": "muta364_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        -1
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original function returns 1 only when a and b have different signs, while the mutant code has a different implementation for the b parameter, which uses the TRAP_ON_ZERO macro. This macro returns 0 if b equals 0, which would make the function return 0 in this specific case."
+    },
+    {
+      "input": [
+        2,
+        4
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both functions return 0 since both a and b are positive integers."
+    },
+    {
+      "input": [
+        -3,
+        6
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both functions return 1 since a and b have different signs, regardless of the implementation of the b parameter in the mutant function."
+    }
+  ]
+},{
+  "mutant_program": "muta370_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code returns 1 as input values have different signs (- and +), while the mutant code returns 0 because it uses a successor function (SUCC) on the first input value which might lead to a positive value and then they won't be different signs anymore. Input [-1,2] guarantees different signs so this test will fail."
+    },
+    {
+      "input": [
+        4,
+        -5
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both codes return 1 for input values with different signs (- and +). This test will pass both codes."
+    },
+    {
+      "input": [
+        7,
+        9
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both codes return 0 for input values with the same sign (+ and +). This test will pass both codes."
+    }
+  ]
+},{
+  "mutant_program": "muta372_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        -3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant codes output 1 because the inputs have different signs"
+    },
+    {
+      "input": [
+        4,
+        4
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant codes output 0 because the inputs have the same sign"
+    },
+    {
+      "input": [
+        -10,
+        7
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code outputs 1 because -10 and 7 have different signs. The mutant code outputs 0 because it increments b before checking the sign, so SUCC(b) > 0 will always be true, making the overall conditional equivalent to ((a < 0) && (1 > 0)) || ((a > 0) && (b < 0)), which is not equivalent to the original code. Therefore, the mutant code introduces a fault in this function. "
+    }
+  ]
+},{
+  "mutant_program": "muta374_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        -2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program checks if a and b have different signs. The mutant introduces a subtle change, where it compares a and b with a successor function that only works correctly for positive numbers. Therefore, the function now returns incorrect results when a is negative. This test case returns 1 for the original program because 1 and -2 have different signs. However, the mutant returns 0 because the expression uses the successor function incorrectly."
+    },
+    {
+      "input": [
+        -1,
+        -2
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "This test case shows that both programs behave equivalently when the inputs have the same sign."
+    },
+    {
+      "input": [
+        3,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "This test case also shows that both programs behave equivalently when the inputs have the same sign."
+    }
+  ]
+},{
+  "mutant_program": "muta375_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and mutant program will output 1 since both will evaluate true for the ternary operator and inverse the boolean value. Therefore, they are equivalent."
+    },
+    {
+      "input": [
+        4,
+        -5
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "For this test case, the original program correctly identifies that the inputs have different signs and outputs 1. However, the mutant program incorrectly negates the second input with a new function PRED(), which causes it to evaluate false and output 0. Therefore, the programs are not equivalent."
+    },
+    {
+      "input": [
+        -7,
+        8
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and mutant program correctly identify that the inputs have different signs and output 1. Therefore, they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta381_Calculation.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta396_Calculation.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta369_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code checks if a and b have different signs by comparing a < 0 and b > 0 or a > 0 and b < 0. The mutant code changes this to PRED(a) < 0 and b > 0 or a > 0 and b < 0, which does not make sense. Therefore, in this case, the mutant is not equivalent to the original. Input [-5,2] should return 1 for DifferentSigns in the original code, and 0 in the mutant code due to the incorrect comparison."
+    },
+    {
+      "input": [
+        3,
+        -7
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "In this case, the output of DifferentSigns is the same for both the original and the mutant code, even though the mutant code uses a different comparison, the output is correct according to the function's definition."
+    },
+    {
+      "input": [
+        0,
+        2
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Input [0,2] should return 0 for DifferentSigns regardless of the program code, because a or b is zero."
+    }
+  ]
+},{
+  "mutant_program": "muta46_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": -5,
+      "mutant_output": 5,
+      "explanation": "The original and the mutated program get different outputs for input 5"
+    },
+    {
+      "input": [
+        -2
+      ],
+      "original_output": 2,
+      "mutant_output": -2,
+      "explanation": "The original and the mutated program get different outputs for input -2"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs get the same output for input 0"
+    },
+    {
+      "input": [
+        -10
+      ],
+      "original_output": 10,
+      "mutant_output": -10,
+      "explanation": "The original and the mutated program get different outputs for input -10"
+    }
+  ]
+},{
+  "mutant_program": "muta50_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": -5,
+      "mutant_output": 5,
+      "explanation": "The original code negates the input number to change the sign by adding or subtracting using a loop, depending on whether the number is negative or positive. The mutant code adds 0 to the input number, which has no effect and will result in an infinite loop, making the program not equivalent to the original code."
+    },
+    {
+      "input": [
+        -7
+      ],
+      "original_output": 7,
+      "mutant_output": -7,
+      "explanation": "Both programs should function properly on negative numbers."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should function properly on zero."
+    }
+  ]
+},{
+  "mutant_program": "muta51_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -10
+      ],
+      "original_output": 10,
+      "mutant_output": -10,
+      "explanation": "The original program correctly negates the sign of the input number while the mutant code does not operate correctly, because the condition 'while ((a - 0))' is always true, so the loop is infinite."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": -5,
+      "mutant_output": 5,
+      "explanation": "The original program correctly negates the sign of the input number while the mutant code does not operate correctly, because the loop does not run."
+    },
+    {
+      "input": [
+        -3
+      ],
+      "original_output": 3,
+      "mutant_output": -3,
+      "explanation": "The original program correctly negates the sign of the input number while the mutant code does not operate correctly, because the condition 'while ((a - 0))' is always true, so the loop is infinite."
+    }
+  ]
+},{
+  "mutant_program": "muta55_Calculation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant program produce the correct output for input -3, which is 3."
+    },
+    {
+      "input": [
+        8
+      ],
+      "original_output": -8,
+      "mutant_output": -8,
+      "explanation": "Both original and mutant program produce the correct output for input 8, which is -8."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant program produce the correct output for input 0, which is 0."
+    }
+  ]
+},{
+  "mutant_program": "muta57_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": -5,
+      "mutant_output": 5,
+      "explanation": "The original program negates a by adding the opposite sign of a each iteration. The mutant program uses XOR operation to check if a is equals to 0. This change will cause the while loop to terminate early if the least significant bit of a is 0, meaning in negative odd numbers, and thus the function will not be able to negate the sign properly."
+    },
+    {
+      "input": [
+        -8
+      ],
+      "original_output": 8,
+      "mutant_output": -8,
+      "explanation": "Similarly to the previous test case, the mutant's early termination condition won't work on even numbers, including negative ones. Thus, there will be a sign mismatch between the original program's output and the mutated version's output"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs output 0 as expected with this test case"
+    }
+  ]
+},{
+  "mutant_program": "muta58_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": -10,
+      "mutant_output": -10,
+      "explanation": "The mutant code has added an unnecessary check to see if the input 'a' is not equal to zero. However, this check will always return true, making the mutation equivalent to the original program. The test is the same for both."
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": 5,
+      "mutant_output": -5,
+      "explanation": "This test will fail for the mutant code, as the added check in FnNegate will cause the while loop to never execute if the input is negative (and therefore 'a' is not equal to zero). This means that the function will return 0 (the initial value of 'neg'), instead of the expected result of positive 5."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "The input zero will return the same output for both programs, as the added check in the mutant code will always return false."
+    }
+  ]
+},{
+  "mutant_program": "muta65_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -5
+      ],
+      "original_output": 5,
+      "mutant_output": -5,
+      "explanation": "The original program flips the sign of the input number by adding or substracting 1 multiple times depending on its original sign. The mutant program, however, has a bitwise left shift operation, which instead shifts the bits of the input number by 0 positions (no change at all). Therefore, the output of the FnNegate function in the original program is different from that of the mutant program."
+    },
+    {
+      "input": [
+        8
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "This test does not demonstrate the difference in behavior between the original and mutant programs, because the input is a positive number that would be processed the same way by both versions of the function."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "This test does not demonstrate the difference in behavior between the original and mutant programs, because the input is zero and FnNegate should return zero for it."
+    }
+  ]
+},{
+  "mutant_program": "muta66_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": -3,
+      "mutant_output": -3,
+      "explanation": "Both codes are equivalent for this input"
+    },
+    {
+      "input": [
+        -7
+      ],
+      "original_output": 7,
+      "mutant_output": 7,
+      "explanation": "Both codes are equivalent for this input"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both codes are equivalent for this input"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": -10,
+      "mutant_output": -10,
+      "explanation": "Both codes are equivalent for this input"
+    },
+    {
+      "input": [
+        -9
+      ],
+      "original_output": 9,
+      "mutant_output": 9,
+      "explanation": "Both codes are equivalent for this input"
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": -4,
+      "mutant_output": -4,
+      "explanation": "Both codes are equivalent for this input"
+    }
+  ]
+},{
+  "mutant_program": "muta92_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": -5,
+      "mutant_output": 5,
+      "explanation": "The mutant program replaces the 'd' variable in the while loop with TRAP_ON_ZERO(d) which doesn't change the result but causes the loop to run one extra time, resulting in a different output for positive input values."
+    },
+    {
+      "input": [
+        -10
+      ],
+      "original_output": 10,
+      "mutant_output": -10,
+      "explanation": "The original and mutant code give different outputs on negative inputs as the mutated TRAP_ON_ZERO macro does not run the loop at all for negative values, whereas the original code runs the loop once and returns a value."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "The original and mutant code give the same output for input value 0."
+    },
+    {
+      "input": [
+        8
+      ],
+      "original_output": -8,
+      "mutant_output": 8,
+      "explanation": "The mutant code causes the loop to run one extra time and produces a different output for positive input values."
+    }
+  ]
+},{
+  "mutant_program": "muta95_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2
+      ],
+      "original_output": -2,
+      "mutant_output": -2,
+      "explanation": "The first test case is equivalent in both original and mutant program as the input value is positive, hence absolute value in that case and negation would also be positive. Both original and mutant program outputs the correct value."
+    },
+    {
+      "input": [
+        -3
+      ],
+      "original_output": 3,
+      "mutant_output": -3,
+      "explanation": "The second test case is not equivalent as the mutant program has TRAP_ON_ZERO(d) which will trap in an infinite loop due to if input is negative.."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "The third test case is equivalent in both original and mutant program as negation of 0 would be 0."
+    }
+  ]
+},{
+  "mutant_program": "muta402_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        -5
+      ],
+      "original_output": -15,
+      "mutant_output": 0,
+      "explanation": "If a is less than the minimum integer value, the mutated program enters an infinite loop. In the original program, this situation is prevented by switching a and b and returning the same result as if this were not done."
+    },
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs give the same error message when attempting to divide by zero."
+    },
+    {
+      "input": [
+        13,
+        -5
+      ],
+      "original_output": -2,
+      "mutant_output": -3,
+      "explanation": "Both programs implement division using basic operations. The only difference between the implementations is the fact that the mutated program negates the quotient if a and b have different signs. This however did not affect the output of this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta479_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5
+      ],
+      "original_output": 15,
+      "mutant_output": 15,
+      "explanation": "The mutant code is equivalent to the original code."
+    },
+    {
+      "input": [
+        4,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "The mutant code is equivalent to the original code and produces the same error message."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "The original code handles this case correctly and the mutant does not introduce any changes that affect the result."
+    },
+    {
+      "input": [
+        5,
+        -3
+      ],
+      "original_output": -15,
+      "mutant_output": -10,
+      "explanation": "The mutated code changes a condition in the for loop's header from 'iter > 0' to just 'iter', causing the loop to run one extra time. This causes the output of FnTimes to be incorrect for negative values of b."
+    }
+  ]
+},{
+  "mutant_program": "muta490_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both original and mutant multiply two positive integers correctly."
+    },
+    {
+      "input": [
+        2,
+        -3
+      ],
+      "original_output": -6,
+      "mutant_output": -6,
+      "explanation": "Both original and mutant multiply a positive integer by a negative integer correctly."
+    },
+    {
+      "input": [
+        -2,
+        -3
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both original and mutant multiply two negative integers correctly."
+    },
+    {
+      "input": [
+        3,
+        2
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both original and mutant multiply two positive integers correctly, even when the first input is larger than the second."
+    }
+  ]
+},{
+  "mutant_program": "muta491_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5
+      ],
+      "original_output": 15,
+      "mutant_output": 15,
+      "explanation": "Both programs return the same output for this input."
+    },
+    {
+      "input": [
+        -2,
+        -4
+      ],
+      "original_output": 8,
+      "mutant_output": 8,
+      "explanation": "Both programs return the same output for this input."
+    },
+    {
+      "input": [
+        4,
+        -2
+      ],
+      "original_output": -8,
+      "mutant_output": 0,
+      "explanation": "The mutant code enters into an infinite loop and never stops iterating, therefore it does not return the appropriate quotient. The original program returns -8, a valid quotient."
+    }
+  ]
+},{
+  "mutant_program": "muta503_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        4
+      ],
+      "original_output": 12,
+      "mutant_output": 12,
+      "explanation": "The original program multiplies a and b by adding a to itself b times, while the mutant program changes the for loop condition from 'iter > 0' to '(iter | 0)', which always evaluates to true, causing an infinite loop. Therefore, the expected output for the mutant program is not achieved."
+    },
+    {
+      "input": [
+        -2,
+        5
+      ],
+      "original_output": -10,
+      "mutant_output": -10,
+      "explanation": "The original and mutant programs receive a negative value as a parameter, reproduce the algorithm correctly and then return the expected output."
+    },
+    {
+      "input": [
+        4,
+        -3
+      ],
+      "original_output": -12,
+      "mutant_output": -12,
+      "explanation": "The original and mutant programs receive a negative value as a parameter, reproduce the algorithm correctly and then return the expected output."
+    },
+    {
+      "input": [
+        -6,
+        -8
+      ],
+      "original_output": 48,
+      "mutant_output": 48,
+      "explanation": "The original and mutant programs receive two negative values as parameters, reproduce the algorithm correctly and then return the expected output."
+    }
+  ]
+},{
+  "mutant_program": "muta505_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 6,
+      "mutant_output": 0,
+      "explanation": "For the original program, FnTimes(2,3) returns 6, which is the expected output according to the multiplication of 2 and 3. However, the mutant program uses bitwise XOR instead of greater than zero condition in the loop condition of the FnTimes function which causes the loop to only run once and the output becomes 0."
+    },
+    {
+      "input": [
+        5,
+        -4
+      ],
+      "original_output": -20,
+      "mutant_output": -20,
+      "explanation": "For both original and mutant program, FnTimes(5,-4) returns -20, which is the expected output according to the multiplication of 5 and -4."
+    }
+  ]
+},{
+  "mutant_program": "muta511_Calculation.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta515_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        6
+      ],
+      "original_output": 30,
+      "mutant_output": 0,
+      "explanation": "The mutant code changes the condition to check if a is less than b to only evaluate if a is greater than b. Thus, it will always return 0 when a is less than b, resulting in a different output for this test."
+    },
+    {
+      "input": [
+        3,
+        -4
+      ],
+      "original_output": -12,
+      "mutant_output": -12,
+      "explanation": "This is a boundary test that will produce the same output for both the original and the mutant."
+    },
+    {
+      "input": [
+        0,
+        7
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "This is a boundary test that will produce the same output for both the original and the mutant."
+    }
+  ]
+},{
+  "mutant_program": "muta524_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both programs implement the multiplication function correctly for this input."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs return 0 for multiplication by zero."
+    },
+    {
+      "input": [
+        5,
+        -3
+      ],
+      "original_output": -15,
+      "mutant_output": 15,
+      "explanation": "The mutant program has changed the loop in FnTimes, iterating while iter != 0 instead of iter > 0. This results in different behavior when b is negative, causing the output to have the opposite sign of the correct output."
+    },
+    {
+      "input": [
+        -7,
+        2
+      ],
+      "original_output": -14,
+      "mutant_output": -14,
+      "explanation": "Both programs implement the multiplication function correctly for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta526_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 6,
+      "mutant_output": -6,
+      "explanation": "The test with inputs 2 and 3 calculates the product of these numbers. In this case, the original program will output 6, which is the correct output. However, the mutant program will multiply 2 by 3 correctly, but since b=3 is greater than 0, it will negate the result, outputting -6 instead. Therefore, the original and mutant program are not equivalent."
+    },
+    {
+      "input": [
+        -4,
+        5
+      ],
+      "original_output": -20,
+      "mutant_output": 20,
+      "explanation": "The test with inputs -4 and 5 calculates the product of these numbers. In this case, the original program will output -20, which is the correct output. However, the mutant program will multiply -4 by 5 correctly, but since b=5 is greater than 0, it will negate the result, outputting 20 instead. Therefore, the original and mutant program are not equivalent."
+    },
+    {
+      "input": [
+        -6,
+        -2
+      ],
+      "original_output": 12,
+      "mutant_output": 12,
+      "explanation": "The test with inputs -6 and -2 calculates the product of these numbers. In this case, both the original and mutant program will output 12, since the value of b=-2 is less than 0, so the result is not negated. Therefore, the original and mutant program are equivalent in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta532_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        5
+      ],
+      "original_output": 20,
+      "mutant_output": 20,
+      "explanation": "Both original program and mutant program returns the same output for this case."
+    },
+    {
+      "input": [
+        4,
+        -5
+      ],
+      "original_output": -20,
+      "mutant_output": -20,
+      "explanation": "Both original program and mutant program returns the same output for this case."
+    },
+    {
+      "input": [
+        10,
+        3
+      ],
+      "original_output": 30,
+      "mutant_output": 30,
+      "explanation": "Both original program and mutant program returns the same output for this case."
+    },
+    {
+      "input": [
+        -10,
+        3
+      ],
+      "original_output": -30,
+      "mutant_output": 0,
+      "explanation": "The original program will loop iteratively (3 << 0) times as condition while checking iter variable. Mutant program replaces '>' operator with '<<' operator. Bitwise left shift (<<) operation is used for left-shifting the bits of the number and multiplying by 2. So in mutant program, loop runs infinite times for the cited test case and returns can not predict output."
+    }
+  ]
+},{
+  "mutant_program": "muta533_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both programs should output the same result for this input."
+    },
+    {
+      "input": [
+        -5,
+        -3
+      ],
+      "original_output": 15,
+      "mutant_output": 15,
+      "explanation": "Both programs should output the same result for this input."
+    },
+    {
+      "input": [
+        3,
+        -2
+      ],
+      "original_output": -6,
+      "mutant_output": -6,
+      "explanation": "Both programs should output the same result for this input."
+    },
+    {
+      "input": [
+        7,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "The mutant code outputs an error message in this case, while the original program does not."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should output the same result for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta554_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 6,
+      "mutant_output": 0,
+      "explanation": "The mutant code does not properly handle the case when a < b in the FnTimes function. In the original code, if a < b, it swaps them and calculates the product. However, the mutant code simply exits the function when a < b. Therefore, when the input is (2,3), the original code returns 6, but the mutant code returns 0."
+    },
+    {
+      "input": [
+        -4,
+        5
+      ],
+      "original_output": -20,
+      "mutant_output": 20,
+      "explanation": "The FnTimes function properly handles negative inputs in both the original and mutant code. Therefore, both codes return -20 when given inputs (-4,5)."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "The FnTimes function properly handles 0 inputs in both the original and mutant code. Therefore, both codes return 0 when given inputs (0,5)."
+    }
+  ]
+},{
+  "mutant_program": "muta555_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 6,
+      "mutant_output": 0,
+      "explanation": "The original program multiplies two numbers by adding the first number to itself the number of times that equals the second number. However, the mutant program has a syntax error in the FnTimes function, where the for loop header has a semicolon instead of the opening bracket. Therefore, the loop body will execute only once. The test will fail because the output of the FnTimes function will be different than expected."
+    },
+    {
+      "input": [
+        5,
+        -4
+      ],
+      "original_output": -20,
+      "mutant_output": 20,
+      "explanation": "The inputs are of different signs, but the FnTimes function expects two positive values. The original program correctly changes the sign of the result if one of its inputs is negative. However, the mutant program does not negate the result if the second input is negative. Therefore, the test will fail because the output of the FnTimes function will be different than expected."
+    }
+  ]
+},{
+  "mutant_program": "muta583_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5
+      ],
+      "original_output": 15,
+      "mutant_output": 15,
+      "explanation": "Both programs return the correct output when a is greater than b."
+    },
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": 15,
+      "mutant_output": 0,
+      "explanation": "The mutant code has inserted a TRAP_ON_NEGATIVE statement that should not be there. It makes the program return the wrong value when b is greater than a because it calls the FnTimes function with a negative value for b. Thus, the test with input (5,3) returns 0 instead of 15."
+    },
+    {
+      "input": [
+        -5,
+        4
+      ],
+      "original_output": -20,
+      "mutant_output": -20,
+      "explanation": "Both programs return the correct output when a or b (or both) are negative."
+    }
+  ]
+},{
+  "mutant_program": "muta584_Calculation.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta585_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2
+      ],
+      "original_output": 6,
+      "mutant_output": -6,
+      "explanation": "The mutant code introduces a TRAP_ON_POSITIVE() function call for the parameter a inside FnTimes(). This can return 0 instead of a when a is positive. As a result, FnTimes() returns 0 instead of b * a in this case, leading to a different output."
+    },
+    {
+      "input": [
+        -4,
+        5
+      ],
+      "original_output": -20,
+      "mutant_output": 20,
+      "explanation": "The different signs of a and b trigger the execution of FnNegate() to set divisor. The original program correctly computes the quotient as negative. The mutant program incorrectly computes the quotient as positive."
+    },
+    {
+      "input": [
+        10,
+        1
+      ],
+      "original_output": 10,
+      "mutant_output": -10,
+      "explanation": "The input b is less than a. The original program is correct in this case. The mutant program does not correctly handle cases when b is less than a."
+    }
+  ]
+},{
+  "mutant_program": "muta592_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        4
+      ],
+      "original_output": 12,
+      "mutant_output": 13,
+      "explanation": "The original program multiplies a by b by adding a to itself b times. The mutated program, however, traps on negative value. In this test case, abss(b) is 4, so iter will start at 4 and subtract 1 in each iteration. When iter becomes negative, the loop ends. This means that only 3 iterations were executed, instead of 4 in the original program. Therefore, the output is different."
+    },
+    {
+      "input": [
+        -2,
+        8
+      ],
+      "original_output": -16,
+      "mutant_output": -16,
+      "explanation": "Since all the values used in the operation have the same absolute value, both programs execute exactly the same number of iterations and the function returns the same result."
+    },
+    {
+      "input": [
+        5,
+        -6
+      ],
+      "original_output": -30,
+      "mutant_output": -30,
+      "explanation": "Since all the values used in the operation have the same absolute value, both programs execute exactly the same number of iterations and the function returns the same result."
+    }
+  ]
+},{
+  "mutant_program": "muta608_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 6,
+      "mutant_output": 0,
+      "explanation": "The mutated code changed the comparison to (b < b), which will always be false since b can't be less than itself. As a result, FnTimes will always swap the operands so that a < b. The provided test case (2,3) has been affected by this, resulting in the original output of 6, while the mutant outputs 0."
+    },
+    {
+      "input": [
+        5,
+        -1
+      ],
+      "original_output": -5,
+      "mutant_output": -5,
+      "explanation": "This test case involves negative operands. Both the original and mutant codes will result in the same output (-5) since there is no change in the sign of the result. "
+    },
+    {
+      "input": [
+        -4,
+        6
+      ],
+      "original_output": -24,
+      "mutant_output": -24,
+      "explanation": "This test case involves negative and positive operands. Both the original and mutant codes will result in the same output (-24) since there is no change in the sign of the result."
+    }
+  ]
+},{
+  "mutant_program": "muta610_Calculation.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta611_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        -3
+      ],
+      "original_output": -6,
+      "mutant_output": 6,
+      "explanation": "The mutant code has a mistake on the condition 'if (a < a)', which should check if b < a instead. This causes the function to return the wrong result when a < b."
+    },
+    {
+      "input": [
+        -4,
+        5
+      ],
+      "original_output": -20,
+      "mutant_output": -20,
+      "explanation": "Both original and mutated codes should return the same result for this input."
+    },
+    {
+      "input": [
+        -7,
+        -9
+      ],
+      "original_output": 63,
+      "mutant_output": 63,
+      "explanation": "Both original and mutated codes should return the same result for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta649_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5
+      ],
+      "original_output": 15,
+      "mutant_output": 15,
+      "explanation": "Both original program and mutant program output correct result. (non-deterministic change)"
+    },
+    {
+      "input": [
+        12,
+        2
+      ],
+      "original_output": 24,
+      "mutant_output": 24,
+      "explanation": "Both original program and mutant program output correct result. (non-deterministic change)"
+    },
+    {
+      "input": [
+        4,
+        10
+      ],
+      "original_output": 40,
+      "mutant_output": -40,
+      "explanation": "The input values have the opposite signs. Original program handles this case by using the FnNegate function to obtain the expected result. The mutant program does not properly handle this and produces a different result, thus the programs are not equivalent in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta650_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        5
+      ],
+      "original_output": 20,
+      "mutant_output": 20,
+      "explanation": "Both programs output the same value. With input (4,5), the function should multiply 4 by 5, resulting in an output of 20. This input should not trigger the if-statement in the mutant program."
+    },
+    {
+      "input": [
+        -2,
+        3
+      ],
+      "original_output": -6,
+      "mutant_output": 0,
+      "explanation": "The original program correctly computes -2 * 3 = -6. However, the mutation `a < PRED(b)` replaces `a < b-1`, changing the behavior of the program. Because -2 is less than the predecessor of 3 (2), the program will call `FnTimes(b,a)`. Since a (which is now 3) is not less than b (which is now -2), we end up triggering the if-statement in `FnTimes` in the mutant program. So, instead of multiplying -2 by 3, the function will call `FnTimes(3, -2)`, which results in an output of 0."
+    }
+  ]
+},{
+  "mutant_program": "muta662_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 6,
+      "mutant_output": -6,
+      "explanation": "The mutant replaces the condition here 'if (b < 0)' with  '(PRED(b) < 0)', which is equivalent to 'b-1 < 0'. This will make the conditions for the sign switch for negative integers instead of non-negative ones. Thus, the mutant program returns -6 as the result of FnTimes(2,3), while the original program returns 6."
+    },
+    {
+      "input": [
+        5,
+        -4
+      ],
+      "original_output": -20,
+      "mutant_output": 20,
+      "explanation": "The input values are of different signs; thus, their multiplication value would always be negative in the original program. However, the mutant program changes the condition under which the sign switch occurs, making it switch for non-negative integers. Thus, FnTimes(5,-4) returns -20 in the original program and 20 in the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta663_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 6,
+      "mutant_output": -6,
+      "explanation": "The mutation changes the condition in line 28, replacing 'b<0' with '(SUCC(b) < 0)'. This will evaluate to true when b = -1, but it shouldn't, so the mutant outputs a different result than the original program."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "When a = 0, both programs output 0 independently of the value of b, since a times 0 is equal to 0."
+    }
+  ]
+},{
+  "mutant_program": "muta672_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code implements DefineAndRoundFraction by multiplying the numerator by 2, and checking if it is equal or greater than the denominator. The mutant code mistakenly replaces the multiplication by 1, which means it will only return true if the numerator is equal or greater than the denominator. This is not equivalent to the original code."
+    },
+    {
+      "input": [
+        8,
+        4
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The mutant code implemented in DefineAndRoundFraction will return 0, while the original will return 1. Because 8/4 is equal to 2, which is greater than 0.5, the original method returns 1. However, the mutant method multiplies the numerator by 1 rather than 2, so it returns 0. Thus, this test shows that the original and mutant codes are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta681_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program checks if a/b>=0.5, while the mutant code always checks if a/2>=0.5. Thus, the mutant code will produce the wrong output in cases where b is not equal to 2."
+    }
+  ]
+},{
+  "mutant_program": "muta739_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The original program checks whether a/b >= 0.5, while the mutant program checks whether (a+1)/b >= 0.5. Therefore, for the input (5, 3), the original program returns 0, while the mutant program returns 1."
+    },
+    {
+      "input": [
+        8,
+        -4
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program checks whether a/b >= 0.5, while the mutant program checks whether (a+1)/b >= 0.5. Therefore, for the input (8, -4), the original program returns 1, while the mutant program returns 0."
+    }
+  ]
+},{
+  "mutant_program": "muta746_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6,
+        2
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant outputs are the same; randomInt() tests provided the remaining test cases for the original code"
+    },
+    {
+      "input": [
+        6,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": 0,
+      "explanation": "While the original code handles properly the divide by zero error, the mutant code simply returns 0 without any warning. This can be a serious issue, if not caught before release"
+    }
+  ]
+},{
+  "mutant_program": "muta751_Calculation.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta752_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        15,
+        3
+      ],
+      "original_output": 5,
+      "mutant_output": 0,
+      "explanation": "The original program should output 5 because 15 divided by 3 is 5. However, in the mutated code the divend variable is initialized to 1 instead of the absolute value of a, so the while loop will not execute and the output will be 0 instead of 5."
+    },
+    {
+      "input": [
+        10,
+        -2
+      ],
+      "original_output": -5,
+      "mutant_output": -3,
+      "explanation": "The original program should output -5 because 10 divided by -2 is -5. However, in the mutated code the divend variable is initialized to 1 instead of the absolute value of a, so the while loop will not execute and the output will be 0 instead of -3 (which is the result of adding 1 to -2 three times)."
+    }
+  ]
+},{
+  "mutant_program": "muta766_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs will output the error message since dividing by zero is not allowed."
+    },
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both programs will output 2 since 10 divided by 5 is 2."
+    },
+    {
+      "input": [
+        7,
+        -3
+      ],
+      "original_output": -2,
+      "mutant_output": 1,
+      "explanation": "For this input, the original program will output -2 and the mutant program will output 1. This is because the mutant program changes the line where quotient is assigned a new value if a and b are different signs. In this case, a is positive and b is negative so the condition is met. The original program uses the FnNegate function to negate the value of quotient. The mutant program negates the value 1 instead of quotient, so the result is different."
+    }
+  ]
+},{
+  "mutant_program": "muta779_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The original program correctly computes 10/5=2. However, in the mutant code, the loop in FnDivide starts from 0 instead of |a|. This leads to an erroneous output of 0 for the same input. "
+    },
+    {
+      "input": [
+        20,
+        -5
+      ],
+      "original_output": -4,
+      "mutant_output": -4,
+      "explanation": "The original program and the mutant code output the same value for this input, so they are equivalent."
+    },
+    {
+      "input": [
+        15,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs output the error message 'ERROR: Divide by zero' for this input, so they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta780_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 2,
+      "explanation": "The original program calculates the division of a by b by counting how many times b can be subtracted from a until it reaches 0. The mutant program is almost the same except for the value of divend. In the original program, divend starts with the absolute value of a, while in the mutant program, divend starts with the value 1. This change causes divend to increase too quickly, leading to a smaller quotient than the correct one. For example, for input [10,2], the original program correctly outputs 5, while the mutant program incorrectly outputs 2."
+    },
+    {
+      "input": [
+        7,
+        -2
+      ],
+      "original_output": -3,
+      "mutant_output": -2,
+      "explanation": "Another example where the mutant program fails. For input [7,-2], the original program correctly outputs -3, while the mutant program incorrectly outputs -2. The incorrect output is a result of a similar mistake to the previous test case, where the starting value of divend is changed from abs(a) to 1."
+    },
+    {
+      "input": [
+        8,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "This test case is to verify that both programs handle the case of division by zero correctly. In this case, neither program should output a quotient since it is undefined. The output of both programs is 0, as expected."
+    }
+  ]
+},{
+  "mutant_program": "muta781_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 4,
+      "explanation": "The original program correctly divides 10 by 2 and returns 5, whereas the mutant code initializes the dividend to -1 regardless of the input and adds the absolute value of the dividend to itself until it is greater than or equal to the absolute value of the divisor. This results in an incorrect output of 4 for the given input."
+    },
+    {
+      "input": [
+        15,
+        -3
+      ],
+      "original_output": -5,
+      "mutant_output": -5,
+      "explanation": "The original program correctly divides 15 by -3 and returns -5. The mutant code does not modify the division algorithm and returns the same output, therefore both programs are equivalent."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "The original program correctly outputs 0 and prints 'ERROR: Divide by zero.' due to the division by zero error. The mutant code prints the same error message when dividing by zero, therefore both programs are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta782_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs should output the same error message when trying to divide by zero."
+    },
+    {
+      "input": [
+        8,
+        2
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "Both programs should output the correct quotient when dividing two positive integers."
+    },
+    {
+      "input": [
+        -8,
+        2
+      ],
+      "original_output": -4,
+      "mutant_output": -5,
+      "explanation": "The mutant program is incorrect when dividing a negative dividend and a positive divisor, it should output -5 instead of -4."
+    }
+  ]
+},{
+  "mutant_program": "muta840_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 10,
+      "explanation": "The mutated code adds the value of a negated and absolute value of b (divisor) to itself before entering the for loop where we count the number of subtractions before we hit zero. In the original code, divisor is negated and its absolute value is assigned once before the for loop. This change means that, for the same value of b and a, the mutated code will loop through the for loop many more times, leading to a greater quotient. In this test case, the quotient of 10 (mutant) instead of 5 (original) is the result."
+    },
+    {
+      "input": [
+        30,
+        5
+      ],
+      "original_output": 6,
+      "mutant_output": 60,
+      "explanation": "In this test case, the same issue occurred as with the previous example which results in a quotient of 60 (mutant) instead of 6 (original)."
+    },
+    {
+      "input": [
+        8,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both original and mutant code provide error messages when attempting to divide by zero, however, the mutated code provides an additional period at the end of the error message."
+    }
+  ]
+},{
+  "mutant_program": "muta842_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 500,
+      "explanation": "The original program correctly divides 10 by 2 and returns 5. However, the mutated program multiplies the dividend by itself instead of assigning the dividend to the divend variable, resulting in a very large quotient of 500 instead of 5."
+    },
+    {
+      "input": [
+        -50,
+        -10
+      ],
+      "original_output": 5,
+      "mutant_output": 4,
+      "explanation": "Both programs correctly handle different signs and absolute values, and should return the same output. However, this test was designed to catch a possible error when both inputs are negative."
+    },
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs check for division by zero and should return the same error message."
+    }
+  ]
+},{
+  "mutant_program": "muta845_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The original program uses a loop to count how many times b goes into a, but the mutant code changes the loop initialization to add the absolute value of a to divend, which results in an infinite loop since the loop condition will always be true (divisor is negative)."
+    },
+    {
+      "input": [
+        20,
+        4
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "This is a valid test for equivalence since the mutant does not modify the input values or function call, and it should output the same result as the original program."
+    },
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "This test case checks if both programs handle the case of dividing by zero correctly, and the expected output for both is the error message."
+    }
+  ]
+},{
+  "mutant_program": "muta846_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 0,
+      "explanation": "The original program correctly computes the quotient of a and b. The mutated program subtracts a by b only once, so the result will be either b or the negative value of b."
+    },
+    {
+      "input": [
+        8,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs output the same error message as b = 0."
+    },
+    {
+      "input": [
+        15,
+        -6
+      ],
+      "original_output": -2,
+      "mutant_output": -3,
+      "explanation": "For this input, both programs compute the correct output of -2. The mutation does not affect the output because the computation occurs before the mutated line."
+    }
+  ]
+},{
+  "mutant_program": "muta858_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "In the original code, the divisor is correctly assigned as the negation of the absolute value of b. However, in the mutant code, there is a bitwise xor operation instead of an assignment, which results in an incorrect divisor. The test case [10, 5] expects 2 as the output in the original code, but the mutant code outputs 0."
+    },
+    {
+      "input": [
+        6,
+        -3
+      ],
+      "original_output": -2,
+      "mutant_output": 0,
+      "explanation": "Similar to the previous test case, this test case also expects the correct output of -2 from the original code. However, the mutated code produces 0 because of the erroneous divisor."
+    }
+  ]
+},{
+  "mutant_program": "muta859_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": -5,
+      "explanation": "The original program calculates the divisor as a negated value of b. The mutant program instead uses a bitwise OR operation to calculate divisor. This causes the original program to correctly find the correct quotient, but the mutated version produces the negative quotient instead."
+    },
+    {
+      "input": [
+        7,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs throw the 'Divide by zero' error when given a divisor of zero. Therefore, they are still equivalent in this case."
+    },
+    {
+      "input": [
+        -10,
+        4
+      ],
+      "original_output": -2,
+      "mutant_output": 2,
+      "explanation": "The original program calculates the correct negative quotient for a negative dividend and a positive divisor. The mutant program, however, uses bitwise OR operation to calculate the divisor as a positive number, causing the quotient to become positive. Therefore, the outputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta860_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both versions should output the same message when dividing by zero."
+    },
+    {
+      "input": [
+        -10,
+        5
+      ],
+      "original_output": -2,
+      "mutant_output": -3,
+      "explanation": "The input (-10, 5) should return a quotient of -2 and -3 in the original and mutated version, respectively."
+    },
+    {
+      "input": [
+        12,
+        -4
+      ],
+      "original_output": -3,
+      "mutant_output": -4,
+      "explanation": "The input (12, -4) should return a quotient of -3 and -4 in the original and mutated version, respectively."
+    }
+  ]
+},{
+  "mutant_program": "muta861_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "Both programs output the same for a simple input of 10 and 2"
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs output the same for an edge case input of 0 and 5"
+    },
+    {
+      "input": [
+        9,
+        3
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "The mutant program has changed the bitwise operator from a division to a XOR, providing a different output for an input of 9 and 3"
+    }
+  ]
+},{
+  "mutant_program": "muta862_Calculation.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta863_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        8,
+        2
+      ],
+      "original_output": 4,
+      "mutant_output": 8,
+      "explanation": "The inputs are [8,2]. The original implementation returns 4 as 8 divided by 2 is equal to 4. However, the mutant implementation returns 8 due to the alteration of the for loop condition. The test shows that the two implementations are not equivalent."
+    },
+    {
+      "input": [
+        10,
+        3
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The inputs are [10,3]. The original implementation returns 3 as it is the quotient when 10 is divided by 3. However, the mutant implementation returns 5 which shows that the two implementations are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta865_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 6,
+      "explanation": "The original program performs integer division by counting how many times b can be subtracted from a until a becomes less than b whereas mutant code performs division by repeatedly adding the absolute value of b to the absolute value of a until a becomes greater than or equal to b. For input (10,2), original program outputs 5 whereas mutant returns 6."
+    },
+    {
+      "input": [
+        18,
+        -4
+      ],
+      "original_output": -4,
+      "mutant_output": -5,
+      "explanation": "The original program correctly handles division of negative numbers by adjusting the quotient sign based on the different signs of a and b. The mutant code performs division by counting how many times the absolute value of b can be subtracted from the absolute value of a, and does not account for the quotient sign based on the signs of a and b. For input (18,-4), original program outputs -4 whereas mutant returns -5."
+    }
+  ]
+},{
+  "mutant_program": "muta871_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "The original program's logic correctly implements integer division by counting how many times it can subtract the divisor from the dividend until dividend is zero, while the mutant code shifts the LSB of the dividend to the left, causing unexpected output when working with < 0 numbers."
+    },
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs will output an error message when dividing by zero."
+    },
+    {
+      "input": [
+        -10,
+        3
+      ],
+      "original_output": -3,
+      "mutant_output": -3,
+      "explanation": "Both programs correctly output the quotient of dividing negative 10 by 3, which is also a negative number."
+    },
+    {
+      "input": [
+        5,
+        -2
+      ],
+      "original_output": -2,
+      "mutant_output": -2,
+      "explanation": "Both programs correctly output the quotient of 5 divided by negative 2, which is also a negative number."
+    }
+  ]
+},{
+  "mutant_program": "muta872_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 5,
+      "explanation": "The original program computes the quotient by adding the divisor to the dividend as many times as possible and the mutant program does a bitwise shift right of the dividend. This change results in different outputs if the dividend is not divisible by the divisor. When a non divisible dividend is tested, the original program returns the floor of the fraction, while the mutant program returns 0. For example, when input is [7, 3], original output should be 2 and the mutant output will be 0."
+    },
+    {
+      "input": [
+        0,
+        7
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "There is no difference between the result of dividing zero by any positive or negative integer. Therefore, both programs will return the same result."
+    },
+    {
+      "input": [
+        -10,
+        -5
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "There is no difference between the result of dividing two negative numbers with the same sign. Therefore, both programs will return the same result."
+    }
+  ]
+},{
+  "mutant_program": "muta884_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both programs return the correct quotient since the divisor completely divides the dividend."
+    },
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs return the same error message since dividing by zero is undefined."
+    },
+    {
+      "input": [
+        -10,
+        5
+      ],
+      "original_output": -2,
+      "mutant_output": 2,
+      "explanation": "The original program correctly returns the negative quotient since the signs of the dividend and divisor are different. The mutant program incorrectly returns a positive quotient."
+    }
+  ]
+},{
+  "mutant_program": "muta894_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs will output the error message because dividing by zero is invalid"
+    },
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "Both programs will output 5 because 10 divided by 2 gives 5"
+    },
+    {
+      "input": [
+        6,
+        3
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "The original program will output 2, which is the correct answer. However, the mutant program will output 3 because it is changing the termination condition of the for loop in FnDivide. This causes the loop to execute an extra time and increment quotient by 1."
+    }
+  ]
+},{
+  "mutant_program": "muta898_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 1,
+      "explanation": "The original program returns the correct quotient, while the mutant program returns 1 instead of 2. This is because the mutant code has an unnecessary multiplication by 1, reflected in the expression (DifferentSigns(a, b) * 1), which changes the sign of the quotient, hence causing the wrong output in this case."
+    },
+    {
+      "input": [
+        3,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs return the error message when the divisor is 0, so they are equivalent in this input case."
+    },
+    {
+      "input": [
+        -4,
+        -2
+      ],
+      "original_output": 2,
+      "mutant_output": -2,
+      "explanation": "The original program returns the correct quotient, while the mutant program changes its sign to be the opposite of the correct answer, which is -2 instead of 2 in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta899_Calculation.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta908_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": -5,
+      "explanation": "Both the original and mutant code will execute the test case successfully. The only difference between the two is in line 45, where the mutant uses a bitwise AND operator instead of a logical AND operator. This causes the mutant code to incorrectly apply the FnNegate function to quotient under certain circumstances. Specifically, it will give the wrong result whenever a and b are of different signs and the magnitude of quotient is even (since an even number AND 1 will evaluate to 0)."
+    },
+    {
+      "input": [
+        6,
+        3
+      ],
+      "original_output": 2,
+      "mutant_output": -2,
+      "explanation": "Both the original and mutant code will execute the test case successfully. This test is similar to the previous one, but it ensures that the quotient is an even number when the bug in the mutant code is triggered."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutant code will print an error message and return 0 because of an attempted division by zero."
+    }
+  ]
+},{
+  "mutant_program": "muta915_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        20,
+        2
+      ],
+      "original_output": 10,
+      "mutant_output": -10,
+      "explanation": "The original program will correctly return 10. The mutant, however, will return -10 because of a mistake in the if statement inside FnDivide. The mutant incorrectly checks for ((DifferentSigns(a , b) && 1) ) instead of DifferentSigns(a , b). This means that the negation of quotient will happen every time, even when a and b are not of different signs."
+    },
+    {
+      "input": [
+        30,
+        -5
+      ],
+      "original_output": -6,
+      "mutant_output": -6,
+      "explanation": "The original program will correctly return -6. The mutant in this case, will also return -6 as there are no conditions in this test that will cause it to behave differently from the original."
+    }
+  ]
+},{
+  "mutant_program": "muta929_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 3,
+      "explanation": "The original program correctly checks if the signs of a and b are different. The mutant code incorrectly checks if the value returned by DifferentSigns is greater or equal to 1, always negating the quotient. Therefore, this test set returns different outputs."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs correctly detect divide by zero error and return the corresponding message."
+    },
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs correctly detect divide by zero error and return the corresponding message."
+    },
+    {
+      "input": [
+        5,
+        -2
+      ],
+      "original_output": -2,
+      "mutant_output": -3,
+      "explanation": "The original program correctly returns the quotient negated when a and b are different signs. The mutant code incorrectly negates the quotient when the value of DifferentSigns is greater or equal to 1. Therefore, this test set returns different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta935_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        9,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": 0,
+      "explanation": "When dividing by zero, the original program prints an error message, while the mutant program returns 0."
+    },
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": -2,
+      "explanation": "When dividing two positive numbers, both the original and mutant code yield the correct result but with different signs."
+    },
+    {
+      "input": [
+        10,
+        -5
+      ],
+      "original_output": -2,
+      "mutant_output": 2,
+      "explanation": "When dividing a positive and a negative number, both the original and mutant code yield the correct result but with opposite signs."
+    },
+    {
+      "input": [
+        -10,
+        5
+      ],
+      "original_output": -2,
+      "mutant_output": 2,
+      "explanation": "When dividing a negative and a positive number, both the original and mutant code yield the correct result but with opposite signs."
+    },
+    {
+      "input": [
+        -10,
+        -5
+      ],
+      "original_output": 2,
+      "mutant_output": -2,
+      "explanation": "When dividing two negative numbers, both the original and mutant code yield the correct result but with different signs."
+    }
+  ]
+},{
+  "mutant_program": "muta942_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": 0,
+      "explanation": "The original program prints an error statement and returns zero as the quotient, whereas the mutant program returns 0 without any error statement."
+    },
+    {
+      "input": [
+        16,
+        4
+      ],
+      "original_output": 4,
+      "mutant_output": 5,
+      "explanation": "For positive values of a and b, both programs return the correct quotient. However, for negative values of a and b, the original program returns the correct answer but the mutant program returns the incorrect answer."
+    },
+    {
+      "input": [
+        -16,
+        -4
+      ],
+      "original_output": 4,
+      "mutant_output": 5,
+      "explanation": "For negative values of a and b, both programs return the correct quotient. However, the mutant program fails for positive values of a and b as shown in the previous test case."
+    }
+  ]
+},{
+  "mutant_program": "muta968_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 4,
+      "explanation": "FnDivide mutant uses a semicolon between divisor and for loop, which causes the loop to run without updating the divisor. This results in a different quotient value than the original program."
+    },
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs give the same output for a divide by zero error."
+    },
+    {
+      "input": [
+        -8,
+        4
+      ],
+      "original_output": -2,
+      "mutant_output": -2,
+      "explanation": "Both programs return the same quotient for negative input values."
+    }
+  ]
+},{
+  "mutant_program": "muta998_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 5,
+      "explanation": "The original code uses the absolute value (abss) of b but the mutant uses a TRAP_ON_ZERO function, which returns 0 if b is 0, then negates it. This means that if b is 0, the original code prints an error message and returns 0, while the mutant code returns -10 (the negation of a) because it treats 0 as -1."
+    },
+    {
+      "input": [
+        -10,
+        -5
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both codes have the same output because the inputs have different signs, so the quotient should be negated. The mutant code's change in divisor calculation doesn't affect the output in this case."
+    },
+    {
+      "input": [
+        3,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": 3,
+      "explanation": "The original code returns an error message and 0 if b is 0. The mutant code returns -3 (the negation of a) because of the change in divisor calculation. The expected outputs are not comparable, so we only include their descriptions."
+    }
+  ]
+},{
+  "mutant_program": "muta1006_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 4,
+      "explanation": "The mutant code includes the macro TRAP_ON_NEGATIVE(divend) which is not defined anywhere in the program. This will cause a compilation error. Therefore, the mutant program cannot be equivalent to the original program."
+    },
+    {
+      "input": [
+        20,
+        4
+      ],
+      "original_output": 5,
+      "mutant_output": 4,
+      "explanation": "The output of the mutant program is incorrect due to the same reason as before - the macro TRAP_ON_NEGATIVE(divend) will cause a compilation error and the program will not execute correctly. Hence, we cannot obtain the correct output in this case."
+    },
+    {
+      "input": [
+        25,
+        5
+      ],
+      "original_output": 5,
+      "mutant_output": 4,
+      "explanation": "The output of the mutant program is incorrect for the same reason as before. The macro TRAP_ON_NEGATIVE(divend) is undefined and leads to a compilation error."
+    }
+  ]
+},{
+  "mutant_program": "muta1008_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs will output the same error message because the mutant only adds a macro function that does not affect the output."
+    },
+    {
+      "input": [
+        -10,
+        2
+      ],
+      "original_output": -5,
+      "mutant_output": -5,
+      "explanation": "Both programs will output the same result because they are dividing integer values. The inputs chosen test the ability to correctly identify different signs of the operands and apply the proper formula for the quotient."
+    },
+    {
+      "input": [
+        20,
+        -3
+      ],
+      "original_output": -6,
+      "mutant_output": -5,
+      "explanation": "The mutant program uses a macro function called TRAP_ON_POSITIVE that is not implemented, causing the program to be stuck in an infinite loop and never returning the result. Therefore, it does not provide the same output as the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta1010_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "In the mutant program code, there is a new function call to TRAP_ON_ZERO() around the divisor variable that limits the loop's execution when the divisor is zero. Therefore, in the original code, when no value is returned due to divide by zero, the loop is never triggered, and the function returns 0. However, in the mutant code, due to the additional TRAP_ON_ZERO() call, the loop is triggered even if the divisor is zero, which causes the function to return an incorrect and higher value (i.e., 1 higher)."
+    },
+    {
+      "input": [
+        -4,
+        2
+      ],
+      "original_output": -2,
+      "mutant_output": -2,
+      "explanation": "In this test, both the original and the mutant code are expected to return the same value as the inputs have the opposite sign; therefore, they have different signs, and the function call triggers different signs if condition to return -1. Hence, both the original and the mutant program codes are equivalent."
+    },
+    {
+      "input": [
+        7,
+        8
+      ],
+      "original_output": 0,
+      "mutant_output": -1,
+      "explanation": "In this test, the output of both the original and the mutant program codes should be different. The original code returns 0 as a is less than b, and as per the implementation, FnTimes() algorithm is faster if b < a. However, the mutated code also calls the same algorithm, but due to the addition of a new check in the function, a call to TRAP_ON_ZERO() around the divisor variable, it limits the loop execution to less than expected. Therefore, the function returns -1."
+    }
+  ]
+},{
+  "mutant_program": "muta1011_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        12,
+        3
+      ],
+      "original_output": 4,
+      "mutant_output": 6,
+      "explanation": "The original program implements division by subtracting the absolute value of the divisor from the absolute value of the dividend repeatedly until the dividend is less than the divisor. The mutated program uses a new macro function TRAP_ON_POSITIVE(divisor) that has the effect of setting divisor to 0 if it is positive, causing an infinite loop. As such, if b is positive, the mutated program never ends and outputs nothing. Therefore, the original program and the mutated program are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta1013_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs handle the case of dividing by zero and print the same error message"
+    },
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "For this test case, the original program correctly returns the integer division between 10 and 5 (which is 2). However, the mutant program modifies the for loop in FnDivide to use a macro function TRAP_ON_ZERO, which adds an extra addition to the dividend variable. This causes the result of the division to be one more than the correct value."
+    },
+    {
+      "input": [
+        15,
+        -3
+      ],
+      "original_output": -5,
+      "mutant_output": -5,
+      "explanation": "Both the original program and the mutant program correctly handle negative dividends and divisors, returning the correct quotient."
+    }
+  ]
+},{
+  "mutant_program": "muta1019_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "Both programs should output the same result for this test case."
+    },
+    {
+      "input": [
+        7,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs should output an error message for dividing by zero."
+    },
+    {
+      "input": [
+        -6,
+        2
+      ],
+      "original_output": -3,
+      "mutant_output": 3,
+      "explanation": "This test case demonstrates that the mutant program is not equivalent to the original program, as it returns a positive quotient when dividing a negative number by a positive number with TRAP_ON_ZERO function applied to the divisor. The original program correctly returns a negative quotient for this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta1021_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": "ERROR",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "The original program outputs 'ERROR' while the mutant program outputs 'ERROR: Divide by zero.' which is more informative."
+    },
+    {
+      "input": [
+        10,
+        -2
+      ],
+      "original_output": -5,
+      "mutant_output": -6,
+      "explanation": "The original program correctly computes the quotient of a/b while the mutant program's TRAP_ON_NEGATIVE produces a different value."
+    },
+    {
+      "input": [
+        -3,
+        4
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs correctly compute the quotient of a/b."
+    }
+  ]
+},{
+  "mutant_program": "muta1022_Calculation.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta1042_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6,
+        3
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "The original program counts how many times b can be subtracted from a to obtain quotient, but the mutant only initializes divend to quotient (which does not make sense), so the output is different."
+    },
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "The original program counts how many times b can be subtracted from a to obtain quotient, and this is equivalent to the mutant. The output of both programs is the same."
+    },
+    {
+      "input": [
+        9,
+        3
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "The original program counts how many times b can be subtracted from a to obtain quotient, and this is equivalent to the mutant. The output of both programs is the same."
+    }
+  ]
+},{
+  "mutant_program": "muta1043_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        8,
+        4
+      ],
+      "original_output": 2,
+      "mutant_output": 1,
+      "explanation": "The original program divides a by b by counting how many times b goes into a until it hits 0, but the mutant code is changing the value of divend before the loop starts, causing the actual division calculation to start at a different point, leading to an incorrect result."
+    },
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs should output the same error message when attempting to divide by zero."
+    }
+  ]
+},{
+  "mutant_program": "muta1044_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6,
+        3
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The original program correctly divides 6 by 3 and returns 2 as expected. However, the mutated program has a change in the divisor variable implementation, where divend is not properly initialized and will result in unpredictable behavior. Running the same input [6,3] in the mutated program returns 0, which is incorrect."
+    },
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "The original program correctly divides 10 by 5 and returns 2 as expected. In this case, the mutated program did not change the divisor variable implementation, and thus still produces the correct output when provided the same input [10,5]."
+    },
+    {
+      "input": [
+        12,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutated program contains a conditional branch to prevent division by 0 and print an error message. In this case, the input [12,0] triggers the error message and both programs return 0."
+    }
+  ]
+},{
+  "mutant_program": "muta1045_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 3,
+      "explanation": "The original program divides 10 by 2 which gives a quotient of 5. The mutant code initialises divend to 'abss(b)' rather than to 'abss(a)'. Therefore, the calculation is not based on the dividend but rather uses the divisor as the dividend which causes the incorrect quotient of 3 to be returned instead of 5."
+    },
+    {
+      "input": [
+        9,
+        3
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "This test shows, once again, that the quotient calculated by the original program is different from that computed by the mutated program. The correct answer, in this case, should be 3 instead of 2."
+    }
+  ]
+},{
+  "mutant_program": "muta1052_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 4,
+      "explanation": "The test checks whether the function calculates the quotient of two numbers correctly. For this test, a = 10 and b = 2 are inputted into the function. The original function correctly calculates that the quotient is 5. However, the mutant function deviates from the original function due to a small difference in the loop's definition. The original function starts the loop of dividing by finding the absolute of the dividend a and the divisor b computing at the absolute of b, then kicking off the loop to divide. The mutant Loop definition seems to also redefine the absolute of the dividend again instead of the previous abs(a). therefore instead of 5 as the answer, the quotient returned is 4."
+    },
+    {
+      "input": [
+        5,
+        4
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The test checks the correctness of the function's computation of the quotient when input values are correct. For this test, a = 5 and b = 4 are inputted into the function. Both the original function and the mutant function correctly calculate that the quotient is 1."
+    },
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "The test checks if the function handles the divide by zero exception correctly. For this test, a = 10 and b = 0 are inputted into the function. Since b = 0 is an invalid input, any correct implementation should display an error message and return 0, which the original and the mutated functions do."
+    }
+  ]
+},{
+  "mutant_program": "muta1061_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both original and mutated code would output the correct result for this input."
+    },
+    {
+      "input": [
+        8,
+        3
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "Since the mutated code only allows divend to increment by divisor if divend is greater than or equal to abs(b), it will not always count the correct number of times. In the case of input (8,3), the mutated code will only run the loop twice whereas the original code will count the correct number of times (2). Therefore, these programs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta1098_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "The original program implements integer division by literally counting how many times does b go into a. The mutant program modifies this operation by subtracting 1 from a before starting the loop, which will lead to a different quotient and consequently different output."
+    },
+    {
+      "input": [
+        12,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": "ERROR: Divide by zero.",
+      "explanation": "Both programs will output the same error message because they have the same error handling for dividing by 0."
+    }
+  ]
+},{
+  "mutant_program": "muta1099_Calculation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        9,
+        3
+      ],
+      "original_output": 3,
+      "mutant_output": null,
+      "explanation": "The output of the mutant code cannot be determined as it contains an undefined function 'driver'."
+    },
+    {
+      "input": [
+        12,
+        0
+      ],
+      "original_output": "ERROR: Divide by zero.",
+      "mutant_output": 12,
+      "explanation": "The original code handles the case of dividing by zero by outputting an error message, while the mutant code does not. The mutant code will continue with the division algorithm, and will incorrectly output 12 instead of an error message."
+    },
+    {
+      "input": [
+        7,
+        -2
+      ],
+      "original_output": -3,
+      "mutant_output": -2,
+      "explanation": "The mutant code changes the divisor by calling the SUCC function on 'a', which increments 'a' by 1. This means that the divisor value used in the division algorithm will be off by 1, resulting in a different quotient value. In this case, the original quotient is -3, while the mutant quotient is -2."
+    }
+  ]
+}]
