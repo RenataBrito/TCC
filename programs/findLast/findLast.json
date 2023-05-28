@@ -1,1 +1,657 @@
-[{"mutant_program": "muta0_findLast.c", "equivalent": false, "tests": [{"input": [4, 1, 2, 4, 3, 4, 5], "original_output": 5, "mutant_output": 3, "explanation": "The original program correctly returns the index of the last occurrence of the element 4, while the mutant program returns the index of the second occurrence"}, {"input": [1, 2, 3, 4, 5, 6, 7], "original_output": -1, "mutant_output": -1, "explanation": "Both programs correctly return -1 when the specified element is not present in the array"}, {"input": [7, 7], "original_output": 1, "mutant_output": -1, "explanation": "The original program correctly returns the index of the last occurrence of the element 7, while the mutant program returns -1 because of the mutated loop initialization statement"}]}]
+[
+    {
+        "mutant_program": "muta0_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    1,
+                    5,
+                    7,
+                    1
+                ],
+                "original_output": 4,
+                "mutant_output": -1,
+                "explanation": "Both programs are looking for the last occurrence of the number 1. The original program loops through the array backward and when it finds the number 1, it returns the index. However, the mutant code initializes the variable i to size - 0, which is equivalent to size, so the loop never executes because the initialization condition (i >= 0) is never satisfied. Therefore, the mutant program misses the last occurrence of the number 1 and returns -1 instead."
+            },
+            {
+                "input": [
+                    0,
+                    2,
+                    3,
+                    0,
+                    4,
+                    0
+                ],
+                "original_output": 5,
+                "mutant_output": 5,
+                "explanation": "Both programs are looking for the last occurrence of the number 0. The original program loops through the array backward and when it finds the number 0, it returns the index. The mutant code initializes the variable i to size - 0, which is equivalent to size, but in this case, it works because the loop condition (i >= 0) is satisfied. Therefore, both programs return the same output."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta118_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    2,
+                    1,
+                    2,
+                    3,
+                    2
+                ],
+                "original_output": 4,
+                "mutant_output": -1,
+                "explanation": "In this case, the original program returns the correct index of the last occurrence of y (2), which is 4. However, the mutant program adds an unnecessary block of code with the variable _PROTEUM_LOCAL_VAR_ and the function FALSE_AFTER_N_INTER(). This causes the loop to terminate prematurely and return -1, even though there is a valid index for y in the input array."
+            },
+            {
+                "input": [
+                    0,
+                    4,
+                    2,
+                    8,
+                    7
+                ],
+                "original_output": 0,
+                "mutant_output": 0,
+                "explanation": "In this case, both the original and mutant program correctly return the index of the first occurrence of y (0), which is 0. Therefore, the mutant program is equivalent to the original program for this test case."
+            },
+            {
+                "input": [
+                    3,
+                    2,
+                    4,
+                    5,
+                    1
+                ],
+                "original_output": -1,
+                "mutant_output": -1,
+                "explanation": "In this case, both the original and mutant program correctly return -1, since there is no occurrence of y (3) in the input array. Therefore, the mutant program is equivalent to the original program for this test case."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta121_findLast.c",
+        "equivalent": true,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    3,
+                    4,
+                    5,
+                    3
+                ],
+                "original_output": 6,
+                "mutant_output": 6,
+                "explanation": "Both programs should return 6 as the last index where the value 3 is found."
+            },
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "original_output": 2,
+                "mutant_output": 2,
+                "explanation": "Both programs should return 2 as the last index where the value 3 is found."
+            },
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "original_output": -1,
+                "mutant_output": -1,
+                "explanation": "Both programs should return -1 since the value 6 is not found in the array."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta129_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "original_output": 2,
+                "mutant_output": 2,
+                "explanation": "The first test case has the value (y) to find in the middle of the array. Both the original and mutant program should return the index 2."
+            },
+            {
+                "input": [
+                    1,
+                    1,
+                    2,
+                    3
+                ],
+                "original_output": 1,
+                "mutant_output": 3,
+                "explanation": "The second test case has the value (y) to find repeated in two indexes of the array. The original program should return the last occurrence in index 1, but the mutant program returns the index of the loop variable which is 3."
+            },
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "original_output": -1,
+                "mutant_output": -1,
+                "explanation": "The third test case has the value (y) not present in the array. Both the original and mutant program should return -1."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta148_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    7,
+                    4,
+                    6,
+                    2,
+                    5,
+                    3,
+                    1
+                ],
+                "original_output": 4,
+                "mutant_output": -1,
+                "explanation": "The original program should return the index of the last element equal to the input integer (4 in this case) which is 4. However, the mutant program includes a TRAP_ON_NEGATIVE function that subtracts 1 from the size value. If size is less than or equal to 0, the function returns a -1, which could affect the functionality of the loop and cause it to return -1 for all inputs. In this case, since the input array has positive length, the mutant program returns -1 despite the presence of the input integer."
+            },
+            {
+                "input": [
+                    5,
+                    2,
+                    4,
+                    2,
+                    6,
+                    2
+                ],
+                "original_output": 5,
+                "mutant_output": 5,
+                "explanation": "Both the original and mutant program should return 5 since the last element that equals the input integer (2) is at index 5 in the input array [5,2,4,2,6,2]."
+            },
+            {
+                "input": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9
+                ],
+                "original_output": -1,
+                "mutant_output": -1,
+                "explanation": "Both the original and mutant program should return -1 since there is no element in the input array [1,3,5,7,9] that equals the input integer (4)."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta149_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    3,
+                    4,
+                    5
+                ],
+                "original_output": 3,
+                "mutant_output": -1,
+                "explanation": "The first test case has a repeated value in the array, which is the value we are searching for. The original code correctly returns the index of the last occurrence of that value. However, the mutant code uses an undefined function TRAP_ON_ZERO that modifies the calculation of the loop variable i, so it may not iterate over all the elements and incorrectly return -1"
+            },
+            {
+                "input": [
+                    5,
+                    5,
+                    3,
+                    2,
+                    5
+                ],
+                "original_output": 4,
+                "mutant_output": -1,
+                "explanation": "The second test case is similar to the first, with repeated values in the array. The original code again returns the index of the last occurrence, while the mutant code returns -1 due to the modified loop variable. The assertion that the final condition i >= 0 is necessary to guarantee that all elements are checked, and it should not be changed"
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta154_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10
+                ],
+                "original_output": 8,
+                "mutant_output": -1,
+                "explanation": "The original program correctly finds the index of the last element that equals the provided value (integer = 5) which is 8. However, the mutant code replaces the original index variable with TRAP_ON_NEGATIVE(index), which is a fictional function that is not defined anywhere in the code, causing the function to always return -1. Therefore, the mutant output is -1 and the original output is 8."
+            },
+            {
+                "input": [
+                    2,
+                    4,
+                    6,
+                    8
+                ],
+                "original_output": -1,
+                "mutant_output": -1,
+                "explanation": "Both the mutant and original programs correctly identify that there is no element in the provided array that matches the provided value (integer = 5), and therefore returns -1 for both."
+            },
+            {
+                "input": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                ],
+                "original_output": 5,
+                "mutant_output": -1,
+                "explanation": "The original program correctly identifies that the last element in the array that matches the provided value (integer = 5) occurs at index 5. However, the mutant code always returns -1 due to the use of the fictional TRAP_ON_NEGATIVE function, leading to an incorrect output."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta163_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    5,
+                    2,
+                    4,
+                    5,
+                    6,
+                    6,
+                    5,
+                    7
+                ],
+                "original_output": 6,
+                "mutant_output": 5,
+                "explanation": "The original code returns the index of the last occurrence of a given element in the array, while the mutant code returns the index of the last occurrence of a given element in the array -1 if it is negative. Therefore, for this test case, the original program returns index 6, the mutant program returns index 5."
+            },
+            {
+                "input": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "original_output": 4,
+                "mutant_output": 3,
+                "explanation": "The original and mutant codes differ, as the mutant code returns index -1 in case of a negative result, while the original returns index 4. Therefore, for this test case, the original program returns index 4, the mutant program returns -1."
+            },
+            {
+                "input": [
+                    8,
+                    7,
+                    6,
+                    5,
+                    4,
+                    3,
+                    2,
+                    1
+                ],
+                "original_output": -1,
+                "mutant_output": -2,
+                "explanation": "The original and mutant codes differ, as the mutant code returns the last index -1 in case of a negative result, while the original returns index -1. Therefore, for this test case, the original program returns index -1, the mutant program returns -2."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta185_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    4,
+                    1,
+                    3,
+                    2,
+                    3
+                ],
+                "original_output": 4,
+                "mutant_output": 2,
+                "explanation": "The original code loops from the last element to the first looking for an element that equals y. The mutated code modifies the loop condition to always let it go one iteration past the first element of the array, so that the first element is also checked for an equality with y, which results in a different output."
+            },
+            {
+                "input": [
+                    2,
+                    2,
+                    1,
+                    3,
+                    2
+                ],
+                "original_output": 4,
+                "mutant_output": 0,
+                "explanation": "Same as previous."
+            },
+            {
+                "input": [
+                    2,
+                    4,
+                    6,
+                    8,
+                    10
+                ],
+                "original_output": -1,
+                "mutant_output": -1,
+                "explanation": "The original code should not find any element that equals y, so the output is -1. The mutated code still performs the same iterations as the original, but just with a different loop condition to check i+1 instead of i, so the outputs are the same."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta52_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    2
+                ],
+                "original_output": 3,
+                "mutant_output": -1,
+                "explanation": "The original program correctly returns the index of the last element equal to the search value, which in this case is 3. However, the mutant program starts at an odd-numbered index, which may not even be a valid index, and it only searches half of the array. Thus, it may miss the last occurrence of the search value or may return an invalid index."
+            },
+            {
+                "input": [
+                    4,
+                    5,
+                    4,
+                    6
+                ],
+                "original_output": 2,
+                "mutant_output": -1,
+                "explanation": "Again, the original program correctly returns the index of the last element equal to the search value, which in this case is 2. However, the mutant program may not search the entire array and may miss the last occurrence of the search value or may return an invalid index."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta53_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    4,
+                    2,
+                    7,
+                    3
+                ],
+                "original_output": 1,
+                "mutant_output": 2,
+                "explanation": "The original program should correctly return the index of the last occurrence of the given integer in the array. The mutant program, on the other hand, starts iterating from size XOR 1, which is not the correct approach and could potentially skip some elements in the array. This is evident in this test case, where the last occurrence of 3 is at index 3, but the mutant code returns 2."
+            },
+            {
+                "input": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    2
+                ],
+                "original_output": 4,
+                "mutant_output": 3,
+                "explanation": "This test case checks for multiple occurrences of the given integer. The original program correctly returns the index of the last occurrence, which is 4. However, the mutant program skips index 2 during iteration, resulting in an incorrect output of 3, which is the index of the third occurrence of the integer."
+            },
+            {
+                "input": [
+                    6,
+                    5,
+                    4,
+                    5,
+                    6
+                ],
+                "original_output": 3,
+                "mutant_output": 2,
+                "explanation": "This test case checks for symmetric arrays, where the last occurrence of the given integer is at the midpoint. The original program correctly returns 3, which is the index of the last occurrence. However, the mutant program, which starts iterating from size XOR 1, skips this index and returns 2 as the output."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta69_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    5,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "original_output": 5,
+                "mutant_output": 4,
+                "explanation": "This test case is designed to find the last occurrence of the number 5 in the array. The original program correctly returns the index 5, whereas the mutant program returns the incorrect index 4 due to the changed loop initialisation"
+            },
+            {
+                "input": [
+                    10,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "original_output": -1,
+                "mutant_output": -1,
+                "explanation": "This test case is designed to find the last occurrence of the number 10 in the array. Neither the original program nor the mutant program find the value in the array, returning -1 as expected."
+            },
+            {
+                "input": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "original_output": 5,
+                "mutant_output": 5,
+                "explanation": "This test case is designed to check that the function can correctly identify the last occurrence of 0 in an array of all 0's. Both the original and mutant program correctly return the index 5."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta72_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    "2",
+                    "2",
+                    "4",
+                    "6",
+                    "2"
+                ],
+                "original_output": 4,
+                "mutant_output": 0,
+                "explanation": "The input array has multiple elements with the value of the second argument, but the original program returns the index of the last element that matches it whereas the mutated program returns the index of the first element that matches it."
+            },
+            {
+                "input": [
+                    "5",
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                ],
+                "original_output": 4,
+                "mutant_output": 4,
+                "explanation": "In this case, both original and mutated programs are equivalent because the input array has the value 5 only at the last position."
+            },
+            {
+                "input": [
+                    "3",
+                    "1",
+                    "3",
+                    "4",
+                    "3",
+                    "5"
+                ],
+                "original_output": 3,
+                "mutant_output": -1,
+                "explanation": "The input array has multiple elements with the value of the second argument, but only the original program returns the index of the last element that matches it, while the mutated program fails to locate it because it starts its loop in a non-conventional way."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta73_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    1,
+                    2,
+                    5
+                ],
+                "original_output": 4,
+                "mutant_output": 0,
+                "explanation": "The original program correctly identifies the last occurrence of y=1 at index 4 while the mutant program using the bitwise OR operator on i and (size - 1) causes an infinite loop because it always evaluates to a negative number."
+            },
+            {
+                "input": [
+                    10,
+                    5,
+                    1,
+                    7,
+                    2,
+                    9,
+                    5,
+                    10
+                ],
+                "original_output": 7,
+                "mutant_output": -1,
+                "explanation": "The original program returns the correct index of the last occurrence of y=10 at index 7 while the mutant program always returns -1 even though y=10 occurs at index 7."
+            },
+            {
+                "input": [
+                    1,
+                    2,
+                    3
+                ],
+                "original_output": -1,
+                "mutant_output": -1,
+                "explanation": "Both the original and mutant programs correctly identify that y=4 is not present in the array and return -1."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta7_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    3
+                ],
+                "original_output": 5,
+                "mutant_output": 4,
+                "explanation": "The input array contains two elements with value 3, the original program returns the index of the last element with value 3 while the mutant program returns the index of the second to last element with value 3"
+            },
+            {
+                "input": [
+                    2,
+                    2,
+                    2,
+                    2,
+                    2
+                ],
+                "original_output": 4,
+                "mutant_output": -1,
+                "explanation": "The input array contains only the value 2, the original program returns the index of the last element with value 2 while the mutant program never enters into the for loop and returns -1"
+            },
+            {
+                "input": [
+                    1,
+                    4,
+                    5,
+                    5,
+                    4,
+                    4,
+                    1
+                ],
+                "original_output": 5,
+                "mutant_output": 5,
+                "explanation": "The input array contains multiple elements with the same value and the last occurrence of this value is at the same index in both the original and mutant programs"
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta91_findLast.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                ],
+                "original_output": 5,
+                "mutant_output": -1,
+                "explanation": "In this test set, the original program correctly returns the index of the last occurrence of y=6, which is 5. However, the mutated program returns -1, indicating no such element exists, even though there is an element y=6 in the input array. The mutation changes the condition in the if statement from checking x[i]==y to checking if(x[i]*y), which will only evaluate to true if x[i] is not equal to zero and y is a factor of x[i]. This is not the correct condition for finding the index of the last occurrence of y in x."
+            },
+            {
+                "input": [
+                    0,
+                    1,
+                    2,
+                    0,
+                    3,
+                    4,
+                    0
+                ],
+                "original_output": 6,
+                "mutant_output": -1,
+                "explanation": "In this test set, both programs are searching for the last occurrence of y=0. The original program correctly returns the index 6, which is the last element of x that is equal to 0. However, the mutated program returns -1, even though there is an element y=0 in the input array. The mutation changes the condition in the if statement from checking x[i]==y to checking if(x[i]*y), which will only evaluate to true if x[i] is not equal to zero and y is a factor of x[i]. This is not the correct condition for finding the index of the last occurrence of y in x."
+            }
+        ]
+    }
+]
