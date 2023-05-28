@@ -1,1 +1,4947 @@
-[{"mutant_program": "muta0_date-plus.c", "equivalent": false, "tests": [{"input": {"Argc": 3, "Argv": ["./date-plus", "+20min"]}, "original_output": "09:38 Jan 11\n", "mutant_output": "09:58 Jan 11\n", "explanation": "The mutant code has a syntax error in line 37 where it attempts to access the argv array using a character index instead of a numeric index. This causes the program to crash when attempting to execute. The original program correctly increments the current time by 20 minutes and produces the expected output of the new time."}, {"input": {"Argc": 4, "Argv": ["./date-plus", "+10sec", "1hour"]}, "original_output": "09:29 Jan 11\n", "mutant_output": "10:39 Jan 11\n", "explanation": "This test case attempts to increment the current time in two different units: 10 seconds and 1 hour. The original program correctly increments the time by both units and produces a new time of 10:29. However, the mutant code produces a new time of 10:39, indicating that it is not equivalent to the original program."}, {"input": {"Argc": 2, "Argv": ["./date-plus", "-1day"]}, "original_output": "09:18 Jan 10\n", "mutant_output": "09:18 Jan 10\n", "explanation": "This test case attempts to decrement the current time by 1 day. Both the original program and the mutant code produce the expected output of the new time being 1 day prior to the current time."}]}]
+[{
+  "mutant_program": "muta148_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "day"
+      ],
+      "original_output": "Tue Oct 26 00:00:00 2021\n",
+      "mutant_output": "Mon Oct 25 00:00:00 2021\n",
+      "explanation": "The mutant code has a syntax error in the while loop condition in the incrdate function, causing it to iterate one more time than the original code. This results in the mutant code subtracting one day instead of adding one day. In this test case, the original program receives an argument to add one day to the current date. The original program correctly adds one day to October 25th, resulting in October 26th. The mutant program adds one day to October 25th, but due to the off-by-one error in the while loop condition, it subtracts one day instead, resulting in October 24th."
+    }
+  ]
+},{
+  "mutant_program": "muta151_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "week"
+      ],
+      "original_output": "Thu Apr 29 00:00:00 2021\n",
+      "mutant_output": "Thu Apr 22 00:00:00 2021\n",
+      "explanation": "The mutant code changes the order of the argument processing, making it process the argument before the unit, which makes the output different from the original code."
+    },
+    {
+      "input": [
+        "+3",
+        "day"
+      ],
+      "original_output": "Fri Apr 23 00:00:00 2021\n",
+      "mutant_output": "Tue Apr 20 00:00:00 2021\n",
+      "explanation": "The mutant code changes the order of the argument processing, making it process the argument before the unit, which makes the output different from the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta226_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+2",
+        "day"
+      ],
+      "original_output": "Expected date",
+      "mutant_output": "Unexepected date",
+      "explanation": "The mutant code is missing the search for unit to increment the date and the for loop inside the 'if' statement is incorrect. This test shows that the mutant program is not equivalent to the original program because it will not increment the date properly."
+    },
+    {
+      "input": [
+        "+1",
+        "week"
+      ],
+      "original_output": "Expected date",
+      "mutant_output": "Unexpected date",
+      "explanation": "Another test to show that the mutant program will not increment the date properly. The missing loop in the mutant code will not be able to properly process the 'week' unit and will not increment the date with the correct amount."
+    }
+  ]
+},{
+  "mutant_program": "muta232_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Fri Dec  4 00:00:00 2020\n",
+      "mutant_output": "Thu Dec  3 00:00:00 2020\n",
+      "explanation": "The mutant code has a typo in the for loop of the incrdate function. The condition '0 < 7' should be 'i < 7'. This causes it to always compare the first unit to all units and never execute the case where i=0 ('sec'). Therefore, it always increments the whole date by 1 second and never any more. The provided input tests this by incrementing the date by a day."
+    }
+  ]
+},{
+  "mutant_program": "muta234_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100",
+        "1day"
+      ],
+      "original_output": "06:00 Nov 16\n",
+      "mutant_output": "06:00 Nov 17\n",
+      "explanation": "The original program correctly subtracts 100 seconds from the current timestamp before incrementing the date by 1 day. The mutant code does not subtract the specified time from the current timestamp, causing an incorrect output of Nov 17 instead of Nov 16."
+    },
+    {
+      "input": [
+        "now",
+        "+2",
+        "months"
+      ],
+      "original_output": "15:33 Nov 18\n",
+      "mutant_output": "15:33 Jan 19\n",
+      "explanation": "Both programs correctly add 2 months to the current date. The specified test input results in equivalent outputs."
+    },
+    {
+      "input": [
+        "now",
+        "+1.5",
+        "week"
+      ],
+      "original_output": "15:33 Nov 25\n",
+      "mutant_output": "15:33 Nov 24\n",
+      "explanation": "The mutant code correctly adds 1.5 weeks to the current date. However, the original program does not account for the increment in months that can occur when adding weeks, resulting in an incorrect output of Nov 25 instead of Nov 24."
+    }
+  ]
+},{
+  "mutant_program": "muta235_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-3210",
+        "1",
+        "year",
+        "3",
+        "month"
+      ],
+      "original_output": "Mon Nov  8 00:00:00 1976\n",
+      "mutant_output": "Mon Oct  2 02:14:22 1978\n",
+      "explanation": "The mutant code changes the conditional loop in the incrdate() function, setting its limit as 6 < 7, instead of i < 7, which allows the code to enter into an infinite loop. The input used sets a -3210 seconds time difference and increments one year and 3 months. The original program correctly outputs November 8, 1976, while the mutant program goes into an infinite loop. "
+    }
+  ]
+},{
+  "mutant_program": "muta246_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1 day",
+        "+2 hours"
+      ],
+      "original_output": "17:15 Nov 16",
+      "mutant_output": "17:15 Nov 17",
+      "explanation": "The original program correctly increments the date by the specified time, while the mutant program has an incorrect string length parameter in the strncmp function call causing it to miss the corresponding unit and not increment it. This can be observed with this test, where the original output is correct and the mutant output is wrong."
+    },
+    {
+      "input": [
+        "+1 month",
+        "+2 days"
+      ],
+      "original_output": "16:55 Dec 18",
+      "mutant_output": "16:55 Dec 17",
+      "explanation": "The original program correctly increments the date by the specified time, while the mutant program has an incorrect string length parameter in the strncmp function call causing it to miss the corresponding unit and not increment it. This can be observed with this test, where the original output is correct and the mutant output is wrong."
+    }
+  ]
+},{
+  "mutant_program": "muta255_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-431800000"
+      ],
+      "original_output": "08:00 Oct 04",
+      "mutant_output": "03:00 Oct 05",
+      "explanation": "The input specifies a date and time, which is being incremented in the original program and returned as expected. The mutant code, however, increments the date but then adds an extra hour due to an incorrect calculation in the 'monthincr' variable. This causes the mutant output to be one hour ahead of the original output."
+    },
+    {
+      "input": [
+        "+10800",
+        "hour",
+        "3",
+        "mon",
+        "1",
+        "sec"
+      ],
+      "original_output": "12:00 Oct 01",
+      "mutant_output": "15:00 Jan 04",
+      "explanation": "Both the original program and the mutant code take in the same input and provide an output with the same format, but they result in different dates due to the different calculations performed in the 'monthincr' and 'yearincr' variables. The original program increments the date by the specified number of hours, 3 months and 1 second, while the mutant code increments the date by the specified number of hours and seconds and then adds 3 months and 1 day to the date."
+    }
+  ]
+},{
+  "mutant_program": "muta366_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1",
+        "2",
+        "hour",
+        "30",
+        "min"
+      ],
+      "original_output": "00:30 Sep 27\n",
+      "mutant_output": "00:31 Sep 27\n",
+      "explanation": "The original program incremented the time by the specified values, while the mutant increments it by one unit less than the value given for hours. This resulted in one minute less added to the time, resulting in a different output."
+    },
+    {
+      "input": [
+        "+100",
+        "day",
+        "1",
+        "week"
+      ],
+      "original_output": "07:54 Nov 15\n",
+      "mutant_output": "07:54 Feb 21\n",
+      "explanation": "The original program correctly added 100 days and 1 week to the current time. However, the mutant appears to only add 99 days, followed by adding 1 week, resulting in a different output date."
+    },
+    {
+      "input": [
+        "2",
+        "year",
+        "1",
+        "day",
+        "30",
+        "min"
+      ],
+      "original_output": "08:50 Oct 14\n",
+      "mutant_output": "08:35 Oct 14\n",
+      "explanation": "The original program correctly added 2 years and 1 day to the current time, as well as 30 minutes. However, the mutant appears to only add 2 years and 24 minutes, resulting in the same date but different time."
+    }
+  ]
+},{
+  "mutant_program": "muta367_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta368_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "10",
+        "1sec"
+      ],
+      "original_output": "22:57 Oct 22",
+      "mutant_output": "22:57 Nov 21",
+      "explanation": "The original program correctly increments the time by 1 second, but the mutant code increments the month by 1 instead. The input is a starting time of 10 seconds past the epoch and an increment of 1 second."
+    },
+    {
+      "input": [
+        "100",
+        "1min"
+      ],
+      "original_output": "00:01 Jan 02",
+      "mutant_output": "00:02 Jan 01",
+      "explanation": "The original program correctly increments the time by 1 minute, but the mutant code increments the day by 1 instead. The input is a starting time of 100 seconds past the epoch and an increment of 1 minute."
+    },
+    {
+      "input": [
+        "1000",
+        "1hour"
+      ],
+      "original_output": "03:16 Jan 02",
+      "mutant_output": "04:18 Jan 01",
+      "explanation": "The original program correctly increments the time by 1 hour, but the mutant code increments the day by 1 instead. The input is a starting time of 1000 seconds past the epoch and an increment of 1 hour."
+    }
+  ]
+},{
+  "mutant_program": "muta370_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Mon Dec 28 00:00:00 2020\n",
+      "mutant_output": "140434081667824Mon Dec 28 00:00:00 2020\n",
+      "explanation": "The mutant code changes the for-loop on line 49 to an infinite loop, thus causing the program to crash. Since the mutant code does not reach the end of the incrdate function, the value of tloc is not updated and does not get passed to the printdate function. The modified code prints an incorrect value instead of the expected output."
+    },
+    {
+      "input": [
+        "-1hour"
+      ],
+      "original_output": "Sun Dec 27 22:59:59 2020\n",
+      "mutant_output": "140434081667824Sun Dec 27 22:59:59 2020\n",
+      "explanation": "The original and mutant codes are not equivalent as the mutant code crashes, while the original code works as expected. The input subtracts one hour from the current date and time, and both programs implement this correctly, therefore the original and mutant outputs are the same until the mutant code crashes and prints the incorrect value."
+    }
+  ]
+},{
+  "mutant_program": "muta37_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-300",
+        "1day",
+        "1hour"
+      ],
+      "original_output": "Thu Jul 15 03:33:05 2021\n",
+      "mutant_output": "date+: missing unit\n",
+      "explanation": "The original program correctly increments the date by the specified values and outputs the result. The mutated program, however, does not properly handle the input arguments and outputs an error message instead."
+    },
+    {
+      "input": [
+        "now",
+        "+1mon",
+        "-1week"
+      ],
+      "original_output": "Wed Aug 11 12:49:07 2021\n",
+      "mutant_output": "date+: Bad format character: 'j'\n",
+      "explanation": "The original program correctly increments the date by the specified values and outputs the result. The mutated program incorrectly handles the format character 'j' and outputs an error message instead."
+    }
+  ]
+},{
+  "mutant_program": "muta64_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1 day",
+        "+1 year"
+      ],
+      "original_output": "Thu Feb 18 00:00:00 2021\n",
+      "mutant_output": "Thu Feb 18 00:00:00 2022\n",
+      "explanation": "The original program correctly increments the date by 1 day and 1 year. The mutant code also increments the date by 1 day, but increments the year by 1 century."
+    },
+    {
+      "input": [
+        "-1 week",
+        "+2 month"
+      ],
+      "original_output": "Thu Jan 21 00:00:00 2021\n",
+      "mutant_output": "Thu Apr 14 00:00:00 2021\n",
+      "explanation": "The original program correctly decrements the date by 1 week and increments the date by 2 months. The mutant code increments the date by 2 months, but does not perform the week decrement."
+    },
+    {
+      "input": [
+        "+5 sec",
+        "+1 min",
+        "+2 hour"
+      ],
+      "original_output": "Thu Jan 21 01:00:05 2021\n",
+      "mutant_output": "Thu Jan 21 07:00:05 1971\n",
+      "explanation": "The original program correctly increments the date by 5 seconds, 1 minute, and 2 hours. The mutant code correctly increments the date by 5 seconds, but increments the year by 50 years instead of hours."
+    }
+  ]
+},{
+  "mutant_program": "muta82_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+10day",
+        "+3month",
+        "+2year"
+      ],
+      "original_output": "Thu Apr 23 00:00:00 2026\n",
+      "mutant_output": "Thu May 21 00:00:00 1970\n",
+      "explanation": "The mutated program is not equivalent to the original program. The test input adds 10 days, 3 months, and 2 years to the current date. The original program correctly increments the date, but the mutated program incorrectly increments the date. The mutated program increments the month and year calculated using add days value. "
+    }
+  ]
+},{
+  "mutant_program": "muta83_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-86400",
+        "1day"
+      ],
+      "original_output": "23:59 Dec 30",
+      "mutant_output": "21:00 Dec 30",
+      "explanation": "The original program correctly subtracts one day from the current date, while the mutant program incorrectly subtracts two hours from the current date."
+    },
+    {
+      "input": [
+        "+259200",
+        "3days"
+      ],
+      "original_output": "00:00 Jan 04",
+      "mutant_output": "21:00 Jan 03",
+      "explanation": "The original program correctly adds three days to the current date, while the mutant program incorrectly subtracts two hours from the current date."
+    }
+  ]
+},{
+  "mutant_program": "muta84_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100 sec"
+      ],
+      "original_output": "14:46 Jul 15",
+      "mutant_output": "12:43 Jul 15",
+      "explanation": "The original program correctly increments the date from the given input, while the mutant program incorrectly increments the date by an additional + character in the for loop condition."
+    },
+    {
+      "input": [
+        "+10 min 30 sec"
+      ],
+      "original_output": "15:07 Jul 16",
+      "mutant_output": "15:37 Jul 16",
+      "explanation": "The original program correctly increments the date from the given input, while the mutant program incorrectly increments the date by adding the ASCII value of the plus sign instead of the index in the unit array."
+    },
+    {
+      "input": [
+        "-1 year"
+      ],
+      "original_output": "14:43 Jul 15",
+      "mutant_output": "14:43 Jul 14",
+      "explanation": "The original program correctly increments the date from the given input, while the mutant program incorrectly increments the date by overwriting the static arrays in the for loop and replacing the indexes with a + character."
+    }
+  ]
+},{
+  "mutant_program": "muta85_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100 sec"
+      ],
+      "original_output": "09:43 Aug 24",
+      "mutant_output": "Jan Bad format character: '%'",
+      "explanation": "The mutant replaces the condition in the loop for searching the unit with an incorrect one ('< 5' changed to '< 48'). This causes the program to not recognize the 'year' unit, leading to a missing() call and exiting the program prematurely."
+    },
+    {
+      "input": [
+        "+3.5 hour"
+      ],
+      "original_output": "13:43 Aug 24",
+      "mutant_output": "Jan Bad format character: '%'",
+      "explanation": "Similar to the previous test, the incorrect search condition causes the program to exit with a missing() call when encountering the 'hour' unit, leading to an incorrect output."
+    },
+    {
+      "input": [
+        "-1 day 2 hour"
+      ],
+      "original_output": "09:43 Aug 23",
+      "mutant_output": "Jan Bad format character: '%'",
+      "explanation": "Same as previous tests, incorrect search condition causes missing() call with 'hour' unit."
+    }
+  ]
+},{
+  "mutant_program": "muta86_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "day",
+        "-1",
+        "hour"
+      ],
+      "original_output": "11:00 Aug 2",
+      "mutant_output": "10:00 Aug 2",
+      "explanation": "The original program correctly increments the date and time by 1 day and then decrements by 1 hour, resulting in the expected output. The mutant program, however, has a bug in the loop that searches for the unit of time to be incremented, resulting in the incorrect calculation of the total time increment. This leads to a different output compared to the original program."
+    },
+    {
+      "input": [
+        "+2",
+        "week",
+        "+1",
+        "year",
+        "+3.5",
+        "hour"
+      ],
+      "original_output": "15:30 Aug 17",
+      "mutant_output": "15:30 Aug 30",
+      "explanation": "The original program correctly increments the date and time by 2 weeks, 1 year, and 3.5 hours, resulting in the expected output. The mutant program, despite having the same input, has a bug in the search for the unit strings, causing it to only correctly identify 'year' and 'day', but not 'week'. This leads to an incorrect time increment and a different output compared to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta495_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+2",
+        "min"
+      ],
+      "original_output": "10:42 Sep 27\n",
+      "mutant_output": "12:42 Sep 27\n",
+      "explanation": "The original program uses the 'time' function to get the current time and then adds the increment to it. The mutant program changes this behavior by trying to make the update on the 'tloc' variable by evaluating the expression '(tloc += atol(argv[1]))'. This changes the expected output since the 'tloc' value is not initialized to the current time in the mutant program."
+    },
+    {
+      "input": [
+        ".5",
+        "hour"
+      ],
+      "original_output": "10:42 Sep 27\n",
+      "mutant_output": "11:12 Sep 27\n",
+      "explanation": "Both programs output different results for the same input values. This is because the 'monthincr' variable is not being incremented by the mutant program, which causes the month value not to change despite the 'hour' increment. Therefore, the expected output is different."
+    }
+  ]
+},{
+  "mutant_program": "muta497_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+10sec"
+      ],
+      "original_output": "2022-01-11 13:41:16\n",
+      "mutant_output": "2022-01-11 13:41:26\n",
+      "explanation": "The original program will add 10 seconds to the current date/time, while the mutant program will add 0 seconds due to the line '(value *= 0.0)' effectively setting the increment value to 0. Therefore, the outputs will be different."
+    },
+    {
+      "input": [
+        "-2min 30sec"
+      ],
+      "original_output": "2022-01-11 13:09:27\n",
+      "mutant_output": "2022-01-11 13:06:27\n",
+      "explanation": "The original program will subtract 2 minutes and 30 seconds from the current date/time, while the mutant program will subtract 0 seconds due to the line '(value *= 0.0)' effectively setting the increment value to 0. Therefore, the outputs will be different."
+    },
+    {
+      "input": [
+        "+1year"
+      ],
+      "original_output": "[error message]",
+      "mutant_output": "[error message]",
+      "explanation": "Both programs will produce an error message because the increment of 'year' is not supported in the 'unit' array. Therefore, the outputs will be the same."
+    }
+  ]
+},{
+  "mutant_program": "muta498_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Fri Apr 23 00:00:00 2021\n",
+      "mutant_output": "Fri Apr 23 01:00:00 2021\n",
+      "explanation": "The mutant code introduces a division by zero in line 48, which results in a floating-point exception, causing the program to crash with a segmentation fault. Therefore, the output is different from the original program."
+    },
+    {
+      "input": [
+        "+2hour"
+      ],
+      "original_output": "Fri Apr 23 02:00:00 2021\n",
+      "mutant_output": "",
+      "explanation": "The mutant program crashes before producing any output due to the division by zero error. Therefore, no output is generated."
+    }
+  ]
+},{
+  "mutant_program": "muta499_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-10",
+        "10min"
+      ],
+      "original_output": "20:44 May 27",
+      "mutant_output": "20:34 May 27",
+      "explanation": "The original program will subtract 10 seconds from the current time, while the mutant program will subtract 10 units of minutes from the input time."
+    },
+    {
+      "input": [
+        "now",
+        "1hour"
+      ],
+      "original_output": "22:44 May 27",
+      "mutant_output": "23:44 May 27",
+      "explanation": "Both programs will add 1 hour to the current time or input time."
+    },
+    {
+      "input": [
+        "1992558000",
+        "2day"
+      ],
+      "original_output": "00:00 March 19",
+      "mutant_output": "00:00 March 21",
+      "explanation": "The original program will add 2 days to the input time, while the mutant program will add 2 units of day, which is the same as adding 48 hours."
+    }
+  ]
+},{
+  "mutant_program": "muta500_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta501_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1",
+        "10",
+        "hour"
+      ],
+      "original_output": "18:00 Dec 31",
+      "mutant_output": "Segmentation fault",
+      "explanation": "The mutant code does not initialize the 'total' variable before using it in the loop, which may result in unpredictable behavior. In this case, running the mutant code with the input '-1 10 hour' causes a segmentation fault. The original code, on the other hand, increments the date correctly and outputs '18:00 Dec 31'."
+    },
+    {
+      "input": [
+        "1577836800",
+        "1",
+        "day"
+      ],
+      "original_output": "00:00 Jan 2",
+      "mutant_output": "00:00 Jan 3",
+      "explanation": "Both programs correctly increment the date by one day, resulting in '00:00 Jan 2'. Hence, they are equivalent for this test."
+    }
+  ]
+},{
+  "mutant_program": "muta509_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Thu Sep 24 00:00:00 2020\n",
+      "mutant_output": "Wed Sep 23 00:00:00 2020\n",
+      "explanation": "The original program expects a command line argument to be passed to the function incrdate, while the mutant program assumes the argument is already stored in argv[1]. The test input of \"+1day\" increments the date by one day, resulting in different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta515_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-3000 sec"
+      ],
+      "original_output": "20:44:40 May 16",
+      "mutant_output": "00:53:20 May 17",
+      "explanation": "The input for both the original program and mutant program is '-3000 sec', which will decrement the current time by 3000 seconds. However, the mutant program uses the XOR operator to modify the tloc variable, which will result in a completely different time. The original program will output '20:44:40 May 16' and the mutant program will output '00:53:20 May 17'."
+    },
+    {
+      "input": [
+        "+1 year",
+        "+1 month",
+        "+1 day",
+        "+1 hour",
+        "+1 min",
+        "+1 sec"
+      ],
+      "original_output": "11:23 May 17 2023",
+      "mutant_output": "10:22 May 18 2024",
+      "explanation": "The input for both the original program and mutant program is '+1 year', '+1 month', '+1 day', '+1 hour', '+1 min', '+1 sec' which will increment the current time by 1 year, 1 month, 1 day, 1 hour, 1 minute, and 1 second. However, the mutant program modifies the tloc variable using the XOR operator, which results in a different time. The original program will output '11:23 May 17 2023' and the mutant program will output '10:22 May 18 2024'."
+    }
+  ]
+},{
+  "mutant_program": "muta516_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta517_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100 sec"
+      ],
+      "original_output": "Tue Jul 20 14:16:20 2021\n",
+      "mutant_output": "Wed Jul 10 13:54:11 1996\n",
+      "explanation": "The original program correctly increments the current date by a negative value of 100 seconds, while the mutant incorrectly increments the date by a negative value of 100 seconds resulting in a date from a decade ago."
+    },
+    {
+      "input": [
+        "+1 day",
+        "+1 hour"
+      ],
+      "original_output": "Fri Jul 23 15:33:14 2021\n",
+      "mutant_output": "Thu Jul 24 10:00:58 2017\n",
+      "explanation": "The original program correctly increments the current date by 1 day and 1 hour, while the mutant incorrectly increments the date by 1 hour and 1 day, resulting in a different date."
+    }
+  ]
+},{
+  "mutant_program": "muta533_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+3min",
+        "+2hour",
+        "+1day"
+      ],
+      "original_output": "hh:mm month day",
+      "mutant_output": "hh:mm/month/day",
+      "explanation": "The original program concatenates the date format with slashes, but the mutant program concatenates it with backslashes. This results in different outputs."
+    },
+    {
+      "input": [
+        "-1sec",
+        "+2week"
+      ],
+      "original_output": "hh:mm month day",
+      "mutant_output": "hh:mm month/day",
+      "explanation": "The original program correctly increments the date given the input, while the mutant program increments it wrongly for the given input. The output formats are equivalent though."
+    },
+    {
+      "input": [
+        "+10.5min",
+        "-5day"
+      ],
+      "original_output": "%H:%M %h %d",
+      "mutant_output": "%H:%M %D",
+      "explanation": "The original program correctly increments the date given the input, while the mutant program increments it wrongly for the given input. The output formats are non-equivalent though. (Note: hh and day prints a zero-padding while H and D don't)"
+    }
+  ]
+},{
+  "mutant_program": "muta534_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1 day",
+        "+2 hours",
+        "+30 min"
+      ],
+      "original_output": "hh:mm Mon DD\n",
+      "mutant_output": "07/14/21\n",
+      "explanation": "The original program will add the specified time interval to the current date, while the mutated program will only output the current date."
+    },
+    {
+      "input": [
+        "-2 weeks",
+        "+3 days"
+      ],
+      "original_output": "hh:mm Mon DD\n",
+      "mutant_output": "date+: missing unit\n",
+      "explanation": "The original program will subtract 2 weeks and add 3 days from the current date, while the mutated program will produce an error message due to the missing 'missing()' function."
+    }
+  ]
+},{
+  "mutant_program": "muta538_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-151200",
+        "1",
+        "day"
+      ],
+      "original_output": "22:00 Mar 31\n",
+      "mutant_output": "22:00 Mar 30\n",
+      "explanation": "The original program correctly subtracts 1 day from the date -151200, resulting in Mar 31. The mutant program incorrectly subtracts 1 day from the date, resulting in Mar 30."
+    },
+    {
+      "input": [
+        "0",
+        "1",
+        "month"
+      ],
+      "original_output": "00:00 Jan 01\n",
+      "mutant_output": "00:00 Feb 01\n",
+      "explanation": "The original program correctly increases the date by 1 month, resulting in Feb 01. The mutant program also correctly increases the date by 1 month, but the output is different because the date is converted to a local time."
+    }
+  ]
+},{
+  "mutant_program": "muta539_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1min"
+      ],
+      "original_output": "current time plus 1 minute in default format",
+      "mutant_output": "current time plus 1 minute in default format",
+      "explanation": "Both the original and the mutant program will output the same result because there are only non-deterministic changes."
+    },
+    {
+      "input": [
+        "-10sec",
+        "+1mon"
+      ],
+      "original_output": "current time minus 10 seconds plus 1 month in default format",
+      "mutant_output": "current time minus 10 seconds plus 1 month in default format",
+      "explanation": "Both the original and the mutant program will output the same result because there are only non-deterministic changes."
+    },
+    {
+      "input": [
+        "-1year",
+        "+6sec",
+        "+3day"
+      ],
+      "original_output": "current time minus 1 year plus 6 seconds plus 3 days in default format",
+      "mutant_output": "current time plus 6 seconds plus 3 days minus 1 year in default format",
+      "explanation": "The original program handles the order of the arguments to increment the time while the mutant program does not. Therefore, the test results in different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta545_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "day"
+      ],
+      "original_output": "21:53 Jun 06\n",
+      "mutant_output": "21:53 Jun 06",
+      "explanation": "Both outputs return the same date and time, however, the original program includes a newline character at the end of the output and the mutant program does not."
+    },
+    {
+      "input": [
+        "-1",
+        "week"
+      ],
+      "original_output": "21:53 May 24\n",
+      "mutant_output": "21:53 May 24",
+      "explanation": "Both outputs return the same date and time but the original program includes a newline character at the end of the output and the mutant program does not."
+    },
+    {
+      "input": [
+        "+10",
+        "hour"
+      ],
+      "original_output": "07:53 Jun 07\n",
+      "mutant_output": "07:53 Jun 07",
+      "explanation": "Both outputs return the same date and time but the original program includes a newline character at the end of the output and the mutant program does not."
+    }
+  ]
+},{
+  "mutant_program": "muta548_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta549_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-3456",
+        "10",
+        "day"
+      ],
+      "original_output": "Sun Jul 21 22:13:44 1996\n",
+      "mutant_output": "Sun Jul 21 22:13:34 1996\n",
+      "explanation": "The mutant code has a syntax error in the while loop condition, which resulted in not iterating through the arguments properly. This caused the function to miss one of the arguments that specifies the increment, resulting in a different time."
+    },
+    {
+      "input": [
+        "+4567",
+        "3.5",
+        "hour"
+      ],
+      "original_output": "Wed Jul 24 07:49:47 1996\n",
+      "mutant_output": "Wed Jul 24 11:19:47 1996\n",
+      "explanation": "The mutant code has a syntax error in the while loop condition, which resulted in not iterating through the arguments properly. This caused the function to miss one of the arguments that specifies the increment, resulting in a different time."
+    },
+    {
+      "input": [
+        "+6789",
+        "2",
+        "week"
+      ],
+      "original_output": "Wed Aug 07 12:31:19 1996\n",
+      "mutant_output": "Wed Aug 21 12:31:19 1996\n",
+      "explanation": "The mutant code has a syntax error in the while loop condition, which resulted in not iterating through the arguments properly. This caused the function to miss one of the arguments that specifies the increment, resulting in a different time."
+    }
+  ]
+},{
+  "mutant_program": "muta560_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1000",
+        "1day",
+        "1hour"
+      ],
+      "original_output": "22:00 Oct 13",
+      "mutant_output": "05:00 Oct 12",
+      "explanation": "The original program uses the correct value of tloc by converting the string argument to a long int using the 'atol' function and incrementing it according to the specified time. The mutant code incorrectly assigns the value of argv[1] to tloc without converting it to a long int, resulting in unexpected behavior."
+    },
+    {
+      "input": [
+        "+1000",
+        "1day",
+        "1hour"
+      ],
+      "original_output": "08:00 Oct 15",
+      "mutant_output": "09:00 Oct 15",
+      "explanation": "In this case, the mutant code happens to output the same result as the original program. This is because the invalid assignment of argv[1] to tloc happens to result in a valid long int due to the specific input value provided."
+    },
+    {
+      "input": [
+        "now",
+        "2year"
+      ],
+      "original_output": "date+: Bad format character: 'o'\n",
+      "mutant_output": "date+: missing unit\n",
+      "explanation": "The original program detects invalid input with a specific error message, while the mutant code outputs a different error message for a different scenario. This indicates that the two programs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta563_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1week"
+      ],
+      "original_output": "Tue May 19 00:00:00 2020\n",
+      "mutant_output": "Tue May 12 00:00:00 2020\n",
+      "explanation": "The original program adds the specified time correctly to the current date, while the mutated version adds a week to an arbitrary date passed as argument."
+    },
+    {
+      "input": [
+        "-2day"
+      ],
+      "original_output": "Sat May 09 00:00:00 2020\n",
+      "mutant_output": "Sun May 10 00:00:00 2020\n",
+      "explanation": "The original program subtracts the specified time correctly from the current date, while the mutated version subtracts 2 days from an arbitrary date passed as argument."
+    }
+  ]
+},{
+  "mutant_program": "muta565_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-200",
+        "-2day",
+        "+12hour",
+        "3week"
+      ],
+      "original_output": "Thu Oct 29 08:00:00 1970\n",
+      "mutant_output": "Thu Oct 29 20:00:00 1970\n",
+      "explanation": "The mutant changes the condition of the while loop in incrdate, making it include the dot character as a valid character to continue iterating. This causes the program to include the value of the first argument as the first argument after the dot, causing an unexpected increment in seconds. The output is different from the original program as a result."
+    },
+    {
+      "input": [
+        "+12400",
+        "+2hour",
+        "2week",
+        "-1day"
+      ],
+      "original_output": "Thu Nov 26 13:06:40 1970\n",
+      "mutant_output": "Thu Nov 26 01:06:40 1970\n",
+      "explanation": "The mutant program changes the order of the arguments passed to incrdate, which affects the order in which values are added to the total time accumulator. This results in a different total time, which causes the output to differ from the original program."
+    },
+    {
+      "input": [
+        "+345600",
+        "-2day"
+      ],
+      "original_output": "Tue Dec  1 00:00:00 1970\n",
+      "mutant_output": "Sun Nov 29 00:00:00 1970\n",
+      "explanation": "The mutant program changes the value to be added to the tloc variable before calling localtime, which causes the output to differ due to the different value of tloc."
+    }
+  ]
+},{
+  "mutant_program": "muta566_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+5sec"
+      ],
+      "original_output": "Tue May 18 17:31:34 2021\n",
+      "mutant_output": "Tue May 18 17:31:39 2021\n",
+      "explanation": "The mutant code modified the condition in the while loop in the incrdate function, replacing logical OR operators with bitwise OR operators. This change does not affect the output, but it does make the code less readable and understandable."
+    },
+    {
+      "input": [
+        "-2day +3hour"
+      ],
+      "original_output": "Sun May 16 14:31:34 2021\n",
+      "mutant_output": "Wed May 19 11:31:34 2021\n",
+      "explanation": "Test case to show the difference in outputs. The mutation affects the logic of the while loop, causing the loop to terminate before actually processing the second argument. As a result, the mutation fails to increment both days and hours, leading to a different output from the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta568_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-500",
+        "5",
+        "day"
+      ],
+      "original_output": "Mon May 25 17:12:47 1981\n",
+      "mutant_output": "Mon Jun 15 17:12:47 1981\n",
+      "explanation": "The mutant program changes the condition for the while loop in the incrdate function, which causes it to accept '-' and '+' as valid characters for incrementing or decrementing the date. This results in a different output for the same inputs."
+    },
+    {
+      "input": [
+        "+100",
+        "2",
+        "hour"
+      ],
+      "original_output": "Wed Jul 15 19:47:11 2020\n",
+      "mutant_output": "Wed Jul 15 21:47:11 2020\n",
+      "explanation": "The mutant program still changes the condition for the while loop in the incrdate function, resulting in a different output for the same inputs."
+    },
+    {
+      "input": [
+        "-1000",
+        "3",
+        "week"
+      ],
+      "original_output": "Sun Dec 13 17:22:30 1970\n",
+      "mutant_output": "Sun Jan 03 17:22:30 1971\n",
+      "explanation": "The mutant program still changes the condition for the while loop in the incrdate function, resulting in a different output for the same inputs."
+    }
+  ]
+},{
+  "mutant_program": "muta570_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "hour"
+      ],
+      "original_output": "09:25 Oct 01\n",
+      "mutant_output": "09:25 Oct 32\n",
+      "explanation": "The original program correctly increments the time by one hour, while the mutant program increments the date by one day instead, resulting in a different output."
+    },
+    {
+      "input": [
+        "-1",
+        "week"
+      ],
+      "original_output": "08:25 Sep 24\n",
+      "mutant_output": "08:25 Sep 23\n",
+      "explanation": "The original program correctly decrements the time by one week, while the mutant program decrements the date by one day instead, resulting in a different output."
+    },
+    {
+      "input": [
+        "+10.5",
+        "sec",
+        "+2",
+        "min",
+        "+1",
+        "hour"
+      ],
+      "original_output": "08:38:10 Oct 01\n",
+      "mutant_output": "08:41:10 Oct 01\n",
+      "explanation": "The original program correctly increments the time by 10.5 seconds, 2 minutes and 1 hour, while the mutant program only increments the time by 10.5 seconds and 1 hour, resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta572_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "day"
+      ],
+      "original_output": "Tue Dec 22 00:00:00 2020\n",
+      "mutant_output": "Tue Dec 23 00:00:00 2020\n",
+      "explanation": "The original program correctly increments the date by one day, but the mutant code does not increment the date at all since it does not properly handle the while loop condition. "
+    },
+    {
+      "input": [
+        "-2",
+        "week"
+      ],
+      "original_output": "Tue Dec 08 00:00:00 2020\n",
+      "mutant_output": "Tue Dec 01 00:00:00 2020\n",
+      "explanation": "The original program correctly decrements the date by two weeks, but the mutant code increments the date by two since the while loop condition is incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta574_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Wed Jul 21 00:00:00 2021\n",
+      "mutant_output": "Wed Jul 21 00:00:01 2021\n",
+      "explanation": "The mutant program changes the condition inside the while loop in the incrdate function, making it hard to read and understand. It also changes the initial values of variables total and value, making the program not equivalent to the original. The input is a single argument '+1day' and it increases the current date by one day."
+    },
+    {
+      "input": [
+        "-1week"
+      ],
+      "original_output": "Tue Jun 29 00:00:00 2021\n",
+      "mutant_output": "Tue Jun 29 00:00:01 2021\n",
+      "explanation": "The mutant program fails to properly handle negative increments, because it changes the if condition in the while loop, eliminating the check for negative values. Therefore, the outputs are different and incorrect for negative increments. The input is a single argument '-1week' and it decreases the current date by one day."
+    },
+    {
+      "input": [
+        "2weeks"
+      ],
+      "original_output": "Tue Aug  3 00:00:00 2021\n",
+      "mutant_output": "Tue Aug  3 00:00:02 2021\n",
+      "explanation": "The input is a single argument '2weeks' and it increases the current date by two weeks. The outputs are different due to the same failure to handle negative increments properly, causing the mutant program to add two seconds to the total increment instead of two weeks."
+    }
+  ]
+},{
+  "mutant_program": "muta579_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "10",
+        "-1hour"
+      ],
+      "original_output": "Mon Mar 01 08:00:10 1971\n",
+      "mutant_output": "Sun Feb 28 23:00:10 1971\n",
+      "explanation": "The mutant code does not properly update the month and year increments, leading to a different output compared to the original program"
+    },
+    {
+      "input": [
+        "1000000000",
+        "+1day"
+      ],
+      "original_output": "Fri Sep 08 21:46:40 2001\n",
+      "mutant_output": "Sat Sep 08 00:00:00 2001\n",
+      "explanation": "The mutant code does not properly update the total time increment, leading to a different output compared to the original program"
+    }
+  ]
+},{
+  "mutant_program": "muta610_date-plus.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "-d",
+        "1",
+        "day",
+        "+",
+        "1",
+        "hour"
+      ],
+      "original_output": "Wed Sep 28 01:00:00 2022\n",
+      "mutant_output": "Wed Sep 28 01:00:00 2022\n",
+      "explanation": "The mutant code performs the same operations as the original code, generating the same output."
+    },
+    {
+      "input": [
+        "-d",
+        "2",
+        "day",
+        "+",
+        "3",
+        "hour"
+      ],
+      "original_output": "Thu Sep 29 03:00:00 2022\n",
+      "mutant_output": "Thu Sep 29 03:00:00 2022\n",
+      "explanation": "The mutant code performs the same operations as the original code, generating the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta616_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+2hour",
+        "+1min"
+      ],
+      "original_output": "13:42 Jun 24",
+      "mutant_output": "13 42 Jun 24",
+      "explanation": "The mutant code has a syntax error in the while condition, which causes it to not properly process arguments in certain cases. The test input of \"+2hour\" and \"+1min\" should result in the original program outputting a date and time with a 2 hour and 1 minute increment. However, the mutant program output only the hour and minute values separated by a space."
+    },
+    {
+      "input": [
+        "-1day",
+        "-1hour",
+        "-30min"
+      ],
+      "original_output": "12:10 Jun 22",
+      "mutant_output": "12:10 Jun 22",
+      "explanation": "This test input should result in the same output for both the original program and mutant program, as they are equivalent in this case. The output should be a date and time with a 1 day, 1 hour, and 30 minute decrement."
+    }
+  ]
+},{
+  "mutant_program": "muta621_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-300s",
+        "%H:%M %h %d"
+      ],
+      "original_output": "19:03 Aug 17\n",
+      "mutant_output": "14:03 Aug 17\n",
+      "explanation": "The mutant code changes the condition on the while loop in the incrdate function. The original code checks if the argument starts with a digit, a separator, or a sign. The mutant code instead checks if the character pointed by the double pointer to argv is a digit or a dash and if the character pointer to Argv[0] is a digit or a dash. This causes the loop in the mutant code to iterate incorrectly and produce a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta628_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Mon May 24 00:00:00 2021\n",
+      "mutant_output": "Tue May 25 00:00:00 2021\n",
+      "explanation": "The original program is supposed to increment the current date by the specified time. However, the mutant introduces a syntax error in the while loop condition, leading to an infinite loop and a different output. The test case adds one day to the current date."
+    },
+    {
+      "input": [
+        "+1hour"
+      ],
+      "original_output": "Mon May 24 01:00:00 2021\n",
+      "mutant_output": "Tue May 25 01:00:00 2021\n",
+      "explanation": "Both programs increment the current date by the specified time. The test case adds one hour to the current date."
+    },
+    {
+      "input": [
+        "-1hour"
+      ],
+      "original_output": "Sun May 23 23:00:00 2021\n",
+      "mutant_output": "Tue May 25 23:00:00 2021\n",
+      "explanation": "Both programs increment and decrement the current date by the specified time. The test case subtracts one hour from the current date."
+    }
+  ]
+},{
+  "mutant_program": "muta676_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1",
+        "1day",
+        "+2",
+        "2min"
+      ],
+      "original_output": "\n18:03 Aug 14",
+      "mutant_output": "\n18:01 Aug 14",
+      "explanation": "The original program correctly increments the input date by 1 day and 2 minutes, while the mutant program fails to increment the time correctly and outputs the wrong date."
+    },
+    {
+      "input": [
+        "1598400008",
+        "+5",
+        "1month",
+        "-20",
+        "900",
+        "+2",
+        "1day"
+      ],
+      "original_output": "\n15:20 Sep 13",
+      "mutant_output": "\n15:20 Nov 13",
+      "explanation": "The original program increments the input date by 5 seconds, 1 month, -20 seconds, 900 seconds, and 1 day and outputs the correct date, while the mutant program increments the input date by 5 seconds, 1 month, -20 seconds, 900 seconds, and 1 day incorrectly and outputs the wrong date."
+    }
+  ]
+},{
+  "mutant_program": "muta678_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "sec"
+      ],
+      "original_output": "01:00 Aug 28\n",
+      "mutant_output": "01:00 Aug 28  \n",
+      "explanation": "The original program increments the month and year when the unit is month or year. The mutant does not increment them, producing a different output."
+    },
+    {
+      "input": [
+        "+1",
+        "week"
+      ],
+      "original_output": "00:00 Sep 04\n",
+      "mutant_output": "00:00 Sep 04  \n",
+      "explanation": "The original program increments the day by 7 when the unit is week. The mutant does not increment it, producing a different output."
+    },
+    {
+      "input": [
+        "+1",
+        "day",
+        "+1",
+        "hour",
+        "+30",
+        "min"
+      ],
+      "original_output": "01:30 Aug 29\n",
+      "mutant_output": "01:30 Aug 29  \n",
+      "explanation": "Both programs increment the time, day, and month correctly, resulting in equivalent outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta680_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100 sec"
+      ],
+      "original_output": "01:00 Jul 07",
+      "mutant_output": "22:14 Jul 06",
+      "explanation": "The original program adds the specified time to the current time, while the mutant program adds the specified time to a fixed value (100 seconds before Jan 1, 1970). Therefore, even with the same input, the output will differ."
+    },
+    {
+      "input": [
+        "1 week",
+        "1 day",
+        "1 hour"
+      ],
+      "original_output": "18:00 Jul 14",
+      "mutant_output": "02:00 Jul 14",
+      "explanation": "The original program adds the specified time to the current time, while the mutant program adds the specified time to a fixed value (100 seconds before Jan 1, 1970). Therefore, even with the same input, the output will differ."
+    }
+  ]
+},{
+  "mutant_program": "muta714_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1",
+        "1hour"
+      ],
+      "original_output": "01:00 Jan 01\n",
+      "mutant_output": "01:00 Jan 02\n",
+      "explanation": "The mutation changed the condition in the while loop of the incrdate function, making it always true even if the argument list is empty, causing an infinite loop. This leads to an incorrect output for the mutated program."
+    },
+    {
+      "input": [
+        "+1hour",
+        "+1min"
+      ],
+      "original_output": "01:01 Jan 01\n",
+      "mutant_output": "01:02 Jan 01\n",
+      "explanation": "The inputs add 1 hour and 1 minute to the current date. The mutation did not affect this calculation, so the output remains the same."
+    },
+    {
+      "input": [
+        "100years"
+      ],
+      "original_output": "00:00 Jan 01, 2121\n",
+      "mutant_output": "00:00 Jan 01, -9242\n",
+      "explanation": "The input adds 100 years to the current date. The mutation changed the value of yearincr to 0.0, effectively preventing any year increment from happening. This leads to an incorrect output for the mutated program."
+    }
+  ]
+},{
+  "mutant_program": "muta726_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-300",
+        "10",
+        "sec"
+      ],
+      "original_output": "22:28 Oct 05",
+      "mutant_output": "16:28 Oct 05",
+      "explanation": "The mutant code always sets the month and year increments to 0, causing the dates to not increment accordingly"
+    },
+    {
+      "input": [
+        "734400",
+        "2",
+        "week"
+      ],
+      "original_output": "00:00 Dec 19",
+      "mutant_output": "00:00 Dec 05",
+      "explanation": "The mutant code does not handle the month and year increments correctly, causing the date to not increment accordingly"
+    },
+    {
+      "input": [
+        "-172800",
+        "24",
+        "hour"
+      ],
+      "original_output": "22:28 Oct 04",
+      "mutant_output": "22:28 Oct 02",
+      "explanation": "The mutant code does not handle the month and year increments correctly, causing the date to not increment accordingly"
+    }
+  ]
+},{
+  "mutant_program": "muta727_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Thu Jul 22 00:00:00 2021\n",
+      "mutant_output": "Thu Jul 23 00:00:00 2021\n",
+      "explanation": "The original program correctly increments the date by one day. The mutant program, on the other hand, incorrectly increments the month instead of the day. "
+    },
+    {
+      "input": [
+        "-1hour"
+      ],
+      "original_output": "Wed Jul 21 23:00:00 2021\n",
+      "mutant_output": "Wed Jul 21 22:00:00 2021\n",
+      "explanation": "The original program correctly decrements the hour by one, while the mutant program also decrements the hour by one but instead of displaying 23:00:00, it displays 22:00:00."
+    },
+    {
+      "input": [
+        "+2.5weeks"
+      ],
+      "original_output": "Tue Aug 10 00:00:00 2021\n",
+      "mutant_output": "Tue Aug 10 12:00:00 2021\n",
+      "explanation": "The original program correctly increments the date by 2.5 weeks. The mutant program increments the date by 2.5 weeks too but, instead of ignoring the decimal places, it increments the time by 12 hours."
+    }
+  ]
+},{
+  "mutant_program": "muta731_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-500"
+      ],
+      "original_output": "Tue Sep 22 16:48:40 1987\n",
+      "mutant_output": "date+: missing unit\n",
+      "explanation": "The mutant code has a missing variable declaration for argv, causing the code to return an error message when trying to run the program, while the original program runs and returns the incremented date as expected."
+    },
+    {
+      "input": [
+        "-100000",
+        "2.5",
+        "day"
+      ],
+      "original_output": "Sun Jul 06 23:02:20 1969\n",
+      "mutant_output": "date+: missing unit\n",
+      "explanation": "The mutant code has the same error as in the previous case, and returns an error message instead of the expected incremented date."
+    }
+  ]
+},{
+  "mutant_program": "muta732_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta739_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day",
+        "+10min",
+        "-50sec"
+      ],
+      "original_output": "Original program output",
+      "mutant_output": "Mutant program output",
+      "explanation": "The mutant program changes the missing() function by adding a condition that will never be true, causing the function to behave differently from the original program. This can be observed by passing an argument that does not match any of the unit strings defined in the unit array."
+    },
+    {
+      "input": [
+        "-1year",
+        "-6mon",
+        "+13day"
+      ],
+      "original_output": "Original program output",
+      "mutant_output": "Mutant program output",
+      "explanation": "Another difference between the original and mutant program is that the mutated version takes the input date from argv[1] without checking that there is actually a valid value at that position, potentially leading to unexpected behaviors. This can be shown by passing an empty argument to incrdate(), causing tloc to be set to 0."
+    }
+  ]
+},{
+  "mutant_program": "muta754_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "-5",
+        "+2sec"
+      ],
+      "original_output": "Mon Dec 16 16:50:12 2019\n",
+      "mutant_output": "Mon Dec 16 16:54:08 2019\n",
+      "explanation": "The original program code considers incrementing 'year' as a separate operation from incrementing 'month', while the mutant code increments both of them jointly. Therefore, they will produce different outputs when given inputs involving increments to both these units. This test increments time by 1 second and year by 2 and decrements it by 5 days, so there is a clear difference in the outputs produced."
+    }
+  ]
+},{
+  "mutant_program": "muta774_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-60",
+        "10min"
+      ],
+      "original_output": "17:54 Sep 15",
+      "mutant_output": "17:53 Sep 15",
+      "explanation": "The mutant code has a bitwise OR operation instead of a logical OR operation in the for loop condition when searching for the unit, thus leading to an infinite loop and different output. The test adds a negative value to subtract 60 seconds from the current time, and adds 10 minutes to the resulting time to output the time and date in format HH:MM Mon DD."
+    }
+  ]
+},{
+  "mutant_program": "muta776_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+10sec"
+      ],
+      "original_output": "Mon Aug  2 12:17:41 2021\n",
+      "mutant_output": "Mon Aug  2 16:23:12 2021\n",
+      "explanation": "The mutant program removed the loop that searched for the time unit and replaced it with a bitwise XOR operation that ultimately has the same result. However, it also added extra spaces when returning week day and removed the print of the year day. This test increments the time by 10 seconds."
+    },
+    {
+      "input": [
+        "+24hour"
+      ],
+      "original_output": "Mon Aug  2 12:17:41 2021\n",
+      "mutant_output": "Tue Aug  3 12:17:41 2021\n",
+      "explanation": "This test increments the time by one day. The original and mutant programs return different dates, indicating a non-equivalence of programs."
+    },
+    {
+      "input": [
+        "-1min",
+        "+1hour"
+      ],
+      "original_output": "Mon Aug  2 12:17:41 2021\n",
+      "mutant_output": "Mon Aug  2 13:17:40 2021\n",
+      "explanation": "This test decrements the time by 1 minute and increments it by 1 hour. The original and mutant programs return different times, indicating a non-equivalence of programs."
+    }
+  ]
+},{
+  "mutant_program": "muta777_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 1 year",
+        "Z"
+      ],
+      "original_output": "442838400",
+      "mutant_output": "nan",
+      "explanation": "The mutant code does not properly handle missing units, so when it encounters 'Z' it causes an error and returns NaN."
+    },
+    {
+      "input": [
+        "+1 month 1 day",
+        "442838400"
+      ],
+      "original_output": "Thu Sep 2 00:00:00 1982\n",
+      "mutant_output": "Thu Sep 2 00:00:00 1981\n",
+      "explanation": "The mutant code incorrectly increments the year instead of the month, resulting in a year of 1981 instead of 1982."
+    }
+  ]
+},{
+  "mutant_program": "muta779_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100 sec"
+      ],
+      "original_output": "08:20 Dec 23",
+      "mutant_output": "08:22 Dec 23",
+      "explanation": "The input is subtracting 100 seconds from the current date. The original program correctly calculates the date and time and outputs it, but the mutant program outputs a date and time 2 seconds later than the original program."
+    },
+    {
+      "input": [
+        "+5 min"
+      ],
+      "original_output": "08:30 Dec 23",
+      "mutant_output": "08:31 Dec 23",
+      "explanation": "The input is adding 5 minutes to the current date. Both programs output the correct date and time with a difference of 1 minute."
+    },
+    {
+      "input": [
+        "+1 year"
+      ],
+      "original_output": "08:20 Dec 23 2022",
+      "mutant_output": "08:20 Dec 23 2023",
+      "explanation": "The input is adding 1 year to the current date. The original program correctly calculates the new year, but the mutant program outputs a year 1 year later than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta804_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "100",
+        "1day",
+        "1hour",
+        "30min"
+      ],
+      "original_output": "Fri Oct  9 02:30:00 1970\n",
+      "mutant_output": "date+: missing unit\n",
+      "explanation": "The mutant program is missing a check for minimum number of arguments necessary before executing certain operations, causing it to give an error and stop execution in some cases. The original program handles this correctly by checking for this condition in the 'missing()' function."
+    },
+    {
+      "input": [
+        "1598400000",
+        "1week",
+        "-1day"
+      ],
+      "original_output": "Sun Aug 30 00:00:00 2020\n",
+      "mutant_output": "Sun Aug 29 00:00:00 2020\n",
+      "explanation": "The mutant program probably changes how it calculates the time by using a different index to find the associated time period to add to the date. Here, the program subtracts one day after adding a week, causing the final date to be incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta806_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "day"
+      ],
+      "original_output": "04:42 Apr 10",
+      "mutant_output": "04:42 Apr 11",
+      "explanation": "The original program adds the specified time to the current date, while the mutant program takes the specified time as argument and increments it to the given date. Therefore, the outputs differ"
+    },
+    {
+      "input": [
+        "-2",
+        "hours"
+      ],
+      "original_output": "02:42 Apr 09",
+      "mutant_output": "04:42 Apr 08",
+      "explanation": "The original program subtracts the specified time from the current date, while the mutant program takes the specified time as argument and decrements it from the given date. Therefore, the outputs differ"
+    }
+  ]
+},{
+  "mutant_program": "muta836_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1 hour",
+        "%T"
+      ],
+      "original_output": "22:48:37",
+      "mutant_output": "22:48:37",
+      "explanation": "The original code correctly prints the time with a one hour decrement. However, the mutant code has a syntax error in the incrdate() function, causing the program to crash and not produce any output."
+    },
+    {
+      "input": [
+        "+2 day",
+        "%a %b %d"
+      ],
+      "original_output": "Mon Nov 26",
+      "mutant_output": "Wed Jun 02",
+      "explanation": "The original code correctly adds two days and prints the abbreviated weekday and month with zero-padded date. However, the mutant code only prints the abbreviated month followed by the zero-padded date without weekday."
+    },
+    {
+      "input": [
+        "-3 year",
+        "%Y"
+      ],
+      "original_output": "2015",
+      "mutant_output": "2018",
+      "explanation": "The original code correctly subtracts three years and prints the full year. However, the mutant code prints the zero-padded year instead of the full year."
+    }
+  ]
+},{
+  "mutant_program": "muta843_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+2sec"
+      ],
+      "original_output": "00:00 Oct 02\n",
+      "mutant_output": "00:00 Oct 01\n",
+      "explanation": "The original program correctly increments the input by 2 seconds resulting in October 2nd, while the mutant code increments the date by 2 seconds and outputs October 1st."
+    },
+    {
+      "input": [
+        "-1day"
+      ],
+      "original_output": "00:00 Sep 30\n",
+      "mutant_output": "00:00 Sep 30\n",
+      "explanation": "Both programs correctly decrement the date by 1 day resulting in September 30th."
+    },
+    {
+      "input": [
+        "-2week"
+      ],
+      "original_output": "00:00 Sep 18\n",
+      "mutant_output": "00:00 Sep 16\n",
+      "explanation": "The original program correctly decrements the date by 2 weeks resulting in September 18th, while the mutant code decrements the date by 2 weeks and outputs September 16th."
+    }
+  ]
+},{
+  "mutant_program": "muta847_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "10",
+        "1day"
+      ],
+      "original_output": "Mon Jul 12 00:00:10 2021\n",
+      "mutant_output": "Thu Dec 31 19:00:10 1970\n",
+      "explanation": "The original program correctly increments the date by one day and outputs the expected result. The mutant code, on the other hand, sets the date to January 1, 1970 (unix epoch) and outputs the wrong result."
+    },
+    {
+      "input": [
+        "0",
+        "2week",
+        "-1year"
+      ],
+      "original_output": "Mon Jul 26 00:00:00 2021\n",
+      "mutant_output": "Thu Dec 31 19:00:00 1969\n",
+      "explanation": "Once again, the original program correctly increments the date by adding two weeks and subtracting one year, resulting in the expected output. However, the mutant code sets the date to the unix epoch, producing the wrong output."
+    }
+  ]
+},{
+  "mutant_program": "muta850_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta859_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta868_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-356783",
+        "1day"
+      ],
+      "original_output": "date+: missing unit",
+      "mutant_output": "Mon May  3 12:27:57 1982\n",
+      "explanation": "The original program expects at least one unit of time to be provided with the argument passed to the program. The mutant program, however, does not verify if there is any unit of time. In this test, the mutant program considers only the first argument passed, which is the timestamp, and adds 1 day to it. Therefore, it does not detect the missing unit and returns a date. The original program detects the missing unit and throws an error message."
+    },
+    {
+      "input": [
+        "-356783",
+        "1hour",
+        "1min",
+        "20s"
+      ],
+      "original_output": "Mon May  3 15:30:37 1982\n",
+      "mutant_output": "Mon May  3 12:28:20 1982\n",
+      "explanation": "In this test, the time arguments passed are equivalent. Therefore, the timestamp generated as the output by the original program and the mutant program is the same."
+    },
+    {
+      "input": [
+        "-356783",
+        "1year"
+      ],
+      "original_output": "Tue May  3 12:27:57 1983\n",
+      "mutant_output": "Mon May  2 19:39:17 1983\n",
+      "explanation": "In this test, we see a difference in the outputs of the programs. The original program adds exactly one year to the timestamp. The mutant program also adds one year, but it additionally considers the month increment variable, which means it might change the month. Also, it does not consider the day variable, which might change the date. Therefore, the output generated by the mutant program is different from the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta874_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-2.5",
+        "-day"
+      ],
+      "original_output": "Mon May 17 20:48:43 2021\n",
+      "mutant_output": "Mon May 16 08:48:43 2021\n",
+      "explanation": "The original program correctly increments the date by subtracting 2.5 days, but the mutant code increments the year even for non-year units, which causes an incorrect output."
+    },
+    {
+      "input": [
+        "-1",
+        "-week"
+      ],
+      "original_output": "Mon May 24 20:48:43 2021\n",
+      "mutant_output": "Mon May 17 20:48:43 2021\n",
+      "explanation": "The original program correctly increments the date by subtracting 1 week, but the mutant code increments the year even for non-year units, which causes an incorrect output."
+    },
+    {
+      "input": [
+        "2",
+        "+week"
+      ],
+      "original_output": "Mon Jun  7 20:48:43 2021\n",
+      "mutant_output": "Mon May 31 20:48:43 2021\n",
+      "explanation": "The original program correctly increments the date by adding 2 weeks, but the mutant code increments the year even for non-year units, which causes an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta901_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+10",
+        "hour"
+      ],
+      "original_output": "09:55 Jul 17",
+      "mutant_output": "wrong output",
+      "explanation": "The mutant code introduces a new variable '_PROTEUM_LOCAL_VAR_' that changes the behavior of the 'while' loop. Therefore, the output of the mutated program is expected to be different from the original program. Input: '+10 hour'"
+    },
+    {
+      "input": [
+        "-500000",
+        "sec"
+      ],
+      "original_output": "05:40:00 Jan 02",
+      "mutant_output": "wrong output",
+      "explanation": "The mutant code introduces a new variable '_PROTEUM_LOCAL_VAR_' that changes the behavior of the 'while' loop. Therefore, the output of the mutated program is expected to be different from the original program. Input: '-500000 sec'"
+    },
+    {
+      "input": [
+        "+1",
+        "year",
+        "+1",
+        "mon",
+        "-2",
+        "day"
+      ],
+      "original_output": "23:49:38 Jul 16",
+      "mutant_output": "wrong output",
+      "explanation": "The mutant code introduces a new variable '_PROTEUM_LOCAL_VAR_' that changes the behavior of the 'while' loop. Therefore, the output of the mutated program is expected to be different from the original program. Input: '+1 year +1 mon -2 day'"
+    }
+  ]
+},{
+  "mutant_program": "muta945_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100",
+        "10sec"
+      ],
+      "original_output": "01:22 May 07",
+      "mutant_output": "01:11 May 07",
+      "explanation": "The original program subtracts 100 seconds from the current date and then adds 10 seconds, resulting in a time of 01:22 May 07. The mutant program only adds 10 seconds, resulting in a time of 01:11 May 07."
+    },
+    {
+      "input": [
+        "+600",
+        "mon"
+      ],
+      "original_output": "04:17 May 08",
+      "mutant_output": "04:17 May 07",
+      "explanation": "The original program adds 600 seconds to the current date and then adds one month, resulting in a time of 04:17 May 08. The mutant program only adds one month, resulting in a time of 04:17 May 07."
+    },
+    {
+      "input": [
+        "now",
+        "5min",
+        "30sec",
+        "1hour"
+      ],
+      "original_output": "01:41 May 07",
+      "mutant_output": "02:39 May 07",
+      "explanation": "The original program adds 5 minutes, 30 seconds, and 1 hour to the current date, resulting in a time of 01:41 May 07. The mutant program only adds 5 minutes and 30 seconds, resulting in a time of 02:39 May 07."
+    }
+  ]
+},{
+  "mutant_program": "muta1020_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1sec"
+      ],
+      "original_output": "Mon Jun  6 14:17:18 2022\n",
+      "mutant_output": "Mon Jun  6 10:17:18 2022\n",
+      "explanation": "The mutated program does not properly handle the command-line arguments, resulting in an incorrect output."
+    },
+    {
+      "input": [
+        "-1min"
+      ],
+      "original_output": "Mon Jun  6 14:16:18 2022\n",
+      "mutant_output": "Mon Jun  6 10:16:18 2022\n",
+      "explanation": "The mutated program has the same issue as the previous test, resulting in an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta1023_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1hour"
+      ],
+      "original_output": "original output",
+      "mutant_output": "mutant output",
+      "explanation": "The original program increments the date by the specified time with handle multiple units of time and also increments the month and year based on the input. It takes one argument with multiple string representations of time. The mutant changed the argument check. Instead of checking if argument is a float or an integer, it checks if it starts with '.', '-' or '+' or is a number. This will cause infinite loop if the argument does not match any of these conditions. Therefore, it is not equivalent."
+    },
+    {
+      "input": [
+        "+1hour",
+        "2weeks",
+        "-3days"
+      ],
+      "original_output": "original output",
+      "mutant_output": "mutant output",
+      "explanation": "Both the original and mutant program takes multiple string representations of time to increment the input date by the specified time. Therefore, the test will be the same. The output of this test cannot be predicted by non-deterministic changes."
+    },
+    {
+      "input": [
+        "+1hour",
+        "2months",
+        "-3days"
+      ],
+      "original_output": "original output",
+      "mutant_output": "mutant output",
+      "explanation": "The original program increments the date by the specified time with handle multiple units of time and also increments the month and year based on the input. The mutant only changes the argument check. Therefore, the test will still produce the same outputs for both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta1024_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1 min"
+      ],
+      "original_output": "13:07 May 02\n",
+      "mutant_output": "13:05 May 02\n",
+      "explanation": "The mutant code has introduced a TRAP_ON_ZERO function in the while loop, which checks if the first character of the current argv element is '.', '-', '+', or a digit before proceeding. This causes it to skip over non-numeric inputs, whereas the original code did not have this restriction. As a result, passing the input \"-1 min\" to the mutated program will not decrement the minutes in the current time, whereas the original program will correctly decrement the minutes."
+    },
+    {
+      "input": [
+        "+5 week"
+      ],
+      "original_output": "13:07 Jun 06\n",
+      "mutant_output": "13:07 Jun 04\n",
+      "explanation": "The mutant code has the same issue as the previous test case, causing it to skip over non-numeric inputs. As a result, passing the input \"+5 week\" to the mutated program will not add 5 weeks to the current time, whereas the original program will correctly add 5 weeks."
+    }
+  ]
+},{
+  "mutant_program": "muta1026_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1sec"
+      ],
+      "original_output": "Time incremented: Tue Nov 10 14:33:22 2020\n",
+      "mutant_output": "Time incremented: Tue Nov 10 14:33:23 2020\n",
+      "explanation": "The original program correctly increments the time by one second, while the mutant increments by two seconds."
+    },
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Time incremented: Wed Nov 11 14:33:22 2020\n",
+      "mutant_output": "Time incremented: Thu Nov 12 14:33:22 2020\n",
+      "explanation": "The original program correctly increments the time by one day, while the mutant increments by two days."
+    }
+  ]
+},{
+  "mutant_program": "muta1027_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 2 day"
+      ],
+      "original_output": "Tue Mar 31 00:00:00 2020\n",
+      "mutant_output": "",
+      "explanation": "The mutant program is missing the driver function that takes command line parameters. Therefore, it will not be able to parse the input correctly and will not output anything."
+    },
+    {
+      "input": [
+        "+ 1 week"
+      ],
+      "original_output": "Thu Apr  9 00:00:00 2020\n",
+      "mutant_output": "Thu Apr  9 00:00:00 2020",
+      "explanation": "The mutant program seems to be equivalent to the original for this test case as it outputs the same date in the same format despite the minor changes."
+    },
+    {
+      "input": [],
+      "original_output": "00:00 Mar 31\n",
+      "mutant_output": "00:00 Mar 31",
+      "explanation": "The mutant program seems to be equivalent to the original for this test case as it outputs the same time and date in the same format despite the minor changes."
+    }
+  ]
+},{
+  "mutant_program": "muta1029_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "hour"
+      ],
+      "original_output": "Original program will output the current date/time plus one hour in the same format as the default format (%H:%M %h %d).",
+      "mutant_output": "Mutant program will output one hour after epoch time (January 1, 1970) in the same format as the default format (%H:%M %h %d).",
+      "explanation": "The mutant code does not use the 'getincr' function to extract the time to be changed, instead it directly extracts the time from the argument list passed to the program. This leads to the mutant code adding the specified time to one hour after epoch instead of the current time when passed a '+1 hour' argument. "
+    }
+  ]
+},{
+  "mutant_program": "muta1030_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1hour"
+      ],
+      "original_output": "current time plus 1 hour",
+      "mutant_output": "current time minus 1 hour",
+      "explanation": "The mutant code changes the logic of the program to decrement the time instead of incrementing it, which will result in a different output."
+    },
+    {
+      "input": [
+        "-2days",
+        "+3hours"
+      ],
+      "original_output": "current time minus 2 days plus 3 hours",
+      "mutant_output": "current time plus 2 days minus 3 hours",
+      "explanation": "The mutant code changes the logic of the program to subtract 3 hours instead of adding them, which will result in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta1032_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "date+: missing unit\n",
+      "mutant_output": "date+: missing unit\n",
+      "explanation": "Both programs will output the same error message when there are no arguments provided."
+    },
+    {
+      "input": [
+        "-60",
+        "2",
+        "hour"
+      ],
+      "original_output": "22:00 Jul 06\n",
+      "mutant_output": "22:00 Jul 06\n",
+      "explanation": "Both programs will correctly output the date with an hour subtracted from the current local time."
+    },
+    {
+      "input": [
+        "100000",
+        "1",
+        "week"
+      ],
+      "original_output": "04:46 Jul 13\n",
+      "mutant_output": "04:46 Jul 13\n",
+      "explanation": "Both programs will correctly output the date with a week added to the provided initial time."
+    },
+    {
+      "input": [
+        "-1234567",
+        "1",
+        "mon"
+      ],
+      "original_output": "07:42 Nov 14\n",
+      "mutant_output": "07:42 Nov 14\n",
+      "explanation": "Both programs will correctly output the date with a month subtracted from the provided initial time."
+    },
+    {
+      "input": [
+        "2450133",
+        "2",
+        "year"
+      ],
+      "original_output": "Feb 17 2027\n",
+      "mutant_output": "Feb 17 2027\n",
+      "explanation": "Both programs will correctly output the date with two years added to the provided initial time."
+    }
+  ]
+},{
+  "mutant_program": "muta1033_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1",
+        "1day"
+      ],
+      "original_output": "Mon Jul 12 00:00:00 2021\n",
+      "mutant_output": "Mon Jul 11 00:00:00 2021\n",
+      "explanation": "The original code allows for negative values in argv to subtract from the current time, while the mutant code does not handle negative values correctly. This is shown in this test case where the original code correctly subtracts 1 day from the current time, while the mutant code simply sets the time to the start of the current day."
+    },
+    {
+      "input": [
+        "+3.5",
+        "1day"
+      ],
+      "original_output": "Thu Jul 15 12:00:00 2021\n",
+      "mutant_output": "Thu Jul 15 00:00:00 2021\n",
+      "explanation": "The original code correctly adds 3.5 seconds to the current time and then adds 1 day, resulting in a time of 12pm. The mutant code, however, sets the time to the start of the current day and then adds 3.5 seconds and 1 day, resulting in a time of midnight."
+    },
+    {
+      "input": [
+        "1",
+        "1year"
+      ],
+      "original_output": "Wed Jul 06 00:00:01 2022\n",
+      "mutant_output": "Tue Jul 05 23:59:59 2022\n",
+      "explanation": "The original code correctly increments the year by 1 and sets the time to the current time plus 1 second. The mutant code, however, advances the time by 1 year and then sets the time to 1 second before midnight, resulting in a time that is one second off."
+    }
+  ]
+},{
+  "mutant_program": "muta1035_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta1036_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1800",
+        "1day"
+      ],
+      "original_output": "08:03 Jun 29",
+      "mutant_output": "08:03 Jun 30",
+      "explanation": "The original program adds the specified time to the current date, while the mutant program seems to add the specified time to a given date (-1800 in this case). Thus, the mutant program outputs a day after the original program."
+    },
+    {
+      "input": [
+        "0",
+        "1hour"
+      ],
+      "original_output": "02:25 Jul 11",
+      "mutant_output": "03:25 Jul 11",
+      "explanation": "The original program adds the specified time to the current date, while the mutant program seems to add the specified time to a fixed date (epoch time 0 in this case). Thus, the mutant program outputs an hour after the original program."
+    },
+    {
+      "input": [
+        "-86400",
+        "1day"
+      ],
+      "original_output": "02:25 Jul 10",
+      "mutant_output": "03:25 Jul 11",
+      "explanation": "The original program adds the specified time to the current date, while the mutant program seems to add the specified time to a fixed date (epoch time -86400 in this case). Thus, the mutant program outputs a day after the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta1038_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1hour"
+      ],
+      "original_output": "Current time",
+      "mutant_output": "Updated time",
+      "explanation": "The original program updates the time based on the given input, while the mutant code has a conditional statement that includes a call to a TRAP_ON_NEGATIVE function, which is not present in the original code, resulting in potentially different behavior depending on the input."
+    },
+    {
+      "input": [
+        "-3sec"
+      ],
+      "original_output": "Current time minus 3 seconds",
+      "mutant_output": "Updated time minus 3 seconds",
+      "explanation": "Both programs update the time based on the input, but the use of TRAP_ON_NEGATIVE in the mutant code can result in a different output if it traps on a negative input while the original code does not."
+    }
+  ]
+},{
+  "mutant_program": "muta1041_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1hour",
+        "+1day"
+      ],
+      "original_output": "Original program output: 09:00 Jul 02\n",
+      "mutant_output": "Mutant program output: 10:53 Jul 01\n",
+      "explanation": "The mutant program changed the way 'unit' array is accessed in the for loop of the 'incrdate' function to prevent a negative index, although this makes no sense since 'unit' includes a sentinel that makes the loop stop before going out of bounds. As a result of this change, the output is different than the original program when incrementing both hours and days."
+    }
+  ]
+},{
+  "mutant_program": "muta1044_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1",
+        "1day"
+      ],
+      "original_output": "Mon Mar 29 23:59:59 2021\n",
+      "mutant_output": "Mon Mar 29 23:59:58 2021\n",
+      "explanation": "The mutant introduces a TRAP_ON_NEGATIVE function, which does not exist in the original program, and instead of searching for the i-th unit, it searches for the TRAP_ON_NEGATIVE(i)-th unit. This results in a different unit being selected and, consequently, in a different output."
+    },
+    {
+      "input": [
+        "1617074250",
+        "+15sec"
+      ],
+      "original_output": "Thu Mar 30 00:10:05 2021\n",
+      "mutant_output": "Thu Mar 30 00:10:05 2021\n",
+      "explanation": "The input for both programs is the same, and indicates to add 15 seconds to the given timestamp. Both programs select the 'sec' unit successfully and add 15 seconds to the timestamp. The resulting output is the same."
+    }
+  ]
+},{
+  "mutant_program": "muta1047_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-8000",
+        "1",
+        "hour"
+      ],
+      "original_output": "23:00 Dec 31\n",
+      "mutant_output": "22:00 Dec 31\n",
+      "explanation": "The mutation changes the comparison operator in the for loop from != to <=. This causes the program to include the last unit passed as an argument in the increment calculation. In this test, the last unit is 'hour' and, therefore, the original program outputs 23:00 Dec 31, while the mutant program outputs 22:00 Dec 31."
+    },
+    {
+      "input": [
+        "+157680000",
+        "1",
+        "year"
+      ],
+      "original_output": "00:00 Jan 01\n",
+      "mutant_output": "23:00 Dec 31\n",
+      "explanation": "The mutation changes the value assigned to the yearincr variable from 0.0 to 1.0 in the last else if statement. This causes the program to increment the year by 1 even when this is not intended. In this test, the original input corresponds to 5 years, so the output should be the first day of the year of the 6th year. The original program gives the expected output, whereas the mutant program outputs the last day of year 5."
+    }
+  ]
+},{
+  "mutant_program": "muta1050_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "hour"
+      ],
+      "original_output": "22:48 Dec 09",
+      "mutant_output": "date+: Bad format character: 'p'",
+      "explanation": "The mutant has a trap condition that triggers when the unit is not recognizable. In this test case, the unit \"hour\" is recognized, but if we change it to \"houri\", it will trigger the trap and exit instead of printing the date."
+    },
+    {
+      "input": [
+        "+1",
+        "week",
+        "+1.5",
+        "mon"
+      ],
+      "original_output": "21:48 Dec 16",
+      "mutant_output": "21:48 Dec 16",
+      "explanation": "Both programs output the same date when adding 1 week and 1.5 months to the current date."
+    },
+    {
+      "input": [
+        "-500000000",
+        "sec"
+      ],
+      "original_output": "20:30 Jun 23",
+      "mutant_output": "19:25 Jun 23",
+      "explanation": "The original program subtracts 5 million seconds from the current date, while the mutant subtracts 500 million seconds. This results in a different date output."
+    }
+  ]
+},{
+  "mutant_program": "muta1053_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-2",
+        "1",
+        "hour"
+      ],
+      "original_output": "07:00 Sep 2",
+      "mutant_output": "error",
+      "explanation": "The original program takes the first argument as the starting date, but the mutant code reads from argv[1] directly without checking it. Thus, if the first argument is not provided or is not a valid number, the program will crash with a segmentation fault."
+    },
+    {
+      "input": [
+        "1609812000",
+        "1",
+        "day"
+      ],
+      "original_output": "00:00 Jan 5",
+      "mutant_output": "00:00 Jan 6",
+      "explanation": "The original program correctly adds one day to the input date (Jan 4), while the mutant code adds nothing. Therefore, the outputs are different."
+    },
+    {
+      "input": [
+        "1609879210",
+        "3",
+        "hour"
+      ],
+      "original_output": "09:00 Jan 5",
+      "mutant_output": "09:00 Jan 5",
+      "explanation": "In this case, both programs should add 3 hours to the input date. They use the same function to increment the date and also update the month and year accordingly. Therefore, the outputs are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta1056_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "10",
+        "+",
+        "1",
+        "hour",
+        "-",
+        "30",
+        "min"
+      ],
+      "original_output": "Tue Mar 30 10:30:00 2021\n",
+      "mutant_output": "Tue Mar 30 09:30:00 2021\n",
+      "explanation": "The mutant program introduces a TRAP_ON_NEGATIVE function call in the line 'if (i < 5)   (value *= conv[TRAP_ON_NEGATIVE(i)]) ;'. This function is not present in the original code. It is not clear what is the intention of using this function, so it is possible that it is just a mistake, but it changes the output of the program. The test provided subtracts 30 minutes from the current date and it is expected that the output of the program reflects this. The original program output is correct, but the mutant program output subtracts one additional hour."
+    }
+  ]
+},{
+  "mutant_program": "muta1059_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1000",
+        "1day"
+      ],
+      "original_output": "Mon Dec 14 00:00:00 1970",
+      "mutant_output": "Sat Jan 10 22:13:20 1970",
+      "explanation": "The original program increments the date by \"1day\", resulting in December 15, 1970, whereas the mutant program increments the date by -1000 seconds and \"1day\", resulting in January 10, 1970."
+    },
+    {
+      "input": [
+        "+604800",
+        "1min"
+      ],
+      "original_output": "Mon Dec 21 00:01:00 1970",
+      "mutant_output": "Sun Jan  4 23:54:00 1970",
+      "explanation": "The original program increments the date by \"1min\" and \"1week\", resulting in December 28, 1970, whereas the mutant program increments the date by +604800 seconds and \"1min\", resulting in January 5, 1970."
+    },
+    {
+      "input": [
+        "60",
+        "1week"
+      ],
+      "original_output": "Mon Dec  7 00:01:00 1970",
+      "mutant_output": "Mon Dec 14 00:00:00 1970",
+      "explanation": "Both programs increment the date by \"60\" seconds and \"1week\", resulting in the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta1060_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "min"
+      ],
+      "original_output": "07:55 Aug 05\n",
+      "mutant_output": "07:56 Aug 05\n",
+      "explanation": "The original program adds the specified time to the current date and time, while the mutant program adds the specified time to the date and time 'argv[1]'."
+    },
+    {
+      "input": [
+        "+1",
+        "hour"
+      ],
+      "original_output": "08:55 Aug 05\n",
+      "mutant_output": "09:55 Aug 05\n",
+      "explanation": "The original program adds the specified time to the current date and time, while the mutant program adds the specified time to the date and time 'argv[1]'."
+    },
+    {
+      "input": [
+        "-1",
+        "day"
+      ],
+      "original_output": "00:55 Aug 04\n",
+      "mutant_output": "00:55 Aug 03\n",
+      "explanation": "The original program adds the specified time to the current date and time, while the mutant program adds the specified time to the date and time 'argv[1]'."
+    }
+  ]
+},{
+  "mutant_program": "muta1062_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1sec"
+      ],
+      "original_output": "original output of adding 1 second",
+      "mutant_output": "mutant output of adding 1 second",
+      "explanation": "The mutant code changes the value of unit[5] to 1, which means that an increment of a month should be added. The problem is that this instruction has been combined with an if statement using a macro TRAP_ON_NEGATIVE(i) that will evaluate to false in this situation (5 is not negative). Therefore, the mutant code will take out the instruction that adds a month to the total increment. This results in a different output compared to the original program for cases where the user specifies an increment of a month."
+    },
+    {
+      "input": [
+        "+3months"
+      ],
+      "original_output": "original output of adding 3 months",
+      "mutant_output": "mutant output of adding 3 months",
+      "explanation": "Since the mutant code is not equivalent to the original program, it will have a different output for any input that involves incrementing a month. This test case is just an example, but any test case that specifies an increment of a month will result in different outputs."
+    },
+    {
+      "input": [
+        "+1hour"
+      ],
+      "original_output": "original output of adding 1 hour",
+      "mutant_output": "mutant output of adding 1 hour",
+      "explanation": "This test case is just an example to show that the mutant program can still handle input that doesn't involve incrementing a month. However, the outputs will be the same in this case because the mutant code doesn't alter any instructions that are executed when adding increments of hours, days, weeks, or years."
+    }
+  ]
+},{
+  "mutant_program": "muta1065_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1",
+        "1day"
+      ],
+      "original_output": "Sat Jul 31 23:59:59 2021\n",
+      "mutant_output": "Sat Aug  7 23:59:59 2021\n",
+      "explanation": "The original program correctly decrements the date by one day, but the mutant program increments the date by one week instead of adding 1 day. Input: '-1 1day'"
+    },
+    {
+      "input": [
+        "1295980266",
+        "-1week"
+      ],
+      "original_output": "Wed May 26 16:11:06 2010\n",
+      "mutant_output": "Wed Jun 24 16:11:06 2020\n",
+      "explanation": "The original program correctly decrements the date by one week, but the mutant program adds 10 years and 1 month to the date. Input: '1295980266 -1week'"
+    },
+    {
+      "input": [
+        "1270677373",
+        "3.5years"
+      ],
+      "original_output": "Wed Apr  7 15:02:53 2010\n",
+      "mutant_output": "Wed Sep  7 02:02:53 1983\n",
+      "explanation": "The original program correctly increments the date by 3.5 years, but the mutant program sets the month to 0 (January) and subtracts 27 years from the date. Input: '1270677373 3.5years'"
+    }
+  ]
+},{
+  "mutant_program": "muta1068_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-300 sec"
+      ],
+      "original_output": "19:17 Dec 17",
+      "mutant_output": "19:17 Dec 17",
+      "explanation": "Both programs should output the same date and time, as the mutant code only adds a trap on negative value for the year incrementation, which is not possible in this context."
+    },
+    {
+      "input": [
+        "+1 hour"
+      ],
+      "original_output": "21:19 Dec 17",
+      "mutant_output": "19:19 Dec 17",
+      "explanation": "The mutant code traps on negative values of year incrementation, which is not the case for hour. Thus, the output will be different, with two hours of difference in this case. Time zone may be a factor affecting the results."
+    }
+  ]
+},{
+  "mutant_program": "muta1071_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-600",
+        "10",
+        "hour"
+      ],
+      "original_output": "23:00 Apr 06",
+      "mutant_output": "23:00 Apr 05",
+      "explanation": "The mutant program introduces the TRAP_ON_NEGATIVE macro to check if the value being passed as an argument for year increment is negative. Since it is not negative, the program works as expected. However, the original program does not have this check and does not consider negative values for year increment. Thus, when passing a negative value for year increment (-1 in this case) the day of the month is decreased by 1, resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta1141_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1sec"
+      ],
+      "original_output": "hh:mm dd-mmm-yy",
+      "mutant_output": "hh:mm dd-mmm-yy",
+      "explanation": "Both programs should output the same result given the same input"
+    },
+    {
+      "input": [
+        "+2hour",
+        "-15min"
+      ],
+      "original_output": "%H:%M %h %d",
+      "mutant_output": "%H %T %D",
+      "explanation": "Both programs should output a different result given different input; this is a valid test since it has different input and output format for both programs"
+    },
+    {
+      "input": [
+        "+3day",
+        "+1week"
+      ],
+      "original_output": "%a %D %H:%M",
+      "mutant_output": "%S %M %H:%M:%S %d/%m/%y",
+      "explanation": "Both programs should output a different result given different input; this is a valid test since it has different input and output format for both programs"
+    }
+  ]
+},{
+  "mutant_program": "muta1171_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-12 sec"
+      ],
+      "original_output": "21:40:48",
+      "mutant_output": "21:40:36",
+      "explanation": "The original program increments the tloc variable by the total number of seconds specified by the arguments passed, while the mutant assigns this value directly to tloc, skipping the rest of the code responsible for incrementing the date. Therefore, the mutant output is expected to differ by the number of seconds specified in the input. Input: ['-12 sec']"
+    },
+    {
+      "input": [
+        "1 year 6 mon 2 week"
+      ],
+      "original_output": "11:45 Aug 03",
+      "mutant_output": "10:45 Aug 03",
+      "explanation": "In this case, the mutant code executed the same steps as the original program, but the date was decremented instead of incremented by one hour. The reason for this change is the spurious initialization of the i variable to 0. This causes the for loop condition to be evaluated to true, so it enters the loop and increments the i variable again, causing the program to skip the proper search for the right unit. Input: ['1 year 6 mon 2 week']"
+    }
+  ]
+},{
+  "mutant_program": "muta1172_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1sec"
+      ],
+      "original_output": "current date + 1 second in default format",
+      "mutant_output": "current date + 1 second in default format",
+      "explanation": "This test only has one argument, and both the original and mutant program should treat it the same way."
+    },
+    {
+      "input": [
+        "-1hour"
+      ],
+      "original_output": "current date - 1 hour in default format",
+      "mutant_output": "current date - 1 hour in default format",
+      "explanation": "This test only has one argument, and both the original and mutant program should treat it the same way."
+    },
+    {
+      "input": [
+        "-2day"
+      ],
+      "original_output": "current date - 2 days in default format",
+      "mutant_output": "current date - 4 days in default format",
+      "explanation": "This test has one argument and the resulting date should be different because of the mutant program changing the calculation."
+    }
+  ]
+},{
+  "mutant_program": "muta1173_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-511200",
+        "10min"
+      ],
+      "original_output": "14:54 Nov 17",
+      "mutant_output": "14 54 Nov 17",
+      "explanation": "The original program outputs the time in a specific format that includes colons between hours, minutes, and seconds, as well as abbreviations for the month and the day of the week. The mutant program outputs the time with spaces instead of colons and with abbreviations for the month and the day of the week missing."
+    },
+    {
+      "input": [
+        "now",
+        "5hours 30min"
+      ],
+      "original_output": "<current time>:00 Nov 24",
+      "mutant_output": "<current time> Nov 24",
+      "explanation": "The original program produces output with seconds even if the format does not include seconds, while the mutant program omits seconds altogether even when they should be included."
+    },
+    {
+      "input": [
+        "-345600",
+        "2days"
+      ],
+      "original_output": "00:00 Nov 20",
+      "mutant_output": "00 00 Nov 20",
+      "explanation": "This test is similar to the first one: the original program uses colons, while the mutant program uses spaces to separate the hours and minutes."
+    }
+  ]
+},{
+  "mutant_program": "muta1174_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-5",
+        "1day",
+        "1hour"
+      ],
+      "original_output": "23:00 Jul 30",
+      "mutant_output": "22:00 Jul 30",
+      "explanation": "The mutant modifies the initialization of variables 'total' and 'yearincr' before the while loop. This causes the calculation of the total to include the '-5' value, resulting in a different final time. Therefore, the outputs are different."
+    },
+    {
+      "input": [
+        "now",
+        "1month",
+        "1year"
+      ],
+      "original_output": "[current time]",
+      "mutant_output": "[new time]",
+      "explanation": "Non-deterministic changes. The time difference calculations depend on the current time and the month/year interval to be added, so the outputs will be different but valid."
+    }
+  ]
+},{
+  "mutant_program": "muta1230_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-123 sec"
+      ],
+      "original_output": "07:31 Feb 28",
+      "mutant_output": "06:07 Feb 28",
+      "explanation": "The mutant changes the loop that searches for the proper unit to increment (in line 34). The condition that ends the loop is wrong and makes the loop keep searching forever. This affects the increment of time and leads to a wrong output."
+    },
+    {
+      "input": [
+        "0 sec"
+      ],
+      "original_output": "08:52 Mar 01",
+      "mutant_output": "08:52 Mar 01",
+      "explanation": "Both programs result in the same output when there is no increment of time"
+    },
+    {
+      "input": [
+        "-24 hour"
+      ],
+      "original_output": "08:52 Feb 28",
+      "mutant_output": "07:52 Feb 28",
+      "explanation": "The mutant program changes the unit of time to be incremented from day to hour, so the output is different from the original program"
+    }
+  ]
+},{
+  "mutant_program": "muta1356_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "10",
+        "+",
+        "5",
+        "sec"
+      ],
+      "original_output": "17:00 Mar 26",
+      "mutant_output": "17:00 Mar 27",
+      "explanation": "The mutant program has a logical error in the for loop that searches for the unit of time in the arguments. It uses a macro PRED(i) to decrement the index, but it is not defined in the code. As a result, it will always increment i to 7, causing the missing() function to be called. The test input adds 5 seconds to the original time, resulting in the date being March 26, at 17:00. The mutant program adds a day by mistake, resulting in the date being March 27, at 17:00."
+    },
+    {
+      "input": [
+        "now",
+        "+",
+        "1",
+        "day"
+      ],
+      "original_output": "14:16 Mar 26",
+      "mutant_output": "14:16 Mar 27",
+      "explanation": "The input adds one day to the current date. Both programs have the same output since the mutant code change did not modify the algorithm that increments the date. "
+    }
+  ]
+},{
+  "mutant_program": "muta1393_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta1432_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta1437_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day",
+        "%M",
+        "-f"
+      ],
+      "original_output": "00",
+      "mutant_output": "",
+      "explanation": "The original program should print the minutes of the date plus one day in the specified format. The mutant code has a syntactic mistake on line 38 (putchar(0)) that prints nothing instead of a newline character (putchar('\n')), resulting in a different output."
+    },
+    {
+      "input": [
+        "now",
+        "-wD",
+        "-4min",
+        "-1mon"
+      ],
+      "original_output": "12/20/21",
+      "mutant_output": "12/20/22",
+      "explanation": "The original program should print the date in week date format, four minutes earlier, and one month earlier. The mutant code does not have the proper incrementation for the month on line 59 (ts->tm_mon += monthincr;), resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta1442_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-86400",
+        "1day"
+      ],
+      "original_output": "01:00 Jan 1",
+      "mutant_output": "01:00 Jan 2",
+      "explanation": "The original program correctly subtracts one day from January 2nd, resulting in January 1st. However, the mutant program incorrectly adds one day to January 1st, resulting in January 2nd."
+    },
+    {
+      "input": [
+        "+3600",
+        "1hour"
+      ],
+      "original_output": "01:00 Jan 2",
+      "mutant_output": "02:00 Jan 2",
+      "explanation": "The original program correctly adds one hour to January 2nd at 1:00, resulting in 2:00. However, the mutant program also correctly adds one hour, resulting in the same output."
+    },
+    {
+      "input": [
+        "+604800",
+        "1week"
+      ],
+      "original_output": "01:00 Jan 9",
+      "mutant_output": "01:00 Jan 16",
+      "explanation": "The original program correctly adds one week to January 9th, resulting in January 16th. However, the mutant program also correctly adds one week, resulting in the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta1452_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1month",
+        "-2day"
+      ],
+      "original_output": "Original output",
+      "mutant_output": "Mutant output",
+      "explanation": "The original program correctly increments and decrements the specified date. However, the mutant program only increments the specified date. The output will be different"
+    }
+  ]
+},{
+  "mutant_program": "muta1457_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "10",
+        "+",
+        "1",
+        "hour"
+      ],
+      "original_output": "08:00 Mar 06\n",
+      "mutant_output": "08:00 Mar 06",
+      "explanation": "The original program increments the date correctly according to the input specified. However, the mutant code does not handle the global variable argc correctly, which leads to incorrect processing of the input arguments. This results in the mutant program not being able to detect the time increment and returning the current date without any changes. The test case input specifies an increment of 1 hour to the date, and the expected output is 08:00 March 06."
+    },
+    {
+      "input": [
+        "10",
+        "+",
+        "1",
+        "year"
+      ],
+      "original_output": "16:00 Mar 05\n",
+      "mutant_output": "16:00 Mar 06\n",
+      "explanation": "This test case is designed to show the difference in output between the original program and the mutant code. The input arguments specify an increment of 1 year to the current date. The original program correctly increments the year by 1 and returns the updated date. However, the mutant code does not handle the year increment correctly, which leads to incorrect output. As a result, the mutant program returns the updated date with the incorrect year. The expected output is 16:00 March 05 for the original program and 16:00 March 06 for the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta1458_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-50",
+        "1min",
+        "2sec"
+      ],
+      "original_output": "21:41 May 05",
+      "mutant_output": "21:39 May 05",
+      "explanation": "The original program receives a starting date and adds the specified time units to it. The mutant program does the same, but it introduces a non-deterministic change by adding an extra parameter to the signature of the ctime function, which could potentially change the result."
+    },
+    {
+      "input": [
+        "now",
+        "1hour",
+        "1day",
+        "1week",
+        "1mon",
+        "1year"
+      ],
+      "original_output": "19:41 May 06",
+      "mutant_output": "19:41 May 06",
+      "explanation": "Both programs receive the current date and add the same time units to it, resulting in equivalent outputs."
+    },
+    {
+      "input": [
+        "now",
+        "30days",
+        "1year"
+      ],
+      "original_output": "18:37, Mar 15",
+      "mutant_output": "05:29, Mar 16",
+      "explanation": "The original program correctly increments the month and year when adding large increments of time, but the mutant program lacks this functionality. Therefore, tests that add one year or more will result in different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta1459_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Thu Nov  4 00:00:00 2021\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly increments the date by 1 day, but the mutant program does not output anything because it is missing the call to the printdate function."
+    },
+    {
+      "input": [
+        "+1hour"
+      ],
+      "original_output": "Wed Nov  3 01:00:00 2021\n",
+      "mutant_output": "",
+      "explanation": "Similar to the previous test, the mutant program increments the date by 1 hour but does not produce any output."
+    }
+  ]
+},{
+  "mutant_program": "muta1460_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-120",
+        "-2day",
+        "+1hour",
+        "2min"
+      ],
+      "original_output": "Wed Jul 28 22:36:00 2021\n",
+      "mutant_output": "Wed Jul 28 22:34:00 2021\n",
+      "explanation": "The mutant code has removed the declaration of function drivers which is called in the original code on line 14. Since the driver(0, Argc, Argv) function is not called, the argc and argv variables are not initialized correctly to the passed input values. Thus the outputs of the two programs differ. The mutant output is missing the two seconds added and prints a date and time 2 seconds earlier."
+    },
+    {
+      "input": [
+        "+341234",
+        "+0day"
+      ],
+      "original_output": "Password Expires: unknown date format\n",
+      "mutant_output": "",
+      "explanation": "Both original and mutant code are unable to output anything meaningful since the input format is incorrect. Therefore, no meaningful comparison of outputs can be made and the mutant code is inconclusive."
+    },
+    {
+      "input": [],
+      "original_output": "20:07 Jul 27\n",
+      "mutant_output": "20:07 Jul 27\n",
+      "explanation": "Both original and mutant code share the same output when the input values are not provided since the default argument (%H:%M %h %d) is used for both of them."
+    }
+  ]
+},{
+  "mutant_program": "muta1461_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-486,600 min"
+      ],
+      "original_output": "14:00 Dec 31",
+      "mutant_output": "14:00 Dec 30",
+      "explanation": "The original program adds the specified time to the current date, while the mutant program adds the specified time to a fixed date of Jan 1, 1970. This means that the mutant program will output Dec 30 instead of Dec 31 for this input."
+    },
+    {
+      "input": [
+        "-1 day"
+      ],
+      "original_output": "23:59 Dec 30",
+      "mutant_output": "23:59 Dec 30",
+      "explanation": "This input is not affected by the mutant code changes because it only subtracts a day from the current date, which is equivalent in both programs."
+    },
+    {
+      "input": [
+        "+2 hour"
+      ],
+      "original_output": "01:00 Jan 1",
+      "mutant_output": "02:00 Jan 1",
+      "explanation": "The original program adds 2 hours to the current date, while the mutant program adds 2 hours to the fixed date of Jan 1, 1970. This means that the mutant program will output 02:00 instead of 01:00 for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta1478_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "10",
+        "10sec"
+      ],
+      "original_output": "Tue Jul 27 14:56:47 2021\n",
+      "mutant_output": "Mon Jul 26 14:56:57 2021\n",
+      "explanation": "The mutant program changes the way arguments are passed to the function, which can cause the program to pick up wrong values. In this case, the argument argv[1] is supposed to set tloc to the specified time, however, the mutant program just sets it to argv[1]. Also, the 'argc--' and 'argv++' commands are positioned differently than in the original program causing the wrong arguments to be used with the function. The test increments 10 seconds to the current date."
+    },
+    {
+      "input": [
+        "-10",
+        "10sec"
+      ],
+      "original_output": "Tue Jul 27 14:56:27 2021\n",
+      "mutant_output": "Tue Jul 27 14:56:06 2021\n",
+      "explanation": "The 'argv++' command is positioned differently than in the original program causing the wrong arguments to be used with the function. The test decreases 10 seconds to the current date."
+    },
+    {
+      "input": [
+        "-1",
+        "day"
+      ],
+      "original_output": "Mon Jul 26 14:56:20 2021\n",
+      "mutant_output": "Mon Jul 26 14:56:20 2020\n",
+      "explanation": "The mutant program doesn't multiply value per day, causing the output to be different. Instead of changing the decade, year increases."
+    }
+  ]
+},{
+  "mutant_program": "muta1482_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "10",
+        "-1sec"
+      ],
+      "original_output": "10",
+      "mutant_output": "11",
+      "explanation": "The original program correctly increments the date by a negative time unit, but the mutant code increments the date by a positive time unit, resulting in a different output."
+    },
+    {
+      "input": [
+        "100",
+        "1day"
+      ],
+      "original_output": "Tue Jul  7 02:46:40 1970\n",
+      "mutant_output": "Mon Jul  6 02:46:40 1970\n",
+      "explanation": "The original program correctly increments the date by 1 day, but the mutant code increments the date by a negative time unit, resulting in a different output."
+    },
+    {
+      "input": [
+        "1000",
+        "-1week"
+      ],
+      "original_output": "Thu Jan 15 02:16:40 1970\n",
+      "mutant_output": "Thu Jan 22 02:16:40 1970\n",
+      "explanation": "Both the original program and the mutant code correctly increment the date by a negative time unit, resulting in different outputs due to the different initial date and time."
+    }
+  ]
+},{
+  "mutant_program": "muta1531_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1577224209",
+        "2",
+        "hour"
+      ],
+      "original_output": "16:05 Aug 28\n",
+      "mutant_output": "16:05 Aug 28\n",
+      "explanation": "The original and mutant programs will output the same result for this input, since the mutation did not affect the logic of the function."
+    },
+    {
+      "input": [
+        "-1577224209",
+        "1",
+        "week"
+      ],
+      "original_output": "16:05 Sep 04\n",
+      "mutant_output": "16:05 Sep 04\n",
+      "explanation": "The original and mutant programs will output the same result for this input, since the mutation did not affect the logic of the function."
+    },
+    {
+      "input": [
+        "-1577224209",
+        "1",
+        "month"
+      ],
+      "original_output": "16:05 Sep 28\n",
+      "mutant_output": "00:00 Sep 27\n",
+      "explanation": "The mutant program has a mutation in which the total seconds increment is not added to the original date in the while loop. Instead, the value of total is used directly as tloc. This causes the mutant program to output a day before the correct date for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta1579_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+",
+        "1",
+        "hour",
+        "%H:%M"
+      ],
+      "original_output": "09:00\n",
+      "mutant_output": "00:00\n",
+      "explanation": "The original program correctly increments the time by 1 hour and outputs the result in the specified format. The mutant program always outputs '00:00' instead of properly incrementing the time and formatting the output."
+    },
+    {
+      "input": [
+        "+",
+        "2",
+        "day",
+        "%a",
+        "%d/%m/%y"
+      ],
+      "original_output": "Sat 15/05/21\n",
+      "mutant_output": "Sat 00/00/00\n",
+      "explanation": "The original program correctly increments the date by 2 days and outputs the result in the specified format. The mutant program always outputs 'Sat 00/00/00' instead of properly incrementing the date and formatting the output."
+    }
+  ]
+},{
+  "mutant_program": "muta1591_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-4 hour"
+      ],
+      "original_output": "07:56 Apr 19\n",
+      "mutant_output": "07:56 Apr 19 4",
+      "explanation": "The mutant code adds an unnecessary character '4' at the end of the output."
+    },
+    {
+      "input": [
+        "+1 week",
+        "+6 hour"
+      ],
+      "original_output": "15:56 Apr 26\n",
+      "mutant_output": "15:56 Apr 26\n",
+      "explanation": "Both programs produce the same output for the given input."
+    }
+  ]
+},{
+  "mutant_program": "muta1597_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-d 5sec"
+      ],
+      "original_output": "03:45 Jul 11",
+      "mutant_output": "03:40 Jul 11",
+      "explanation": "The mutant code changes the 'a' case in the switch statement to always print the first day in the 'day' array, which is 'Sun'. This leads to a different output when running the provided test."
+    },
+    {
+      "input": [
+        "-d 5day"
+      ],
+      "original_output": "11:36:31 Jul 16",
+      "mutant_output": "11:36:31 Jul 15",
+      "explanation": "The mutant code changes the 'a' case in the switch statement to always print the first day in the 'day' array, which is 'Sun'. This leads to a different output when running the provided test."
+    },
+    {
+      "input": [
+        "-H +5  -w 1"
+      ],
+      "original_output": "10:09:26 Jul 20",
+      "mutant_output": "15:09:26 Jul 20",
+      "explanation": "This is a deterministic change, where the mutant code adds 5 hours to the original program output."
+    }
+  ]
+},{
+  "mutant_program": "muta1621_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-10",
+        "-1",
+        "sec"
+      ],
+      "original_output": "14:47 May 19",
+      "mutant_output": "14:46 May 19",
+      "explanation": "The original program correctly subtracts 1 second from the current time, while the mutant program subtracts 10 seconds instead."
+    },
+    {
+      "input": [
+        "+2",
+        "hours",
+        "-3",
+        "days",
+        "+1",
+        "week"
+      ],
+      "original_output": "11:47 May 23",
+      "mutant_output": "11:47 May 22",
+      "explanation": "The mutant program incorrectly subtracts 3 days instead of adding, resulting in an incorrect date output."
+    }
+  ]
+},{
+  "mutant_program": "muta1627_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Thu Jan  2 00:00:00 2020\n",
+      "mutant_output": "Jan 02\n",
+      "explanation": "The mutant code doesn't print the year nor seconds, resulting in a different output."
+    },
+    {
+      "input": [
+        "-1day"
+      ],
+      "original_output": "Tue Dec 31 00:00:00 2019\n",
+      "mutant_output": "Dec 31\n",
+      "explanation": "The mutant code doesn't print the year nor seconds, resulting in a different output."
+    },
+    {
+      "input": [
+        "-1week"
+      ],
+      "original_output": "Tue Dec 24 00:00:00 2019\n",
+      "mutant_output": "Dec 24\n",
+      "explanation": "The mutant code doesn't print the year nor seconds, resulting in a different output."
+    },
+    {
+      "input": [
+        "+1week"
+      ],
+      "original_output": "Wed Jan  8 00:00:00 2020\n",
+      "mutant_output": "Jan 08\n",
+      "explanation": "The mutant code doesn't print the year nor seconds, resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta1817_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day",
+        "+2hour"
+      ],
+      "original_output": "Current datetime: 09:00 Aug 3\nNew datetime: 11:00 Aug 4\n",
+      "mutant_output": "Current datetime: 09:00 Aug 3\nNew datetime: Aug -3629:00\n",
+      "explanation": "The mutated program does not handle increment of day and hour correctly, resulting in a negative year value being printed out as a part of the datetime."
+    },
+    {
+      "input": [
+        "+5week",
+        "-3hour",
+        "-30min"
+      ],
+      "original_output": "Current datetime: 09:00 Aug 3\nNew datetime: 06:30 Sep 7\n",
+      "mutant_output": "Current datetime: 09:00 Aug 3\nNew datetime: Sep -3611:30\n",
+      "explanation": "The mutated program does not handle increment of week, hour, and minute correctly, resulting in a negative year value being printed out as a part of the datetime."
+    }
+  ]
+},{
+  "mutant_program": "muta1826_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1",
+        "2day"
+      ],
+      "original_output": "Sat Jul 31 23:59:59 2021\n",
+      "mutant_output": "Sat Jul 31 23:59:58 2021\n",
+      "explanation": "For this test set, the original program receives a specific date as input and adds 2 days to it. The mutant program received the same input but did not properly handle the conversion factor for days (86400 seconds). As a result, it added only 86399 seconds, resulting in a difference of 1 second in the output."
+    },
+    {
+      "input": [
+        "+1200",
+        "1hour",
+        "30min",
+        "10sec"
+      ],
+      "original_output": "Sun Aug  1 09:35:00 2021\n",
+      "mutant_output": "Sun Aug  1 09:16:10 2021\n",
+      "explanation": "For this test set, the original program adds 1200 seconds, 1 hour, 30 minutes, and 10 seconds to the current date. The mutant program received the same input but did not properly handle the conversion factors for hours, minutes, and seconds, resulting in an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta1833_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "day",
+        "+2",
+        "hour"
+      ],
+      "original_output": "08:00 Apr 02\n",
+      "mutant_output": "07:00 Apr 02\n",
+      "explanation": "The mutant code eliminated the increment of one day and modified the current hour. The original program adds 1 day and 2 hours to the current date."
+    },
+    {
+      "input": [
+        "+7",
+        "day"
+      ],
+      "original_output": "00:00 Apr 08\n",
+      "mutant_output": "00:00 Apr 09\n",
+      "explanation": "The original program adds 7 days to the current date. The mutant program adds 8 days instead. "
+    },
+    {
+      "input": [],
+      "original_output": "00:00 Apr 01\n",
+      "mutant_output": "00:00 Apr 01\n",
+      "explanation": "Both programs have the same output since no arguments were passed to increment the current date."
+    }
+  ]
+},{
+  "mutant_program": "muta1834_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-90",
+        "1day"
+      ],
+      "original_output": "23:31 Mar 01\n",
+      "mutant_output": "23:31 Jan 30\n",
+      "explanation": "The input specifies to subtract 90 seconds from the current time and then add 1 day. The original code correctly subtracts 90 seconds at the beginning, but the mutant code skips this step and goes straight to adding 1 day."
+    },
+    {
+      "input": [
+        "0",
+        "5sec",
+        "1min",
+        "1day",
+        "1week"
+      ],
+      "original_output": "00:01 Jan 08\n",
+      "mutant_output": "00:01 Jan 14\n",
+      "explanation": "The input specifies to start at epoch time and increment by 5 seconds, 1 minute, 1 day, and 1 week. The original and mutant code both correctly increment the time based on the input, so they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta1839_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-5",
+        "3day"
+      ],
+      "original_output": "Mon Jun 17 13:19:35 1991\n",
+      "mutant_output": "Mon Jun 17 13:19:30 1991\n",
+      "explanation": "The mutant code changes the if-statement on line 87 to check if the character after % is not the same as % itself instead of checking if it is. This will cause the program to print out format strings instead of actual time data for some of the format characters. In the given test case, the %d format character in the default format string will be printed out as it is, instead of printing out the day of the month, resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta1843_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day",
+        "+1week",
+        "+1year"
+      ],
+      "original_output": "19:27 Jul 21",
+      "mutant_output": "19:27 Jul 21",
+      "explanation": "Both programs are equivalent for this test case."
+    },
+    {
+      "input": [
+        "-2hour",
+        "+1week",
+        "+2year"
+      ],
+      "original_output": "15:27 Jul 14",
+      "mutant_output": "13:27 Jul 14",
+      "explanation": "The mutant changes the time zone by 2 hours, causing a different output."
+    },
+    {
+      "input": [
+        "+1day",
+        "2days",
+        "-1day"
+      ],
+      "original_output": "19:27 Jul 21",
+      "mutant_output": "19:27 Jul 20",
+      "explanation": "The mutant does not account for negative values, resulting in a different computed date."
+    }
+  ]
+},{
+  "mutant_program": "muta1844_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "2",
+        "3",
+        "+",
+        "5",
+        "min"
+      ],
+      "original_output": "14:53 Apr 04",
+      "mutant_output": "14:08 Apr 04",
+      "explanation": "The mutated code starts by declaring the variable 'tloc' outside of any function, which was previously a global variable. In the function 'incrdate', it assigns the value of argv[1] to tloc, whereas the original code assigns the value of atol(argv[1]) to tloc. This means that in the mutated code, tloc will not be updated to a numeric representation of argv[1] and will cause localtime() to produce a different output than in the original code."
+    },
+    {
+      "input": [
+        "5",
+        "mon",
+        "1",
+        "year",
+        "2",
+        "day"
+      ],
+      "original_output": "THIS_IS_THE_ORIGINAL_OUTPUT",
+      "mutant_output": "THIS_IS_THE_MUTATED_OUTPUT",
+      "explanation": "explanation goes here"
+    }
+  ]
+},{
+  "mutant_program": "muta1851_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-10",
+        "5",
+        "day"
+      ],
+      "original_output": "Sat Oct 16 22:18:26 2021\n",
+      "mutant_output": "Wed Sep 16 22:18:26 2021\n",
+      "explanation": "The mutant program does not initialize the 'ts' variable before calling 'localtime()', which can lead to unpredictable behavior. In this test case, it results in a different month being printed in the output."
+    },
+    {
+      "input": [
+        "0.5",
+        "hour"
+      ],
+      "original_output": "22:48 Oct 26\n",
+      "mutant_output": "23:18 Oct 26\n",
+      "explanation": "The mutant program incorrectly replaces the logical OR operator with a bitwise OR operator in the 'while' condition, which causes an infinite loop and incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta1853_date-plus.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "date-plus",
+        "12/01/2022"
+      ],
+      "original_output": "16:03 Jan 12\n",
+      "mutant_output": "16:03 Jan 12\n",
+      "explanation": "Both programs should output the same date format given the same input value."
+    },
+    {
+      "input": [
+        "date-plus",
+        "01/12/2022"
+      ],
+      "original_output": "16:03 Jan 12\n",
+      "mutant_output": "16:03 Jan 12\n",
+      "explanation": "Both programs should output the same date format given the same input value."
+    },
+    {
+      "input": [
+        "date-plus",
+        "43/34/2021"
+      ],
+      "original_output": "16:03 Jan 12\n",
+      "mutant_output": "16:03 Jan 12\n",
+      "explanation": "Both programs should output the same date format given the same input value."
+    }
+  ]
+},{
+  "mutant_program": "muta1856_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "0",
+        "1day"
+      ],
+      "original_output": "Tue Oct 26 00:00:00 2021\n",
+      "mutant_output": "Tue Oct 26 00:00:01 2021\n",
+      "explanation": "The original program correctly increments the date by 1 day resulting in Oct 26, 2021. However, the mutant program increments the date by 1 second instead resulting in Oct 25, 2021."
+    },
+    {
+      "input": [
+        "0",
+        "3hours",
+        "30min"
+      ],
+      "original_output": "Tue Oct 26 03:30:00 2021\n",
+      "mutant_output": "Tue Oct 26 03:01:00 2021\n",
+      "explanation": "The original program correctly increments the date by 3 hours and 30 minutes resulting in 3:30am on Oct 26, 2021. However, the mutant program increments the date by 3 hours and 1 minute instead resulting in 3:01am on Oct 26, 2021."
+    },
+    {
+      "input": [
+        "0",
+        "2weeks",
+        "3days",
+        "5hours",
+        "30min"
+      ],
+      "original_output": "Wed Nov 10 05:30:00 2021\n",
+      "mutant_output": "Wed Nov 03 06:50:00 2021\n",
+      "explanation": "The original program correctly increments the date by 2 weeks, 3 days, 5 hours, and 30 minutes resulting in Nov 10, 2021. However, the mutant program increments the date by 2 weeks, 3 days, 6 hours, and 50 minutes instead resulting in Nov 3, 2021."
+    }
+  ]
+},{
+  "mutant_program": "muta1857_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100.5sec",
+        "20min",
+        "-0.5hour",
+        "5day",
+        "2week",
+        "1mon"
+      ],
+      "original_output": "Mon Jan 14 12:39:20 2019\n",
+      "mutant_output": "Mon Jan 14 12:25:39 2019\n",
+      "explanation": "The mutant code modifies the variables tloc, argc, and argv inside the incrdate() function without receiving them as arguments, which may cause unexpected behavior. In this test case, both programs should add the same amount of time to the current date, but the mutated program's output is different. "
+    }
+  ]
+},{
+  "mutant_program": "muta1859_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "0",
+        ".5year",
+        "1week",
+        "3day",
+        "-1hour",
+        "+90min"
+      ],
+      "original_output": "Fri Apr  4 03:00:00 1986\n",
+      "mutant_output": "Fri Apr 20 03:00:00 1984\n",
+      "explanation": "The mutated program does not correctly handle the year and month increments, resulting in an incorrect date output compared to the original program."
+    },
+    {
+      "input": [
+        "0",
+        "5year",
+        "1day",
+        "-2week",
+        "+3hour"
+      ],
+      "original_output": "Mon Apr  7 03:00:00 1986\n",
+      "mutant_output": "Wed Mar 24 06:00:00 2021\n",
+      "explanation": "The mutated program does not correctly handle the time increment, resulting in an incorrect date output compared to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta1862_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+10min"
+      ],
+      "original_output": "08:10 May 17",
+      "mutant_output": "08.10 May 17",
+      "explanation": "The original program uses '-' and '+' to determine whether a value should be added or substracted from the date, while the mutant program uses '-' for substraction and '.' for decimal values. Because of this difference, the mutant program will not correctly handle increment operations. Test input of '+10min' should add 10 minutes to the current date. The correct output of the original program is '08:10 May 17', while the output of the mutant program is '08.10 May 17'."
+    },
+    {
+      "input": [
+        "-1week"
+      ],
+      "original_output": "23:45 May 09",
+      "mutant_output": "09-05 23:45",
+      "explanation": "The original program uses '-' and '+' to determine whether a value should be added or substracted from the date, while the mutant program uses '-' for substraction and '.' for decimal values. Because of this difference, the mutant program will not correctly handle increment or decrement operations. Test input of '-1week' should substract 1 week from the current date. The correct output of the original program is '23:45 May 09', while the output of the mutant program is '09-05 23:45'."
+    }
+  ]
+},{
+  "mutant_program": "muta1866_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "day"
+      ],
+      "original_output": "mm/dd/yy",
+      "mutant_output": "000yy+00",
+      "explanation": "The mutant code removed some of the cases for the format string, which affects the output format."
+    },
+    {
+      "input": [
+        "-1",
+        "year"
+      ],
+      "original_output": "%D",
+      "mutant_output": "%H:%M:%S",
+      "explanation": "The mutant code removed a case statement for the format string, causing the output format to be different."
+    }
+  ]
+},{
+  "mutant_program": "muta1870_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1sec",
+        "+1min",
+        "+1hour"
+      ],
+      "original_output": "output of original program",
+      "mutant_output": "output of mutant program",
+      "explanation": "The mutant modifies the printdate function, changing the if statement that verifies if argc is greater than zero to verify if it's less than or equal to zero, which can make the program skip the loop and print nothing when there is no format on argv. This modification doesn't affect the incrdate function. Test input adds 1 second, 1 minute, and 1 hour to the current time."
+    }
+  ]
+},{
+  "mutant_program": "muta1877_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1657881047",
+        "3",
+        "day"
+      ],
+      "original_output": "Sun Jan 13 23:38:33 1991\n",
+      "mutant_output": "Wed Jul 31 00:23:43 1968\n",
+      "explanation": "The mutant code changes the location of the variable assignments and initializations, causing it to use wrong values and generate an incorrect output when incremented with a negative time value."
+    },
+    {
+      "input": [
+        "+94608000",
+        "2",
+        "mon"
+      ],
+      "original_output": "Wed Feb 14 00:00:00 1973\n",
+      "mutant_output": "Sat May 10 11:58:55 1975\n",
+      "explanation": "The mutant code performed the time arithmetic incorrectly, resulting in an incorrect output that is off by approximately 2 years and 3 months."
+    }
+  ]
+},{
+  "mutant_program": "muta1887_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1",
+        "1month"
+      ],
+      "original_output": "Fri May 01 18:09:59 2020\n",
+      "mutant_output": "date+: Bad format character: '1'\n",
+      "explanation": "The mutant code changes the declaration of the function incrdate, removing the return type, which causes a compilation error. Therefore, it is not equivalent to the original program."
+    },
+    {
+      "input": [
+        "1594625399",
+        "+2",
+        "hour",
+        "+1",
+        "day",
+        "-%MCCCC!\"!q"
+      ],
+      "original_output": "Thu Jul 16 18:09:59 2020\n",
+      "mutant_output": "date+: missing unit\n",
+      "explanation": "The input provided has completely different values, so the outputs will differ. The mutant code makes some changes to the parameters values provided which makes the program output an error message."
+    },
+    {
+      "input": [
+        "blah",
+        "+1",
+        "hour"
+      ],
+      "original_output": "date+: invalid date \u2018blah\u2019\n",
+      "mutant_output": "date+: invalid date \u2018blah\u2019\n",
+      "explanation": "Both original and mutant code will output the same error message since they are dealing with an invalid input. Therefore, they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta1890_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100",
+        "1day",
+        "6hour",
+        "30min",
+        "10sec"
+      ],
+      "original_output": "Mon Mar 22 05:19:50 1971\n",
+      "mutant_output": "Sat Dec 31 19:00:00 1966\n",
+      "explanation": "The mutation changes the condition in the while loop from 'argc > 0' to '(argc << 0)', which is always false. This causes the program to print the local time when tloc is initialized, which is different from the expected output."
+    },
+    {
+      "input": [
+        "now",
+        "+5min",
+        "-10sec",
+        "+3hour"
+      ],
+      "original_output": "Fri May 28 11:35:52 2021\n",
+      "mutant_output": "Fri May 28 08:35:44 2021\n",
+      "explanation": "The mutation does not affect this test case and both original and mutant programs output the same result."
+    },
+    {
+      "input": [
+        "202205261500",
+        "-1day"
+      ],
+      "original_output": "Wed May 25 15:00:00 2022\n",
+      "mutant_output": "Tue May 24 15:00:00 2022\n",
+      "explanation": "The mutation changes the condition in the while loop from 'argc > 0' to '(argc << 0)', which is always false. This causes the program to print the local time when tloc is initialized, which is different from the expected output."
+    }
+  ]
+},{
+  "mutant_program": "muta1891_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta1894_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-200",
+        "3",
+        "hour",
+        "2",
+        "min"
+      ],
+      "original_output": "22:01 Jun 17\n",
+      "mutant_output": "22:03 Jun 17\n",
+      "explanation": "The mutant code removes the declarations of the function arguments and replaces them with the use of global variables. This causes the function to use the wrong variable names, leading to incorrect behavior. The test increments the time by -200 seconds, or almost 3 minutes, and then adds 2 more minutes. The original program correctly outputs the updated time, but the mutant code outputs a time 2 minutes into the future."
+    }
+  ]
+},{
+  "mutant_program": "muta1895_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+2",
+        "day"
+      ],
+      "original_output": "Mon Jun 22 00:00:00 2020\n",
+      "mutant_output": "",
+      "explanation": "The mutant code does not have a 'driver' function to call the 'incrdate' function. The original program will output the current date plus two days in the format specified."
+    },
+    {
+      "input": [
+        "-1.5",
+        "hour"
+      ],
+      "original_output": "Sat Jun 20 22:30:00 2020\n",
+      "mutant_output": "",
+      "explanation": "The original program will output the current date minus one and a half hours in the format specified."
+    },
+    {
+      "input": [
+        "+3",
+        "week"
+      ],
+      "original_output": "Mon Jul  6 00:00:00 2020\n",
+      "mutant_output": "",
+      "explanation": "The original program will output the current date plus three weeks in the format specified."
+    },
+    {
+      "input": [
+        "+1",
+        "mon"
+      ],
+      "original_output": "Mon Jul 20 00:00:00 2020\n",
+      "mutant_output": "",
+      "explanation": "The original program will output the current date plus one month in the format specified."
+    },
+    {
+      "input": [
+        "+3",
+        "year"
+      ],
+      "original_output": "Tue Jun 20 00:00:00 2023\n",
+      "mutant_output": "",
+      "explanation": "The original program will output the current date plus three years in the format specified."
+    }
+  ]
+},{
+  "mutant_program": "muta1940_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+10min"
+      ],
+      "original_output": "07:04 Jun 16",
+      "mutant_output": "07:14 Jun 16",
+      "explanation": "The original program correctly increments the current time by 10 minutes and prints the new time. The mutant program incorrectly increments the time by 10 minutes and prints the date and time from the original input instead of the new time."
+    },
+    {
+      "input": [
+        "+2hour"
+      ],
+      "original_output": "09:04 Jun 16",
+      "mutant_output": "07:04 Jun 16",
+      "explanation": "The original program correctly increments the current time by 2 hours and prints the new time. The mutant program increments the time by 2 hours and prints the date and time from the original input instead of the new time."
+    },
+    {
+      "input": [
+        "-1day"
+      ],
+      "original_output": "07:04 Jun 15",
+      "mutant_output": "07:04 Jun 15",
+      "explanation": "Both the original and mutant program output the same result because decrementing the time by 1 day does not require special handling."
+    }
+  ]
+},{
+  "mutant_program": "muta2083_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1 day"
+      ],
+      "original_output": "03:07 Jul 01\n",
+      "mutant_output": "pmoal",
+      "explanation": "Both programs receive the same input but the mutant program contains an undeclared function 'pmoal', which will cause a compilation error."
+    },
+    {
+      "input": [
+        "+5 days"
+      ],
+      "original_output": "03:07 Jul 05\n",
+      "mutant_output": "pmoal",
+      "explanation": "Both programs receive the same input but the mutant program contains an undeclared function 'pmoal', which will cause a compilation error."
+    }
+  ]
+},{
+  "mutant_program": "muta2084_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Mon Nov 23 00:00:00 2020\n",
+      "mutant_output": "Segmentation fault\n",
+      "explanation": "The original program accepts a string argument and parses it to extract the unit and value of time to be added to the current date. The mutant program, however, assumes an input format that is not compatible with the original program. Instead of a string, it tries to access argv[1] directly as a long integer, causing a segmentation fault when the program tries to parse a string as long."
+    },
+    {
+      "input": [
+        "-1hour"
+      ],
+      "original_output": "Sun Nov 22 23:00:00 2020\n",
+      "mutant_output": "Segmentation fault\n",
+      "explanation": "This test is equivalent to the first one, for the same reasons. The mutant program tries to access argv[1] assuming it is a long integer, leading to a crash because argv[1] is actually a string."
+    },
+    {
+      "input": [
+        "+5min"
+      ],
+      "original_output": "Mon Nov 23 00:05:00 2020\n",
+      "mutant_output": "Segmentation fault\n",
+      "explanation": "This test also evaluates the same behavior found in the previous tests. The mutant program causes a segmentation fault when trying to parse argv[1] as a long integer, which is not the correct input format and the expected behavior."
+    }
+  ]
+},{
+  "mutant_program": "muta2086_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-x",
+        "1sec"
+      ],
+      "original_output": "date+: missing unit\n",
+      "mutant_output": "",
+      "explanation": "In the original program, if there is missing unit, then the program outputs 'date+: missing unit\n' and terminates, while the mutant code just continues running with no output. This test case demonstrates the difference."
+    },
+    {
+      "input": [
+        "+0"
+      ],
+      "original_output": "00:00 Dec 31\n",
+      "mutant_output": "",
+      "explanation": "This test case checks if the program can handle empty input and output the current date and time."
+    },
+    {
+      "input": [
+        "-1584368117",
+        "+1day"
+      ],
+      "original_output": "11:48 Sep 02\n",
+      "mutant_output": "11:48 Sep 03\n",
+      "explanation": "This test case tests if the program can properly increment the date by one day."
+    }
+  ]
+},{
+  "mutant_program": "muta2089_date-plus.c",
+  "equivalent": false,
+  "original_tests": [
+    {
+      "input": [
+        "-1 day"
+      ],
+      "original_output": "Mon Aug 16 00:00:00 2021\n",
+      "explanation": "The original program subtracts one day from the current date and time, using the specified input '-1 day'"
+    },
+    {
+      "input": [
+        "+1 day"
+      ],
+      "original_output": "Wed Aug 18 00:00:00 2021\n",
+      "explanation": "The original program adds one day from the current date and time, using the specified input '+1 day'"
+    }
+  ],
+  "mutant_tests": [
+    {
+      "input": [
+        "-1 day"
+      ],
+      "mutant_output": "Sun Dec 31 19:00:00 1967\n",
+      "explanation": "The mutant program does not use the original program's global variables 'argc' and 'argv', and instead uses uninitialized variables 'TRAP_ON_NEGATIVE' and '__src'. This causes the program to output a date from the Unix epoch instead of the expected date."
+    },
+    {
+      "input": [
+        "+1 day"
+      ],
+      "mutant_output": "Thu Jul 16 00:00:00 1931\n",
+      "explanation": "The mutant program produces incorrect output for the same reasons as the previous test case."
+    }
+  ]
+},{
+  "mutant_program": "muta2092_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1hour",
+        "+2day",
+        "+1mon"
+      ],
+      "original_output": "hh:mm Mon dd\n",
+      "mutant_output": "",
+      "explanation": "The mutant code has removed the while loop condition from the printdate() function to check for non-negative values. This causes an infinite loop when the format character is negative. This input causes incrdate() to add 1 hour, 2 days and 1 month to the current date. The original program will output the correct date with the added time, while the mutant program will result in an infinite loop."
+    },
+    {
+      "input": [
+        "+1hour",
+        "+2day",
+        "+1month"
+      ],
+      "original_output": "hh:mm Mon dd\n",
+      "mutant_output": "",
+      "explanation": "Similar to the previous test, but with a corrected month unit value to avoid infinite loop. The original program will output the correct date with the added time, while the mutant program will result in an infinite loop."
+    }
+  ]
+},{
+  "mutant_program": "muta2095_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 1 day",
+        "%H:%M %h %d"
+      ],
+      "original_output": "00:00 Nov 30\n",
+      "mutant_output": "00:00 Nov 30",
+      "explanation": "The mutant program does not add the newline character at the end of the output, while the original program does."
+    },
+    {
+      "input": [
+        "- 3 hours",
+        "%T"
+      ],
+      "original_output": "22:04:32\n",
+      "mutant_output": "22:04:32",
+      "explanation": "The mutant program does not add the newline character at the end of the output, while the original program does."
+    },
+    {
+      "input": [
+        "+ 1 week",
+        "%a"
+      ],
+      "original_output": "Wed\n",
+      "mutant_output": "Wed",
+      "explanation": "The mutant program does not add the newline character at the end of the output, while the original program does."
+    }
+  ]
+},{
+  "mutant_program": "muta2096_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta2098_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 0 day + 2 hour",
+        "%T"
+      ],
+      "original_output": "12:14:22\n",
+      "mutant_output": "12?14?22?n",
+      "explanation": "The mutant program changed the character '?' to represent the tabulation '\\t', resulting in the wrong output."
+    },
+    {
+      "input": [
+        "- 1 year 2 month 3 week 4 day + 2 hour",
+        "%D %T"
+      ],
+      "original_output": "2020/06/26 12:14:22\n",
+      "mutant_output": "2020/07/01 02?14?22?n",
+      "explanation": "The mutant program changed the order of the 'week' and 'day' units in the command line argument, resulting in the addition of 7 days to the original program output."
+    }
+  ]
+},{
+  "mutant_program": "muta2099_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-",
+        "+5day",
+        "%d/%m/%y"
+      ],
+      "original_output": "02/07/21\n",
+      "mutant_output": "02 21/07",
+      "explanation": "The original program correctly formats the date according to the input provided using the format characters. The mutant, however, replaces the newline character with a space and changes the order of the day and year fields."
+    },
+    {
+      "input": [
+        "-",
+        "-1hour",
+        "+2min",
+        "+2sec"
+      ],
+      "original_output": "23:01 Jun 30\n",
+      "mutant_output": "23:01 Jun 31\n",
+      "explanation": "The original program accurately calculates and formats the date to the nearest hour. The mutant, however, outputs an incorrect date with the nonexistent 31st day of June."
+    },
+    {
+      "input": [
+        "-",
+        "+1month",
+        "+1day"
+      ],
+      "original_output": "Jul 31\n",
+      "mutant_output": "Aug 01\n",
+      "explanation": "The original program correctly increments the month and day fields to output the final date. The mutant outputs a different date with only the month field incremented, yielding an incorrect date."
+    }
+  ]
+},{
+  "mutant_program": "muta2101_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100 sec"
+      ],
+      "original_output": "19:09 Sep 29",
+      "mutant_output": "19:06 Sep 26",
+      "explanation": "The mutant code has a TRAP_ON_NEGATIVE function call, which will cause a different behavior when processing negative arguments. This is tested by providing a negative argument to decrement the time by 100 seconds. The original program returns 19:09 Sep 29, but the mutated program returns 19:06 Sep 26 due to the different handling of negative values."
+    },
+    {
+      "input": [
+        "+2 sec",
+        "+1 min",
+        "+1 hour"
+      ],
+      "original_output": "10:45 Jun 22",
+      "mutant_output": "13:46 Jun 22",
+      "explanation": "This test checks if both programs can process multiple arguments correctly. Both programs are expected to add 2 seconds, 1 minute, and 1 hour to the current time. The original program returns 10:45 June 22, and the mutated program returns 13:46 June 22, indicating that the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta2107_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "hour"
+      ],
+      "original_output": "Original Output: 15:39 Jun 20\n",
+      "mutant_output": "Mutant Output: 16:39 Jun 20\n",
+      "explanation": "The original program correctly adds 1 hour to the current date and time, resulting in the output of 15:39 Jun 20. However, the mutant program incorrectly adds 1 hour to the specified date, resulting in the output of 16:39 Jun 20."
+    },
+    {
+      "input": [
+        "-2",
+        "day",
+        "%D"
+      ],
+      "original_output": "Original Output: 06/18/21\n",
+      "mutant_output": "Mutant Output: 06/19/21\n",
+      "explanation": "The original program correctly subtracts 2 days from the current date and time and formats the output to display the date as mm/dd/yy, resulting in the output of 06/18/21. However, the mutant program incorrectly subtracts 2 days from the specified date, resulting in the output of 06/19/21."
+    }
+  ]
+},{
+  "mutant_program": "muta2108_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "500"
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs will result in an error since the test input is not a valid argument for either program"
+    },
+    {
+      "input": [
+        "-30",
+        "+1min"
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs will result in an error since the first argument is negative and the programs do not handle negative values"
+    },
+    {
+      "input": [
+        "1000",
+        "3hours",
+        "2days"
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs will add 3 hours and 2 days to the input time value of 1000, resulting in the same output"
+    },
+    {
+      "input": [
+        "0",
+        "1week"
+      ],
+      "original_output": "Thu Jan 8 00:00:00 1970\n",
+      "mutant_output": "Thu Jan 8 01:00:00 1970\n",
+      "explanation": "The original program will add 1 week (604800 seconds) to January 1st, 1970 00:00:00, resulting in a date of January 8th, 1970 at 00:00:00. The mutant program will do the same addition, but with the exception of the 'S' format specifier (seconds), all other format specifiers will output the same date as the original program, except for the 'T' format specifier (24-hour time), which will output a time of 01:00:00 instead of 00:00:00, resulting in a different overall output"
+    }
+  ]
+},{
+  "mutant_program": "muta2110_date-plus.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta2111_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-d",
+        "+1day",
+        "+3hours",
+        "+20min",
+        "5sec",
+        "today"
+      ],
+      "original_output": "Thu May 21 03:20:05 2020\n",
+      "mutant_output": "Thu May 21 03:20:05 7EDT20\n",
+      "explanation": "The mutant code changed the conversion format for the 'Z' flag to include 'TRAP_ON_ZERO', causing a different string to be printed. This is the unique difference between the two codes and a test to highlight the difference can be performed by calling the program with a date prior to the 1st of January of 1970, causing the argument to be treated as zero, which will make the output for the flag 'Z' different."
+    }
+  ]
+},{
+  "mutant_program": "muta2113_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-100 sec"
+      ],
+      "original_output": "Fri Oct  8 10:41:00 2021\n",
+      "mutant_output": "Fri Oct  8 10:39:20 2021\n",
+      "explanation": "The mutant code modifies the printdate() function to apply a TRAP_ON_NEGATIVE() function on the 'M' format, which is not applied in the original code. This results in a different output when 'M' is used. The test input subtracts 100 seconds from the original date."
+    },
+    {
+      "input": [
+        "2 hour 30 min"
+      ],
+      "original_output": "Fri Oct  8 13:11:24 2021\n",
+      "mutant_output": "Fri Oct  8 13:11:24 2021\n",
+      "explanation": "Both programs output the same result for this input."
+    },
+    {
+      "input": [
+        "2 week 3 day 1 hour"
+      ],
+      "original_output": "Thu Oct 28 11:11:24 2021\n",
+      "mutant_output": "Thu Oct 28 12:11:24 2021\n",
+      "explanation": "The mutant code increments the 'day' unit instead of the 'hour' unit for the input '1 hour'. This results in a different output. The test input adds 2 weeks, 3 days, and 1 hour to the original date."
+    }
+  ]
+},{
+  "mutant_program": "muta2114_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-3600",
+        "1hour"
+      ],
+      "original_output": "20:08 Nov 15",
+      "mutant_output": "19:08 Nov 15",
+      "explanation": "The mutant code changes the 'TRAP_ON_ZERO' macro, which is now used to handle the 'M' format option in the 'printdate' function. In the original code, this just returns '0' if the time is zero, but in the mutant code it returns '-1' instead. This affects the output of the test because it causes a negative value for minutes, which is not handled correctly by the mutant code."
+    },
+    {
+      "input": [
+        "+3600",
+        "1hour"
+      ],
+      "original_output": "22:08 Nov 15",
+      "mutant_output": "23:08 Nov 15",
+      "explanation": "Similar to the previous test, the mutant code produces incorrect output due to the change in the 'TRAP_ON_ZERO' macro. In this case, it causes an incorrect value for minutes because it is expecting a negative value, which is not the case here."
+    },
+    {
+      "input": [
+        "+86400",
+        "1day"
+      ],
+      "original_output": "18:07 Nov 16",
+      "mutant_output": "18:07 Nov 17",
+      "explanation": "This test is not affected by the mutant code because it does not involve the 'M' format option, which is the one that was changed."
+    }
+  ]
+},{
+  "mutant_program": "muta2116_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 1 sec"
+      ],
+      "original_output": "15:18 Nov 30\n",
+      "mutant_output": "15:17 Nov 30\n",
+      "explanation": "The mutant modifies the 'H' case in the printdate() function, where it introduces a macro that calls a function called TRAP_ON_NEGATIVE to check if the number is negative, which is completely unnecessary and does not exist in the original code. The test subtracts 1 second to the current time, thus modifying the hour value, but the macro ends up modifying the output in the mutant, subtracting another hour from the result."
+    },
+    {
+      "input": [
+        "+ 1 year"
+      ],
+      "original_output": "15:18 Nov 30\n",
+      "mutant_output": "15:18 Nov 30\n",
+      "explanation": "Both programs increment the year by 1, which is a deterministic change that would not affect the output of the program in the suggested test case."
+    },
+    {
+      "input": [
+        "- 1 week",
+        "+ 5 day"
+      ],
+      "original_output": "15:18 Nov 30\n",
+      "mutant_output": "15:18 Dec 03\n",
+      "explanation": "The test subtracts 1 week from the current time, but then adds 5 days. The original program will display the correct result, which is 3 days after the original date. However, the mutant program has a bug that only affects adding or subtracting a week or a month, where it does not take into account the impact on other fields of the date. Thus, adding 5 days causes the month and year values to not update properly in the mutant, leading to an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta2117_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-2147483648",
+        "1sec"
+      ],
+      "original_output": "date+: missing unit\n",
+      "mutant_output": "",
+      "explanation": "In this test, the original program produces an error message because the unit is missing, while the mutant program produces no output at all."
+    },
+    {
+      "input": [
+        "1514764800",
+        "1day"
+      ],
+      "original_output": "02/M01/19",
+      "mutant_output": "02/M01/1970",
+      "explanation": "In this test, both programs successfully increment the date by one day, but produce different outputs because the year is displayed differently."
+    },
+    {
+      "input": [
+        "1514764800",
+        "1min",
+        "1hour",
+        "1day",
+        "1week",
+        "1mon",
+        "1year",
+        "%Y-%m-%d"
+      ],
+      "original_output": "2018-01-02\n",
+      "mutant_output": "2018-01-01\n",
+      "explanation": "In this test, both programs increment the date differently because the mutant program does not properly handle the conversion factors for months and years. As a result, the outputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta2119_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 1 day",
+        "%H:%M %h %d"
+      ],
+      "original_output": "08:00 Jul 15\n",
+      "mutant_output": "08:00 Jul 14\n",
+      "explanation": "The mutant code changed the behavior of the 'T' case, instead of printing the time in the format 'HH:MM:SS', it wrapped the hour value in a call to TRAP_ON_NEGATIVE, which causes it to return 0 for negative values. In the original program, the date is incremented by one day, so the output is '08:00 Jul 15'. In the mutant program, the date is decremented by one day, resulting in '08:00 Jul 14'."
+    },
+    {
+      "input": [
+        "+ 1 week",
+        "%D"
+      ],
+      "original_output": "07/22/21\n",
+      "mutant_output": "07/21/21\n",
+      "explanation": "The input increments the date by one week and outputs it in the format 'MM/DD/YY'. The mutant code changes the behavior of the 'D' case, printing the date with the year represented by the two least significant digits of the year value. In the original program, the output is '07/22/21'. In the mutant program, the output is '07/21/21', which is a different date because of the change in the year representation."
+    }
+  ]
+},{
+  "mutant_program": "muta2120_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "01",
+        "05",
+        "2022"
+      ],
+      "original_output": "10:59 Jun 7",
+      "mutant_output": "10:59 Jun 7",
+      "explanation": "Both programs will output the same result since there are no changes in the function."
+    },
+    {
+      "input": [
+        "11",
+        "11",
+        "2022"
+      ],
+      "original_output": "22:11 Nov 11",
+      "mutant_output": "22:11 Nov 11",
+      "explanation": "Both programs will output the same result since there are no changes in the function."
+    },
+    {
+      "input": [
+        "04",
+        "22",
+        "2023"
+      ],
+      "original_output": "12:00 Apr 22",
+      "mutant_output": "12:00 Apr 22",
+      "explanation": "Both programs will output the same result since there are no changes in the function."
+    },
+    {
+      "input": [
+        "12",
+        "31",
+        "2024"
+      ],
+      "original_output": "00:00 Dec 31",
+      "mutant_output": "00:00 Dec 31",
+      "explanation": "Both programs will output the same result since there are no changes in the function."
+    },
+    {
+      "input": [
+        "03",
+        "01",
+        "2025"
+      ],
+      "original_output": "12:00 Mar 1",
+      "mutant_output": "12:00 Mar 1",
+      "explanation": "Both programs will output the same result since there are no changes in the function."
+    },
+    {
+      "input": [
+        "08",
+        "05",
+        "2026"
+      ],
+      "original_output": "12:00 Aug 5",
+      "mutant_output": "12:00 Aug 5",
+      "explanation": "Both programs will output the same result since there are no changes in the function."
+    },
+    {
+      "input": [
+        "",
+        "",
+        ""
+      ],
+      "original_output": "\n",
+      "mutant_output": "\n",
+      "explanation": "Both programs will output the same result since there are no changes in the function and calling the program without arguments return a default format."
+    },
+    {
+      "input": [
+        "01",
+        "31",
+        "2021",
+        "-T"
+      ],
+      "original_output": "23:59:59\n",
+      "mutant_output": "23:59:59\n",
+      "explanation": "Both programs will output the same result since there are no changes in the function despite TRAP_ON_ZERO parameter added to the T case which won't affect the output."
+    }
+  ]
+},{
+  "mutant_program": "muta2122_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1278460400 1 day"
+      ],
+      "original_output": "Sun Jun 30 00:00:00 1929\n",
+      "mutant_output": "Sun Jun 29 23:00:00 1929\n",
+      "explanation": "The mutant code modifies the 'printdate' function by changing the time formatting of the 'T' option (hh:mm:ss), performing an operation on the minutes component to only keep non-negative values instead of two-digit representation. This will cause the mutant program to output a different time value, one hour less, when using the specified test input."
+    },
+    {
+      "input": [
+        "1602272640 -1 month"
+      ],
+      "original_output": "Fri Oct  9 10:04:00 2020\n",
+      "mutant_output": "Tue Sep  8 10:04:00 2020\n",
+      "explanation": "The mutant code modifies the 'incrdate' function by removing a call to 'time' that sets the initial value of 'tloc' to the current time. Thus, 'tloc' is set to the value of the first argument in the test input. This will have the effect of setting the input time as the reference for incremental computation. This will cause the mutant program to output a different date value, one month less, when using the specified test input."
+    },
+    {
+      "input": [
+        "1613904000 +10 days"
+      ],
+      "original_output": "Sat Feb 20 00:00:00 2021\n",
+      "mutant_output": "Fri Feb 19 00:00:00 2021\n",
+      "explanation": "The mutant code modifies the 'incrdate' function by changing the position of the line that initializes 'total' to zero, and setting it to a floating-point value instead of a long integer. This will cause the 'if' condition on line 28 to always evaluate to true and eventually cause the 'ts' values to increment a second time with incorrect values, causing the mutant program to output a different date value, one day before, when using the specified test input."
+    },
+    {
+      "input": [
+        "1615862400 -3 hours"
+      ],
+      "original_output": "Fri Mar 12 10:40:00 2021\n",
+      "mutant_output": "Fri Mar 12 07:40:00 2021\n",
+      "explanation": "The mutant code modifies the 'incrdate' function by swapping the position of the lines that read the current length of the 'argv' and 'argc' arrays, and changing the division by 3600 to multiplication by 3. This will have the effect of reading three items from the 'argv' array with each loop iteration. Thus, the test input will set 'tloc' to the value 1615862400 but will never set the necessary increment values for the month and year. This will cause the mutant program to output a different time value, three hours earlier than the expected, when using the specified test input."
+    }
+  ]
+},{
+  "mutant_program": "muta2123_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1sec"
+      ],
+      "original_output": "Tue Apr 27 21:44:49 2021\n",
+      "mutant_output": "Tue Apr 27 21:44:50 2021\n",
+      "explanation": "The mutant program changes the format of the time output in the 'T' case of the format string in printdate() function, adding parentheses around the second argument. This causes the behavior of TRAP_ON_ZERO() macro to change, which affects the 'T' case of the output. The given input of '+1sec' results in the original program outputting '21:44:49', while the mutant program outputs '21:44:50'."
+    },
+    {
+      "input": [
+        "+1day"
+      ],
+      "original_output": "Thu Apr 29 21:44:49 2021\n",
+      "mutant_output": "Thu Apr 28 21:44:49 2021\n",
+      "explanation": "The mutant program changes the value of tloc variable before calling localtime() function in incrdate() function, causing the computation of the next day to differ from the original program. The given input of '+1day' results in the original program outputting 'Thu Apr 29', while the mutant program outputs 'Thu Apr 28'."
+    }
+  ]
+},{
+  "mutant_program": "muta2125_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 1 year",
+        "+ 1 year"
+      ],
+      "original_output": "00:00 Jan 01",
+      "mutant_output": "00:00 Jan 02",
+      "explanation": "The mutant code changed the functionality of incrementing the year. In the original code, the year increment was done using a double variable that accumulates the change, while in the mutant code, the year increment was done directly in the struct tm. This test shows that the mutant code increments the year correctly, while the original code does not."
+    },
+    {
+      "input": [
+        "- 1 week",
+        ".5 hour",
+        "+ 5 days"
+      ],
+      "original_output": "08:00 Dec 31",
+      "mutant_output": "20:30 Jan 06",
+      "explanation": "Both codes apply the increment correctly, and the output of the original code shows the local time of the computer running the test. Therefore, the output is of the format '%H:%M %h %d'."
+    },
+    {
+      "input": [
+        "- 1 month",
+        "- 15 days",
+        "- 4 hours"
+      ],
+      "original_output": "20:00 Nov 15",
+      "mutant_output": "04:00 Nov 16",
+      "explanation": "The mutant code changes the output of the program, so it is not equivalent to the original code. The output of the original program is the local time of the computer in the format \"%H:%M %h %d\". The output of the mutant program is still in this format but represents a different date since the calculation of the month increment was changed by the mutant code."
+    }
+  ]
+},{
+  "mutant_program": "muta2126_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "./date-plus",
+        "202201010000",
+        "1day"
+      ],
+      "original_output": "Fri Jan  1 00:00:00 2021\n",
+      "mutant_output": "Fri Jan  1 00:00:00 2022 ",
+      "explanation": "The mutant adds 1 to the year value of the date and removes the newline character at the end of the output string, resulting in a different year from the original output."
+    },
+    {
+      "input": [
+        "./date-plus",
+        "202201010000",
+        "1month"
+      ],
+      "original_output": "Wed Feb  1 00:00:00 2021\n",
+      "mutant_output": "Fri Mar  1 00:00:00 2021\n",
+      "explanation": "The mutant changes the month value of the date incremented, resulting in a different month from the original output."
+    },
+    {
+      "input": [
+        "./date-plus",
+        "202201010000",
+        "1hour"
+      ],
+      "original_output": "Sat Jan  1 01:00:00 2022\n",
+      "mutant_output": "Sat Jan  1 02:00:00 2022\n",
+      "explanation": "The mutant changes the hour value of the date incremented, resulting in a different hour from the original output."
+    }
+  ]
+},{
+  "mutant_program": "muta2128_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+5sec",
+        "+10min",
+        "+2hour"
+      ],
+      "original_output": "03:10 Jan 01",
+      "mutant_output": "03:15 Jan 01",
+      "explanation": "The mutation changes the 'case' of 'D' to 'd', which applies a trap on negative numbers and changes the expected result for the day of the month if the value is negative. In this case, it turns out that the increment of 5 seconds results in a negative value for the day of the month, so the result of the test case is different."
+    },
+    {
+      "input": [
+        "-1week"
+      ],
+      "original_output": "23:00 Dec 25",
+      "mutant_output": "23:00 Dec 26",
+      "explanation": "This test case subtracts one week from the current date. Since the mutant and original code use the same calculation method for the date, the outputs are expected to be the same."
+    },
+    {
+      "input": [
+        "+1year"
+      ],
+      "original_output": "23:00 Dec 31",
+      "mutant_output": "23:00 Dec 31",
+      "explanation": "This test case increments the year by one. Since the mutant and original code use the same calculation method for the date, the outputs are expected to be the same."
+    }
+  ]
+},{
+  "mutant_program": "muta2129_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "3",
+        "10sec"
+      ],
+      "original_output": "10:00 02 Mon\n",
+      "mutant_output": "10:00 03 Mon\n",
+      "explanation": "The original program adds the seconds properly to the date (02 Mon), while the mutant program increments to the next month (03 Mon)."
+    },
+    {
+      "input": [
+        "1577808000",
+        "1month"
+      ],
+      "original_output": "00:00 Jan 01\n",
+      "mutant_output": "00:00 Feb 01\n",
+      "explanation": "The original program starts with the Unix Epoch date (Jan 01) and increments by 1 month properly to Feb 01. The mutant program increments to Mar 01."
+    },
+    {
+      "input": [
+        "1590969600",
+        "-5min"
+      ],
+      "original_output": "22:56 May 31\n",
+      "mutant_output": "23:01 May 31\n",
+      "explanation": "The original program subtracts the minutes properly from the date (22:56), while the mutant program subtracts to a different minute (23:01)."
+    }
+  ]
+},{
+  "mutant_program": "muta2132_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 10 sec",
+        "+ 2 weeks 3 days"
+      ],
+      "original_output": "12:00 Sep 07\n",
+      "mutant_output": "12 09:07\n",
+      "explanation": "The mutant changes the format of the month output, replacing the month abbreviation for the month number. This test case shows a difference, where the original outputs 'Sep' and the mutant outputs '09'."
+    },
+    {
+      "input": [
+        "- 1 hour 30 min"
+      ],
+      "original_output": "23:30 Mar 31\n",
+      "mutant_output": "23:30 Mar 32\n",
+      "explanation": "This test case shows a difference, where the original outputs 'Mar 31' and the mutant outputs 'Mar 32', due to an off by one error in the mutant code."
+    }
+  ]
+},{
+  "mutant_program": "muta2134_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 10 hour",
+        "%H:%M"
+      ],
+      "original_output": "10:03\n",
+      "mutant_output": "10:03 Nov\n",
+      "explanation": "The mutant code changed the 'h' format character to print the abbreviated name of the month instead of the number, which caused a different output."
+    },
+    {
+      "input": [
+        "now",
+        "%Z"
+      ],
+      "original_output": "1636051231\n",
+      "mutant_output": "1636051231\n",
+      "explanation": "The mutant code did not change the behavior of the program in this test case."
+    },
+    {
+      "input": [
+        "tomorrow",
+        "%D"
+      ],
+      "original_output": "11/05/21\n",
+      "mutant_output": "11/05/21\n",
+      "explanation": "The mutant code did not change the behavior of the program in this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta2137_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 1 day",
+        "+ 1 day",
+        "Fri Aug 13 11:59:50 2021"
+      ],
+      "original_output": "50 13 Aug Fri\n",
+      "mutant_output": "50 13 Aug 21\n",
+      "explanation": "The mutant modifies how the year is printed, getting only the last two digits instead of four."
+    },
+    {
+      "input": [
+        "+ 3 hour",
+        "Sat Aug 14 05:45:00 2021"
+      ],
+      "original_output": "08:45 Aug 14\n",
+      "mutant_output": "05:45 Aug 14\n",
+      "explanation": "The mutant adds three hours to the input date, resulting in a different hour being displayed."
+    },
+    {
+      "input": [
+        "10 day",
+        "Sun Aug 22 00:00:00 2021"
+      ],
+      "original_output": "02 Sep\n",
+      "mutant_output": "02 Aug\n",
+      "explanation": "The mutant changes the month increment value, resulting in a different output month."
+    }
+  ]
+},{
+  "mutant_program": "muta2138_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 60 min",
+        "%T %D"
+      ],
+      "original_output": "16:09:00 06/28/21\n",
+      "mutant_output": "16:08:00 06/28/21\n",
+      "explanation": "The mutant modifies the 'printdate' function by adding a trap when the year value is 0, which results in printing '1' when the year value is 0. This leads to a different output in the case that the year value in the date object is 0."
+    },
+    {
+      "input": [
+        "+ 1 sec"
+      ],
+      "original_output": "Mon Jun 28 16:09:05 2021\n",
+      "mutant_output": "Mon Jun 28 16:09:05 2021\n",
+      "explanation": "In this case, both original and mutant program should output the same result since there are no changes that could alter the incrementation of the date."
+    }
+  ]
+},{
+  "mutant_program": "muta2140_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1",
+        "hour",
+        "+30",
+        "min"
+      ],
+      "original_output": "18:40 Apr 23",
+      "mutant_output": "18:30 Apr 23",
+      "explanation": "The mutant code changes the %w argument in case 'w' to use TRAP_ON_NEGATIVE macro with the tm_wday value. This makes the output of the program differ if the date input falls on a Sunday since tm_wday is then 0 and the macro would output 6, indicating a Saturday. The original code does not have this behavior."
+    },
+    {
+      "input": [
+        "+10",
+        "day"
+      ],
+      "original_output": "16:38 May 03",
+      "mutant_output": "16:38 May 13",
+      "explanation": "The mutation does not change the output for this input. Both outputs indicate the date and time resulting from adding 10 days to the current time."
+    },
+    {
+      "input": [
+        "+1",
+        "week"
+      ],
+      "original_output": "16:38 May 28",
+      "mutant_output": "16:38 May 21",
+      "explanation": "The mutation does not affect the output of this input either. Both programs add 1 week to the current date/time and output the resulting date/time in the default format."
+    }
+  ]
+},{
+  "mutant_program": "muta2141_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-86400",
+        "day"
+      ],
+      "original_output": "23:59:59",
+      "mutant_output": "00:00:00",
+      "explanation": "The original program subtracts 1 day from the current time when '-86400' is provided as the input. The mutant program adds '-86400' seconds to the epoch time instead of subtracting 1 day, leading to a different output."
+    },
+    {
+      "input": [
+        "+3600",
+        "sec"
+      ],
+      "original_output": "01:00:00",
+      "mutant_output": "01:00:00",
+      "explanation": "Both programs should output the same time because they are both adding 3600 seconds to the current time."
+    }
+  ]
+},{
+  "mutant_program": "muta2143_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "['+10', 'hour']"
+      ],
+      "original_output": "07:00 Jun 25\n",
+      "mutant_output": "ERROR",
+      "explanation": "The mutant program changes the call to the day abbreviation with an integer manipulation that does not coincide with the original program."
+    },
+    {
+      "input": [
+        "['+7', 'day']"
+      ],
+      "original_output": "10:00 Jun 28\n",
+      "mutant_output": "10:00 Jun 28\n",
+      "explanation": "Both programs should produce the same output with this input."
+    }
+  ]
+},{
+  "mutant_program": "muta2144_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 5 sec"
+      ],
+      "original_output": "16:39:10 Jun 19\n",
+      "mutant_output": "16:39Jun 19 19",
+      "explanation": "The mutant changes the output format in the switch case for 'a'. The original code uses 'day' array to print the actual name of the day, while the mutant program uses a macro TRAP_ON_ZERO and does not fully match the day's name to its corresponding index. This test takes the current date and subtracts 5 seconds to simulate a quick execution. The original program outputs the expected date and time, while the mutant code outputs an incorrect date and month with a day index instead of a full day name."
+    }
+  ]
+},{
+  "mutant_program": "muta2146_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+30min"
+      ],
+      "original_output": "Current date and time: Mon Sep 20 10:00:00 2021\nNew date and time: Mon Sep 20 10:30:00 2021\n",
+      "mutant_output": "",
+      "explanation": "The mutants removes the initialization of variables 'value' and 'total', causing them to have unpredictable values, leading to a wrong calculation of the resulting time. The original program clearly shows the addition of 30 minutes to the current date."
+    },
+    {
+      "input": [
+        "+20sec"
+      ],
+      "original_output": "Current date and time: Mon Sep 20 10:00:00 2021\nNew date and time: Mon Sep 20 10:00:20 2021\n",
+      "mutant_output": "",
+      "explanation": "The original program calculates the incremented time correctly, but the mutant code does not calculate it properly due to the removal of the variable initialization."
+    },
+    {
+      "input": [
+        "-1hour"
+      ],
+      "original_output": "Current date and time: Mon Sep 20 10:00:00 2021\nNew date and time: Mon Sep 20 09:00:00 2021\n",
+      "mutant_output": "",
+      "explanation": "The original and the mutant program will return the same output because this input overlaps with the initialization format of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta2147_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1sec"
+      ],
+      "original_output": "Mon Apr  5 00:00:01 2021\n",
+      "mutant_output": "Mon Apr  5 00:00:01 2021\n",
+      "explanation": "The original and mutant program produce the same output for this input."
+    },
+    {
+      "input": [
+        "-1day"
+      ],
+      "original_output": "Sun Apr  4 00:00:00 2021\n",
+      "mutant_output": "Sat Apr  3 23:00:00 2021\n",
+      "explanation": "When subtracting one day, the mutant program outputs the date and time one hour earlier than the original program, due to the change in how structs are handled in the mutant code."
+    },
+    {
+      "input": [
+        "-3week"
+      ],
+      "original_output": "Mon Mar 15 00:00:00 2021\n",
+      "mutant_output": "Sun Mar 14 23:00:00 2021\n",
+      "explanation": "Similarly, when subtracting three weeks, the mutant program outputs the date and time one hour earlier than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta2149_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-1",
+        "1day"
+      ],
+      "original_output": "date+: missing unit\n",
+      "mutant_output": "date+: missing unit\n",
+      "explanation": "Both programs should produce the same output, since the mutation only removed const and size_t and does not affect any of the program's logic."
+    },
+    {
+      "input": [
+        "-1.5",
+        "2sec"
+      ],
+      "original_output": "Tue Jan 30 21:52:55 2018\n",
+      "mutant_output": "Tue Jan 30 21:52:57 2018\n",
+      "explanation": "The original program increments the date by 1.5 seconds, while the mutated program increments by 2 seconds, leading to a different output."
+    },
+    {
+      "input": [
+        "1517394679",
+        "1day"
+      ],
+      "original_output": "Sun Feb  4 21:51:19 2018\n",
+      "mutant_output": "Mon Feb  5 21:51:19 2018\n",
+      "explanation": "The original program increments the date by 1 day, while the mutated program does not affect the date, leading to a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta2150_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-345600"
+      ],
+      "original_output": "Thu Jan  1 00:00:00 1970\n",
+      "mutant_output": "Sun Dec 28 00:00:00 1969\n",
+      "explanation": "The mutant added the value for the input, resulting in an incorrect date being output."
+    },
+    {
+      "input": [
+        "86400",
+        "1",
+        "day"
+      ],
+      "original_output": "Tue Aug  3 00:00:00 2021\n",
+      "mutant_output": "Wed Aug  4 00:00:00 2021\n",
+      "explanation": "Both the original and mutant program add 1 day to the input date."
+    }
+  ]
+},{
+  "mutant_program": "muta2152_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+1sec",
+        "+1hour"
+      ],
+      "original_output": "17:26 Nov 12",
+      "mutant_output": "17:25 Nov 12",
+      "explanation": "The original program code adds 1 sec and 1 hour to the current date, while the mutant code adds only 1 hour. Therefore, the outputs are different."
+    },
+    {
+      "input": [
+        "+5min",
+        "-1day"
+      ],
+      "original_output": "16:24 Nov 12",
+      "mutant_output": "16:24 Nov 13",
+      "explanation": "The original program code adds 5 min and subtracts 1 day from the current date, while the mutant code adds 5 min and subtracts 1 day from the specified date. Therefore, the outputs are different."
+    },
+    {
+      "input": [
+        "+2week",
+        "+1year"
+      ],
+      "original_output": "16:30 Nov 26",
+      "mutant_output": "16:30 Nov 30",
+      "explanation": "The original program code adds 2 weeks and 1 year to the current date, while the mutant code adds 2 weeks and 1 year to the specified date. Therefore, the outputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta2153_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "- 2 month",
+        "+ 3 day"
+      ],
+      "original_output": "04:58 Aug 08",
+      "mutant_output": "04:58 Aug 08",
+      "explanation": "Both programs will produce the same output because the mutation only changed the formatting of the date which will not affect the final output."
+    },
+    {
+      "input": [
+        "+ 5 day",
+        "- 1 month"
+      ],
+      "original_output": "04:58 Sep 02",
+      "mutant_output": "04/06/91",
+      "explanation": "The mutant program changed the 'D' format specifier to print the date in a different format. This will result in a different output compared to the original program."
+    },
+    {
+      "input": [
+        "+ 1 week",
+        "- 2 day"
+      ],
+      "original_output": "04:58 Aug 19",
+      "mutant_output": "04:58 Aug 19",
+      "explanation": "Both programs will produce the same output because the mutation did not affect the logic of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta2155_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+10day",
+        "+1week"
+      ],
+      "original_output": "Fri Apr 02 00:00:00 2021\n",
+      "mutant_output": "Mon Apr 12 00:00:00 2021\n",
+      "explanation": "The original program correctly increments the date by 10 days first and then by 1 week, resulting in April 2nd 2021. The mutant program increments first by 1 week and then by 10 days, resulting in April 12th 2021."
+    },
+    {
+      "input": [
+        "now",
+        "-10hour"
+      ],
+      "original_output": "Thu Mar 25 15:08:35 2021\n",
+      "mutant_output": "Thu Mar 25 05:08:35 2021\n",
+      "explanation": "The original program correctly subtracts 10 hours from the current time, resulting in a date of March 25th 2021 at 3:08 PM. The mutant program also subtracts 10 hours, but the extra lines of code added cause the program to print an incorrect output due to a syntax error on the 'TRAP_ON_NEGATIVE' macro."
+    }
+  ]
+},{
+  "mutant_program": "muta2156_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "+5day"
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "The input is only one argument and it is missing the initial date value, so both original and mutant code will fail."
+    },
+    {
+      "input": [
+        "now",
+        "+1hour"
+      ],
+      "original_output": "03:13 Aug 21",
+      "mutant_output": "03:13G Aug 21",
+      "explanation": "Both codes will output the correct date and time, but the mutant program will have an extra 'G' character after the month abbreviation."
+    }
+  ]
+},{
+  "mutant_program": "muta2158_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-3600",
+        "1hour"
+      ],
+      "original_output": "22:00 Jul 08",
+      "mutant_output": "22:00 Jul 07",
+      "explanation": "The original program increments the date by the specified time, while the mutant program does not. The mutation changed the global variable declaration of argv and argc, making the program use wrong values and leading to wrong output."
+    },
+    {
+      "input": [
+        "-86400",
+        "1day"
+      ],
+      "original_output": "23:00 Jul 06",
+      "mutant_output": "23:00 Jul 05",
+      "explanation": "The same as the previous test, the output shows that the program is not incrementing the date by the specified time, with the same mutation applied in the previous test."
+    }
+  ]
+},{
+  "mutant_program": "muta2159_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "1000",
+        "-3",
+        "day",
+        "2",
+        "hour"
+      ],
+      "original_output": "Thu Jan  2 22:00:00 1975\n",
+      "mutant_output": "Thu Jan  2 14:00:00 1975\n",
+      "explanation": "The mutant code differs from the original in that it doesn't correctly update the month and year fields when incrementing by 'month' and 'year' units. In the given test case, this difference results in the mutant program outputting a different time value. "
+    }
+  ]
+},{
+  "mutant_program": "muta2161_date-plus.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "-",
+        "5",
+        "hour"
+      ],
+      "original_output": "09:02 Nov 01",
+      "mutant_output": "09:02 Nov 01\n",
+      "explanation": "The mutant code adds an unnecessary condition for printing spaces between formats that results in a different output for the same input."
+    },
+    {
+      "input": [
+        "-",
+        "3600",
+        "sec"
+      ],
+      "original_output": "08:17 Nov 01",
+      "mutant_output": "08:17 Nov 01\n",
+      "explanation": "The mutant code has the same behavior of the original implementation for this input, and it seems like the only difference is the use of the macro TRAP_ON_NEGATIVE that doesn't have any effect for the current input."
+    },
+    {
+      "input": [
+        "+",
+        "3600",
+        "sec"
+      ],
+      "original_output": "11:17 Nov 01",
+      "mutant_output": "11:17 Nov 01\n",
+      "explanation": "The mutant code has the same behavior of the original implementation for this input because this input doesn't execute the missing function, which is where the mutant code has an error that doesn't exist in the original code."
+    }
+  ]
+}]
