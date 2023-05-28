@@ -1,1 +1,292 @@
-[{"mutant_program": "muta0_countPositive.c", "equivalent": true, "tests": [{"input": [-4, 2, -1, 2], "original_output": 2, "mutant_output": 2, "explanation": "Both the original and mutant code take an integer array as input and counts the number of positive integers in the array. The mutant code replaces the condition 'if (x[i] >= 0)' with 'if((x[i]))' which is equivalent in this case as we are only interested in counting positive integers."}, {"input": [-1, -2, -3], "original_output": 0, "mutant_output": 0, "explanation": "This test case was added to verify that the mutant code still returns the correct output for cases where there are no positive integers in the input array."}, {"input": [1, 2, 3], "original_output": 3, "mutant_output": 3, "explanation": "This test case was added to verify that the mutant code still returns the correct output for cases where all integers in the input array are positive."}]}]
+[{
+  "mutant_program": "muta107_countPositive.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 4,
+      "explanation": "The original program correctly counts the number of positive elements in the input array, which is 2. However, the mutated program uses a TRAP_ON_NEGATIVE function to modify the loop condition, which may skip negative elements in the array and count more positive elements than expected. In this case, the mutant program counts 4 positive elements instead of 2."
+    },
+    {
+      "input": [
+        3,
+        0,
+        -2,
+        5,
+        1
+      ],
+      "original_output": 4,
+      "mutant_output": 5,
+      "explanation": "The original program correctly counts the number of positive elements in the input array, which is 4. However, the mutated program may also count the element at index 2 (-2), depending on the implementation of TRAP_ON_NEGATIVE, resulting in a count of 5 instead of 4."
+    }
+  ]
+},{
+  "mutant_program": "muta110_countPositive.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "The original program counts the number of positive numbers in the array, while the mutant program adds an extra condition by using a macro called TRAP_ON_NEGATIVE. TRAP_ON_NEGATIVE checks for negative values and causes the loop to terminate prematurely. In the given test case, the original program correctly counts the number of positive numbers as 2, while the mutant program counts 3, because it terminates the loop prematurely when it encounters the negative number -1."
+    },
+    {
+      "input": [
+        0,
+        -5,
+        5,
+        10
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "In this test case, the original program correctly counts the number of positive numbers as 3, while the mutant program counts 4, because it terminates the loop prematurely when it encounters the negative number -5."
+    }
+  ]
+},{
+  "mutant_program": "muta113_countPositive.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 4,
+      "explanation": "The original program counts the number of positive elements in the input array, while the mutant program changes the behavior of the function by applying the TRAP_ON_NEGATIVE function to the index of the array. This function is not defined and its behavior is unknown, but it could potentially change the way the program counts the number of positive elements. In this case, the mutant program counts all even index positions, regardless of whether the element is positive or not."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs return the correct output for an array of all positive values."
+    },
+    {
+      "input": [
+        -1,
+        -2,
+        -3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs return the correct output for an array of all negative values."
+    }
+  ]
+},{
+  "mutant_program": "muta119_countPositive.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": "TRAP_ON_NEGATIVE(2)",
+      "explanation": "The original program counts the number of positive elements in the array x. The mutant program uses a TRAP_ON_NEGATIVE macro around the count variable which will trigger an error if the count variable is negative. Since count can never be negative in the original program, the output of the mutant program will be different and the test will fail."
+    },
+    {
+      "input": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "original_output": 4,
+      "mutant_output": "TRAP_ON_NEGATIVE(4)",
+      "explanation": "Similar to the previous test, the TRAP_ON_NEGATIVE macro will trigger an error even though the count variable is positive in both programs. Therefore, the output of the mutant program will be different from the original and the test will fail."
+    }
+  ]
+},{
+  "mutant_program": "muta33_countPositive.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The test is the same as the one provided in the original code. The mutant replaces the initialization of i with i *= 0 which sets i to 0, causing the loop to exit immediately as the condition i < length will always be false in this case, resulting in a count of 0 for all inputs. Therefore, the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta36_countPositive.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 4,
+      "explanation": "The original program correctly counts the number of positive elements in the input array, which is 2. However, the mutant code initializes i with an undefined variable and then increments it, which could potentially result in an out-of-bounds access to the array or an infinite loop. In this case, since i is still initialized to 0, the mutant program counts all elements in the array, including the negative ones."
+    }
+  ]
+},{
+  "mutant_program": "muta38_countPositive.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The original program correctly counts the number of positive elements in the input array, which is 2. However, the mutant initializes the loop counter 'i' with the bitwise AND operation '&=' and 0, which will always make 'i' equal to 0. As a result, the loop never gets executed, and the function incorrectly returns 0."
+    },
+    {
+      "input": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both the original program and the mutant correctly count the number of positive elements in the input array, which is 6. This test verifies that the mutant produces the same output as the original program for some input arrays."
+    },
+    {
+      "input": [
+        -1,
+        -2,
+        -3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original program and the mutant correctly count the number of positive elements in the input array, which is 0. This test verifies that the mutant produces the same output as the original program for some input arrays."
+    }
+  ]
+},{
+  "mutant_program": "muta50_countPositive.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 4,
+      "explanation": "The original program correctly counts the number of positive elements in the input array, which is 2. However, the mutant program has a non-equivalent loop condition, which causes it to continue iterating even after reaching the end of the input array. This results in an incorrect count of 4 positive numbers being returned instead of the expected 2."
+    }
+  ]
+},{
+  "mutant_program": "muta61_countPositive.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 4,
+      "explanation": "The original program counts the number of positive elements in the input array, while the mutated program XORs the iterator with the length of the array in the for loop condition, resulting in an infinite loop because the condition is always true. Therefore, the mutated program outputs an incorrect count of positive elements (4 instead of 2)."
+    }
+  ]
+},{
+  "mutant_program": "muta73_countPositive.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both programs have the same expected output with the input [-4,2,-1,2]."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs have the same expected output with the input [0,0,0]."
+    }
+  ]
+},{
+  "mutant_program": "muta75_countPositive.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both original code and mutant code count the number of positive elements in the input array and return it as output. The only difference is in the condition used to check if an element is positive. While the original code uses x[i] >= 0, the mutant code uses (x[i] > 0). However, since both conditions are equivalent for this particular test case, the output of both codes is the same."
+    }
+  ]
+},{
+  "mutant_program": "muta129_countPositive.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -4,
+        2,
+        -1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 4,
+      "explanation": "In the mutant code, the if condition checks if the x[count] is greater than or equal to 0, which is incorrect as the index of the array should be 'i' not 'count'. Thus, the mutant code counts all array elements greater than or equal to 0 instead of only positive numbers, resulting in a different output."
+    },
+    {
+      "input": [
+        0,
+        -1,
+        3,
+        -5,
+        7
+      ],
+      "original_output": 2,
+      "mutant_output": 5,
+      "explanation": "Similar to the previous test, the mutant code counts all array elements greater than or equal to 0 instead of only positive numbers, resulting in a different output."
+    }
+  ]
+}]
