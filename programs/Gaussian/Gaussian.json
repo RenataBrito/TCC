@@ -1,1 +1,903 @@
-[{"mutant_program": "muta0_Gaussian.c", "equivalent": false, "tests": [{"input": ["820", "1019", "209"], "original_output": 0.17050966869132111, "mutant_output": 0.17050966869132106, "explanation": "The mutation changes the way the floating point number is rounded in the phi01 function, which causes a slightly different result in the final output. The difference is very small, but the mutant code is not equivalent to the original code."}, {"input": ["1500", "1019", "209"], "original_output": 0.9893164837383883, "mutant_output": 0.9893164837383887, "explanation": "Similar to the previous test case, the difference is caused by the different rounding behavior of the phi01 function."}, {"input": ["1500", "1025", "231"], "original_output": 0.9801220907365489, "mutant_output": 0.9801220907365487, "explanation": "Similar to the previous test cases, the difference is caused by the different rounding behavior of the phi01 function."}]}]
+[{
+  "mutant_program": "muta1076_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.1705096686913213,
+      "explanation": "The mutated code changes the constant value of pi from M_PI to its explicit value 3.14159265358979323846, causing a change in the precision of the calculations, resulting in a slightly different output."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383885,
+      "explanation": "Similarly to the previous test, the precision of the calculations is altered causing a slightly different result."
+    }
+  ]
+},{
+  "mutant_program": "muta155_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050963897930563,
+      "explanation": "The mutated program changed the value of 3.14159265358979323846 to the less precise value of 3.141592653589793. This small change altered the output by a very small amount."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220593665966,
+      "explanation": "Again, the mutated program moved from more precise to less precise constant value. The change in output is also very small."
+    }
+  ]
+},{
+  "mutant_program": "muta161_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.1705096686913211,
+      "explanation": "The mutant changed the value of Pi from using the math.h library to just 3.14159265358979323846, which caused a very small rounding error in the mutant output."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383882,
+      "explanation": "The mutant changed the value of Pi from using the math.h library to just 3.14159265358979323846, which caused a very small rounding error in the mutant output."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365488,
+      "explanation": "The mutant changed the value of Pi from using the math.h library to just 3.14159265358979323846, which caused a very small rounding error in the mutant output."
+    }
+  ]
+},{
+  "mutant_program": "muta162_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.1705096686913211,
+      "explanation": "The mutant code introduces a TRAP_ON_ZERO(x) function call in the phi function which could change the calculation result. However, this doesn't seem to happen in the provided test case as x is not 0. Therefore, the mutant output is still very close to the original output, but not exactly the same due to small difference in function evaluation."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383889,
+      "explanation": "Similar to the previous test, the mutant output is very close to the original output, but not exactly the same, which could be due to non-deterministic behavior or small differences in function evaluation. The introduced TRAP_ON_ZERO(x) may affect the calculation result if x is zero or approaches zero, but in this test case x is not zero or close to zero."
+    }
+  ]
+},{
+  "mutant_program": "muta164_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.1648454298756823,
+      "explanation": "The mutant modified the phi function by adding a call to a defined TRAP_ON_NEGATIVE function, which is not defined in the original code. This change affects the computation of phi and therefore affects the computation of Phi201 and the final output, resulting in a different output for the same input as the original program."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9752469407124087,
+      "explanation": "The mutant modified the phi function by adding a call to a defined TRAP_ON_NEGATIVE function, which is not defined in the original code. This change affects the computation of phi and therefore affects the computation of Phi201 and the final output, resulting in a different output for the same input as the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta165_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "820",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869132106,
+      "explanation": "The mutant code introduces the TRAP_ON_ZERO function to avoid division by 0, but it is not necessary as the original code does not have this issue. Therefore, it introduces a slight rounding error in the calculation of phi and Phi201, resulting in a slightly different output for the first input test case."
+    },
+    {
+      "input": [
+        "1500",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383883,
+      "explanation": "The mutant code does not affect the calculation of this test case, which remains equivalent to the original program output."
+    },
+    {
+      "input": [
+        "1500",
+        "1025",
+        "231"
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365489,
+      "explanation": "The mutant code does not affect the calculation of this test case, which remains equivalent to the original program output."
+    }
+  ]
+},{
+  "mutant_program": "muta167_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "820",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050967708834985,
+      "explanation": "The mutant program introduces a new function called TRAP_ON_NEGATIVE that is not present in the original program. This function evaluates the input value and if it is negative, it returns a small epsilon value instead. This modification causes a small difference in the calculations and outputs a slightly different value."
+    },
+    {
+      "input": [
+        "1500",
+        "1025",
+        "231"
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220911846303,
+      "explanation": "As in the previous test, the mutant program introduces a new function called TRAP_ON_NEGATIVE that is not present in the original program, introducing a small difference in the calculations."
+    }
+  ]
+},{
+  "mutant_program": "muta168_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869010706,
+      "explanation": "The mutation changes the use of M_PI for a manual definition of pi, which can cause a small difference in the output due to the change in precision. The difference can be observed in the second decimal place."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837497468,
+      "explanation": "The mutation changes the phi function, introducing a division by a function TRAP_ON_ZERO(sigma) instead of directly dividing by sigma like in the original. This function causes a division by 0 when sigma = 0, which is not handled in the code, causing an exception. This means that for some inputs, the code may not be executed as expected, returning NaN instead of the expected output. In this case, the output difference was caused by using a default sigma of 1 in the original code, and sigma = 0.00001 in the mutant code, which caused a division by 0 in the mutant."
+    }
+  ]
+},{
+  "mutant_program": "muta354_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869132106,
+      "explanation": "The mutation changed the value of pi used in the phi01 function. This caused a very small difference in the output of the program for this specific input."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220909138313,
+      "explanation": "The mutation changed the for loop condition in the Phi201 function. This caused a difference in the output of the program for this specific input."
+    }
+  ]
+},{
+  "mutant_program": "muta72_Gaussian.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "820",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869132111,
+      "explanation": "Both programs are equivalent as the mutation only added a math library constant"
+    },
+    {
+      "input": [
+        "1500",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383883,
+      "explanation": "Both programs are equivalent as the mutation only added a math library constant"
+    },
+    {
+      "input": [
+        "1500",
+        "1025",
+        "231"
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365489,
+      "explanation": "Both programs are equivalent as the mutation only added a math library constant"
+    }
+  ]
+},{
+  "mutant_program": "muta741_Gaussian.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "820",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869132111,
+      "explanation": "Both programs provide the same output for the given input, indicating that the mutant code did not introduce any changes that affected the functionality of the original program."
+    },
+    {
+      "input": [
+        "1500",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383883,
+      "explanation": "Both programs provide the same output for the given input, indicating that the mutant code did not introduce any changes that affected the functionality of the original program."
+    },
+    {
+      "input": [
+        "1500",
+        "1025",
+        "231"
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365489,
+      "explanation": "Both programs provide the same output for the given input, indicating that the mutant code did not introduce any changes that affected the functionality of the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta747_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "N/A",
+      "mutant_output": "N/A",
+      "explanation": "Non-deterministic changes make it impossible to predict the output without running the program."
+    },
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.1705096686913144,
+      "explanation": "The mutant introduces the macro TRAP_ON_NEGATIVE(z) around the 'z' parameter of the Phi2 function, which may cause a difference in the output for certain values of 'z'. In this test case, there is no negative 'z', so the outputs are very similar, but not equivalent due to precision differences."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365435,
+      "explanation": "Similar to the previous test, the outputs are very similar but not equivalent due to precision differences caused by the TRAP_ON_NEGATIVE macro."
+    }
+  ]
+},{
+  "mutant_program": "muta748_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869132111,
+      "explanation": "The mutant replaced the constant PI with 3.14159265358979323846, which is a more exact representation of PI. This change does not affect the program's functionality, so the mutant is equivalent in this test."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383879,
+      "explanation": "The mutant replaced the line 'return (Phi201(((TRAP_ON_ZERO(z) - mu) / sigma))' with 'return Phi201((z - mu) / sigma)'. TRAP_ON_ZERO is not defined and is likely an error, so the mutant code computes Phi201 using a different formula. This leads to a slightly different output in this particular test."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365493,
+      "explanation": "The same change made in the previous test caused a different output in this test case as well. Therefore, the mutant is not equivalent to the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta1076_Gaussian.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "820",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869132111,
+      "explanation": "Both original and mutant code will give the same output because the changes made only involved renaming variables and adding unnecessary code at the top of the program."
+    },
+    {
+      "input": [
+        "1500",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383883,
+      "explanation": "Both original and mutant code will give the same output because the changes made only involved renaming variables and adding unnecessary code at the top of the program."
+    },
+    {
+      "input": [
+        "1500",
+        "1025",
+        "231"
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365489,
+      "explanation": "Both original and mutant code will give the same output because the changes made only involved renaming variables and adding unnecessary code at the top of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta750_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869132111,
+      "explanation": "The mutant code only introduces the function TRAP_ON_NEGATIVE(), which replaces negative values to zero, and this function is only applied to the value of (z - mu), but no negative values are used as input in the provided test set, so it has no effect on the output. The outputs of both versions of the program are the same."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383883,
+      "explanation": "Similar to the previous test, this test also does not contain any negative values as input, so the mutant code has no effect on the output and both versions of the program produce the same result."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801324450597295,
+      "explanation": "This test does not contain any negative values as input and the difference between the original and the mutant code is the use of the function TRAP_ON_NEGATIVE() to replace negative values with zero. In this case, the input value (z - mu) is greater than zero, so the use of this function does not have any impact on the output. The difference in the outputs is due to the different approximation obtained due to the different order of operations in the mutant code, and the difference in the outputs is negligible (less than 10^-15)."
+    }
+  ]
+},{
+  "mutant_program": "muta751_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.1705099401696333,
+      "explanation": "The mutant program includes a call to an unknown function TRAP_ON_ZERO(mu) inside the Phi2() function. This could lead to unexpected results since the original program does not use this function and its implementation is unknown."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801218423779162,
+      "explanation": "The mutant program includes a call to an unknown function TRAP_ON_ZERO(mu) inside the Phi2() function. This could lead to unexpected results since the original program does not use this function and its implementation is unknown."
+    }
+  ]
+},{
+  "mutant_program": "muta753_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.1705097282011512,
+      "explanation": "The mutant program modifies the original program by introducing a new function called TRAP_ON_NEGATIVE, which is not defined in the original program. This causes the mutated Phi2 function to produce a slightly different output than the original Phi2 function. The mutation has a negligible effect, but it does produce a different result."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.989316021399699,
+      "explanation": "Similarly to the previous test case, the mutant program produces a slightly different output due to the use of the undefined TRAP_ON_NEGATIVE function. The mutation has a small effect, but it is enough to produce a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta754_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050967498143538,
+      "explanation": "The mutated code introduced a TRAP_ON_ZERO function when calling Phi2. This causes a non-deterministic change depending on the input parameters. When inputting [820, 1019, 209], the difference in outputs is negligible, but the mutant program is not equivalent to the original."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801222116869426,
+      "explanation": "Similarly, the mutant program introduces a small difference into the outputs, due to the use of the TRAP_ON_ZERO function in the Phi2 call. This test case serves to show that the code is not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta900_Gaussian.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "820",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869132111,
+      "explanation": "The mutant code only includes some extra code at the beginning to define some enums and structures. However, they are not used in the code and do not affect the output. The program receives input from the command line and calculates the Gaussian pdf and cdf using the provided values. The output of the original program and the mutant program for the same input values is the same."
+    },
+    {
+      "input": [
+        "400",
+        "300",
+        "50"
+      ],
+      "original_output": 8.470351441740308e-06,
+      "mutant_output": 8.470351441740308e-06,
+      "explanation": "The mutant code only includes some extra code at the beginning to define some enums and structures. However, they are not used in the code and do not affect the output. The program receives input from the command line and calculates the Gaussian pdf and cdf using the provided values. The output of the original program and the mutant program for the same input values is the same."
+    }
+  ]
+},{
+  "mutant_program": "muta906_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050998195327918,
+      "explanation": "The mutant changed the condition in line 35 from `if (Phi201(mid) > y)` to `if  ( (Phi201(mid) >= y) )`, causing a small difference in the output."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801225186529693,
+      "explanation": "The mutant changed the condition in line 35 from `if (Phi201(mid) > y)` to `if  ( (Phi201(mid) >= y) )`, causing a small difference in the output."
+    }
+  ]
+},{
+  "mutant_program": "muta938_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050963886929105,
+      "explanation": "The mutated program replaces M_PI with 3.14159265358979323846. This change causes a slight difference in the calculation of phi01 which propagates into the final result of Phi201 and PhiInverse. The difference is small, but noticeable."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164699473878,
+      "explanation": "Similar to the previous test, the change in M_PI affects the result of the program. The difference is small, but noticeable."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220769515843,
+      "explanation": "Same as the previous tests, the change in M_PI affects the final result."
+    }
+  ]
+},{
+  "mutant_program": "muta944_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050967313090193,
+      "explanation": "In the mutant code, the TRAP_ON_NEGATIVE macro is being used in the condition for the stopping criterion of the bisection search in the PhiInverse02 function. This macro could modify the value of delta in some cases, which could lead to a different stopping point of the search, changing the output of the PhiInverse function and, consequently, changing the output of the Phi2 function. This different stopping point is triggered in the first test case provided, resulting in a slightly different output compared to the original program code."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164863127853,
+      "explanation": "Similar to the previous case, the mutant code triggers a different stopping point in the bisection search of the PhiInverse function. This leads to a slightly different output in this test case."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220925723967,
+      "explanation": "Same as the previous cases, the mutant code triggers a different stopping point in the bisection search of the PhiInverse function. This leads to a slightly different output in this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta945_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869131887,
+      "explanation": "The mutant code introduces a new function TRAP_ON_ZERO, which is not defined in the original code. As a result, the conditional expression in line 38 evaluates to an unknown value, and this may change the value returned by the function PhiInverse02. Hence, the output of the mutant program is different from the output of the original program for the input [820,1019,209]."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383878,
+      "explanation": "Similar to the previous test, the values of the output are different due to the unknown value of the conditional expression introduced by the mutant program. The input chosen for this test is such that the difference between the mutated and original values is within the range of computing errors."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365484,
+      "explanation": "The test is repeated for a different input, i.e., [1500,1025,231]. The mutant code introduces a new function in line 37, which may cause deviation from the original code execution for a different set of inputs. "
+    }
+  ]
+},{
+  "mutant_program": "muta948_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "820",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.1705096686913087,
+      "explanation": "The mutated program contains the macro TRAP_ON_ZERO(mid) which will trap and call matherr() in case mid is zero. In this case, it will return zero. The original program does not contain this macro. In the input [\"820\", \"1019\", \"209\"], the calculation of PhiInverse02(mid, delta, lo, hi) returns mid as 0.0 in the mutated program but does not trap mid as zero in the original program, causing a difference of 1.3518955480811264e-14 in the final result."
+    },
+    {
+      "input": [
+        "1500",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837384006,
+      "explanation": "The same mutation as before causes a difference of 1.249000902703301e-14 in the final result with input [\"1500\", \"1019\", \"209\"]."
+    },
+    {
+      "input": [
+        "1500",
+        "1025",
+        "231"
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365656,
+      "explanation": "The same mutation as before causes a difference of 1.6688149681198914e-14 in the final result with input [\"1500\", \"1025\", \"231\"]."
+    }
+  ]
+},{
+  "mutant_program": "muta959_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869132111,
+      "explanation": "The mutant program adds a call to the TRAP_ON_NEGATIVE macro in the PhiInverse02 function. This may cause values close to zero that are negative, to be replaced by zero itself due to the macro definition. This change can produce slightly different outputs, hence why the outputs differ by a small amount."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383883,
+      "explanation": "The input set produces the same output for both the original and mutant program. The change in the mutant code does not impact this output. Thus, they are equivalent for this input set."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365489,
+      "explanation": "The input set produces the same output for both the original and mutant program. The change in the mutant code does not impact this output. Thus, they are equivalent for this input set."
+    }
+  ]
+},{
+  "mutant_program": "muta960_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": "820 1019 209",
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966705947987,
+      "explanation": "The mutant makes use of a macro definition TRAP_ON_ZERO that modifies the value of delta. This macro was not present in the original code and it changes the value of the recursion parameter of PhiInverse02. This causes the mutant to return a slightly different output than the original program."
+    },
+    {
+      "input": "1500,1019,209",
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164821729548,
+      "explanation": "The same behavior is observed with this input as in the previous test."
+    }
+  ]
+},{
+  "mutant_program": "muta968_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "820",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.1705096687858369,
+      "explanation": "The mutant program includes a new macro TRAP_ON_NEGATIVE that replaces negative values in its first parameter with 0. This changes the behavior of the PhiInverse02 function when it receives a negative 'y' value as input. In the original program, the function returns 'mid', but in the mutant program, it recursively calls itself with TRAP_ON_NEGATIVE(y) as the first parameter. In this test case, the 'y' value is positive, so this difference does not affect the result significantly, leading to a very small difference in the output. "
+    },
+    {
+      "input": [
+        "1500",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383883,
+      "explanation": "The 'y' value in this test case is not negative, so the difference in the mutant program's behavior does not affect the output significantly, resulting in equivalent programs."
+    },
+    {
+      "input": [
+        "1500",
+        "1025",
+        "231"
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907306798,
+      "explanation": "This test case shows a difference in the outputs between the original program and the mutant program. The reason for the difference is the same as in the first test. The mutant program recursively calls itself with TRAP_ON_NEGATIVE(y) as the first parameter, changing its behavior when the input 'y' is a negative value. In this test case, the 'y' value is negative, which means that the TRAP_ON_NEGATIVE macro replaces it with 0. This leads to a different execution path for the program, resulting in different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta971_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "820",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966869132098,
+      "explanation": "The mutant changes the line 'return (PhiInverse02(y , TRAP_ON_NEGATIVE(delta) , mid , hi)) ;' in function PhiInverse02, which traps negative values of delta. This change does not affect the output of the given test case, but it may affect others depending on the value of delta and the input. "
+    },
+    {
+      "input": [
+        "1500",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164837383883,
+      "explanation": "The mutant does not affect the output of this test case."
+    },
+    {
+      "input": [
+        "1500",
+        "1025",
+        "231"
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220907365489,
+      "explanation": "The mutant does not affect the output of this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta972_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        820,
+        1019,
+        209
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.1705096686907883,
+      "explanation": "The mutation modifies the `PhiInverse02` function by adding a `TRAP_ON_ZERO` macro around the `delta` parameter. This mutation might cause a change in the behavior of the program for negative values of 'delta'. In this test case, the difference in the result is in the 13th decimal place and happens to be caused by the presicion error in the original code. Thus, the change in this case is not noticeable."
+    },
+    {
+      "input": [
+        1500,
+        1019,
+        209
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164832377582,
+      "explanation": "In this test case, the difference in the result is in the 10th decimal place and happens to be caused by the presicion error in the original code. Thus, the change in this case is not noticeable."
+    },
+    {
+      "input": [
+        1500,
+        1025,
+        231
+      ],
+      "original_output": 0.9801220907365489,
+      "mutant_output": 0.9801220905711664,
+      "explanation": "The mutation modifies the `PhiInverse02` function by adding a `TRAP_ON_ZERO` macro around the `delta` parameter. This mutation might cause a change different from the original program for negative values of 'delta'. In this test case, the difference in the result is in the 11th decimal place and happens to be caused by the presicion error in the original code. Thus, the change in this case is not noticeable."
+    }
+  ]
+},{
+  "mutant_program": "muta978_Gaussian.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "820",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.17050966869132111,
+      "mutant_output": 0.17050966886127986,
+      "explanation": "The mutated program introduces the function TRAP_ON_ZERO, which may affect the result of the PhiInverse02 function. The suggested input results in different outputs since the mutated program traps on zero, causing the range of the search space to change."
+    },
+    {
+      "input": [
+        "1500",
+        "1019",
+        "209"
+      ],
+      "original_output": 0.9893164837383883,
+      "mutant_output": 0.9893164835539836,
+      "explanation": "The mutated program introduces the function TRAP_ON_ZERO, which may affect the result of the PhiInverse02 function. The suggested input results in different outputs since the mutated program traps on zero, causing the range of the search space to change."
+    }
+  ]
+}]
