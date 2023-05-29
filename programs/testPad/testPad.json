@@ -1,1 +1,1867 @@
-[{"mutant_program": "muta0_testPad.c", "equivalent": false, "tests": [{"input": ["hello world", "world"], "original_output": "Pattern string begins at the character 6\n", "mutant_output": "Pattern strring is not a substring of the subject string\n", "explanation": "The original program correctly finds the index where the pattern starts in the subject string, while the mutant code mistakenly prints that the pattern is not a substring of the subject string."}, {"input": ["banana", "ana"], "original_output": "Pattern string begins at the character 1\n", "mutant_output": "Pattern string is not a substring of the subject string\n", "explanation": "The original program correctly finds the index where the pattern starts in the subject string, while the mutant code mistakenly prints that the pattern is not a substring of the subject string."}]}]
+[{
+  "mutant_program": "muta13_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcdefg",
+        "efg"
+      ],
+      "original_output": 4,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the starting index of the pattern 'efg' in the subject 'abcdefg', which is 4. However, the mutant program always subtracts 1 from the calculation of the pattern starting index, resulting in incorrect outputs for all cases where the pattern index is not 0. In this case, the mutant output is -1, when it should be 4."
+    },
+    {
+      "input": [
+        "aaaaaaa",
+        "a"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs will correctly output 0, as the pattern 'a' starts at the beginning of the subject 'aaaaaaa'."
+    },
+    {
+      "input": [
+        "racecar",
+        "car"
+      ],
+      "original_output": 4,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the starting index of the pattern 'car' in the subject 'racecar', which is 4. However, the mutant program always subtracts 1 from the calculation of the pattern starting index, resulting in incorrect outputs for all cases where the pattern index is not 0. In this case, the mutant output is -1, when it should be 4."
+    }
+  ]
+},{
+  "mutant_program": "muta14_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello",
+        "world"
+      ],
+      "original_output": "Pattern string is not a substring of the subject string\n",
+      "mutant_output": "Pattern string begins at the character -1\n",
+      "explanation": "The input 'hello' does not contain the pattern 'world'. The original program correctly outputs that the pattern string is not a substring of the subject string, while the mutant code mistakenly outputs that the pattern string begins at character -1."
+    },
+    {
+      "input": [
+        "software testing",
+        "test"
+      ],
+      "original_output": "Pattern string begins at the character 8\n",
+      "mutant_output": "Pattern string begins at the character 8\n",
+      "explanation": "Both programs correctly output that the pattern string 'test' begins at character 8 in the subject string 'software testing'."
+    },
+    {
+      "input": [
+        "banana",
+        "ana"
+      ],
+      "original_output": "Pattern string begins at the character 1\n",
+      "mutant_output": "Pattern string begins at the character 1\n",
+      "explanation": "Both programs correctly output that the pattern string 'ana' begins at character 1 in the subject string 'banana'."
+    }
+  ]
+},{
+  "mutant_program": "muta3_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original code correctly finds the index where the pattern 'world' begins in the subject string 'hello world', which is 6. However, the mutant code uses an unnecessary and incorrect semicolon which changes the code logic and always returns -1."
+    },
+    {
+      "input": [
+        "testing 123",
+        "foo"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both original and mutant code correctly identify that the pattern 'foo' is not a substring of the subject string 'testing 123', therefore returning -1."
+    }
+  ]
+},{
+  "mutant_program": "muta4_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "Hello World!",
+        "World"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly finds the index at which the pattern starts in the subject. However, the mutant program uses an incorrect syntax for the for loop in the pat function, which starts the loop at i=0 instead of i=1. This results in the loop accessing memory outside the bounds of the pattern array and causing a segmentation fault. Thus, the mutant program cannot correctly find the index of the pattern in the subject."
+    },
+    {
+      "input": [
+        "Testing one two three",
+        "o"
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both the original program and the mutant program correctly find the index at which the pattern starts in the subject. Since only one character is being searched for, the incorrect loop syntax in the mutant program does not affect the result."
+    },
+    {
+      "input": [
+        "abcd",
+        "efg"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both the original program and mutant program correctly report that the pattern is not a substring of the subject."
+    }
+  ]
+},{
+  "mutant_program": "muta51_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the index where the pattern string begins in the subject string. However, the mutant code initializes the variable 'rtnIndex' to -1 instead of using the constant 'NOTFOUND'. This causes the condition in line 61 to always evaluate to false, resulting in a return value of -1 instead of the correct index."
+    },
+    {
+      "input": [
+        "software testing is fun",
+        "test"
+      ],
+      "original_output": 9,
+      "mutant_output": -1,
+      "explanation": "Similar to the previous test case, the mutant code always returns -1 because of the incorrect initialization of 'rtnIndex'."
+    },
+    {
+      "input": [
+        "hello world",
+        "missing"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs correctly identify that the pattern string is not a substring of the subject string."
+    }
+  ]
+},{
+  "mutant_program": "muta53_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the starting index of the pattern 'world' in the subject string 'hello world'. However, the mutant code has a non-deterministic change in the while loop condition, which results in the loop running one less time than the original program. This causes the mutant code to not consider the last character of the subject string, resulting in the pattern not being found and the function returning NOTFOUND (-1) instead."
+    },
+    {
+      "input": [
+        "testing",
+        "test"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original program and the mutant code correctly identify the starting index of the pattern 'test' in the subject string 'testing'. This is because the non-deterministic change made by the mutant does not affect the actual behavior of the function in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta6_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello",
+        "he"
+      ],
+      "original_output": 0,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies that the pattern string 'he' begins at the character 0 in subject string 'hello'. However, the mutant program, after finding the characters to be not equal, sets isPat to 1 indicating that it has found the pattern. Therefore, the return value is always -1. This is evidenced in this test where the mutant output is -1 while the original output is 0."
+    },
+    {
+      "input": [
+        "goodbye",
+        "bye"
+      ],
+      "original_output": 4,
+      "mutant_output": -1,
+      "explanation": "This test further confirms that the mutant program does not work correctly when it finds a substring that does not match the pattern while the original program does. The original program returns 4 which is the index where the pattern 'bye' first appears in the subject string 'goodbye'. The mutant program, on the other hand, returns -1, indicating that the pattern is not found, which is incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta121_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly finds that the pattern 'world' starts at index 6 within the subject string 'hello world', but the mutant program's while loop condition is incorrect and may terminate too early. Specifically, (iSub - patternLen) - 1 should be moved inside the parentheses so that the subtraction occurs after the parentheses are evaluated; otherwise, the subtraction operator has higher precedence than the less-than operator and will be evaluated first, causing the loop to end prematurely. This can be demonstrated by the test input."
+    },
+    {
+      "input": [
+        "racecar",
+        "car"
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "Both programs correctly find that the pattern 'car' starts at index 4 within the subject string 'racecar'."
+    },
+    {
+      "input": [
+        "abcdefg",
+        "xyz"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs correctly report that the pattern 'xyz' is not found within the subject string 'abcdefg'."
+    }
+  ]
+},{
+  "mutant_program": "muta133_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world",
+        11
+      ],
+      "original_output": -1,
+      "mutant_output": 11,
+      "explanation": "The original program correctly returns -1 because 'world' is not a substring of 'hello world'. However, the mutant program returns 11, which is the length of the subject string. This indicates that the loop condition in the mutant program is not correct and the program does not correctly detect when the pattern is not a substring of the subject."
+    },
+    {
+      "input": [
+        "test string",
+        "str",
+        5
+      ],
+      "original_output": 5,
+      "mutant_output": 3,
+      "explanation": "Both programs correctly identify that 'str' is a substring of 'test string'. However, the mutant program returns 3 instead of 5, indicating that the function does not correctly locate the substring within the subject."
+    },
+    {
+      "input": [
+        "banana",
+        "na",
+        4
+      ],
+      "original_output": 2,
+      "mutant_output": 4,
+      "explanation": "Both programs correctly identify that 'na' is a substring of 'banana'. However, the mutant program returns 4 instead of 2, indicating that the function does not correctly locate the substring within the subject."
+    }
+  ]
+},{
+  "mutant_program": "muta135_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original code correctly finds the index of the first occurrence of the 'world' pattern in the 'hello world' subject. However, the mutant code uses a bitwise XOR instead of addition when calculating the upper bound for the while loop condition, which results in an incorrect index being returned or -1 when the pattern is not found."
+    },
+    {
+      "input": [
+        "testing testing",
+        "test"
+      ],
+      "original_output": 0,
+      "mutant_output": -1,
+      "explanation": "This test is similar to the previous one, but with a shorter pattern. The original code correctly returns the index of the first occurrence of the 'test' pattern in the 'testing testing' subject. The mutant code uses the same faulty loop bound calculation, resulting in a wrong index or -1 when the pattern is not found."
+    },
+    {
+      "input": [
+        "foobarbaz",
+        "quux"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "This test is meant to verify that neither program finds a nonexistent pattern in the subject. Both codes return -1, as expected."
+    }
+  ]
+},{
+  "mutant_program": "muta169_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "The original program correctly finds the starting position of the pattern in the subject string. The mutant program uses a different formula in the condition of the while loop, which is not equivalent to the original program's condition. However, for this particular input, both conditions evaluate to the same value, resulting in the same output from both programs."
+    },
+    {
+      "input": [
+        "testing",
+        "test"
+      ],
+      "original_output": 0,
+      "mutant_output": -1,
+      "explanation": "For this input, the original program correctly finds the starting position of the pattern in the subject string. However, the mutant program's condition of the while loop evaluates to false before reaching the end of the subject string, resulting in an incorrect output of -1."
+    },
+    {
+      "input": [
+        "program",
+        "gam"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "For this input, both programs correctly output -1 because the pattern is not a substring of the subject string."
+    }
+  ]
+},{
+  "mutant_program": "muta184_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "Hello World",
+        "Wor"
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both programs return the same output in this case."
+    },
+    {
+      "input": [
+        "Testing123",
+        "345"
+      ],
+      "original_output": 5,
+      "mutant_output": -1,
+      "explanation": "The original program correctly finds the pattern starting at index 5. However, the mutant program returns -1 because the assignment (isPat += 1) is not a valid C expression and does not affect the program's behavior. As a result, the for loop completes, and the function returns -1 instead of the correct index value."
+    },
+    {
+      "input": [
+        "abcdefg",
+        "fg"
+      ],
+      "original_output": 5,
+      "mutant_output": 7,
+      "explanation": "In this case, the mutant program returns 7 instead of the correct index value of 5. This is because the mutant code changes the function signature of the strncmp function, which is used by the original code to compare characters in the pattern and subject strings. As a result, the behavior of the function is different in the mutant code, causing it to return the wrong index value."
+    }
+  ]
+},{
+  "mutant_program": "muta185_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": "Pattern string begins at the character 6\n",
+      "mutant_output": "Pattern string is not a substring of the subject string\n",
+      "explanation": "The input is a subject with the pattern as substring. The original program should output the index where the pattern starts, which is 6. The mutant program, however, uses a decrement operator on isPat which changes the condition in the while loop. Therefore, isPat will never be 1 and the program will always output the message 'Pattern string is not a substring of the subject string'."
+    },
+    {
+      "input": [
+        "12345",
+        "2"
+      ],
+      "original_output": "Pattern string begins at the character 1\n",
+      "mutant_output": "Pattern string is not a substring of the subject string\n",
+      "explanation": "The input is a subject with the pattern as substring. The original program should output the index where the pattern starts, which is 1. The mutant program uses a different compiler-specific signature for built-in function 'strcpy', which changes nothing in this specific case."
+    },
+    {
+      "input": [
+        "abcdefg",
+        "xyz"
+      ],
+      "original_output": "Pattern string is not a substring of the subject string\n",
+      "mutant_output": "Pattern string is not a substring of the subject string\n",
+      "explanation": "The input is a subject without the pattern as substring. Both programs should output the same message."
+    }
+  ]
+},{
+  "mutant_program": "muta188_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both programs should output the same result for this input."
+    },
+    {
+      "input": [
+        "1234",
+        "34"
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program should output 2, as the pattern '34' starts at index 2 of the subject '1234'. The mutant program, however, should output -1, as the loop variable iPat is now being reset to 0 every iteration, which prevents the for loop from iterating correctly and ultimately results in the program returning -1 instead of the correct index."
+    }
+  ]
+},{
+  "mutant_program": "muta196_testPad.c",
+  "equivalent": "False",
+  "tests": []
+},{
+  "mutant_program": "muta201_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcdefg",
+        "cde"
+      ],
+      "original_output": 2,
+      "mutant_output": -256,
+      "explanation": "The mutant code changes the bitwise AND operator '&' to '=' in line 19 causing the program to return an unexpected negative value for the index of the pattern in the subject"
+    },
+    {
+      "input": [
+        "abbababa",
+        "aba"
+      ],
+      "original_output": 2,
+      "mutant_output": 5,
+      "explanation": "The original program finds the correct index of the pattern in the subject at index 2, while the mutant code finds the index at 5 which is incorrect, so they are not equivalent"
+    },
+    {
+      "input": [
+        "hello",
+        "ll"
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "The pattern is found at the same index by both the original and mutant code, so they are equivalent"
+    }
+  ]
+},{
+  "mutant_program": "muta205_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": "Pattern string begins at the character 6\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly finds the index where the pattern starts in the subject string. The mutant program, on the other hand, returns an empty string, indicating that the pattern was not found. This is due to the non-equivalent change made in line 16, where the 'isPat' variable is toggled using the XOR operator instead of being set to 1 directly, making the loop terminate prematurely before the pattern is fully matched."
+    },
+    {
+      "input": [
+        "abaababa",
+        "ababa"
+      ],
+      "original_output": "Pattern string is not a substring of the subject string\n",
+      "mutant_output": "Pattern string is not a substring of the subject string\n",
+      "explanation": "Both programs correctly handle the case where the pattern is not a substring of the subject string."
+    },
+    {
+      "input": [
+        "abcdef",
+        "bcd"
+      ],
+      "original_output": "Pattern string begins at the character 1\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly finds the index where the pattern starts in the subject string. The mutant program, as previously noted, always returns an empty string, so it fails to report the correct index."
+    }
+  ]
+},{
+  "mutant_program": "muta206_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "l",
+        "2"
+      ],
+      "original_output": "Pattern string begins at the character 2\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly identifies the starting index of the 'l' pattern in the 'hello world' string, while the mutant does not output anything."
+    },
+    {
+      "input": [
+        "this is a test",
+        "is",
+        "2"
+      ],
+      "original_output": "Pattern string begins at the character 2\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly identifies the starting index of the 'is' pattern in the 'this is a test' string, while the mutant does not output anything."
+    },
+    {
+      "input": [
+        "programming",
+        "",
+        "-1"
+      ],
+      "original_output": "Pattern string is not a substring of the subject string\n",
+      "mutant_output": "Pattern string is not a substring of the subject string\n",
+      "explanation": "Both programs recognize that the empty string is not a substring of any other string."
+    }
+  ]
+},{
+  "mutant_program": "muta207_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the starting index of the pattern 'world' in the subject 'hello world', which is 6. However, the mutant program uses the bitwise AND operator instead of the logical AND operator when initializing the iPat variable, which leads to incorrect index comparison and ultimately incorrect output."
+    },
+    {
+      "input": [
+        "red yellow green",
+        "red"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutant program should correctly identify the starting index of the pattern 'red' in the subject 'red yellow green' as 0."
+    },
+    {
+      "input": [
+        "apple",
+        "banana"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Neither the original nor mutant program should identify the pattern 'banana' in the subject 'apple', resulting in an output of -1 in both cases."
+    }
+  ]
+},{
+  "mutant_program": "muta212_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world",
+        11
+      ],
+      "original_output": "Pattern string is not a substring of the subject string\n",
+      "mutant_output": "",
+      "explanation": "The original code correctly identifies that 'world' is not a substring of 'hello world' and outputs the corresponding message. The mutant code, however, does not output any message and returns an incorrect value of -2."
+    },
+    {
+      "input": [
+        "test string",
+        "",
+        0
+      ],
+      "original_output": "Pattern string begins at the character 0\n",
+      "mutant_output": "Pattern string begins at the character -1\n",
+      "explanation": "The original code correctly handles the case where the pattern string is empty and outputs the correct starting position of 0. The mutant code, however, outputs an incorrect starting position of -1."
+    },
+    {
+      "input": [
+        "testing",
+        "ing",
+        3
+      ],
+      "original_output": "Pattern string begins at the character 4\n",
+      "mutant_output": "",
+      "explanation": "The original code correctly identifies that 'ing' starts at position 4 in 'testing'. The mutant code, however, does not output any message and returns an incorrect value of -2."
+    }
+  ]
+},{
+  "mutant_program": "muta213_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the index where the pattern first appears in the subject. However, the mutant code sets the isPat variable to false by making a bitwise operation of the logical AND with 0, which is equivalent to setting it to 0. Therefore, when the pattern is not found, the function returns -1, but the mutant code continues to search for the pattern, resulting in an index that is no longer valid and may cause an error."
+    },
+    {
+      "input": [
+        "abra kadabra",
+        "abra"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly identify the index where the pattern first appears in the subject."
+    },
+    {
+      "input": [
+        "testing 123",
+        "test"
+      ],
+      "original_output": 0,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the index where the pattern first appears in the subject. However, the mutant code sets the rtnIndex to -1 inside the for loop, which causes it to terminate early and return -1 before checking the remaining characters of the pattern. Therefore, the mutant code reports that the pattern is not a substring of the subject when it is."
+    }
+  ]
+},{
+  "mutant_program": "muta221_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "pqrspqrs",
+        "pqrs"
+      ],
+      "original_output": "Pattern string begins at the character 2\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly outputs the starting index of the pattern in the subject. The mutant program uses a non-deterministic shift operator on iPat, resulting in incorrect output."
+    },
+    {
+      "input": [
+        "testing 123",
+        "123"
+      ],
+      "original_output": "Pattern string begins at the character 8\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly outputs the starting index of the pattern in the subject. The inputs are the same for the mutant program, but the incorrect implementation of pat() alters the output."
+    }
+  ]
+},{
+  "mutant_program": "muta230_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "lo"
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs should output the same index of the pattern 'lo' in the subject 'hello world'"
+    },
+    {
+      "input": [
+        "testing program",
+        "ing"
+      ],
+      "original_output": 4,
+      "mutant_output": -1,
+      "explanation": "The original program should output index 4, but the mutant program should output -1 because of the change in the condition of the while loop"
+    },
+    {
+      "input": [
+        "program testing",
+        "test"
+      ],
+      "original_output": 8,
+      "mutant_output": 8,
+      "explanation": "Both programs should output the same index of the pattern 'test' in the subject 'program testing'"
+    }
+  ]
+},{
+  "mutant_program": "muta234_testPad.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "abcdabcd",
+        "abc",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs return 0 since the pattern is found at the beginning of the string."
+    },
+    {
+      "input": [
+        "This is a test string",
+        "string",
+        ""
+      ],
+      "original_output": 15,
+      "mutant_output": 15,
+      "explanation": "Both programs return 15 since the pattern is found at the end of the string."
+    },
+    {
+      "input": [
+        "banana",
+        "a",
+        ""
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs return 1 since the first occurrence of the pattern is found."
+    }
+  ]
+},{
+  "mutant_program": "muta250_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world",
+        "ld"
+      ],
+      "original_output": -1,
+      "mutant_output": 8,
+      "explanation": "The original program should return -1 since 'ld' is not a substring of 'hello world', but the mutant code erroneously returns 8."
+    },
+    {
+      "input": [
+        "testing",
+        "test",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should return 0 since an empty pattern should always be a substring, even an empty string."
+    },
+    {
+      "input": [
+        "abcde",
+        "xyz",
+        "ab"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs should return -1 since 'xyz' is not a substring of 'abcde' and 'ab' is not a substring of 'xyz'."
+    }
+  ]
+},{
+  "mutant_program": "muta273_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world",
+        "6"
+      ],
+      "original_output": "Pattern string begins at the character 6",
+      "mutant_output": "Pattern string is not a substring of the subject string",
+      "explanation": "The original code correctly identifies the starting index of the pattern 'world' in 'hello world'. The mutant code, however, uses an incorrect condition in the while loop that causes it to terminate prematurely, always returning -1 for any input."
+    },
+    {
+      "input": [
+        "foo",
+        "bar",
+        "-1"
+      ],
+      "original_output": "Pattern string is not a substring of the subject string",
+      "mutant_output": "Pattern string is not a substring of the subject string",
+      "explanation": "Both the original and mutant code correctly identify that the pattern 'bar' is not a substring of the subject 'foo', so the outputs are the same."
+    }
+  ]
+},{
+  "mutant_program": "muta288_testPad.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta291_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "lo",
+        8
+      ],
+      "original_output": 3,
+      "mutant_output": -1,
+      "explanation": "The original program correctly finds the index where the pattern 'lo' starts in the subject string 'hello world' which is 3. However, the mutant program modifies the condition inside the if-statement in the inner for loop which compares the characters of the subject with the pattern. Instead of using the == operator, it uses the % operator which computes the remainder of the division. This incorrect condition will always be true and thus the mutant program will not find the pattern 'lo' in the subject 'hello world', returning -1."
+    },
+    {
+      "input": [
+        "abcd",
+        "ef",
+        -1
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both the original and the mutant program receive input where the pattern string 'ef' is not a substring of the subject string 'abcd', so both programs will return -1 and will behave equivalently."
+    }
+  ]
+},{
+  "mutant_program": "muta306_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcdefg",
+        "cde"
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly finds the index where the pattern starts in the subject string. However, the mutant program uses the XOR operator instead of the inequality operator to compare the characters in the for loop of the pat function. This will cause different results when the characters don't match. For example, in the test case 'abcdefg' and 'cde', the original program will correctly find the index 2 as the start of the pattern, but the mutant program will fail the comparison between 'd' and 'e' and return -1 instead."
+    },
+    {
+      "input": [
+        "abcabc",
+        "abc"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutant programs correctly find the index where the pattern starts in the subject string. The mutant program does not change the functionality of the original program."
+    },
+    {
+      "input": [
+        "xyz",
+        "abc"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both the original and mutant programs correctly determine that the pattern string is not a substring of the subject string. The mutant program does not change the functionality of the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta319_testPad.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "abababab",
+        "ab"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should return 0, which is the index where the pattern 'ab' begins in the subject 'abababab'."
+    },
+    {
+      "input": [
+        "abababab",
+        "cd"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs should return -1 to indicate that the pattern 'cd' is not a substring of the subject 'abababab'."
+    },
+    {
+      "input": [
+        "abababab",
+        "abab"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should return 0, which is the index where the pattern 'abab' begins in the subject 'abababab'."
+    }
+  ]
+},{
+  "mutant_program": "muta323_testPad.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "hello",
+        "hello",
+        "world"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should output 0, since the pattern string 'hello' is in the subject string 'hello'"
+    },
+    {
+      "input": [
+        "hello",
+        "world",
+        "foo"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs should output -1, since the pattern string 'world' is not in the subject string 'hello'"
+    },
+    {
+      "input": [
+        "hello",
+        "",
+        "foo"
+      ],
+      "original_output": 0,
+      "mutant_output": -1,
+      "explanation": "The original program should output 0, since the empty string is always a substring. However, the mutant code doesn't handle empty patterns correctly and will output -1."
+    }
+  ]
+},{
+  "mutant_program": "muta329_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcdefg",
+        "d",
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": -1,
+      "explanation": "In this test, the original program correctly identifies that the pattern 'd' exists in the subject 'abcdefg' and begins at index 3. However, the mutant program uses a non-equivalent condition in the if statement that checks if the character at the beginning of the current subject substring is less than or equal to the first character of the pattern. This wrongly identifies the pattern as a substring if the first character of the pattern is greater than the first character of the current subject substring."
+    },
+    {
+      "input": [
+        "hello world",
+        "world",
+        0
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "In this test, both the original and mutant program correctly identify that the pattern 'world' exists in the subject 'hello world' and begins at index 6. Therefore, the programs are equivalent in this case."
+    },
+    {
+      "input": [
+        "hello",
+        "world",
+        0
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "In this test, neither the original nor mutant program finds the pattern 'world' in the subject 'hello'. Therefore, the programs are equivalent in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta352_testPad.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both programs should correctly identify 'world' as a substring of 'hello world' starting at the 6th character."
+    },
+    {
+      "input": [
+        "hello world",
+        "earth"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs should correctly identify that 'earth' is not a substring of 'hello world', so the return value should be -1."
+    },
+    {
+      "input": [
+        "hello world",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should correctly identify that the empty string is a substring of any string starting at the 0th position."
+    }
+  ]
+},{
+  "mutant_program": "muta377_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly finds the index where the pattern 'world' starts in the subject 'hello world', which is 6. The mutant program changes the declaration of the function parameter from 'const char *__src' to 'char subject[]', which may lead to unexpected behavior in the case where the subject string is a constant string and not a string variable. In this case, the test input subject string is a constant string literal, and the mutant program returns -1 instead of the original return value 6."
+    },
+    {
+      "input": [
+        "abcd",
+        "bcd"
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original program and the mutant program correctly find the index where the pattern 'bcd' starts in the subject 'abcd', which is 1. Therefore, the mutant code is equivalent to the original code for this test case."
+    },
+    {
+      "input": [
+        "abc",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original program and the mutant program correctly return 0 when the pattern is an empty string, since all strings contain an empty string as a substring. Therefore, the mutant code is equivalent to the original code for this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta409_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world",
+        ""
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies that 'world' is a substring of 'hello world' and returns the starting index as 6. However, the mutant program always returns -1 as the starting index regardless of whether the pattern is a substring or not."
+    },
+    {
+      "input": [
+        "test string",
+        "",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly identify that empty string is a substring of any string and returns the starting index as 0."
+    },
+    {
+      "input": [
+        "mutants",
+        "mutant",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies that 'mutant' is a substring of 'mutants' and returns the starting index as 0. However, the mutant program always returns -1 as the starting index regardless of whether the pattern is a substring or not."
+    }
+  ]
+},{
+  "mutant_program": "muta411_testPad.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "hello",
+        "he",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs will output 0 as the pattern 'he' is found at index 0 of 'hello'"
+    },
+    {
+      "input": [
+        "hello",
+        "he",
+        "l"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs will output -1 as the pattern 'he' is not found in 'hello'"
+    },
+    {
+      "input": [
+        "hello",
+        "",
+        "l"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs will output 0 as the pattern '' is found at index 0 of 'hello'"
+    }
+  ]
+},{
+  "mutant_program": "muta414_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcd",
+        "bc",
+        "x"
+      ],
+      "original_output": "Pattern string is not a substring of the subject string",
+      "mutant_output": -1,
+      "explanation": "The original program should output that 'bc' is a substring of 'abcd', while the mutant simply returns -1."
+    },
+    {
+      "input": [
+        "hello world",
+        "hello",
+        "x"
+      ],
+      "original_output": "Pattern string begins at the character 0",
+      "mutant_output": 0,
+      "explanation": "The original program should output that 'hello' is a substring of 'hello world' starting at index 0, while the mutant simply returns 0."
+    }
+  ]
+},{
+  "mutant_program": "muta417_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello",
+        "ell"
+      ],
+      "original_output": 1,
+      "mutant_output": -1,
+      "explanation": "In this test case, the original program correctly identifies that 'ell' is a substring of 'hello', starting at index 1. However, the mutant code uses an undefined macro 'TRAP_ON_NEGATIVE' that will result in an error and return -1 every time. Therefore, the mutant program will always return -1 regardless of the input, making it not equivalent to the original program."
+    },
+    {
+      "input": [
+        "abcdefg",
+        "cde"
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "Similarly to the previous test case, the mutant program will always return -1 regardless of the input, as the undefined macro 'TRAP_ON_NEGATIVE' will cause an error and return -1 every time. Therefore, the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta420_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world",
+        "",
+        "test"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original code correctly finds the index where the pattern 'world' starts in the subject string 'hello world'. However, the mutant code replaces the function TRAP_ON_NEGATIVE with an undeclared function, which causes the program to not compile. Therefore, there is a clear difference in behavior between the original and mutant code."
+    },
+    {
+      "input": [
+        "test string with spaces",
+        " ",
+        "",
+        "test"
+      ],
+      "original_output": 4,
+      "mutant_output": -1,
+      "explanation": "The original code correctly finds the index where the pattern ' ' (a space) starts in the subject string 'test string with spaces'. However, the mutant code replaces the function TRAP_ON_NEGATIVE with an undeclared function, which causes the program to not compile. Therefore, there is a clear difference in behavior between the original and mutant code."
+    }
+  ]
+},{
+  "mutant_program": "muta421_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcdefg",
+        "cde"
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the starting index of the pattern 'cde' in the subject 'abcdefg', which is 2. However, the mutant program replaces the function TRAP_ON_ZERO with no definition, which will result in undefined behavior and an incorrect output (-1)."
+    },
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both programs correctly identify the starting index of the pattern 'world' in the subject 'hello world', which is 6. Therefore, the mutant is equivalent to the original program in this case."
+    },
+    {
+      "input": [
+        "12345",
+        "678"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs correctly identify that the pattern '678' is not a substring of the subject '12345', resulting in a return value of -1. Therefore, the mutant is equivalent to the original program in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta423_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "softwaretesting",
+        "ware"
+      ],
+      "original_output": 4,
+      "mutant_output": -1,
+      "explanation": "The original program outputs 4, which is the correct index where the pattern 'ware' begins in the subject string 'softwaretesting'. However, the mutant program uses an undefined macro 'TRAP_ON_NEGATIVE', which causes a compilation error. Therefore, the mutant program's output is -1."
+    },
+    {
+      "input": [
+        "hello world",
+        "wor"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly outputs 6, which is the index where the pattern 'wor' begins in the subject string 'hello world'. The mutant program uses an undefined macro 'TRAP_ON_NEGATIVE', which causes a compilation error. Therefore, the mutant program's output is -1."
+    }
+  ]
+},{
+  "mutant_program": "muta426_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello",
+        "l",
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both programs will output the correct index of the first occurrence of 'l' in 'hello'"
+    },
+    {
+      "input": [
+        "banana",
+        "a",
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": -1,
+      "explanation": "The original program correctly finds the index of the first 'a' in 'banana', but the mutant code uses an undefined macro 'TRAP_ON_NEGATIVE' and therefore always returns -1"
+    },
+    {
+      "input": [
+        "happy",
+        "ppp",
+        0
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs correctly report that the pattern string is not a substring of the subject string"
+    }
+  ]
+},{
+  "mutant_program": "muta429_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "llo"
+      ],
+      "original_output": 2,
+      "mutant_output": -2,
+      "explanation": "The original program correctly identifies that the pattern string 'llo' begins at the 3rd character of the subject string 'hello world'. However, the mutant code applies an undefined macro TRAP_ON_NEGATIVE on the comparison of the first character of the pattern string, which results in a negative value. Therefore, the mutant program incorrectly returns -2 as the index where the pattern string starts in the subject string."
+    },
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both the original and mutant programs correctly identify that the pattern string 'world' begins at the 7th character of the subject string 'hello world'."
+    },
+    {
+      "input": [
+        "hello world",
+        "hi"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both the original and mutant programs correctly identify that the pattern string 'hi' is not a substring of the subject string 'hello world', and return -1."
+    }
+  ]
+},{
+  "mutant_program": "muta432_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": null,
+      "explanation": "The original program should output the index where the pattern 'world' begins in the string 'hello world', which is 6. However, the mutant program uses an undefined macro TRAP_ON_NEGATIVE, which causes a compilation error."
+    },
+    {
+      "input": [
+        "house",
+        "mouse"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs should output -1 since the pattern 'mouse' is not a substring of the subject 'house'. Therefore, they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta435_testPad.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta436_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcdefghi",
+        "bcd"
+      ],
+      "original_output": 1,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies that the pattern 'bcd' occurs starting at the second character of the subject 'abcdefghi', returning 1. The mutant program introduces a macro function TRAP_ON_ZERO that decrements the variable iPat before evaluating its value in the for loop. This results in the loop only executing with iPat = 0, causing the function to always return -1 since it never compares any characters beyond the first character of the pattern."
+    },
+    {
+      "input": [
+        "hello, world!",
+        "orl"
+      ],
+      "original_output": 7,
+      "mutant_output": -1,
+      "explanation": "Similar to the first test, the original program finds the pattern 'orl' in the subject 'hello, world!' starting at index 7, which is correctly returned. However, the mutant program with the TRAP_ON_ZERO macro function always returns -1, regardless of the input. Therefore, it fails to identify the pattern in this case, resulting in different output."
+    }
+  ]
+},{
+  "mutant_program": "muta438_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly finds the index of the start of the pattern in the subject. The mutant replaces the patternLen parameter with the expression TRAP_ON_NEGATIVE(patternLen), which always evaluates to a positive value, causing the loop to run longer and return -1 instead of the correct index. This is demonstrated by the given test."
+    },
+    {
+      "input": [
+        "hello world",
+        "universe"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs correctly output that the pattern string is not a substring of the subject string."
+    },
+    {
+      "input": [
+        "hello world",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly output that the pattern string starts at the first character of the subject string."
+    }
+  ]
+},{
+  "mutant_program": "muta441_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program will correctly output the index where the pattern 'world' first appears in the subject string 'hello world'. However, the mutant program includes a macro function TRAP_ON_NEGATIVE that could produce an unexpected index value when iSub is negative. In this case, since (TRAP_ON_NEGATIVE(iSub) + iPat) could be negative when iSub = 0 and iPat = 1, the program will not match pattern 'world' and outputs -1 instead."
+    },
+    {
+      "input": [
+        "Software Testing",
+        "Software"
+      ],
+      "original_output": 0,
+      "mutant_output": -1,
+      "explanation": "The original program will correctly output the index where pattern 'Software' first appears in the subject string 'Software Testing'. However, the mutant program includes a macro function TRAP_ON_NEGATIVE that could produce an unexpected index value when iSub is negative. In this test case, since (TRAP_ON_NEGATIVE(iSub) + iPat) will never be negative, the code mutant will still output -1 because of a mismatch in line 22 specifically when iSub = 0 and iPat = 1."
+    }
+  ]
+},{
+  "mutant_program": "muta444_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the index at which the pattern begins in the subject string. However, the mutant program introduces an unnecessary TRAP_ON_NEGATIVE macro that modifies the loop index when iPat is negative. This causes the mutant program to return -1 incorrectly when the pattern is present in the subject string"
+    },
+    {
+      "input": [
+        "apple banana",
+        "pie"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs correctly identify that the pattern is not present in the subject string, given the provided inputs"
+    }
+  ]
+},{
+  "mutant_program": "muta445_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the starting index of the pattern within the subject, but the mutant program uses a TRAP_ON_ZERO macro that changes the behavior of the loop, causing it to not properly compare the characters and resulting in a failure to find the pattern in the subject."
+    },
+    {
+      "input": [
+        "banana",
+        "apple"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs correctly identify that the pattern is not a substring of the subject."
+    }
+  ]
+},{
+  "mutant_program": "muta447_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "banana",
+        "na"
+      ],
+      "original_output": 4,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the starting index of the 'na' pattern in the 'banana' subject as 4, while the mutant program returns -1. This is because the mutant program adds a non-deterministic check using the TRAP_ON_NEGATIVE macro, which modifies the behavior of the program."
+    },
+    {
+      "input": [
+        "apple",
+        "pl"
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the starting index of the 'pl' pattern in the 'apple' subject as 2, while the mutant program returns -1. This is because the mutant program adds a non-deterministic check using the TRAP_ON_NEGATIVE macro, which modifies the behavior of the program."
+    },
+    {
+      "input": [
+        "carrot",
+        "cat"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both the original and mutant program correctly identify that the 'cat' pattern is not a substring of the 'carrot' subject."
+    }
+  ]
+},{
+  "mutant_program": "muta448_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "testpad",
+        "pad"
+      ],
+      "original_output": 4,
+      "mutant_output": -1,
+      "explanation": "The test set retrieves a substring of 'subject' that contains the pattern. The original program successfully finds the index of the start of the pattern substring and returns 4 while the mutant code returns -1 meaning that the pattern is not present in the string."
+    },
+    {
+      "input": [
+        "softwaretesting",
+        "tes"
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "The test set retrieves a substring of 'subject' that contains the pattern. Both program codes successfully find the index of the start of the pattern substring and return 5. The mutant code is equivalent to the original program code on this test case."
+    },
+    {
+      "input": [
+        "",
+        "test"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "The test set retrieves an empty 'subject' string. Both program codes do not find any pattern substring, and thus, return -1. The mutant code is equivalent to the original program code on this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta450_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "o"
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "Both programs should return the same index of the pattern 'o' in the subject 'hello world'"
+    },
+    {
+      "input": [
+        "abcd",
+        "efg"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs should return -1 when pattern is not a substring of the subject"
+    },
+    {
+      "input": [
+        "Testing is fun",
+        "un"
+      ],
+      "original_output": 13,
+      "mutant_output": -1,
+      "explanation": "This test should fail for the mutated program since it uses the macro TRAP_ON_NEGATIVE in the conditional statement, which throws an error if the value is negative. In this case, it wrongly considers the condition as false, preventing the correct calculation of the index."
+    }
+  ]
+},{
+  "mutant_program": "muta451_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcd",
+        "bc",
+        4
+      ],
+      "original_output": -1,
+      "mutant_output": 4,
+      "explanation": "In the original program code, the for loop in pat() function iterates from 1 to patternLen-1 and compares the characters of the subject and pattern strings. However, in the mutant code, the condition inside the for loop is modified to check for subject[(iSub + iPat)] != pattern[TRAP_ON_ZERO(iPat)]. This means that the mutant code is comparing each character of the subject string with the corresponding character in the pattern string based on the value of iPat. So, for the input ['abcd', 'bc'], the original code returns -1 as 'bc' is not a substring of 'abcd'. But, the mutant code returns 4 as it matches the third character of 'abcd' with 'c' of 'bc' based on the value of iPat = 2."
+    },
+    {
+      "input": [
+        "hello",
+        "hi",
+        5
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "For the input ['hello', 'hi'], neither the original code nor the mutant code find the pattern string 'hi' in the subject string 'hello'. So, both programs return -1 and are equivalent for this input."
+    },
+    {
+      "input": [
+        "banana",
+        "",
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "For the input ['banana', ''], both the original code and the mutant code set the pattern string as an empty string. So, the output for both is 0, i.e., the pattern begins at the first character of the subject string."
+    }
+  ]
+},{
+  "mutant_program": "muta453_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcdefg",
+        "cde"
+      ],
+      "original_output": 2,
+      "mutant_output": null,
+      "explanation": "The original program outputs 2, which is the correct index where the pattern starts in the subject string. However, the mutant program introduces the macro TRAP_ON_NEGATIVE, which changes the behavior of the conditional in the pat function. This makes the mutant program unable to find the pattern in some cases. Specifically, if the second character of the pattern does not match the second character of the subject string, then the mutant program returns -1, which is incorrect. For example, with input ('abcdefg', 'bde'), the original program correctly returns -1, but the mutant program returns 1, which is the incorrect index where the pattern begins."
+    },
+    {
+      "input": [
+        "apple",
+        "ppl"
+      ],
+      "original_output": 1,
+      "mutant_output": null,
+      "explanation": "The original program correctly outputs 1, which is the index where the pattern begins in the subject string. However, the mutant program with TRAP_ON_NEGATIVE introduces a non-deterministic behavior that makes it impossible to predict the output. Specifically, the conditional in the pat function will depend on a previous value of isPat, which depends on the specific characters of the subject string and the pattern. Therefore, the output of the mutant program cannot be predicted in this case."
+    },
+    {
+      "input": [
+        "hello world!",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutant programs correctly output 0 in this case, since the empty string is a substring of any string at index 0."
+    }
+  ]
+},{
+  "mutant_program": "muta454_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcd",
+        "c",
+        "-1"
+      ],
+      "original_output": "Pattern string begins at the character 2",
+      "mutant_output": "Pattern string is not a substring of the subject string",
+      "explanation": "The original program correctly finds the index of the pattern 'c' in the subject 'abcd' and returns it, while the mutant program always returns -1 if any character of the pattern is not equal to the corresponding character of the subject, without even considering if it is the first character. This is confirmed by the provided test case, where the mutated program returns 'Pattern string is not a substring of the subject string' instead of 'Pattern string begins at the character 2'."
+    },
+    {
+      "input": [
+        "programming",
+        "r",
+        "4"
+      ],
+      "original_output": "Pattern string begins at the character 4",
+      "mutant_output": "Pattern string is not a substring of the subject string",
+      "explanation": "Similar to the previous test, the original program returns the correct index of the pattern 'r' in the subject 'programming', while the mutant program incorrectly returns -1 because it compares all characters of the pattern with the subject starting from the first character, even if it is not the same character as the first one of the pattern."
+    },
+    {
+      "input": [
+        "hello",
+        "",
+        "0"
+      ],
+      "original_output": "Pattern string begins at the character 0",
+      "mutant_output": "Pattern string begins at the character 0",
+      "explanation": "Both programs should return 0 if the pattern is empty, which is the case for this test. This confirms that the mutant behaves identically to the original for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta457_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly finds the index of the beginning of the pattern 'world' in the string 'hello world'. However, the mutant program replaces the return statement to include a TRAP_ON_ZERO macro that returns the value 0 if the result is -1. This makes it impossible to distinguish between a correct result of 0 and an incorrect result of -1. Thus, the mutant program is not equivalent and outputs -1 instead of 6 for this input."
+    },
+    {
+      "input": [
+        "foo bar baz",
+        "qux"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both the original and mutant programs correctly output -1 since the pattern 'qux' is not a substring of the subject string 'foo bar baz'."
+    },
+    {
+      "input": [
+        "apple",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutant programs correctly output 0 since the empty string is always a substring of any string at index 0."
+    }
+  ]
+},{
+  "mutant_program": "muta477_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the starting index of the 'world' pattern in the 'hello world' subject. However, the mutant program uses an incorrect condition for the while loop, resulting in an infinite loop and no output. Therefore, the mutant code does not correctly identify if the pattern is a substring of the subject."
+    },
+    {
+      "input": [
+        "radar",
+        "woohoo"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both the original and mutant program correctly identify that the 'woohoo' pattern is not a substring of the 'radar' subject, resulting in a return value of -1."
+    },
+    {
+      "input": [
+        "hello world",
+        "or"
+      ],
+      "original_output": 7,
+      "mutant_output": 7,
+      "explanation": "Both the original and mutant program correctly identify the starting index of the 'or' pattern in the 'hello world' subject, resulting in the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta478_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program correctly outputs the index where the pattern starts in the subject. The mutant program incorrectly assigns the value of rtnIndex and uses it in the while loop, resulting in a different range of substring to be checked. This causes the mutant program to output -1 when it should output the index of the pattern."
+    },
+    {
+      "input": [
+        "apple",
+        "ppl"
+      ],
+      "original_output": 1,
+      "mutant_output": -1,
+      "explanation": "Same as previous"
+    },
+    {
+      "input": [
+        "hello",
+        "xl"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs correctly output -1 when the pattern is not a substring of the subject."
+    }
+  ]
+},{
+  "mutant_program": "muta479_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "lo",
+        "./testPad"
+      ],
+      "original_output": "Pattern string begins at the character 3\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly identifies that the pattern 'lo' begins at index 3 in the 'hello world' string. However, the mutant program replaces the condition (iSub + patternLen - 1 < subjectLen) with (((iSub + isPat) - 1) < subjectLen), which does not correctly compare the correct values to determine if the pattern is a substring of the subject. As a result, the mutant program fails to correctly identify the pattern in the input string and returns an empty output."
+    },
+    {
+      "input": [
+        "apple",
+        "ap",
+        "./testPad"
+      ],
+      "original_output": "Pattern string begins at the character 0\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly identifies that the pattern 'ap' begins at index 0 in the 'apple' string. However, the mutant program's flawed comparison condition prevents it from correctly finding the 'ap' pattern in the string and returning the correct index."
+    }
+  ]
+},{
+  "mutant_program": "muta539_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": "Pattern string begins at the character 6\n",
+      "mutant_output": "",
+      "explanation": "The original code correctly identifies the pattern in the subject and returns the correct index. The mutant code, however, does not correctly compare the subject and pattern strings in the for loop, resulting in a failure to identify the pattern. Thus, the mutant code returns an empty string instead of the expected output."
+    },
+    {
+      "input": [
+        "summer time",
+        "time"
+      ],
+      "original_output": "Pattern string begins at the character 7\n",
+      "mutant_output": "",
+      "explanation": "Similarly to the previous test case, the original code correctly identifies the pattern in the subject and returns the correct index. The mutated code does not correctly compare the subject and pattern strings in the for loop, resulting in a failure to identify the pattern. Thus, the mutant code returns an empty string instead of the expected output."
+    }
+  ]
+},{
+  "mutant_program": "muta587_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello",
+        "ell"
+      ],
+      "original_output": 1,
+      "mutant_output": -1,
+      "explanation": "The original function correctly identifies that the pattern begins at index 1 in the subject string. However, the mutant function, which introduces a PRED macro in the condition of the 'while' loop, calculates the bound of that same condition differently, which leads to an off-by-one error in the routine. In this test, as a consequence, the mutant function returns a negative index indicating that the pattern is not a substring of the subject string, while it is."
+    },
+    {
+      "input": [
+        "hello",
+        "ol"
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "This is a test that both the original and mutant functions should handle correctly since the pattern string 'ol' is a substring of the subject string 'hello'. Both functions identify the position 4 as the beginning of the pattern."
+    },
+    {
+      "input": [
+        "hello",
+        "helo"
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "This is another test that both programs should handle correctly. The pattern 'helo' isn't a substring of the subject string 'hello', so both functions should return -1."
+    }
+  ]
+},{
+  "mutant_program": "muta589_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "mississippi",
+        "iss",
+        ""
+      ],
+      "original_output": 1,
+      "mutant_output": -1,
+      "explanation": "The original program finds the starting index of the pattern 'iss' in the subject string 'mississippi', which is 1. However, the mutant program uses a different formula for checking if the pattern is a substring and does not return the correct index. The mutant program also initializes the rtnIndex variable to a different value than the original program."
+    },
+    {
+      "input": [
+        "hello world",
+        "world",
+        ""
+      ],
+      "original_output": 6,
+      "mutant_output": -1,
+      "explanation": "The original program finds the starting index of the pattern 'world' in the subject string 'hello world', which is 6. However, the mutant program uses a different formula for checking if the pattern is a substring and does not return the correct index. The mutant program also initializes the rtnIndex variable to a different value than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta592_testPad.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "hello world",
+        "world"
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both programs should return the same index, as the mutation only changes the variable name used in the comparison and the order of operations in the while loop condition."
+    },
+    {
+      "input": [
+        "This is a test",
+        "test"
+      ],
+      "original_output": 10,
+      "mutant_output": 10,
+      "explanation": "Both programs should return the same index, as the mutation only changes the variable name used in the comparison and the order of operations in the while loop condition."
+    }
+  ]
+},{
+  "mutant_program": "muta618_testPad.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "abcdefg",
+        "cde"
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly returns the starting index of the pattern 'cde' in the subject 'abcdefg', which is 2. However, the mutant program has a mistake in the while loop condition, resulting in an off-by-one error and causing it to miss the pattern entirely."
+    },
+    {
+      "input": [
+        "hello world",
+        ""
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly handle the edge case of an empty pattern string, returning 0 since an empty string is always a substring of any other string."
+    },
+    {
+      "input": [
+        "banana",
+        "a"
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly handle the case of multiple occurrences of the pattern in the subject. In this case, the pattern 'a' occurs twice in the subject 'banana', but they both start at index 1 so that is what is returned."
+    }
+  ]
+}]
