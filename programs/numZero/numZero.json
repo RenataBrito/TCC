@@ -1,1 +1,681 @@
-[{"mutant_program": "muta0_numZero.c", "equivalent": false, "tests": [{"input": [0, 0, 0], "original_output": 3, "mutant_output": 3, "explanation": "Both programs output the same number of zeros in the input array, as the mutation only changes the condition inside the if statement to check if the value is truthy instead of equal to zero."}, {"input": [1, 0, 5, 0, 9], "original_output": 2, "mutant_output": 5, "explanation": "The original program correctly counts 2 zeros in the input array, while the mutated program counts all non-zero elements as zeroes, resulting in an incorrect count of 5 zeros."}, {"input": [0, 0, 0, 0], "original_output": 4, "mutant_output": 4, "explanation": "Both programs output the same number of zeros in the input array, as there are no non-zero elements in the array to trigger the mutated condition."}]}]
+[{
+  "mutant_program": "muta107_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 0,
+      "explanation": "The original program counts the number of occurrences of 0 in arr by looping through the array and incrementing count whenever arr[i] equals 0. The mutant program uses a macro called TRAP_ON_NEGATIVE to trap any negative loop counter value. Since i is always greater than or equal to 0 in the original program, this mutation has the effect of making the loop infinite since the loop counter will never be less than 0. Thus, the mutant program will hang instead of returning a count. This is demonstrated by the fact that it does not provide an output for the given input."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Since there are no occurrences of 0 in the input array, both the original and mutant programs should return 0. Therefore, they are equivalent in this case."
+    },
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The input array contains two occurrences of 0, which should be counted by the original program and the mutant program. However, the mutant program enters an infinite loop due to the TRAP_ON_NEGATIVE macro causing the loop counter to never be less than 0. Thus, it returns 0 instead of the correct count of 2."
+    }
+  ]
+},{
+  "mutant_program": "muta110_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": 1,
+      "mutant_output": 6,
+      "explanation": "The original program correctly counts the number of occurrences of 0 in the input array. However, the mutant program replaces the condition for the loop termination with a call to the TRAP_ON_NEGATIVE macro, which is not defined in the code. This causes an infinite loop when size is negative, leading to a program crash. For the given test, size is positive and the loop correctly runs until the end of the array, but erroneously counts all elements (including non-zero ones) as zeros."
+    }
+  ]
+},{
+  "mutant_program": "muta111_numZero.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant program will return 0 as there are no zeros in the input array [1,2,3]."
+    },
+    {
+      "input": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant program will return 3 as there are 3 zeros in the input array [0,1,0,1,0,1]."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both original and mutant program will return 6 as there are 6 zeros in the input array [0,0,0,0,0,0]."
+    }
+  ]
+},{
+  "mutant_program": "muta113_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs output the correct number of zeros in the given input array."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        0,
+        5
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly outputs the number of zeros in the array. However, the mutant has a trap on negative values of the loop variable 'i', which may introduce false positives. In this case, it modifies the index in the array being checked and causes the output to be incorrect."
+    },
+    {
+      "input": [
+        0,
+        0,
+        -1,
+        0,
+        -2
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "In this case, both programs output the correct number of zeros in the array. Although the mutant introduces a trap condition, it does not modify the array index in this case and therefore still produces the correct output."
+    }
+  ]
+},{
+  "mutant_program": "muta119_numZero.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs count the number of occurrences of 0 in the input array, and return the count. The only difference is the mutant program applies an unnecessary macro called TRAP_ON_NEGATIVE to the final count result. However, since the test inputs do not include negative numbers, this macro will not affect the output of the program."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs return 0 as the input array does not contain any zeros."
+    },
+    {
+      "input": [],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs return 0 as the input array is empty."
+    }
+  ]
+},{
+  "mutant_program": "muta120_numZero.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "Both original and mutated program will count all the occurrences of 0 in the array and return the count as output, hence they are equivalent."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "There are no 0 occurrences in this input array, both original and mutated program will return 0 as output, hence they are equivalent."
+    },
+    {
+      "input": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutated program will count only the number of 0 occurrences in the array and return the count as output, hence they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta121_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 0,
+      "explanation": "The original program correctly counts the occurrences of 0 in the input array. However, the mutant program initializes 'count' to 0 within the for loop header, resulting in 'count' being reset to 0 for every iteration of the loop. Therefore, the mutant program always returns 0 for any input array."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutant programs correctly identify that there are no 0s in the input array, so the outputs are correctly equivalent."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 0,
+      "explanation": "This test is similar to the first test, where the original program correctly counts the occurrences of 0s and returns 3. The mutant program initializes 'count' to 0 within the for loop header, so it always returns 0 regardless of the input."
+    }
+  ]
+},{
+  "mutant_program": "muta139_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 4,
+      "mutant_output": 0,
+      "explanation": "The original program correctly counts all occurrences of 0 in the given array, while the mutant program uses the SUCC() function, which is not defined in C and it changes the semantics of the loop, stopping one element earlier. Thus, the mutant program fails to detect all 0s in the array, resulting in a different output."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly return zero, since there are no 0s in the array."
+    },
+    {
+      "input": [
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly count the single occurrence of 0 in the array."
+    }
+  ]
+},{
+  "mutant_program": "muta33_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "original_output": 3,
+      "mutant_output": 0,
+      "explanation": "The original program counts the number of 0s in the array, while the mutant program initializes the loop variable 'i' with 0, effectively skipping the counting altogether."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly counts the single 0 in the array, while the mutant program fails again due to the same issue."
+    }
+  ]
+},{
+  "mutant_program": "muta36_numZero.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        2,
+        0,
+        4,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "The mutant code simply adds an unnecessary initialization of i in the for loop declaration. However, since i is also initialized at the beginning of the for loop, this change has no effect on the outcome of the program. The provided test set checks that both the original and mutant code correctly count the number of zero elements in the input array."
+    },
+    {
+      "input": [
+        3,
+        2,
+        -4,
+        0,
+        1
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Same as the previous test."
+    }
+  ]
+},{
+  "mutant_program": "muta37_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 4,
+      "mutant_output": 0,
+      "explanation": "The expected output for the original program is 4 because there are four occurrences of the integer 0 in the input array. However, the mutated program initializes i as (i -= 0), which is equivalent to i = -0, or simply i = 0. Therefore, the loop starts at 0 instead of the expected starting point, resulting in a different output."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutated program should output 0 because there are no occurrences of the integer 0 in the input array."
+    }
+  ]
+},{
+  "mutant_program": "muta38_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        0,
+        4,
+        0,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 0,
+      "explanation": "The original code counts the number of 0s in the array by starting the iteration from 0. The mutant code forces i to be 0, which means it will always evaluate the first element in the array, regardless of its value. Thus, the mutant code will only count the first element of the array as a 0, leading to a different output."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 5,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant code in this case should output the same value of 5 since all elements of the input array are 0s, and both codes have a loop that iterates over all elements of the array and count the number of 0s."
+    }
+  ]
+},{
+  "mutant_program": "muta39_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 5,
+      "mutant_output": 0,
+      "explanation": "The original program correctly counts all occurrences of 0 in the input array. However, the mutant program's loop starts by performing a bitwise XOR operation on i with 0, which doesn't affect the value of i. As a result, the first iteration of the loop still starts at index 0, but subsequent iterations start at index 1 instead of index 0. Thus, the mutant program misses the first occurrence of 0 in the input array and returns an incorrect count of 0."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutant program correctly return 0 because there are no occurrences of 0 in the input array."
+    },
+    {
+      "input": [
+        -4,
+        0,
+        5,
+        0,
+        -9,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "The original program correctly counts 3 occurrences of 0 in the input array, while the mutant program misses one occurrence and returns an incorrect count of 2."
+    }
+  ]
+},{
+  "mutant_program": "muta40_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "original_output": 3,
+      "mutant_output": 0,
+      "explanation": "The original program counts the number of occurrences of 0 in the array, but the mutant program initializes the loop variable 'i' to zero using bit-wise OR with zero. This has no effect and the loop still starts at 0, but it introduces a non-deterministic change that could potentially break the program. In this case, the mutant program fails to count the number of 0's in the input array because the loop variable is always equal to zero."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly output zero because there are no 0's in the input array."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 5,
+      "mutant_output": 0,
+      "explanation": "The input array contains 5 zeros and the original program correctly counts them, but the mutant program fails to do so because of the non-deterministic change made to the loop variable initialization."
+    }
+  ]
+},{
+  "mutant_program": "muta41_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 0,
+      "explanation": "The original program correctly counts the number of occurrences of 0 in the input array by iterating through every element using a for loop. The mutant program, however, left shifts i by 0 before starting the loop which has no effect, but if the left shift was actually any other number than 0, it would cause the loop to start at that index, and therefore, skip the first few elements of the array resulting in a wrong count of zeroes. This is demonstrated in this test case where the input array only consists of 0s, but the mutant program returns 0, which is incorrect."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Since there are no 0s in the input array, both programs should return 0, which they do. This test case demonstrates that the mutant code still works correctly for input that does not contain 0s, and is therefore equivalent to the original code in these cases."
+    },
+    {
+      "input": [
+        4,
+        0,
+        5,
+        0,
+        6
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The original program correctly counts the number of occurrences of 0 in the input array, but the mutant program starts the loop at index 0 which skips the first element of the array and results in a wrong count of zeroes. This test case demonstrates that the mutant program is not equivalent to the original program since it gives a different output for input that contains 0s."
+    }
+  ]
+},{
+  "mutant_program": "muta42_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 4,
+      "mutant_output": 0,
+      "explanation": "The original program correctly counts the occurrences of 0 in the input array. The mutant program starts the loop with i shifted by 0 bits (which means i will remain 0), thus it will always check only the first element of the array. Therefore, it will not correctly count the number of zeros in the input array."
+    },
+    {
+      "input": [
+        1,
+        2,
+        0,
+        4
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "In this case, only one element in the input array is 0. The original program correctly identifies this and returns 1. The mutant program, however, starts the loop with i shifted by 0 bits (which means i will remain 0). Since the element at index 0 is not 0, the program will return 0 instead of the correct answer of 1."
+    }
+  ]
+},{
+  "mutant_program": "muta50_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        0,
+        0,
+        3,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 0,
+      "explanation": "The original program counts the occurrence of '0' over the entire array, while the mutant stops iterating over the elements of the array once the index 'i' is equal to 'size'. Therefore, the mutant will stop counting after the first non-zero element, resulting in a wrong output."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 9,
+      "mutant_output": -2147483648,
+      "explanation": "The original program has the correct output since all elements of the array are 0, while the mutant sets the condition to exit the loop at 'i - size' instead of 'i < size', causing an infinite loop and a wrong output."
+    }
+  ]
+},{
+  "mutant_program": "muta61_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 5,
+      "mutant_output": 0,
+      "explanation": "The original program counts the number of occurrences of 0 in the array by iterating through each element and checking if it equals 0. The mutant program uses bitwise XOR to loop through the array, which results in an infinite loop. Therefore, the mutant program does not produce the correct output."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs receive an array without any occurrences of 0, so they should return 0. This demonstrates that the original and mutant programs are equivalent in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta73_numZero.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should count correctly the number of occurrences of 0 in the array, as they perform the exact same operation despite the different condition in the for loop."
+    },
+    {
+      "input": [
+        5,
+        6,
+        0,
+        7,
+        0,
+        8
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Again, the programs should behave equivalently and count the number of 0's in the array regardless of the different condition in the for loop."
+    }
+  ]
+},{
+  "mutant_program": "muta76_numZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 3,
+      "explanation": "The input array has no zeros, but the mutant counts any non-positive integer as a zero, so it returns 3 for this input."
+    },
+    {
+      "input": [
+        0,
+        1,
+        0,
+        2,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The input array has 3 zeros, and the mutant counts any non-positive integer as a zero, so it returns 5 for this input."
+    },
+    {
+      "input": [
+        0,
+        -5,
+        0,
+        8
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "The input array has 2 zeros, and the mutant counts any non-positive integer as a zero, so it returns 3 for this input."
+    }
+  ]
+}]
