@@ -1,1 +1,1815 @@
-[{"mutant_program": "muta0_InversePermutation.c", "equivalent": false, "tests": [{"input": ["5", "0", "2", "3", "1", "4"], "original_output": "2 3 4 5 1 0", "mutant_output": "3 4 5 2 1 0", "explanation": "The mutant changed the initialization of the for loop in the invert function, starting at index 1 instead of 0. This change causes the function to skip the first element of the permutation. In the given test case, the first element of the permutation is 5, and it is not accounted for, leading to different outputs between the original and mutant programs."}]}]
+[{
+  "mutant_program": "muta14_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "original_output": "Input is not a permutation.",
+      "mutant_output": "Input is not a permutation.",
+      "explanation": "Both programs should output the same for a valid permutation input"
+    },
+    {
+      "input": [
+        4,
+        2,
+        1,
+        3,
+        0
+      ],
+      "original_output": "0 2 1 3 4 \n",
+      "mutant_output": "",
+      "explanation": "The first mutant expression will always evaluate to false and allow an invalid permutation to proceed. The output is unpredictable."
+    }
+  ]
+},{
+  "mutant_program": "muta157_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0",
+      "mutant_output": "",
+      "explanation": "The mutant code has the non-deterministic change of initializing the variable 'i' with zero without declaration. The original code assigns 'i' without declaring. In C, if a variable is not initialized, the value is undefined. Therefore, the test will not execute correctly and will display a blank output."
+    },
+    {
+      "input": [
+        "3",
+        "2",
+        "0",
+        "1"
+      ],
+      "original_output": "1 2 0",
+      "mutant_output": "1 2 0",
+      "explanation": "In this test, both programs exhibit the expected output, meaning that this mutant code is equivalent to the original program code."
+    },
+    {
+      "input": [
+        "3",
+        "1",
+        "2",
+        "0"
+      ],
+      "original_output": "3 1 2",
+      "mutant_output": "3 1 2",
+      "explanation": "In this test, both programs exhibit the expected output, meaning that this mutant code is equivalent to the original program code."
+    }
+  ]
+},{
+  "mutant_program": "muta165_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "2 3 4 5 1 1\n",
+      "explanation": "The mutant program increments the value of 'exists[a[i]]' instead of assigning the value of 1 to it. This means that the 'exists' array will contain the number of times each element appears instead of just a binary value. For the input [5, 0, 2, 3, 1, 4], the original program correctly detects that it is a permutation and produces the inverse permutation [2, 3, 4, 5, 1, 0]. The mutant program, on the other hand, does not detect that it is not a permutation and produces an incorrect result where the value 1 appears twice in the output."
+    }
+  ]
+},{
+  "mutant_program": "muta166_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "2 3 4 5 0 1\n",
+      "explanation": "The original program validates if the input is a permutation by checking if each element is within the correct range and if it is not repetitive. The mutant program has the same validation except that after checking for validity, it decreases the value in the exists array, which is used to check if an element is repetitive. This means that if an element appears more than once, the mutant program will consider it valid as long as it appears only once after being checked."
+    },
+    {
+      "input": [
+        1,
+        0,
+        2
+      ],
+      "original_output": "1 0 2 \n",
+      "mutant_output": "0 1 2 \n",
+      "explanation": "Both programs have the same behavior when dealing with a valid permutation as input. This test case provides an example of an input that is considered invalid by the original but valid by the mutant program. Here, the '1' element appears twice, but since its existence is decremented by the mutant program during the validation, it is considered valid and gets inverted to 0."
+    },
+    {
+      "input": [
+        0,
+        1,
+        3,
+        2,
+        5,
+        4
+      ],
+      "original_output": "0 1 3 2 5 4 \n",
+      "mutant_output": "0 1 3 2 4 5 \n",
+      "explanation": "This test case provides an example where both programs would validate the input as correct, and the output differs in the last two elements. However, it should be noted that the comparison between the two programs can't be accurate given this case since multiple outputs are correct for this input since this is merely a permutation of the list [0,1,2,3,4,5]."
+    }
+  ]
+},{
+  "mutant_program": "muta167_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 4 1 3 0 \n",
+      "mutant_output": "12782 0 32756 6 4237360 \n",
+      "explanation": "The original program correctly computes and prints the inverse permutation of the input, by setting the value of ainv[a[i]] to i. However, the mutant program sets the value of i to 0 without initializing the array ainv[], resulting in unpredictable behavior and incorrect output."
+    },
+    {
+      "input": [
+        "6",
+        "1",
+        "3",
+        "5",
+        "0",
+        "2",
+        "4"
+      ],
+      "original_output": "3 0 4 1 5 2 \n",
+      "mutant_output": "1142888 0 227178232 268658016 268658044 587202624 \n",
+      "explanation": "The input is a permutation of length 6. The original program correctly computes and prints the inverse permutation, which is [3, 0, 4, 1, 5, 2]. The mutant program incorrectly computes and prints [1142888, 0, 227178232, 268658016, 268658044, 587202624], indicating that the mutant code is not equivalent to the original program code."
+    }
+  ]
+},{
+  "mutant_program": "muta175_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 1 0 3 4 0\n",
+      "explanation": "The original program correctly calculates the inverse of the permutation and prints it out. However, the mutant program adds 'i' to each element in 'ainv[a[i]]', which does not correctly calculate the inverse permutation. For example, 'ainv[0]' ends up being '0+0=0', 'ainv[1]' ends up being '1+1=2', and 'ainv[5]' ends up being '5+4=9'. This results in the incorrect output shown in the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta177_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "0 1 2 3 4 5 \n",
+      "explanation": "The original program correctly computes the inverse permutation of the input. The mutant code also computes the inverse permutation, but the last for-loop in the invert function has an initialization of i=0 in the condition, which results in a runtime error as i is not initialized. A correct initialization should have been i=0."
+    },
+    {
+      "input": [
+        6,
+        4,
+        3,
+        5,
+        2,
+        1,
+        0
+      ],
+      "original_output": "6 5 4 2 3 1 0 \n",
+      "mutant_output": "1 5 4 3 2 0 6 \n",
+      "explanation": "The original program correctly computes the inverse permutation of the input. The mutant code has an issue, as it does not check if the input is a permutation. Thus it computes the inverse of the input, even though it is not a permutation. In this case, the inverse permutation is incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta182_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "2 3 4 5 1 0\n",
+      "explanation": "Both original and mutant programs receive the same input and produce the same output"
+    },
+    {
+      "input": [
+        5,
+        0,
+        2,
+        4,
+        1,
+        3
+      ],
+      "original_output": "1 4 2 5 3 0\n",
+      "mutant_output": "1 4 2 5 3 0\n",
+      "explanation": "Both original and mutant programs receive the same input and produce the same output"
+    },
+    {
+      "input": [
+        5,
+        0,
+        1,
+        3,
+        4,
+        2
+      ],
+      "original_output": "1 2 5 3 4 0\n",
+      "mutant_output": "8 3 5 0 1 2\n",
+      "explanation": "The mutant program initializes i to zero using a bit mask, which results in i being set to zero regardless of its prior value, making a different number of iterations. Thus, the resulting inverse permutation array produced by the mutant program is incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta186_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "1 4 3 2 0 \n",
+      "explanation": "The original program checks if the input is a permutation by verifying each number is not repeated and is in the range between 0 and N-1. The mutant program shares this verification but instead of using a boolean array 'exists' to mark which numbers have already appeared, it uses the XOR operation to toggle the value between 0 and 1 every time a number appears. This produces a different behavior because some iterations a number can appear an even number of times and some others an odd number of times, so it is possible that some valid permutations are considered invalid. For example, given the input test set, both programs consider it valid but the inverted permutation of the mutant program outputs '1 4 3 2 0' which is wrong."
+    }
+  ]
+},{
+  "mutant_program": "muta187_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "4 5 3 2 1 0\n",
+      "explanation": "The original program creates an array called exists to check if each element of the permutation has already appeared and, if so, prints an error message. The mutated program changes the assignment of the exists array in the loop to a bitwise OR with 1. This changes the value of exists[a[i]] instead of just changing it to 1. In the end, the mutated program prints a different output, which means that it is not equivalent to the original program. The suggested test set is the same for both programs and consists of the permutation [5, 0, 2, 3, 1, 4]"
+    }
+  ]
+},{
+  "mutant_program": "muta188_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0",
+      "mutant_output": "5 0 2 3 1 4",
+      "explanation": "The mutant program has an intentional infinite loop by initializing i with bitwise AND operation with 0, making the program never increment i inside the for loop. This causes the ainv array to not be properly populated with the inverse permutation, resulting in an incorrect output."
+    },
+    {
+      "input": [
+        3,
+        0,
+        1,
+        2
+      ],
+      "original_output": "1 2 3 0",
+      "mutant_output": "3 0 1 2",
+      "explanation": "The input is a valid permutation in both the original and mutant programs. However, since the mutant program has an infinite loop and doesn't populate the ainv array properly, the output will be different."
+    }
+  ]
+},{
+  "mutant_program": "muta192_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0",
+      "mutant_output": "3 5 4 0 2 1",
+      "explanation": "The original program swaps the values of ainv[a[i]] and i to create the inverse permutation. The mutant program uses the XOR operator to swap the values, which leads to a different output as the order of swapping is different."
+    },
+    {
+      "input": [
+        "7",
+        "6",
+        "4",
+        "2",
+        "5",
+        "0",
+        "3",
+        "1"
+      ],
+      "original_output": "5 7 2 6 1 4 3 0",
+      "mutant_output": "5 3 2 7 1 4 6 0",
+      "explanation": "This test case checks if the programs handle larger input sizes. The original program correctly creates the inverse permutation whereas the mutant program does not."
+    }
+  ]
+},{
+  "mutant_program": "muta193_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "1",
+        "0",
+        "2"
+      ],
+      "original_output": "1 0 2 ",
+      "mutant_output": "0 1 2 ",
+      "explanation": "The original program correctly calculates and outputs the inverse permutation of the input. The mutant program replaces the equals sign in line 14 with a bitwise OR operation, which will result in incorrect values for some permutation elements. For example, given the input [1,0,2], the correct inverse permutation is [1,0,2], but the mutant program will output [0, 1, 2]."
+    },
+    {
+      "input": [
+        "2",
+        "3",
+        "0",
+        "1"
+      ],
+      "original_output": "2 3 0 1 ",
+      "mutant_output": "2 3 1 0 ",
+      "explanation": "The original program correctly calculates and outputs the inverse permutation of the input. The mutant program reuses a previous permutation in the ainv array, which would result in incorrect values being output. For example, given the input [2,3,0,1], the correct inverse permutation is [2,3,0,1], but the mutant program will output [2,3,1,0]."
+    }
+  ]
+},{
+  "mutant_program": "muta194_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "0 5 1 2 3 4 \n",
+      "explanation": "The mutant code adds a bitwise AND (i &= 0) to the loop, which resets the value of i to 0 at each iteration. This causes the output of 'ainv' to start at the first position every time, instead of following the inverse permutation mapping. This behavior is observed on the given input. Therefore, the mutant code is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta210_InversePermutation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "2 3 4 5 1 0\n",
+      "explanation": "The mutant code only changes the condition inside the if statement by adding unnecessary parentheses, but the logical result is the same and both programs print the correct outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta211_InversePermutation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "2 3 4 5 1 0 \n",
+      "explanation": "The mutant code uses a complex logical expression to check if the input is a permutation, but it is still equivalent to the original code. Both programs produce the same output for the same input."
+    },
+    {
+      "input": [
+        "8",
+        "4",
+        "6",
+        "2",
+        "1",
+        "7",
+        "3",
+        "5",
+        "0"
+      ],
+      "original_output": "8 3 6 2 7 5 0 4 \n",
+      "mutant_output": "8 3 6 2 7 5 0 4 \n",
+      "explanation": "Another test to confirm that both programs are equivalent. They produce the same output for the same input."
+    }
+  ]
+},{
+  "mutant_program": "muta215_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 4 1 2 3 5\n",
+      "explanation": "The original code checks if each element of the permutation is between 0 and N-1 and doesn't repeat. The mutated code uses a boolean expression to perform the check. However, the boolean expression does not behave the same way as the original code, as it will return true even if the element doesn't repeat. For example, if we have an array a with [1, 2, 2], then the original code will return that it is not a permutation, while the mutated code will incorrectly return that it is a permutation. The test case input [5, 0, 2, 3, 1, 4] does meet the requirements of a permutation and the original code returns the correct inverse permutation [2, 3, 4, 5, 1, 0]. The mutated code, however, produces the incorrect inverse permutation [0, 4, 1, 2, 3, 5]."
+    }
+  ]
+},{
+  "mutant_program": "muta216_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "2 3 5 1 4 0\n",
+      "explanation": "The original program checks if the input is a permutation by verifying if there are no repeated elements between 0 and N. The mutant code also checks if a[i] is out of bounds and if the value exists in the array, but the operator has been modified to a logical subtraction. Thus, if a[i] is out of bounds exists[a[i]] is 0, subtracting it from true makes the condition true even though there is no repeated value. The correct output should be 2 3 5 1 4 0"
+    },
+    {
+      "input": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "5 4 3 2 1 0\n",
+      "mutant_output": "5 4 3 2 1 0\n",
+      "explanation": "Both programs receive the input and invert it in the same way, with no modifiers. Therefore, since the inputs and outputs are the same, the mutant program is equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta220_InversePermutation.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "2 3 4 5 1 0 \n",
+      "explanation": "Both programs perform the same operations and produce the same output for the given input."
+    },
+    {
+      "input": [
+        "3",
+        "2",
+        "0",
+        "1"
+      ],
+      "original_output": "1 2 0 \n",
+      "mutant_output": "1 2 0 \n",
+      "explanation": "Both programs perform the same operations and produce the same output for the given input."
+    }
+  ]
+},{
+  "mutant_program": "muta222_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 4 2 3 1 5\n",
+      "explanation": "The original code checks if a value in the input array is either negative or greater/equal than N OR if it already exists in the exists array. The mutant code uses XOR instead, so it checks if a value is either negative or greater than N, but not both, and if it already exists in the exists array. This means that the mutant code allows some invalid permutations to pass, resulting in a different output for the same input."
+    },
+    {
+      "input": [
+        3,
+        0,
+        1,
+        2
+      ],
+      "original_output": "1 2 0 3\n",
+      "mutant_output": "2 1 0 3\n",
+      "explanation": "The original and mutant programs both correctly identify that the input is a permutation, but the output sequences are different."
+    }
+  ]
+},{
+  "mutant_program": "muta223_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "2 3 4 5 0 1 \n",
+      "explanation": "The original program checks the validity of the input permutation by making sure that each number is in the range of 0 to N-1 and that there are no duplicates. The mutant code changes the logical 'or' operator (||) to the bitwise OR operator (|) which causes the check to always return true. This means that the mutant program does not check for any duplicates and will not return the correct inverse permutation in case of an invalid input. The test input [5,0,2,3,1,4] is a valid permutation and the original program returns '2 3 4 5 1 0' as expected. The same input on the mutant program also returns '2 3 4 5 0 1' which is incorrect since the last two elements are not in their correct inverse positions."
+    },
+    {
+      "input": [
+        3,
+        1,
+        2,
+        1
+      ],
+      "original_output": "Input is not a permutation.\n",
+      "mutant_output": "0 2 3 1 \n",
+      "explanation": "The test input [3,1,2,1] is not a valid permutation since the element 1 appears twice. The original program detects this and returns the error message 'Input is not a permutation.'. The mutated program does not perform a check for duplicates so it returns an inverse permutation of the invalid input which is '0 2 3 1'."
+    },
+    {
+      "input": [
+        2,
+        2,
+        0,
+        1
+      ],
+      "original_output": "Input is not a permutation.\n",
+      "mutant_output": "0 3 2 1 \n",
+      "explanation": "The test input [2,2,0,1] is not a valid permutation since the element 2 appears twice. The original program detects this and returns the error message 'Input is not a permutation.'. The mutated program does not perform a check for duplicates so it returns an inverse permutation of the invalid input which is '0 3 2 1'."
+    }
+  ]
+},{
+  "mutant_program": "muta225_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0",
+      "mutant_output": "2 3 4 5 0 1",
+      "explanation": "The original code checks if a value appears in the permutation by verifying if the corresponding index in the exists array has already been set to 1. The mutant code, on the other hand, uses a logical XOR to check if the value is out of bounds or if it has already been seen in the permutation. This results in a different behavior when the same value appears more than once in the permutation. For example, in this case, the value 0 appears in two positions in the original permutation and is correctly handled. The mutant code, however, sees 0 twice and aborts the inversion, resulting in a different output."
+    },
+    {
+      "input": [
+        1,
+        0,
+        3,
+        2
+      ],
+      "original_output": "1 0 3 2",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "In this test case, the input is not a valid permutation because it is missing the value 4. The original code correctly identifies this and returns an error message. However, the mutant code always checks if a value is out of bounds or if it has already been seen, regardless of its position in the permutation. As a result, it sees the value 4, which is not present in the input, and aborts the inversion, returning an error message."
+    }
+  ]
+},{
+  "mutant_program": "muta239_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "2",
+        "4",
+        "1",
+        "3",
+        "0"
+      ],
+      "original_output": "4 0 2 3 1\n",
+      "mutant_output": "4 1 2 3 0\n",
+      "explanation": "The input array contains negative numbers and numbers greater than N. The original program can detect this, but the mutant program cannot. Hence the mutants output is incorrect."
+    },
+    {
+      "input": [
+        "5",
+        "6",
+        "8",
+        "7",
+        "9",
+        "3",
+        "1",
+        "2",
+        "4",
+        "0"
+      ],
+      "original_output": "9 6 8 2 5 0 7 3 4 1\n",
+      "mutant_output": "9 6 7 2 5 0 8 3 4 1\n",
+      "explanation": "The input array contains numbers greater than N. The original program can detect this, but the mutant program cannot. Hence the mutants output is incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta245_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "2 3 4 5 0 1\n",
+      "explanation": "The mutant code changes the condition in the if statement inside the invert function, making it so that it returns a different result. The test used consists of a permutation of size 5, which should have an inverse permutation of [1 4 2 3 0]. Both programs correctly output that it is a permutation, but the original program outputs the correct inverse permutation while the mutant program outputs a different permutation [1 4 2 3 0] -> [2 3 4 5 0 1]."
+    }
+  ]
+},{
+  "mutant_program": "muta265_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "",
+      "explanation": "The mutant program has a mistake in the loop condition (i-N), which means it will loop infinitely. Therefore, it will never reach the code that prints the output, and the output will be empty. "
+    }
+  ]
+},{
+  "mutant_program": "muta277_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "The mutant code added unnecessary parentheses in the if statement condition, which resulted in the condition always evaluating to true, causing the program to always return an error even if the input is a valid permutation."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "2 1 0",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "This test case is not a valid permutation since it contains duplicate numbers. The original program correctly detects the invalid input and returns an error message, while the mutant code fails to detect it and proceeds with the inversion, resulting in an incorrect output."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "0 1 2",
+      "mutant_output": "0 1 2",
+      "explanation": "This is a valid permutation with a simple ordering of numbers. Both programs produce the same correct output."
+    }
+  ]
+},{
+  "mutant_program": "muta280_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 1 1 1 1 1\n",
+      "explanation": "The original program correctly calculates the inverse permutation and outputs it. The mutant program, however, has a non-equivalent mutation in the loop that calculates the inverse permutation. The condition of this loop, 'i - N', will never evaluate to false and the loop will continue indefinitely. Thus, the output is just the array ainv initialized to all 0's, which is not the correct inverse permutation."
+    }
+  ]
+},{
+  "mutant_program": "muta285_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \n",
+      "explanation": "The output of the original program is correct, providing the inverse permutation of the input, but the output of the mutant replaces the actual inversion with an array of 0's. The test set is the same for both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta291_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "original_output": "1 2 0 ",
+      "mutant_output": "1 2 0 ",
+      "explanation": "Both original and mutant code should return the inverse permutation of [3,1,2], which is [1,2,0]."
+    },
+    {
+      "input": [
+        4,
+        2,
+        3,
+        1
+      ],
+      "original_output": "3 1 2 0 ",
+      "mutant_output": "",
+      "explanation": "The mutant code terminates the loop in the invert function prematurely, since the bitmask on the conditional statement does not compare the iterator i with N as expected. This means that the function will not check possible invalid permutations beyond the minimum index of the array. For instance, for the input [4,2,3,1], the function will check only the subarray [4,2,3], which is a valid permutation, and calculate the wrong inverse permutation of [4,2,3] as [0,1,2]. The nonexistent element of the subarray, 1, is mapped to 3, which is not correct. Therefore, the mutant's output for this input will be empty, while the original code should return the inverse permutation [3,1,2,0]."
+    },
+    {
+      "input": [
+        0,
+        1,
+        3,
+        4,
+        2
+      ],
+      "original_output": "0 1 4 2 3 ",
+      "mutant_output": "0 1 4 2 3 ",
+      "explanation": "Both original and mutant code should return the inverse permutation of [0,1,3,4,2], which is [0,1,4,2,3]."
+    }
+  ]
+},{
+  "mutant_program": "muta2_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "2 3 5 4 1 0\n",
+      "explanation": "The mutant program changes the value of exists[a[i]] to 0, which breaks the functionality of the program, as it is used to check if the permutation is valid. The provided test set is the same for both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta3_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 2 3 4 5 0\n",
+      "explanation": "The original program correctly calculates the inverse permutation by assigning the index of each element in the original permutation to its corresponding value in the inverted array. The mutant program, however, starts the loop at index 1 instead of 0, which means that the first element in the inverted array will not be assigned correctly. This can be seen in the output where the first element of the inverted array is always 0, regardless of the input permutation."
+    },
+    {
+      "input": [
+        9,
+        7,
+        6,
+        8,
+        5,
+        4,
+        2,
+        3,
+        1,
+        0
+      ],
+      "original_output": "9 8 6 7 4 5 2 3 1 0\n",
+      "mutant_output": "0 8 6 7 4 5 2 3 1 9\n",
+      "explanation": "This test shows that the mutant program is not equivalent to the original program for larger input sizes as well. The original program still correctly calculates the inverse permutation, while the mutant program fails to do so. The difference in output is due to the same indexing bug in the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta300_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "0 1 2 3 4 \n",
+      "explanation": "The original code correctly calculates the inverse permutation of the input array. The mutant code, instead of looping from 0 to N-1, loops until the binary XOR of i and N is zero. This results in the index 'i' going beyond the range of the array, and thus, not all elements of the original array are mapped to an index of the inverse permutation. For example, in the input [5, 0, 2, 3, 1, 4], the element 4 is not mapped to index 5 of the inverse permutation, resulting in the mutant output being incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta303_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 1 2 3 4 5\n",
+      "explanation": "The mutant program changes the print out loop to iterate through the range [0, N-1] instead of the range [0, N), which causes it to output N instead of the correct permutation. This is evidenced by the fact that the first element of the original output is '2' while the first element of the mutant output is '0', which clearly are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta318_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "2 3 4 5 0 1 \n",
+      "explanation": "The original program code checks if the numbers in the input array are a valid permutation, making sure that there are no repeated numbers or numbers exceeding the given range. The mutant code, however, only checks if the index is equal to N, and does not ensure that all numbers are unique and in the right range. Therefore, it is not equivalent, as the mutant code may output incorrect results if given an invalid permutation as input."
+    }
+  ]
+},{
+  "mutant_program": "muta325_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "",
+      "explanation": "The original code checks if the index is within the upper bound of the array using a[i] >= N, whereas the mutant code checks if the index is strictly greater than N. This means that some valid indices will be considered as invalid, causing the code to return an error message instead of the inverse permutation. Therefore, the mutant code does not output anything. "
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "0 1 2\n",
+      "mutant_output": "",
+      "explanation": "The mutant code has the same problem as above, so it does not output anything."
+    },
+    {
+      "input": [
+        0,
+        1,
+        2
+      ],
+      "original_output": "0 1 2\n",
+      "mutant_output": "0 1 2\n",
+      "explanation": "This input consists only of valid indices. Therefore, both the original and the mutant code output the correct inverse permutation."
+    }
+  ]
+},{
+  "mutant_program": "muta333_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 1 2 3 4 5\n",
+      "explanation": "The original program correctly inverts the permutation given as input by storing the inverse permutation in the array 'ainv' and printing its elements at the end. The mutant program, however, does not correctly invert the permutation since the loop condition was changed to 'i != N', so it stops iterating when 'i' reaches N, which means the last element of the original array is not inverted in the 'ainv' array. Therefore, the mutant program always prints the integers between 0 and N-1 as the inversion of the original permutation, which is not a valid permutation in general. The test input [5,0,2,3,1,4] was already used in the original program and it correctly outputs '2 3 4 5 1 0'."
+    },
+    {
+      "input": [
+        "3",
+        "2",
+        "1",
+        "0"
+      ],
+      "original_output": "3 2 1 0\n",
+      "mutant_output": "0 1 2 3\n",
+      "explanation": "This test input was designed to show that the mutant program does not always output the correct inverse permutation. The input is a permutation of size 3, where v[0] = 2, v[1] = 1, and v[2] = 0. The original program correctly inverts this permutation and outputs '3 2 1 0'. However, the mutant program still outputs the incorrect permutation '0 1 2 3', which is not a valid inverse of the original permutation."
+    },
+    {
+      "input": [
+        "4",
+        "2",
+        "0",
+        "1",
+        "3"
+      ],
+      "original_output": "2 1 3 0\n",
+      "mutant_output": "0 1 2 3\n",
+      "explanation": "This test input was designed to show that the mutant program does not always output the correct inverse permutation. The input is a permutation of size 4, where v[0] = 2, v[1] = 0, v[2] = 1, and v[3] = 3. The original program correctly inverts this permutation and outputs '2 1 3 0'. However, the mutant program still outputs the incorrect permutation '0 1 2 3', which is not a valid inverse of the original permutation."
+    }
+  ]
+},{
+  "mutant_program": "muta338_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "2 3 4 5 1 \n",
+      "explanation": "The original code iterates over the array 'ainv' N times, but the mutant code does not use the N variable to stop the loop. Therefore, the mutant program will print one less element in the output array. Test with input [5, 0, 2, 3, 1, 4]."
+    },
+    {
+      "input": [
+        "4",
+        "1",
+        "3",
+        "2",
+        "0"
+      ],
+      "original_output": "3 0 2 1 \n",
+      "mutant_output": "3 0 2 1 \n",
+      "explanation": "The input array is a valid permutation in both programs. Both programs print the correct inverse permutation. Test with input [4, 1, 3, 2, 0]."
+    },
+    {
+      "input": [
+        "3",
+        "2",
+        "1",
+        "0"
+      ],
+      "original_output": "2 1 0 \n",
+      "mutant_output": "2 1 0 \n",
+      "explanation": "The input array is a valid permutation in both programs. Both programs print the correct inverse permutation. Test with input [3, 2, 1, 0]."
+    }
+  ]
+},{
+  "mutant_program": "muta397_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1
+      ],
+      "original_output": "2 3 4 5 1",
+      "mutant_output": "3 4 5 1 2",
+      "explanation": "The mutant code introduces a TRAP_ON_NEGATIVE function in the for loop that checks if i is less than N. This will stop the loop if the output of TRAP_ON_NEGATIVE(i) is less than N, which can introduce an index out of bounds error. For the given input, the mutant code results in the incorrect output of '3 4 5 1 2' whereas the original program outputs '2 3 4 5 1'."
+    }
+  ]
+},{
+  "mutant_program": "muta400_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "0 4 2 3 1 \n",
+      "explanation": "The mutant code replaces the condition for the for loop with a function call to TRAP_ON_NEGATIVE, which is not defined in the code given. This will create either an error or unusual behavior. For the given test case, the output is not correct."
+    },
+    {
+      "input": [
+        0,
+        1,
+        2
+      ],
+      "original_output": "0 1 2 \n",
+      "mutant_output": "0 1 2 \n",
+      "explanation": "This test is to ensure that both programs can handle the simplest case, which is an ascending order permutation of 0, 1, and 2."
+    },
+    {
+      "input": [
+        2,
+        1,
+        0
+      ],
+      "original_output": "2 1 0 \n",
+      "mutant_output": "2 1 0 \n",
+      "explanation": "This test is to ensure that both programs can handle a descending order permutation of 0, 1, and 2."
+    },
+    {
+      "input": [
+        3,
+        2,
+        3,
+        1,
+        0
+      ],
+      "original_output": "Input is not a permutation.\n",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "This test is to ensure that both programs can handle a permutation with duplicate elements, which should not be a permutation."
+    }
+  ]
+},{
+  "mutant_program": "muta401_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 4 2 3 1 5\n",
+      "explanation": "The original program correctly checks whether the input is a permutation and then outputs the inverse permutation. The mutant code replaces the termination condition of the for loop, changing i < N to a function call that traps on zero to avoid a division by zero. This will loop through N times regardless of the value of N, leading to an incorrect output for the inverse permutation. The provided test input is the example input from the original program code."
+    }
+  ]
+},{
+  "mutant_program": "muta403_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "2 3 4 5 0 1\n",
+      "explanation": "The original program checks if the values in the array a are less than 0 or greater than N or have occurred before, while the mutant code adds a TRAP_ON_NEGATIVE function that returns the negative value if it is detected in the array a. So, the mutant program considers the negative value as a valid input without checking it. Therefore, there is a difference in the outputs of the two programs, and this can be demonstrated by the given test case by swapping the two values of the output. The original program output is '2 3 4 5 1 0' while the mutant program output is '2 3 4 5 0 1'."
+    }
+  ]
+},{
+  "mutant_program": "muta409_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "The mutant program contains an additional condition statement, TRAP_ON_NEGATIVE(i), that manipulates the index i in the array. This will result in a different behavior than the original program as it will generate out of range array access. Thus, the mutant program will output an error message for the given input."
+    },
+    {
+      "input": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "original_output": "2 0 3 1 \n",
+      "mutant_output": "2 0 3 1 \n",
+      "explanation": "Both the original and mutant program will output the correct inverse permutation for this input. Therefore, the mutant code is equivalent to the original."
+    }
+  ]
+},{
+  "mutant_program": "muta412_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 2 3 4 5 1\n",
+      "explanation": "The original code checks if a[i] is less than zero or greater than N, but the mutant code adds a function TRAP_ON_NEGATIVE to return N in that case. This causes the mutant code to skip the permutation check and thus allowing it to return an incorrect inverse permutation. The test input is the same as the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta415_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "The mutant code added an unnecessary condition inside the if statement in the invert function, causing the program to identify some valid permutations as invalid. In this case, the original program correctly outputs the inverse permutation, while the mutant program outputs an error message indicating that the input is not a permutation."
+    }
+  ]
+},{
+  "mutant_program": "muta416_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "",
+      "explanation": "The mutant program includes a call to a non-existent function TRAP_ON_ZERO. This will cause the program to fail and produce no output."
+    },
+    {
+      "input": [
+        "-1",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "Input is not a permutation.\n",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "Both programs correctly detect that the input is not a permutation and produce the same error message."
+    }
+  ]
+},{
+  "mutant_program": "muta418_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "original_output": "0 1 2 3 \n",
+      "mutant_output": "0 1 2 3 \n",
+      "explanation": "The input is a permutation and both programs behave similarly."
+    },
+    {
+      "input": [
+        "2",
+        "3",
+        "4",
+        "0",
+        "1"
+      ],
+      "original_output": "3 4 0 1 2 \n",
+      "mutant_output": "3 4 0 1 2 \n",
+      "explanation": "The input is a permutation and both programs behave similarly."
+    },
+    {
+      "input": [
+        "-1",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "original_output": "Input is not a permutation.\n",
+      "mutant_output": "",
+      "explanation": "The input is not a permutation and only the original program can detect that."
+    }
+  ]
+},{
+  "mutant_program": "muta421_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "The mutant code uses a function TRAP_ON_NEGATIVE to check whether the value of a[i] is negative, but this function does not prevent the program from continuing execution. Therefore, when a negative value is received, the program reports that the input is not a permutation and continues its execution. This causes different results."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "2 1 0\n",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "Both programs have the same output when given a valid permutation as input."
+    },
+    {
+      "input": [
+        1,
+        2,
+        -1,
+        4,
+        5
+      ],
+      "original_output": "Input is not a permutation.\n",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "Both programs have the same output when given an invalid permutation as input."
+    }
+  ]
+},{
+  "mutant_program": "muta424_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0",
+      "mutant_output": "",
+      "explanation": "The mutant code has a new function call TRAP_ON_NEGATIVE that is not defined and is used in a condition that replaces the original 'exists[a[i]]' condition. This will result in a compilation error and no output will be produced."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "2 1 0",
+      "mutant_output": "2 1 1",
+      "explanation": "The input array [3,2,1] is not a valid permutation. The original code will print 'Input is not a permutation' and halt, while the mutant code will proceed to invert the permutation and end up with an incorrect output."
+    },
+    {
+      "input": [
+        2,
+        0,
+        1
+      ],
+      "original_output": "1 2 0",
+      "mutant_output": "1 2 0",
+      "explanation": "This is a valid permutation and both original and mutant code work correctly."
+    }
+  ]
+},{
+  "mutant_program": "muta427_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "",
+      "explanation": "The mutant code includes a call to an undefined function TRAP_ON_NEGATIVE, causing a compilation error and preventing the program from running. This is not an equivalent mutant."
+    },
+    {
+      "input": [
+        "5",
+        "0",
+        "-1",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "Input is not a permutation.\n",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "This test includes a negative value in the input permutation, causing both the original program and mutant program to output an error message. The programs are equivalent in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta430_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": null,
+      "explanation": "The original program checks if the given input is a valid permutation before inverting it. However, the mutant program uses a new function TRAP_ON_NEGATIVE to modify the value of exists array which may result in out-of-bounds access and hence produce an incorrect result, or even crash the program. Therefore, no mutant output is obtained, and it is considered not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta433_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "3",
+        "1",
+        "2"
+      ],
+      "original_output": "1 2 0",
+      "mutant_output": "1 2 0",
+      "explanation": "The original code and the mutant code both produce the correct inverse permutation for this input."
+    },
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "-3",
+        "1",
+        "4"
+      ],
+      "original_output": "Input is not a permutation.",
+      "mutant_output": "0 1 3 -1 -1",
+      "explanation": "The original code correctly identifies that the input is not a permutation, while the mutant code does not. The output of the mutant code is incorrect because the value of ainv[-3] is set to 3 (which is a valid index), rather than exiting due to the invalid input. The output also indicates that two of the values in the inverse permutation are -1, which is not a valid index."
+    }
+  ]
+},{
+  "mutant_program": "muta436_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 1 0 3 4 5\n",
+      "explanation": "The original program correctly determines whether the input is a permutation and then inverts it. The mutant program changes the second for loop to iterate from 0 to TRAP_ON_NEGATIVE(N), which could be anything if N is negative. This could cause an out of bounds access on the array a and fails to correctly invert the permutation. The test provided results in different outputs because the two programs output different permutations of the original input."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "2 1 0\n",
+      "mutant_output": "2 1 0\n",
+      "explanation": "In this case, the input is initially a permutation, so both the original and mutant programs can successfully invert it. Thus, the outputs are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta439_InversePermutation.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta442_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 1 4 5 3 2\n",
+      "explanation": "The original program first checks if the input is a valid permutation. Then it inverts the permutation and prints the result. The mutant program is exactly the same as the original except for the line where it computes the inverse permutation. Instead of assigning to ainv[a[i]], it assigns to ainv[TRAP_ON_NEGATIVE(a[i])]. This effectively truncates the permutation to only non-negative values. As a result, the mutant program will not output the correct inverse permutation for input arrays that contain negative numbers. The test set chosen contains an input array that is a valid permutation, so it will pass the validation check in both programs. The expected output for the original program is '2 3 4 5 1 0\n', which is the inverse permutation of the input array. The expected output for the mutant program is '0 1 4 5 3 2\n', which is incorrect because it only contains the non-negative values in the input array."
+    }
+  ]
+},{
+  "mutant_program": "muta445_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0",
+      "mutant_output": "3 4 5 0 2 1",
+      "explanation": "The original program assigns the value i to ainv[a[i]] while the mutant program uses the TRAP_ON_NEGATIVE function, which returns -1 if i is less than 0 and i otherwise. This results in a different output than the original program."
+    },
+    {
+      "input": [
+        "8",
+        "7",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1",
+        "0"
+      ],
+      "original_output": "8 7 6 5 4 3 2 1 0",
+      "mutant_output": "7 6 8 4 3 5 2 1 0",
+      "explanation": "This test case checks if the program detects when the input is not a permutation. The input is not a permutation because it contains all the numbers from 0 to 8, rather than a rearrangement of those numbers. The original program prints the message 'Input is not a permutation.' while the mutant program continues executing and produces a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta448_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "0 1 2 3 4 \n",
+      "explanation": "The original program prints the inverse permutation of the input, while the mutant prints the inverse permutation with a for loop that uses a macro function TRAP_ON_NEGATIVE(i) to control the stop condition of the iteration. As a result, the mutant program does not print the last element of the inverse permutation if it is negative (since TRAP_ON_NEGATIVE(i) returns 0 in that case). This behavior is incorrect and different from the original program, as shown in the test output."
+    }
+  ]
+},{
+  "mutant_program": "muta451_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "2 3 0 -279579656\n",
+      "explanation": "The original program receives an array as input and inverts it, then prints the resulting inverted permutation array. The mutant program does the same thing, but instead of iterating i from 0 to N like in the original program, it iterates i from 0 to the function TRAP_ON_NEGATIVE(N), which is not defined anywhere. This results in printing unexpected values as the inverted permutation, generating a different output than the original program. The difference is highlighted in the last two numbers of the output, with the original program printing [1 0] and the mutant program printing [0 -279579656]."
+    }
+  ]
+},{
+  "mutant_program": "muta454_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": null,
+      "explanation": "The mutant program includes a function call to TRAP_ON_NEGATIVE(), which is not defined in the code. Therefore, the mutant program will fail to compile and produce no output."
+    },
+    {
+      "input": [
+        "3",
+        "0",
+        "1",
+        "2"
+      ],
+      "original_output": "0 1 2\n",
+      "mutant_output": null,
+      "explanation": "The mutant program fails to compile and produce no output, so there is no way to compare its output against the original program for this test case."
+    },
+    {
+      "input": [
+        "4",
+        "0",
+        "3",
+        "1",
+        "2"
+      ],
+      "original_output": "0 2 3 1\n",
+      "mutant_output": null,
+      "explanation": "The mutant program fails to compile and produce no output, so there is no way to compare its output against the original program for this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta457_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "2 3 4 5S0\n",
+      "explanation": "The mutant program introduces an unknown function call TRAP_ON_NEGATIVE. This call is used to wrap the printing of ainv[i]. Since the function is unknown, it is not possible to determine its behavior. Furthermore, the output is different, indicating that the mutant code is not equivalent to the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta461_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "The original code and the mutant code differ in the conditional statement inside the 'invert' function. The mutant code uses 'v' instead of 'a' in the conditional statement. Therefore, the first test case produces different outputs because 'v' is not initialized with the same values as 'a'."
+    },
+    {
+      "input": [
+        1,
+        4,
+        3,
+        2
+      ],
+      "original_output": "0 3 2 1\n",
+      "mutant_output": "0 3 1 2\n",
+      "explanation": "Both programs produce different outputs because the mutant code does not check for repeated elements in the input array while the original code does. Therefore, the mutant code does not detect input arrays that are not permutations. The second test case verifies this by using an input array that has repeated elements, which causes the original code to print the error message while the mutant code proceeds to invert the array."
+    }
+  ]
+},{
+  "mutant_program": "muta464_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "original_output": "0 1 2 3 4",
+      "mutant_output": "0 1 2 3 4",
+      "explanation": "Both outputs are the same because the mutant only changed the format of the if statement in the invert function, but it did not change the logic of the program."
+    },
+    {
+      "input": [
+        "3",
+        "0",
+        "1",
+        "2",
+        "4"
+      ],
+      "original_output": "1 2 3 0 4",
+      "mutant_output": "Input is not a permutation.\n",
+      "explanation": "The mutant changed 'v[i] >= N' to 'v[i] >= N', which is incorrect and makes the if statement to always fail, thus resulting in an error message instead of the inverse permutation."
+    }
+  ]
+},{
+  "mutant_program": "muta469_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "0 4 2 3 1 5 \n",
+      "explanation": "The mutant code changes the condition on line 8 to 'exists[v[i]]', which is using an uninitialized array instead of the input array. Therefore, the test set will be the same. However, the output is different, as the mutant program prints out an incorrect inverse permutation. The output is '0 4 2 3 1 5' instead of the expected '2 3 4 5 1 0'."
+    }
+  ]
+},{
+  "mutant_program": "muta474_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0 \n",
+      "mutant_output": "2 3 0 5 1 4 \n",
+      "explanation": "The original program correctly handles the input permutation to produce the inverse permutation. The mutant program, however, assigns 1 to exists[v[i]] instead of exists[a[i]], which causes it to mishandle the input and output a different permutation as the inverse."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "2 1 0 \n",
+      "mutant_output": "0 1 2 \n",
+      "explanation": "This test case shows that the two programs produce different output for a different input permutation. The original program generates the correct inverse permutation, while the mutant program generates the original permutation as its inverse, due to the mishandling of the input."
+    }
+  ]
+},{
+  "mutant_program": "muta479_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "4 3 2 5 0 1\n",
+      "explanation": "The mutant changed the code in the line that inverts the permutation. Instead of using the given array a, it uses the array v (which has the same values as a), in an assignation statement with no conditional logic. This produces a different result when traversing the array to create the output."
+    }
+  ]
+},{
+  "mutant_program": "muta481_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "2 3 4 5 1 0\n",
+      "mutant_output": "5 0 2 3 1  \n",
+      "explanation": "The original program correctly inverts the input permutation and prints the resulting permutation. The mutant program correctly inverts the input permutation but instead of printing the resulting permutation, it prints the original input permutation v. Therefore, the expected output is different."
+    }
+  ]
+},{
+  "mutant_program": "muta528_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "0",
+        "2",
+        "3",
+        "1",
+        "6"
+      ],
+      "original_output": "Input is not a permutation.\n",
+      "mutant_output": "[0, 1, 2, 3, 4, 5]\n",
+      "explanation": "The mutant code has an additional condition in the if statement in line 10, where it uses the PRED function to obtain the previous element of the array. This function is not defined in the code, and it seems that it is trying to use the macro PRED(x) = x - 1. This change causes the mutant code to accept invalid input that the original code would reject, resulting in different outputs."
+    },
+    {
+      "input": [
+        "4",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "original_output": "3 2 1 0\n",
+      "mutant_output": "3 2 1 0\n",
+      "explanation": "This test is a valid permutation with four elements, and both programs should return the same output."
+    },
+    {
+      "input": [
+        "3",
+        "0",
+        "1",
+        "2"
+      ],
+      "original_output": "2 1 0\n",
+      "mutant_output": "2 1 0\n",
+      "explanation": "This test is also a valid permutation with three elements, and both programs should return the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta529_InversePermutation.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "2 3 4 5 1 0",
+      "mutant_output": "Input is not a permutation.",
+      "explanation": "The mutant code has a different condition when checking if the input is a valid permutation. Instead of checking if the value at index i is not equal to 0 and is less than N, it uses the SUCC macro to check if the value at index i plus 1 is less than 0 or greater than or equal to N. This condition is not equivalent because it checks the value at index i+1, which can be out of range of the array, leading to unexpected behavior."
+    },
+    {
+      "input": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "original_output": "2 1 3 0",
+      "mutant_output": "Input is not a permutation.",
+      "explanation": "The input is not a valid permutation because the value at index 2 is 0, which is not allowed in a permutation of length 4. Both the original and mutant code correctly identify this and output the same error message."
+    }
+  ]
+}]
