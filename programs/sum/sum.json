@@ -1,42 +1,6 @@
 [
     {
-        "mutant_program": "muta109_sum.c",
-        "equivalent": false,
-        "tests": [
-            {
-                "input": [
-                    1,
-                    2,
-                    3
-                ],
-                "original_output": 6,
-                "mutant_output": 0,
-                "explanation": "The original program correctly calculates the sum of the input array [1,2,3], which is 6. However, the mutant program replaces the body of the sum function with a call to an undefined function UTRAP_ON_STAT() and returns the uninitialized variable s. This results in the mutant program always returning 0 for any input array, regardless of its values."
-            },
-            {
-                "input": [
-                    4,
-                    5,
-                    6
-                ],
-                "original_output": 15,
-                "mutant_output": 0,
-                "explanation": "The original program correctly calculates the sum of the input array [4,5,6], which is 15. However, the mutant program always returns 0 due to the same issue as in the previous test case."
-            },
-            {
-                "input": [
-                    7,
-                    8,
-                    9
-                ],
-                "original_output": 24,
-                "mutant_output": 0,
-                "explanation": "The original program correctly calculates the sum of the input array [7,8,9], which is 24. However, the mutant program always returns 0 due to the same issue as in the previous test cases."
-            }
-        ]
-    },
-    {
-        "mutant_program": "muta112_sum.c",
+        "mutant_program": "muta113_sum.c",
         "equivalent": false,
         "tests": [
             {
@@ -47,17 +11,17 @@
                 ],
                 "original_output": 6,
                 "mutant_output": 6,
-                "explanation": "Both the original and mutant program will output the correct sum since the only difference in the code is the use of a macro function (TRAP_ON_POSITIVE) which has no impact on the actual calculation."
+                "explanation": "Both the original and the mutant code receive the same input and produce the same output. Therefore, this test doesn't reveal any differences between them."
             },
             {
                 "input": [
                     4,
-                    5,
+                    -5,
                     6
                 ],
-                "original_output": 15,
-                "mutant_output": 15,
-                "explanation": "Both the original and mutant program will output the correct sum since the only difference in the code is the use of a macro function (TRAP_ON_POSITIVE) which has no impact on the actual calculation."
+                "original_output": 5,
+                "mutant_output": 10,
+                "explanation": "The mutant code has a conditional statement inside the for loop. This condition, TRAP_ON_NEGATIVE(i) < size, checks if i is negative. If true, the loop is terminated, ignoring the remaining values in the array. This is a deviation from the original code and causes the mutant code to return a different value than the original code for input [4,-5,6]. Specifically, the original program adds all the values in the array and returns 5, while the mutant code stops at -5 and returns 10, because it didn't add the value 6."
             },
             {
                 "input": [
@@ -67,12 +31,12 @@
                 ],
                 "original_output": 24,
                 "mutant_output": 24,
-                "explanation": "Both the original and mutant program will output the correct sum since the only difference in the code is the use of a macro function (TRAP_ON_POSITIVE) which has no impact on the actual calculation."
+                "explanation": "Both the original and the mutant code receive the same input and produce the same output. Therefore, this test doesn't reveal any differences between them."
             }
         ]
     },
     {
-        "mutant_program": "muta118_sum.c",
+        "mutant_program": "muta116_sum.c",
         "equivalent": false,
         "tests": [
             {
@@ -82,28 +46,66 @@
                     3
                 ],
                 "original_output": 6,
-                "mutant_output": 9,
-                "explanation": "The original program simply adds up all the elements in the input array and returns the sum. The mutant program uses a TRAP_ON_POSITIVE function that is not defined, but assuming it simply adds 1 to positive values, it will modify the sum by adding 1 for each positive value encountered. Hence, for input [1,2,3], the original program returns 6 while the mutant program would return 9."
+                "mutant_output": 6,
+                "explanation": "Both programs should output the same result since the changed code only replaces the termination condition of the for loop. The input array has only positive numbers so the TRAP_ON_NEGATIVE() function call will return the unmodified value of size, resulting in the same number of iterations as the original loop."
             },
             {
                 "input": [
                     4,
-                    -2,
-                    6
+                    5,
+                    -1
                 ],
                 "original_output": 8,
-                "mutant_output": 11,
-                "explanation": "For input [4, -2, 6], the original program returns the correct sum of 8, while the mutant program would add 1 for the first and third elements, resulting in a sum of 11."
+                "mutant_output": 9,
+                "explanation": "The mutant code adds a trap to stop the loop when the value of size is negative. When given an array with a negative value (-1), the original program correctly skips over it and only sums the positive values (4+5=9). However, the mutant code terminates the loop prematurely and sums only the first element (4) without considering the negative value. Therefore, the mutant output is incorrect."
             },
             {
                 "input": [
+                    7,
+                    8,
+                    9,
+                    10
+                ],
+                "original_output": 34,
+                "mutant_output": 34,
+                "explanation": "Both programs should output the same result since the input array has only positive values and the TRAP_ON_NEGATIVE() function call will return the unmodified value of size, allowing the for loop to iterate over all elements of the array."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta122_sum.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
                     0,
-                    0,
-                    0
+                    1,
+                    2,
+                    -3
                 ],
                 "original_output": 0,
-                "mutant_output": 0,
-                "explanation": "For input [0, 0, 0], both programs would correctly return 0 as the sum is 0."
+                "mutant_output": 1,
+                "explanation": "The original program calculates the sum of an array of integers passed by command-line arguments. The mutant program introduces a TRAP_ON_NEGATIVE function that traps negative values of i. The issue is that the TRAP_ON_NEGATIVE function is not defined and does nothing. Hence, the mutant program is not equivalent to the original one. This test case includes a negative value that is not trapped by the mutant program and results in different outputs."
+            },
+            {
+                "input": [
+                    4,
+                    5,
+                    6
+                ],
+                "original_output": 15,
+                "mutant_output": 15,
+                "explanation": "This test case includes only positive integers and both the original and mutant programs return the same output."
+            },
+            {
+                "input": [
+                    -1,
+                    -2,
+                    -3
+                ],
+                "original_output": -6,
+                "mutant_output": -6,
+                "explanation": "This test case includes only negative integers and both the original and mutant programs return the same output."
             }
         ]
     },
@@ -118,8 +120,18 @@
                     3
                 ],
                 "original_output": 6,
-                "mutant_output": 7,
-                "explanation": "The original program calculates the sum of the input array correctly. However, the mutant program uses a TRAP_ON_ZERO function that is not defined in the original program, which may affect the behavior. For the given input, the TRAP_ON_ZERO function does not change the result, but it may have effects for other inputs."
+                "mutant_output": 0,
+                "explanation": "The test input array [1,2,3] expects a sum of 6 for the original program. However, in the mutant code, the TRAP_ON_ZERO function is called which is not defined in the program and will result in an error. Therefore, the mutant program returns 0 instead of the expected sum."
+            },
+            {
+                "input": [
+                    4,
+                    5,
+                    6
+                ],
+                "original_output": 15,
+                "mutant_output": 15,
+                "explanation": "The test input array [4,5,6] expects a sum of 15 for both the original and mutant programs since TRAP_ON_ZERO function is not defined in the mutant code and does not affect the sum calculation."
             },
             {
                 "input": [
@@ -129,17 +141,7 @@
                 ],
                 "original_output": 0,
                 "mutant_output": 0,
-                "explanation": "For an input array of all zeros, both programs should return zero, regardless of the TRAP_ON_ZERO function."
-            },
-            {
-                "input": [
-                    2,
-                    4,
-                    6
-                ],
-                "original_output": 12,
-                "mutant_output": 13,
-                "explanation": "For this input, the TRAP_ON_ZERO function does not affect the result of the mutant program, but it changes the sum calculation by adding the TRAP_ON_ZERO function for each array element, which results in a different value from the original program."
+                "explanation": "The test input array [0,0,0] expects a sum of 0 for both the original and mutant programs since all elements are 0 and the sum is 0. The TRAP_ON_ZERO function in the mutant code does not affect the calculation in this case."
             }
         ]
     },
@@ -155,25 +157,27 @@
                 ],
                 "original_output": 6,
                 "mutant_output": "TRAP_ON_POSITIVE(6)",
-                "explanation": "The original program returns the sum of the integers in the input array, which is 6, while the mutant program returns the result of the TRAP_ON_POSITIVE function called with 6 as argument. The TRAP_ON_POSITIVE function is not defined in the code and its behavior is unknown. Therefore, the mutant program is not equivalent to the original program."
+                "explanation": "The original program correctly computes the sum of the elements in the input array, which is 6 for the given test case. However, the mutant program replaces the return statement with a call to a non-existent function. Even if the TRAP_ON_POSITIVE function existed, it would not affect the value being returned, as it would simply wrap the sum in a function call without altering the value. Therefore, the mutant program is not equivalent to the original program."
             },
             {
                 "input": [
                     4,
-                    -5,
-                    0
+                    5,
+                    6
                 ],
-                "original_output": -1,
-                "mutant_output": "TRAP_ON_POSITIVE(-1)",
-                "explanation": "This test case is similar to the previous one, with the exception that the input array contains negative and zero values. The original program correctly computes the sum of the input values, which is -1, while the mutant program calls the unknown TRAP_ON_POSITIVE function with -1 as argument. Therefore, the mutant program is not equivalent to the original program."
+                "original_output": 15,
+                "mutant_output": "TRAP_ON_POSITIVE(15)",
+                "explanation": "The original program correctly computes the sum of the elements in the input array, which is 15 for the given test case. However, the mutant program replaces the return statement with a call to a non-existent function. Even if the TRAP_ON_POSITIVE function existed, it would not affect the value being returned, as it would simply wrap the sum in a function call without altering the value. Therefore, the mutant program is not equivalent to the original program."
             },
             {
                 "input": [
-                    0
+                    7,
+                    8,
+                    9
                 ],
-                "original_output": 0,
-                "mutant_output": "TRAP_ON_POSITIVE(0)",
-                "explanation": "This is a simple test case with only one input value, which is zero. The original program correctly returns the sum of the input values, which is zero, while the mutant program calls the unknown TRAP_ON_POSITIVE function with zero as argument. Therefore, the mutant program is not equivalent to the original program."
+                "original_output": 24,
+                "mutant_output": "TRAP_ON_POSITIVE(24)",
+                "explanation": "The original program correctly computes the sum of the elements in the input array, which is 24 for the given test case. However, the mutant program replaces the return statement with a call to a non-existent function. Even if the TRAP_ON_POSITIVE function existed, it would not affect the value being returned, as it would simply wrap the sum in a function call without altering the value. Therefore, the mutant program is not equivalent to the original program."
             }
         ]
     },
@@ -189,7 +193,7 @@
                 ],
                 "original_output": 6,
                 "mutant_output": 1,
-                "explanation": "The input array [1,2,3] has a size of 3. In the original code, the for loop iterates from 0 to 2 (size-1) and adds all the elements to the sum. The correct output is 6. However, in the mutant code, the for loop executes only once with i=0, adding only the first element (x[0]=1) to the sum. Thus, the mutant output is 1."
+                "explanation": "The original program correctly sums the values in the input array, resulting in 6 for this specific input. The mutant program, however, only considers the first element of the array and ignores the rest, resulting in an output of 1."
             },
             {
                 "input": [
@@ -199,7 +203,7 @@
                 ],
                 "original_output": 15,
                 "mutant_output": 4,
-                "explanation": "The input array [4,5,6] has a size of 3. In the original code, the for loop iterates from 0 to 2 (size-1) and adds all the elements to the sum. The correct output is 15. However, in the mutant code, the for loop executes only once with i=0, adding only the first element (x[0]=4) to the sum. Thus, the mutant output is 4."
+                "explanation": "The original program correctly sums the values in the input array, resulting in 15 for this specific input. The mutant program, however, only considers the first element of the array and ignores the rest, resulting in an output of 4."
             },
             {
                 "input": [
@@ -209,12 +213,12 @@
                 ],
                 "original_output": 24,
                 "mutant_output": 7,
-                "explanation": "The input array [7,8,9] has a size of 3. In the original code, the for loop iterates from 0 to 2 (size-1) and adds all the elements to the sum. The correct output is 24. However, in the mutant code, the for loop executes only once with i=0, adding only the first element (x[0]=7) to the sum. Thus, the mutant output is 7."
+                "explanation": "The original program correctly sums the values in the input array, resulting in 24 for this specific input. The mutant program, however, only considers the first element of the array and ignores the rest, resulting in an output of 7."
             }
         ]
     },
     {
-        "mutant_program": "muta145_sum.c",
+        "mutant_program": "muta149_sum.c",
         "equivalent": false,
         "tests": [
             {
@@ -225,7 +229,7 @@
                 ],
                 "original_output": 6,
                 "mutant_output": 3,
-                "explanation": "The original program correctly calculates the sum of [1,2,3] which is 6, while the mutant program uses the index variable instead of the array values which results in a sum of 3."
+                "explanation": "The original program calculates the sum of the elements in the input array and returns the correct value, while the mutant program uses a different loop condition that might exclude some elements from the summation, resulting in an incorrect output."
             },
             {
                 "input": [
@@ -234,54 +238,54 @@
                     6
                 ],
                 "original_output": 15,
-                "mutant_output": 3,
-                "explanation": "The original program correctly calculates the sum of [4,5,6] which is 15, while the mutant program uses the index variable instead of the array values which results in a sum of 3."
-            },
-            {
-                "input": [
-                    7,
-                    8,
-                    9
-                ],
-                "original_output": 24,
-                "mutant_output": 3,
-                "explanation": "The original program correctly calculates the sum of [7,8,9] which is 24, while the mutant program uses the index variable instead of the array values which results in a sum of 3."
-            }
-        ]
-    },
-    {
-        "mutant_program": "muta148_sum.c",
-        "equivalent": false,
-        "tests": [
-            {
-                "input": [
-                    1,
-                    2,
-                    3
-                ],
-                "original_output": 6,
-                "mutant_output": 3,
-                "explanation": "The original program correctly calculates the sum of the input array [1,2,3], which is 6. However, the mutant program returns the size of the array (which is 3) instead of the sum. Therefore, the outputs are different."
-            },
-            {
-                "input": [
-                    4,
-                    5,
-                    6
-                ],
-                "original_output": 15,
-                "mutant_output": 6,
-                "explanation": "The original program correctly calculates the sum of the input array [4,5,6], which is 15. However, the mutant program returns the size of the array (which is 3) instead of the sum. Therefore, the outputs are different."
-            },
-            {
-                "input": [
-                    7,
-                    8,
-                    9
-                ],
-                "original_output": 24,
                 "mutant_output": 9,
-                "explanation": "The original program correctly calculates the sum of the input array [7,8,9], which is 24. However, the mutant program returns the size of the array (which is 3) instead of the sum. Therefore, the outputs are different."
+                "explanation": "The original program correctly calculates the sum of the elements in the input array, but the mutant program uses the mutated loop condition that excludes the last element, resulting in an incorrect output."
+            },
+            {
+                "input": [
+                    7,
+                    8,
+                    9
+                ],
+                "original_output": 24,
+                "mutant_output": 17,
+                "explanation": "The original program correctly calculates the sum of the elements in the input array, but the mutant program uses the mutated loop condition that excludes the first element, resulting in an incorrect output."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta152_sum.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3
+                ],
+                "original_output": 6,
+                "mutant_output": 0,
+                "explanation": "The original program correctly adds all the values in the input array and returns the sum. The mutant program replaces the upper bound of the loop with SUCC(size), which means that the loop will execute one more iteration than intended, potentially accessing invalid array indices or not taking into account the last value in the array. This results in the mutant program returning a sum of 0 instead of the correct sum, causing it to be not equivalent to the original program."
+            },
+            {
+                "input": [
+                    4,
+                    5,
+                    6
+                ],
+                "original_output": 15,
+                "mutant_output": 0,
+                "explanation": "The original program correctly adds all the values in the input array and returns the sum. The mutant program replaces the upper bound of the loop with SUCC(size), which means that the loop will execute one more iteration than intended, potentially accessing invalid array indices or not taking into account the last value in the array. This results in the mutant program returning a sum of 0 instead of the correct sum, causing it to be not equivalent to the original program."
+            },
+            {
+                "input": [
+                    7,
+                    8,
+                    9
+                ],
+                "original_output": 24,
+                "mutant_output": 0,
+                "explanation": "The original program correctly adds all the values in the input array and returns the sum. The mutant program replaces the upper bound of the loop with SUCC(size), which means that the loop will execute one more iteration than intended, potentially accessing invalid array indices or not taking into account the last value in the array. This results in the mutant program returning a sum of 0 instead of the correct sum, causing it to be not equivalent to the original program."
             }
         ]
     },
@@ -291,34 +295,29 @@
         "tests": [
             {
                 "input": [
-                    1,
-                    2,
-                    3
+                    4,
+                    5,
+                    6
                 ],
-                "original_output": 6,
+                "original_output": 15,
                 "mutant_output": 0,
-                "explanation": "The original program correctly calculates the sum of the input array, which is 6. However, the mutant code initializes i to 0 instead of leaving it uninitialized, which makes the for loop never execute, resulting in a sum of 0."
+                "explanation": "The original program computes the sum of the elements in the input array, which is 4 + 5 + 6 = 15, and returns 15. However, the mutant program initializes i to 0 and does not increment it, resulting in an infinite loop. Thus, the mutant program returns 0."
             },
             {
-                "input": [
-                    -4,
-                    8,
-                    -2
-                ],
-                "original_output": 2,
-                "mutant_output": -60,
-                "explanation": "The original program correctly calculates the sum of the input array, which is 2. However, the mutant code initializes i to 0 instead of leaving it uninitialized, which makes the for loop never execute, resulting in a sum of 0. Additionally, the mutant code multiplies i by 0, causing the sum to always be 0 regardless of the input values."
-            },
-            {
-                "input": [
-                    0,
-                    0,
-                    0,
-                    0
-                ],
+                "input": [],
                 "original_output": 0,
                 "mutant_output": 0,
-                "explanation": "Both the original program and the mutant code correctly calculate the sum of the input array, which is 0. This test ensures that both programs can handle an input array of all zeroes."
+                "explanation": "Both programs handle an empty input array correctly, as the sum of an empty array is 0."
+            },
+            {
+                "input": [
+                    10,
+                    20,
+                    30
+                ],
+                "original_output": 60,
+                "mutant_output": 0,
+                "explanation": "The original program correctly computes the sum of the elements in the input array, which is 10 + 20 + 30 = 60, and returns 60. However, the mutant program does not compute the sum correctly due to the same error as in the first test. Thus, the mutant program returns 0."
             }
         ]
     },
@@ -334,7 +333,7 @@
                 ],
                 "original_output": 6,
                 "mutant_output": 0,
-                "explanation": "The original program correctly sums the input array, while the mutant initializes i to an undefined value and does not update it to zero, thereby causing the loop to iterate incorrectly and resulting in a sum of zero instead of 6."
+                "explanation": "The original program correctly sums the values in the input array, producing an output of 6. The mutated program, however, initializes the counter variable i incorrectly, starting from an undefined value instead of 0. This causes the loop to traverse the input array starting from an incorrect index, producing an incorrect output of 0."
             },
             {
                 "input": [
@@ -343,8 +342,8 @@
                     6
                 ],
                 "original_output": 15,
-                "mutant_output": 0,
-                "explanation": "The mutant's error in loop initialization and update causes it to return 0 instead of the correct sum of 15."
+                "mutant_output": 4,
+                "explanation": "The original program correctly sums the values in the input array, producing an output of 15. The mutated program, however, initializes the counter variable i incorrectly, starting from an undefined value instead of 0. This causes the loop to traverse the input array starting from an incorrect index, producing an incorrect output of 4."
             },
             {
                 "input": [
@@ -353,8 +352,8 @@
                     9
                 ],
                 "original_output": 24,
-                "mutant_output": 0,
-                "explanation": "Once again, the mutant program initializes the loop incorrectly, causing it to return 0 instead of the correct sum of 24 produced by the original program."
+                "mutant_output": 7,
+                "explanation": "The original program correctly sums the values in the input array, producing an output of 24. The mutated program, however, initializes the counter variable i incorrectly, starting from an undefined value instead of 0. This causes the loop to traverse the input array starting from an incorrect index, producing an incorrect output of 7."
             }
         ]
     },
@@ -370,7 +369,7 @@
                 ],
                 "original_output": 6,
                 "mutant_output": 0,
-                "explanation": "The original program's sum function adds up all the values in the array x[], while the mutant code sets i to 0 using a bitwise AND operation. This means that the mutant code never enters the for loop, resulting in a sum of 0 instead of 6."
+                "explanation": "The original program correctly calculates the sum by iterating through the array 'x' and adding up all the elements. The mutant program initializes variable 'i' to 0 using bitwise ANDing with itself, which sets 'i' to 0. As a result, the loop never executes and the result is 0 instead of the correct sum."
             },
             {
                 "input": [
@@ -380,7 +379,7 @@
                 ],
                 "original_output": 15,
                 "mutant_output": 0,
-                "explanation": "Similar to the previous test case, the mutant code never enters the for loop, resulting in a sum of 0 instead of 15."
+                "explanation": "The same issue as in the previous test case is present here, where the loop never executes and the result is 0 instead of the correct sum."
             },
             {
                 "input": [
@@ -390,12 +389,12 @@
                 ],
                 "original_output": 24,
                 "mutant_output": 0,
-                "explanation": "Once again, the mutant code never enters the for loop, resulting in a sum of 0 instead of 24."
+                "explanation": "The same issue as in the previous test cases is present here, where the loop never executes and the result is 0 instead of the correct sum."
             }
         ]
     },
     {
-        "mutant_program": "muta76_sum.c",
+        "mutant_program": "muta80_sum.c",
         "equivalent": false,
         "tests": [
             {
@@ -405,8 +404,8 @@
                     3
                 ],
                 "original_output": 6,
-                "mutant_output": 1,
-                "explanation": "The original program correctly calculates the sum of the three inputs (1+2+3=6), but the mutant program uses the value of size as the condition for the for loop, which is always true since size is never changing. Thus, the function enters an infinite loop, resulting in an incorrect output of 1 and a potential crash."
+                "mutant_output": 0,
+                "explanation": "The original program correctly calculates the sum of the input array [1,2,3], which is 6. However, the mutant program uses a condition in the for loop header that is always true, causing an infinite loop and incorrect computation of the sum."
             },
             {
                 "input": [
@@ -415,8 +414,8 @@
                     6
                 ],
                 "original_output": 15,
-                "mutant_output": "INFINITE LOOP",
-                "explanation": "The original program correctly calculates the sum of the three inputs (4+5+6=15), but the mutant program enters an infinite loop due to the faulty condition in the for loop."
+                "mutant_output": 0,
+                "explanation": "The original program correctly calculates the sum of the input array [4,5,6], which is 15. However, the mutant program uses a condition in the for loop header that is always true, causing an infinite loop and incorrect computation of the sum."
             },
             {
                 "input": [
@@ -425,44 +424,8 @@
                     9
                 ],
                 "original_output": 24,
-                "mutant_output": "INFINITE LOOP",
-                "explanation": "The original program correctly calculates the sum of the three inputs (7+8+9=24), but the mutant program enters an infinite loop due to the faulty condition in the for loop."
-            }
-        ]
-    },
-    {
-        "mutant_program": "muta82_sum.c",
-        "equivalent": false,
-        "tests": [
-            {
-                "input": [
-                    2,
-                    3,
-                    4
-                ],
-                "original_output": 9,
                 "mutant_output": 0,
-                "explanation": "The original program correctly computes the sum of the input array, while the mutant has a faulty loop condition that will result in an infinite loop. The mutant will not compute the correct sum, thus resulting in different output."
-            },
-            {
-                "input": [
-                    5,
-                    6,
-                    7
-                ],
-                "original_output": 18,
-                "mutant_output": 0,
-                "explanation": "Similar to the previous test case, the mutant will not terminate and not compute the correct sum, resulting in different output."
-            },
-            {
-                "input": [
-                    8,
-                    9,
-                    10
-                ],
-                "original_output": 27,
-                "mutant_output": 0,
-                "explanation": "Again, the mutant has a faulty loop condition that will not compute the correct sum, resulting in different output from the original program."
+                "explanation": "The original program correctly calculates the sum of the input array [7,8,9], which is 24. However, the mutant program uses a condition in the for loop header that is always true, causing an infinite loop and incorrect computation of the sum."
             }
         ]
     },
@@ -477,8 +440,8 @@
                     3
                 ],
                 "original_output": 6,
-                "mutant_output": 3,
-                "explanation": "The original program calculates the sum of an array 'x' by iterating through it using a for loop with the condition 'i<size'. The mutant program uses a bitwise XOR operation as the loop condition 'i^size', which is not equivalent to the original condition. This results in the mutant program iterating only up to index 1 instead of up to size-1, and returns the incorrect sum."
+                "mutant_output": 123,
+                "explanation": "The original program calculates the sum of all elements in the input array correctly, resulting in an output of 6 for the given input of [1,2,3]. However, the mutant program uses the bitwise XOR operator instead of < (less than) in the for loop condition, resulting in an infinite loop. This causes the program to keep adding to s until it overflows, resulting in a large incorrect output of 123 for the same input."
             },
             {
                 "input": [
@@ -487,8 +450,8 @@
                     6
                 ],
                 "original_output": 15,
-                "mutant_output": 5,
-                "explanation": "The original program returns the correct sum of the input array, while the mutant program returns the sum of only the first two elements due to the non-equivalent loop condition."
+                "mutant_output": 258,
+                "explanation": "The original program correctly calculates the sum of all elements in the input array, resulting in an output of 15 for the given input of [4,5,6]. However, the mutant program uses the bitwise XOR operator instead of < (less than) in the for loop condition, causing an infinite loop as before. This time, the incorrect output is even larger due to more elements in the array."
             },
             {
                 "input": [
@@ -497,13 +460,13 @@
                     9
                 ],
                 "original_output": 24,
-                "mutant_output": 2,
-                "explanation": "The original program correctly calculates the sum of the input array, while the mutant program only adds the first element and returns an incorrect sum due to the non-equivalent loop condition."
+                "mutant_output": 51,
+                "explanation": "The original program correctly calculates the sum of all elements in the input array, resulting in an output of 24 for the given input of [7,8,9]. However, the mutant program uses the bitwise XOR operator instead of < (less than) in the for loop condition, causing an infinite loop as before. This time, the incorrect output is even larger due to more elements in the array."
             }
         ]
     },
     {
-        "mutant_program": "muta89_sum.c",
+        "mutant_program": "muta90_sum.c",
         "equivalent": false,
         "tests": [
             {
@@ -513,8 +476,8 @@
                     3
                 ],
                 "original_output": 6,
-                "mutant_output": 0,
-                "explanation": "The original program correctly computes the sum of the given input array [1,2,3], which results in an output of 6. However, the mutant program has a bug in the for loop condition, where it should be 'i < size' instead of 'i > size'. This causes the loop to never execute, resulting in a sum of 0 for any input array. Hence, the output of the mutant program for [1,2,3] is 0."
+                "mutant_output": 7,
+                "explanation": "The original program correctly adds up all the elements in the input array by starting the loop at 0 and stopping at size-1. The mutant program changes the loop condition to i <= size, causing it to add an extra element to the sum, resulting in a different output."
             },
             {
                 "input": [
@@ -523,8 +486,8 @@
                     6
                 ],
                 "original_output": 15,
-                "mutant_output": 0,
-                "explanation": "The original program correctly computes the sum of the given input array [4,5,6], which results in an output of 15. However, the mutant program will not execute the loop as its condition is always false, resulting in a sum of 0 for any input array. Hence, the output of the mutant program for [4,5,6] is 0."
+                "mutant_output": 16,
+                "explanation": "The original program correctly adds up all the elements in the input array by starting the loop at 0 and stopping at size-1. The mutant program changes the loop condition to i <= size, causing it to add an extra element to the sum, resulting in a different output."
             },
             {
                 "input": [
@@ -533,8 +496,44 @@
                     9
                 ],
                 "original_output": 24,
-                "mutant_output": 0,
-                "explanation": "The original program correctly computes the sum of the given input array [7,8,9], which results in an output of 24. However, the mutant program will not execute the loop as its condition is always false, resulting in a sum of 0 for any input array. Hence, the output of the mutant program for [7,8,9] is 0."
+                "mutant_output": 25,
+                "explanation": "The original program correctly adds up all the elements in the input array by starting the loop at 0 and stopping at size-1. The mutant program changes the loop condition to i <= size, causing it to add an extra element to the sum, resulting in a different output."
+            }
+        ]
+    },
+    {
+        "mutant_program": "muta93_sum.c",
+        "equivalent": false,
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3
+                ],
+                "original_output": 6,
+                "mutant_output": 1,
+                "explanation": "The original program sums the elements of the input array until the index i is less than the size of the array. The mutant program sums the elements of the array until the index i is NOT equal to the size of the array. This causes the mutant program to stop summing one element before the end of the array, resulting in a different output."
+            },
+            {
+                "input": [
+                    4,
+                    5,
+                    6
+                ],
+                "original_output": 15,
+                "mutant_output": 10,
+                "explanation": "The mutant program stops summing one element before the end of the input array, resulting in a smaller sum than the original program."
+            },
+            {
+                "input": [
+                    7,
+                    8,
+                    9
+                ],
+                "original_output": 24,
+                "mutant_output": 15,
+                "explanation": "The mutant program stops summing one element before the end of the input array, resulting in a smaller sum than the original program."
             }
         ]
     }
