@@ -1,1 +1,3453 @@
-[{"mutant_program": "muta0_stats.c", "equivalent": false, "tests": [{"input": [1, 2, 3], "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n", "mutant_output": "median:             3.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n", "explanation": "The original and mutant programs have a different median. The original program calculates the median as the middle number from the sorted array, while the mutant program calculates it as the number at the index size/2. In the test input [1,2,3], the median is 2 in the original and 3 in the mutant."}, {"input": [4, 5, 6], "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n", "mutant_output": "median:             6.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n", "explanation": "The original and mutant programs have a different median. The original program calculates the median as the middle number from the sorted array, while the mutant program calculates it as the number at the index size/2. In the test input [4,5,6], the median is 5 in the original and 6 in the mutant."}, {"input": [7, 8, 9], "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n", "mutant_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n", "explanation": "The original and mutant programs have the same median, but the mutant program has an unnecessary and incorrect casting of the array index. The expression (i = 2) initializes the i variable to 2, which may not be a valid index in the array."}]}]
+[{
+  "mutant_program": "muta139_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "",
+      "explanation": "The input consists of three values. The original program calculates the median, mean, variance, and standard deviation of these values and prints the results to the console. The mutant code includes irrelevant library files and variables. It also replaces 'mean' in the calculation of variance with 0.0, which will cause the formula to be incorrect. Therefore, it will not print any results to the console. As such, there is no mutant output."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "The input consists of only one value. Both the original and mutant program would fail to calculate the median since it only applies to sets with two or more values. Additionally, both programs would calculate the mean to be the only input value. However, the original program would incorrectly calculate the variance and standard deviation by dividing the result by 0. As a result, there is no output for both programs."
+    },
+    {
+      "input": [
+        10,
+        20,
+        30
+      ],
+      "original_output": "median:             20.000\nmean:               20.000\nvariance:           100.000\nstandard deviation: 10.000\n",
+      "mutant_output": "",
+      "explanation": "The input consists of three values. Both the original and mutant program calculate the median to be 20 and the mean to be 20. They calculate the variance to be 100, but they do so differently. The original program will divide the result by 2 to obtain a value of 50, which will then be used to calculate the standard deviation (7.071). However, the mutant code will divide the result by 2 - 1, which is equal to 1 resulting in a value of 100 for the variance, and a standard deviation of 10. As such, the outputs differ and the mutant program is not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta140_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           1.667\nstandard deviation: 1.290\n",
+      "explanation": "The original program correctly calculates the variance, which is 1.25, while the mutant program calculates the variance as 1.667. This is due to the change made in the varsum calculation, where a constant value of 1.0 is added to each element of the array before calculating the variance. This mutation introduces an error in the calculation of the variance that causes the outputs to be different."
+    },
+    {
+      "input": [
+        4,
+        8
+      ],
+      "original_output": "median:             6.000\nmean:               6.000\nvariance:           8.000\nstandard deviation: 2.828\n",
+      "mutant_output": "median:             6.000\nmean:               6.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original program correctly calculates the variance, which is 8.0, while the mutant program calculates the variance as 0.0. This is due to the change made in the varsum calculation, where the value of mean is subtracted from each element of the array instead of being added. This mutation introduces an error in the calculation of the variance that causes the outputs to be different."
+    }
+  ]
+},{
+  "mutant_program": "muta141_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n\n",
+      "mutant_output": "median:             3.000\nmean:               2.500\nvariance:           1.667\nstandard deviation: 1.290\n\n",
+      "explanation": "The mutant changed the calculation of variance to always use -1.0 as a constant in the formula. As a result, the output for variance and standard deviation are different in this test case."
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": "median:             1.500\nmean:               1.500\nvariance:           0.500\nstandard deviation: 0.707\n\n",
+      "mutant_output": "median:             2.000\nmean:               1.500\nvariance:           1.000\nstandard deviation: 1.000\n\n",
+      "explanation": "The mutant changed the calculation of median to return the number at index ceil(size/2) instead of size/2. As a result, the output for median and variance are different in this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta142_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 2.000\nmean: 2.000\nvariance: nan\nstandard deviation: nan\n",
+      "explanation": "The original program correctly computes the variance and standard deviation (1.000) for the input [1,2,3], while the mutant program produces NaN values for those statistics due to a change made in the calculation of varsum in the for loop. Specifically, the line (varsum = (varsum + ((numbers[i] - (10E10)) * (numbers[i] - mean)))) now sets numbers[i] to a large positive value, causing overflow and resulting in incorrect variance and standard deviation values. "
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median: 5.000\nmean: 5.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 5.000\nmean: 5.000\nvariance: nan\nstandard deviation: nan\n",
+      "explanation": "The original program correctly computes the variance and standard deviation (1.000) for the input [4,5,6], while the mutant program produces NaN values for those statistics due to a change made in the calculation of varsum in the for loop. Specifically, the line (varsum = (varsum + ((numbers[i] - (10E10)) * (numbers[i] - mean)))) now sets numbers[i] to a large positive value, causing overflow and resulting in incorrect variance and standard deviation values. "
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median: 8.000\nmean: 8.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 8.000\nmean: 8.000\nvariance: nan\nstandard deviation: nan\n",
+      "explanation": "The original program correctly computes the variance and standard deviation (1.000) for the input [7,8,9], while the mutant program produces NaN values for those statistics due to a change made in the calculation of varsum in the for loop. Specifically, the line (varsum = (varsum + ((numbers[i] - (10E10)) * (numbers[i] - mean)))) now sets numbers[i] to a large positive value, causing overflow and resulting in incorrect variance and standard deviation values. "
+    }
+  ]
+},{
+  "mutant_program": "muta143_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The mutant code changes the formula to calculate variance. With numbers[i] modified by 10E-10. This produces a variance value of NaN when the size is less than or equal to 1, while the original code assigns variance equal to 0. That difference was identified using a test with input values less than or equal to zero. The original code handles dividing by zero, this is why for size equal to 0 the variance will be 0; the mutant code does not. In this case, the variance is NaN. The mutant code produced a different output than the original code. "
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "As in the previous test, the mutant changes how to calculate variance, introducing a minuscule change to numbers[i]. The impact is significant because with values close to zero, the result of the variance formula can be NaN when the size is less than or equal to 1, as in the previous test. The output is different from the original code. "
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             8.000\nmean:               8.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The input values are greater than zero, so they are not affected by the modification introduced by the mutant on line 23. However, the output is different because the formula to calculate variance was modified and produce NaN when the size is 0 or 1. The standard deviation is also NaN."
+    }
+  ]
+},{
+  "mutant_program": "muta144_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.817\n\n",
+      "mutant_output": "",
+      "explanation": "The original code returns the correct statistical values for the given input. However, the mutant code has made a non-equivalent change by substituting (-10E10) for mean in the calculation of varsum. This will result in incorrect statistical values, but it will not result in the generation of any NaNs. As a result, the mutant code produces no output."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "original_output": "median:             5.500\nmean:               5.500\nvariance:           1.667\nstandard deviation: 1.290\n\n",
+      "mutant_output": "",
+      "explanation": "The original code returns the correct statistical values for the given input. However, the mutant code has made a non-equivalent change by substituting (-10E10) for mean in the calculation of varsum. This will result in incorrect statistical values, but it will not result in the generation of NaNs. As a result, the mutant code produces no output."
+    }
+  ]
+},{
+  "mutant_program": "muta145_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.817",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           8.109\nstandard deviation: 2.847",
+      "explanation": "The mutant code introduces a non-deterministic change, subtracting a very small number (-10E-10) from numbers[i], which causes the variance and standard deviation calculations to be different from the original code. This difference can be observed in the test output."
+    },
+    {
+      "input": [
+        4,
+        8
+      ],
+      "original_output": "median:             8.000\nmean:               6.000\nvariance:           8.000\nstandard deviation: 2.828",
+      "mutant_output": "median:             8.000\nmean:               6.000\nvariance:           0.000\nstandard deviation: 0.000",
+      "explanation": "In this case, the original and mutant code produce different outputs, which indicates that the mutant code is not equivalent to the original code. The mutation added a condition to the calculation of variance that makes it return 0 when size <= 1, disregarding the value of varsum. As a result, both the variance and standard deviation are 0, which can be observed in the test output."
+    }
+  ]
+},{
+  "mutant_program": "muta156_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:            NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program correctly calculates the variance and standard deviation, while the mutant program produces NaNs since it uses the constant 0.0 as a replacement for mean in the computation of varsum, despite the fact that this constant is unnecessary."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "original_output": "median:             5.500\nmean:               5.500\nvariance:           1.667\nstandard deviation: 1.291\n",
+      "mutant_output": "median:             5.500\nmean:               5.500\nvariance:            NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program correctly calculates the variance and standard deviation, while the mutant program produces NaNs since it uses the constant 0.0 as a replacement for mean in the computation of varsum, despite the fact that this constant is unnecessary."
+    }
+  ]
+},{
+  "mutant_program": "muta157_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: 1.581\n",
+      "mutant_output": "median:             3.000\nmean:               3.000\nvariance:           2.000\nstandard deviation: 1.414\n",
+      "explanation": "The mutant code changed the calculation of variance by multiplying the sum by (numbers[i]-1.0) instead of (numbers[i]-mean). This resulted in different values for variance and standard deviation in some scenarios, as shown in this example. The original program's output is considered correct since it uses the formula for the unbiased estimate of variance."
+    },
+    {
+      "input": [
+        10,
+        20
+      ],
+      "original_output": "median:             20.000\nmean:               15.000\nvariance:           50.000\nstandard deviation: 7.071\n",
+      "mutant_output": "median:             20.000\nmean:               15.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "In this case, the mutant program fails to calculate a non-zero variance for an input with size 2. This is due to a division by zero error that occurs when adjusting the variance for using a sample instead of a population. The original program's output is considered correct since it handles this scenario by returning a variance value of 0."
+    },
+    {
+      "input": [
+        3,
+        9,
+        5,
+        7
+      ],
+      "original_output": "median:             6.000\nmean:               6.000\nvariance:           6.667\nstandard deviation: 2.582\n",
+      "mutant_output": "median:             6.000\nmean:               6.000\nvariance:           6.000\nstandard deviation: 2.449\n",
+      "explanation": "In this example the output is different for both programs, but both are correct. The mutant program only modified the way variance is calculated and reducing it would not be a valid assertion that the program is incorrect. The outputs depend on how the variance is calculated and both programs are correct following their formulas."
+    }
+  ]
+},{
+  "mutant_program": "muta158_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.000\nmean:               2.500\nvariance:           1.667\nstandard deviation: 1.290\n",
+      "explanation": "The original program calculates the median correctly but the mutant sorts the array in the wrong direction, calculating the median as the second element in the array instead of the median. The mutant also introduced a non-deterministic change in the calculation of var by changing the value of the second operand of the subtraction to -1.0, resulting in a different output. Test validates that the programs have different outputs."
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": "median:             1.500\nmean:               1.500\nvariance:           0.500\nstandard deviation: 0.707\n",
+      "mutant_output": "median:             1.000\nmean:               1.500\nvariance:           0.500\nstandard deviation: 0.707\n",
+      "explanation": "The original program calculates the median correctly, but the mutant sorts the array incorrectly, calculating the median as the first element in the array instead of the median. The output for the variance and the standard deviation are not affected, so it is not necessary to predict it by non-deterministic changes. Test validates that the programs have different outputs."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: -1.#IND\n",
+      "explanation": "The original program calculates the median correctly but fails to calculate the variance and standard deviation because the calculations require at least two numbers in the array. The mutant calculates the variance correctly with just one number in the array. However, the output for the standard deviation is NaN (-1.#IND), as the mutation introduced a non-deterministic change in the calculation, causing an undefined result. Test validates that the programs have different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta159_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           NaN\nstandard deviation: NaN\n\n",
+      "explanation": "For the input [1,2,3], the original program and the mutant code produce different outputs. The mutant code computes variance by subtracting a large number (10E10) from the mean. This produces a NaN value for variance (and standard deviation)."
+    },
+    {
+      "input": [
+        -5,
+        0,
+        5
+      ],
+      "original_output": "median:             0.000\nmean:               0.000\nvariance:           8.333\nstandard deviation: 2.887\n\n",
+      "mutant_output": "median:             0.000\nmean:               0.000\nvariance:           NaN\nstandard deviation: NaN\n\n",
+      "explanation": "For the input [-5, 0, 5], the original program and the mutant code produce different outputs. The mutant code computes variance by subtracting a large number (10E10) from the mean. This produces a NaN value for variance (and standard deviation)."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "median:             10.000\nmean:               10.000\nvariance:           0.000\nstandard deviation: 0.000\n\n",
+      "mutant_output": "median:             10.000\nmean:               10.000\nvariance:           NaN\nstandard deviation: NaN\n\n",
+      "explanation": "For the input [10], the original program and the mutant code produce different outputs. The mutant code computes variance by subtracting a large number (10E10) from the mean. This produces a NaN value for variance (and standard deviation)."
+    }
+  ]
+},{
+  "mutant_program": "muta160_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median: 2.000\nmean: 2.000\nvariance: 0.635\nstandard deviation: 0.797\n",
+      "explanation": "The mutant changes the calculation of var by subtracting 10E-10 from the second number in the subtraction. This can produce a different rounding error and cause the var output to differ."
+    },
+    {
+      "input": [
+        4,
+        5
+      ],
+      "original_output": "median: 5.000\nmean: 4.500\nvariance: 0.500\nstandard deviation: 0.707\n",
+      "mutant_output": "median: 5.000\nmean: 4.500\nvariance: -0.250\nstandard deviation: NaN\n",
+      "explanation": "The original program correctly identifies that a list with only one number does not have variance, but the mutant assigns -0.25 to var in this case, which is incorrect."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median: 8.000\nmean: 8.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 8.000\nmean: 8.000\nvariance: 0.667\nstandard deviation: 0.816\n",
+      "explanation": "The same explanation as for the first test applies here."
+    }
+  ]
+},{
+  "mutant_program": "muta161_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median: 2.000\nmean: 2.000\nvariance: 0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original program correctly calculates variance and standard deviation, while the mutant program outputs 0 for variance and 0 for standard deviation. This is due to the change made in the varsum calculation, where the values of mean and the constant -10E10 are used instead of the actual values of the numbers in the array. This causes a variance of 0, and subsequently a standard deviation of 0."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median: 5.000\nmean: 5.000\nvariance: 0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median: 5.000\nmean: 5.000\nvariance: 0.000\nstandard deviation: 0.000\n",
+      "explanation": "Same as previous test case."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median: 8.000\nmean: 8.000\nvariance: 0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median: 8.000\nmean: 8.000\nvariance: 0.000\nstandard deviation: 0.000\n",
+      "explanation": "Same as previous test case."
+    }
+  ]
+},{
+  "mutant_program": "muta162_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "explanation": "The original program calculates the variance as varsum / (size-1), while the mutant calculates as varsum / (size - 10E-10). This difference causes the mutant to produce a different variance and standard deviation when the input contains more than one number."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "Both programs produce identical results when given an input of length one. However, the mutated program will produce NaN for standard deviation which indicates that there is a bug in the program. This happens because the variance is zero for one-element inputs and the square root of zero is undefined. "
+    },
+    {
+      "input": [],
+      "original_output": "median:             0.000\nmean:               0.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "mutant_output": "median:             0.000\nmean:               NaN\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "Both programs pass an empty list. The mutant program calculates the mean as 0/0 which is NaN. However, the original program sets the median to zero, which is questionable as there is no number to compute a median from."
+    }
+  ]
+},{
+  "mutant_program": "muta50_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           0.000\nstandard deviation: 0.000\n\n",
+      "explanation": "The original program correctly calculates the variance and standard deviation of the input values, while the mutant program introduces a change on how to execute the calculation of variance. As a result, when executing the mutant program with the input [1,2,3,4], we can observe that the value for variance and standard deviation is becoming 0, which is incorrect when compared to the original program output"
+    }
+  ]
+},{
+  "mutant_program": "muta57_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "",
+      "explanation": "The original program computes the statistics correctly, but the mutant code imports several functions and structures from math.h and introduces a non-deterministic change to the calculation of var by multiplying some term by zero. This can result in different output for different inputs, and not computing the variance correctly in some cases."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs fail to compute the variance when input has size 1, which is a known issue and not affected by the mutant code."
+    },
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "",
+      "explanation": "The original program computes the statistics correctly for this input, but the mutant code is not affected by the input order because the median calculation does not use the input at all, but a positional calculation, which could be affected by an odd size but not by the input values."
+    }
+  ]
+},{
+  "mutant_program": "muta6_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: 1.581\n",
+      "mutant_output": "median:             3.000\nmean:               3.000\nvariance:           -nan\nstandard deviation: -nan\n",
+      "explanation": "The original program calculates the variance even if size is 1 by returning var = 0, while the mutant program assigns var = -nan. To illustrate the issue, we can provide an input of [1] as a test case. The original program output will be 'median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n', while the mutant program output will be 'median:             1.000\nmean:               1.000\nvariance:           -nan\nstandard deviation: -nan\n'."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           -nan\nstandard deviation: -nan\n",
+      "explanation": "The program can handle repetitive input values, since the median value is not affected by repetition. The output should be the same as with an input of size 1, since the calculation of variance is the only one affected by size 1. The original program output will be 'median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n', while the mutant program output will be 'median:             1.000\nmean:               1.000\nvariance:           -nan\nstandard deviation: -nan\n'."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.667\nstandard deviation: 1.291\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           -nan\nstandard deviation: -nan\n",
+      "explanation": "The test inputs a list of integers, whose median is not an integer. The original program calculates the output correctly, while the mutant program returns non-numeric values. As we cannot predict the outputs of the mutant program, the only conclusion we can draw is that the programs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta7_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "The original and mutant programs produce the same output for this test case."
+    },
+    {
+      "input": [
+        5,
+        1,
+        9,
+        10,
+        12,
+        8
+      ],
+      "original_output": "median:             8.500\nmean:               7.500\nvariance:           17.500\nstandard deviation: 4.183\n",
+      "mutant_output": "median:             8.500\nmean:               7.500\nvariance:           20.000\nstandard deviation: 4.472\n",
+      "explanation": "For this test case, the original and mutant programs differ in the variance computed. The original program computes a variance of 17.500 and the mutant computes a variance of 20.00. This indicates that the mutant program is not equivalent to the original program."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "original_output": "median:             7.000\nmean:               7.000\nvariance:           6.667\nstandard deviation: 2.581\n",
+      "mutant_output": "median:             7.000\nmean:               7.000\nvariance:           5.556\nstandard deviation: 2.357\n",
+      "explanation": "For this test case, the original and mutant programs differ in the variance computed. The original program computes a variance of 6.667 and the mutant computes a variance of 5.556. This indicates that the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta225_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        3,
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.050\nstandard deviation: 0.223\n",
+      "explanation": "The two programs have different outputs. The mutant code changes the way the variance is calculated, which causes different results to be returned. The output of the original program is 'median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n', while the output of the mutant code is 'median:             2.000\nmean:               2.000\nvariance:           0.050\nstandard deviation: 0.223\n'"
+    },
+    {
+      "input": [],
+      "original_output": "median:             0.000\nmean:               NaN\nvariance:           NaN\nstandard deviation: NaN\n",
+      "mutant_output": "median:             0.000\nmean:               NaN\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "Both programs return the same output. The input array is empty, which causes the mean, variance and standard deviation to be NaN. Therefore, the output of both programs is 'median:             0.000\nmean:               NaN\nvariance:           NaN\nstandard deviation: NaN\n'"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The two programs have different outputs. In this case, the input array has only one element, which causes the variance and standard deviation to be NaN in the mutant code. The output of the original program is 'median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n', while the output of the mutant code is 'median:             1.000\nmean:               1.000\nvariance:           NaN\nstandard deviation: NaN\n'"
+    }
+  ]
+},{
+  "mutant_program": "muta228_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program calculates the variance correctly if the size of the array is greater than 1. However, the mutant code adds the numbers[i]+mean instead of subtracting it. This results in a NaN value for variance and standard deviation for an array of size greater than 1. The output of the mutant code reflects this issue."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             6.000\nmean:               6.500\nvariance:           3.500\nstandard deviation: 1.870\n",
+      "mutant_output": "median:             6.000\nmean:               6.500\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "This test was added to show that the original program works correctly. The array has more than one element, which ensures that the program calculates the variance correctly and that the standard deviation is not NaN. The output of the original program is the expected one."
+    }
+  ]
+},{
+  "mutant_program": "muta322_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n\n",
+      "mutant_output": "",
+      "explanation": "The input for both original and mutant program is the same, however, the mutant program includes several unnecessary and inconsistent declarations, leading to wrong or undefined behavior."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n\n",
+      "mutant_output": "Floating point exception (core dumped)\n",
+      "explanation": "The input is a single integer for both programs, but the mutant program tries to divide a variable by zero (line 18), causing a floating point exception."
+    }
+  ]
+},{
+  "mutant_program": "muta324_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           3.000\nstandard deviation: 1.732\n",
+      "explanation": "The original and the mutant program have different variances and standard deviations for the input [1, 2, 3]."
+    },
+    {
+      "input": [
+        4,
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               4.500\nvariance:           0.500\nstandard deviation: 0.707\n",
+      "mutant_output": "median:             5.000\nmean:               4.500\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original program returns a variance and standard deviation of 0.5 and 0.707 respectively, while the mutant program returns a variance and standard deviation of 0 for the input [4, 5]."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The original and the mutant program have the same variance and mean for the input [5], but the mutant program returns a NaN for the standard deviation."
+    }
+  ]
+},{
+  "mutant_program": "muta325_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:          2.000\nmean:              2.000\nvariance:           1.000\nstandard deviation: 1.000\n\n",
+      "mutant_output": "median:          2.000\nmean:              2.000\nvariance:           nan\nstandard deviation: nan\n\n",
+      "explanation": "The original program code computes the variance and standard deviation correctly. The mutant code uses functions that produce NaNs to compute variance and standard deviation, resulting in incorrect output. The test set reflects this by using small integers, for which the variance can be computed easily and independently, allowing us to check the actual output against the expected output."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "median:          5.000\nmean:              5.000\nvariance:           0.000\nstandard deviation: 0.000\n\n",
+      "mutant_output": "median:          5.000\nmean:              5.000\nvariance:           0.000\nstandard deviation: nan\n\n",
+      "explanation": "The original program code computes variance and standard deviation correctly, for a single number, the mutation should result in equivalent output. The test set reflects this by using only one integer as input."
+    },
+    {
+      "input": [],
+      "original_output": "",
+      "mutant_output": "median:          nan\nmean:              nan\nvariance:           nan\nstandard deviation: nan\n\n",
+      "explanation": "The original program presents an error for an empty list, while the mutant is able to compute the statistical measures, but not meaningfully. The test set cases reflect this, by testing the program for an empty list."
+    }
+  ]
+},{
+  "mutant_program": "muta326_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "mean:               0.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "The original program calculates the median, mean, variance, and standard deviation of the input numbers. The mutant program replaces the calculation of the sum by initializing the i variable to 0, causing the sum calculation to be incorrect. This is reflected in the outputs: the means are different but other values are the same. Note that no test can catch all the issues in this mutant program. For instance, the mutant program produces NaNs like the original."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "mean:               0.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "The original program calculates the median, mean, variance, and standard deviation of the input numbers. The mutant program replaces the calculation of the sum by initializing the i variable to 0, causing the sum calculation to be incorrect. This is reflected in the outputs: the means are different but other values are the same. Note that no test can catch all the issues in this mutant program. For instance, the mutant program produces NaNs like the original."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "mean:               0.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "The original program calculates the median, mean, variance, and standard deviation of the input numbers. The mutant program replaces the calculation of the sum by initializing the i variable to 0, causing the sum calculation to be incorrect. This is reflected in the outputs: the means are different but other values are the same. Note that no test can catch all the issues in this mutant program. For instance, the mutant program produces NaNs like the original."
+    }
+  ]
+},{
+  "mutant_program": "muta337_stats.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta339_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly computes the statistics for the input array [1,2,3]. However, the mutant code does not contain any output statements in the computeStats function and therefore does not produce any output. This test helps identify that the mutant code does not perform the intended computation."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median: 5.000\nmean: 5.000\nvariance: 0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "",
+      "explanation": "Similar to the first test, the original program computes the statistics for the input array [4,5,6] and produces the correct output. However, the mutant code does not produce any output, indicating that it is not performing the intended computation."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median: 1.000\nmean: 1.000\nvariance: 0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "Floating point exception (core dumped)\n",
+      "explanation": "This test exposes a difference in behavior between the original program and the mutant code. The original program correctly computes the statistics for an input array of length 1, setting the variance and standard deviation to 0. However, the mutant code does not handle this edge case correctly and produces a floating point exception due to division by zero when computing the variance. This highlights the importance of handling all possible input cases when designing software."
+    }
+  ]
+},{
+  "mutant_program": "muta341_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "",
+      "explanation": "The output of the original program is the expected one, while the output of the mutant program is empty, showing that a mutation affected it."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The output of the original program is the expected one, while the output of the mutant program is empty, showing that a mutation affected it."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The output of the original program is the expected one, while the output of the mutant program is empty, showing that a mutation affected it."
+    }
+  ]
+},{
+  "mutant_program": "muta342_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The input has only three numbers, so the median equals the second element of the array. The original program calculates both the median and variance/standard deviation correctly. However, the mutant program does not print anything and seems to be a completely different code."
+    },
+    {
+      "input": [
+        2,
+        -2,
+        5,
+        10
+      ],
+      "original_output": "median:             3.500\nmean:               3.750\nvariance:           24.125\nstandard deviation: 4.911\n",
+      "mutant_output": "median:             3.500\nmean:               3.750\nvariance:           23.250\nstandard deviation: 4.822\n",
+      "explanation": "The input has four numbers. The median is calculated as the average of the second and third number in ascending order. The original program calculates the variance and standard deviation correctly. However, the mutant program calculates the variance with a different formula, considering that the subtraction term is actually an addition term. Therefore, the standard deviation is also different."
+    }
+  ]
+},{
+  "mutant_program": "muta343_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: 1.581\n",
+      "mutant_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: -1.#IND00\n",
+      "explanation": "The mutant program added 'i *= 0', which causes the varsum to contain negative values, resulting in a negative square root. This change causes the standard deviation to return NaN. Input was chosen to cover case of non-empty array and size > 1."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The mutant program still has the issue of dividing by zero when size = 1, causing the variance to be calculated as 0. This results in division by zero when attempting to calculate the standard deviation, which returns NaN. Input was chosen to cover case of array with length of 1."
+    }
+  ]
+},{
+  "mutant_program": "muta358_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        5,
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 7.071\n",
+      "explanation": "Both programs receive the same input and output the median, mean, variance and standard deviation of the numbers list. However, the mutated version tries to compute the sd by adding it to a value (undefined), and this does not produce a compilation error. In this test case, the difference between the standard deviation outputs of the original and mutant programs is captured."
+    },
+    {
+      "input": [
+        2,
+        5,
+        9
+      ],
+      "original_output": "median:             5.000\nmean:               5.333\nvariance:           9.333\nstandard deviation: 3.056\n",
+      "mutant_output": "median:             5.000\nmean:               5.333\nvariance:           9.333\nstandard deviation: nan\n",
+      "explanation": "Both programs receive the same input and output the median, mean, variance and standard deviation of the numbers list. However, the mutated version adds an undefined value to the sd variable. This produces a NaN, which is not expected. In this test case, the difference between the standard deviation outputs of the original and mutant programs is captured."
+    }
+  ]
+},{
+  "mutant_program": "muta360_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\n         mean:               2.500\n         variance:           1.250\n         standard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\n         mean:               2.500\n         variance:           1.250\n         standard deviation: 1.118\n",
+      "explanation": "Both programs produce the same output when given the same input."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "median:             10.000\n         mean:               10.000\n         variance:           0.000\n         standard deviation: 0.000\n",
+      "mutant_output": "median:             0.000\n         mean:               0.000\n         variance:           0.000\n         standard deviation: NaN\n",
+      "explanation": "The original program correctly outputs that a list with length 1 has variance and standard deviation of 0, while the mutated program outputs incorrect results due to the NaN."
+    }
+  ]
+},{
+  "mutant_program": "muta363_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           6.000\nstandard deviation: 2.449\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           6.000\nstandard deviation: 2.449\n",
+      "explanation": "The original and mutant outputs are the same, but the mutant code made unnecessary imports and declarations, and also applied a bitwise AND on the iterator variable that did not modify the program behavior."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             NaN\nmean:               2.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original output reflects the issues from the original program, and the mutant output has NaN values measuring the variance and the standard deviation, neither the median calculation fails due to the even number of elements in the array."
+    }
+  ]
+},{
+  "mutant_program": "muta381_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           1.667\nstandard deviation: 1.290\n",
+      "explanation": "The original program computes variance correctly for lists of size greater than 1, while the mutant code introduces a different formula to calculate the variance which is incorrect. This difference in computation causes a difference in the output for the given input."
+    },
+    {
+      "input": [
+        99
+      ],
+      "original_output": "median:             99.000\nmean:               99.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             99.000\nmean:               99.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "Both programs will behave the same because the lists have only one element and any operation would result in a neutral value."
+    },
+    {
+      "input": [
+        5,
+        7,
+        3,
+        4,
+        2,
+        8,
+        1,
+        6
+      ],
+      "original_output": "median:             4.500\nmean:               4.500\nvariance:           5.250\nstandard deviation: 2.291\n",
+      "mutant_output": "median:             4.500\nmean:               4.500\nvariance:           21.524\nstandard deviation: 4.636\n",
+      "explanation": "The mutant code calculates the variance using an erroneous formula, while the original program is correct. Thus, the output differs for the same input."
+    }
+  ]
+},{
+  "mutant_program": "muta383_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           2.000\nstandard deviation: 1.414\n",
+      "explanation": "The original and the mutant program have different variance values, as we can see in the output. In the original program, the variance is 1.000, while in the mutant it is 2.000. This happens because the mutant introduced an extra multiplication operation on the computation of the variance. This new operation takes more effect when there are larger differences between the values of the array. In this specific case, the input array is very small and homogeneous, which reduces the effect of the new operation. "
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: nan\n",
+      "explanation": "The original and the mutant program also have different standard deviation values. In this case, the original returns 0.000, while the mutant returns NaN, which is the result of a division by zero. This happens because the mutant introduced a multiplication operation with the number itself, which makes the variance 0. When we divide by (size - 1), which, in this case, is zero, the result is NaN (not a number), which appears as the new standard deviation value."
+    }
+  ]
+},{
+  "mutant_program": "muta396_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The original program calculates the median, mean, variance, and standard deviation of the input array. The test input has three elements, so the median should be 2, the mean should be 2, the variance should be 1, and the standard deviation should be 1. The original program produces the expected output. However, the mutant program has a typo in the loop condition for calculating the sum, which causes an infinite loop and no output."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The original program calculates the median, mean, variance, and standard deviation of the input array. The test input has three elements, so the median should be 5, the mean should be 5, the variance should be 1, and the standard deviation should be 1. The original program produces the expected output. However, the mutant program has a typo in the loop condition for calculating the sum, which causes an infinite loop and no output."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "The original program has a known issue where it fails to calculate the variance for an input array of length 1. This input has length 1, so the program will produce a NaN. However, the mutant program has a typo in the loop condition for calculating the sum, which causes an infinite loop and no output."
+    }
+  ]
+},{
+  "mutant_program": "muta401_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "invalid memory access",
+      "explanation": "The mutant code introduces an off-by-one error causing an invalid memory access when accessing the numbers array in the for loop for varsum calculation."
+    },
+    {
+      "input": [
+        7,
+        3
+      ],
+      "original_output": "median:             3.000\nmean:               5.000\nvariance:           8.000\nstandard deviation: 2.828\n",
+      "mutant_output": "median:             3.000\nmean:               5.000\nvariance:           4.000\nstandard deviation: 2.000\n",
+      "explanation": "The test has only two elements in the array, causing the calculation of var to be different. The original program calculates var as 8.0 , while the mutant calculates as 4.0. The standard deviation is affected as well."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The original program calculates the variance as 0 and the standard deviation as 0 when size = 1. However, the mutant code calculates the standard deviation as NaN which is different from the original output."
+    }
+  ]
+},{
+  "mutant_program": "muta412_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "<output is NaN>",
+      "explanation": "The mutant code replaces the loop condition in the sum calculation with an exclusive OR operator, which results in the loop not summing correctly and producing incorrect mean and variance values. The mutation also introduces math.h library functions that were not present in the original program, which may cause unexpected results. Since an empty array is not tested in this program, the issue with the mean calculation for an empty array in the original program remains."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "original_output": "median:             5.500\nmean:               5.500\nvariance:           1.667\nstandard deviation: 1.291\n",
+      "mutant_output": "<output is NaN>",
+      "explanation": "The mutant code fails to produce the correct sum, mean, and variance results, due to the issue with the loop in the sum calculation. As such, it is not equivalent to the original program for this test case."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The original program calculates the variance as 0 when there is only one element in the array, but the mutant code does not have this condition. As such, the variance calculation (and subsequently the standard deviation calculation) produces NaN instead of 0, resulting in a different output for this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta415_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           -1.#IND\nstandard deviation: NaN\n",
+      "explanation": "In this test case, the original program correctly calculates the variance and standard deviation of the given array of numbers. However, the mutant program produces invalid results for variance and standard deviation, as it introduces a bitwise XOR operator (^) in the for loop condition, which results in calculating the variance and standard deviation for only half of the input array. This output does not match the expected output of the original program."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "median:             0.000\nmean:               0.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             0.000\nmean:               0.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "In this test case, the original program correctly calculates the mean of the single input number, and assigns the median as the input number itself. However, since the variance calculation involves subtracting the mean from each element in the array, dividing by zero will occur, thus resulting in NaN. The mutated program does not handle this case correctly and produces NaN for variance and standard deviation."
+    },
+    {
+      "input": [
+        10,
+        20,
+        30,
+        40,
+        50
+      ],
+      "original_output": "median:             30.000\nmean:               30.000\nvariance:           250.000\nstandard deviation: 15.811\n",
+      "mutant_output": "median:             30.000\nmean:               30.000\nvariance:           250.000\nstandard deviation: 15.811\n",
+      "explanation": "In this test case, both the original and the mutated program correctly calculate the median, mean, variance, and standard deviation for the input array of numbers. Therefore, we conclude that the mutant code is equivalent to the original program code for this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta426_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": {
+        "median": 3.0,
+        "mean": 3.0,
+        "variance": 2.5,
+        "standard deviation": 1.581
+      },
+      "mutant_output": {
+        "median": 3.0,
+        "mean": 3.0,
+        "variance": 2.5,
+        "standard deviation": 2.309
+      },
+      "explanation": "The mutated program adds an extra iterate to the for loop in the computeStats function. This causes an arithmetic out of bounds error in the sum calculation which causes a different result in the variance and standard deviation calculations. The original program's mean and median calculations are not affected and are accurate."
+    },
+    {
+      "input": [
+        7,
+        4
+      ],
+      "original_output": {
+        "median": 7.0,
+        "mean": 5.5,
+        "variance": 6.25,
+        "standard deviation": 2.5
+      },
+      "mutant_output": {
+        "median": 7.0,
+        "mean": 5.5,
+        "variance": 0.0,
+        "standard deviation": 0.0
+      },
+      "explanation": "The mutated program still has the same arithmetic error and calculates the variance incorrectly. In this particular instance, the original program has a variance of 6.250 and a standard deviation of 2.500 while the mutant program calculates a zero variance and standard deviation (which is impossible in this case since there are more than one number and their values differ)."
+    }
+  ]
+},{
+  "mutant_program": "muta429_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The test input is too small to calculate the median, so the original program produces the mean as the median instead. However, the mutated program has removed the line that calculates the median, which will cause it to produce no output in this case."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "This test calculates both the median and mean correctly, so both the original and mutant program produce the same output."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             8.000\nmean:               7.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "This test calculates both the median and mean correctly, but the mutant program calculates the mean incorrectly and produces a different output for that reason."
+    }
+  ]
+},{
+  "mutant_program": "muta434_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 0.667\nstandard deviation: 0.817\n",
+      "mutant_output": "median: 2.000\nmean: 2.000\nvariance: -0.000\nstandard deviation: NaN\n",
+      "explanation": "The original program correctly calculates the variance and standard deviation, while the mutant program produces a negative variance and a NaN standard deviation. This is because the mutant code modified the conditional in the line 'for (i = 0; (i != size); i++)', which causes the last iteration of the loop to compute the variance with (numbers[size] - mean) instead of (numbers[size-1] - mean). This introduces a negative value in the computation and propagates through to the standard deviation. This test case is useful for checking the mutant program's handling of input arrays with an odd number of elements."
+    },
+    {
+      "input": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "original_output": "median: 5.000\nmean: 5.000\nvariance: 5.000\nstandard deviation: 2.236\n",
+      "mutant_output": "median: 5.000\nmean: 5.000\nvariance: 5.000\nstandard deviation: 2.236\n",
+      "explanation": "This test case is included for completeness, to show that the mutant and original programs produce the same output when the input array has more than one element."
+    },
+    {
+      "input": [],
+      "original_output": "median:             nan\nmean:               nan\nvariance:           nan\nstandard deviation: nan\n",
+      "mutant_output": "median:             nan\nmean:               nan\nvariance:           nan\nstandard deviation: nan\n",
+      "explanation": "This test case checks the original program's handling of an empty input array and the mutant program's behavior when presented with edge cases. Both programs output NaN in all measures because neither the mean, median, variance nor standard deviation can be computed on an empty set."
+    }
+  ]
+},{
+  "mutant_program": "muta438_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program calculates the variance and standard deviation correctly for a list of size greater than or equal to 2. However, the mutant code calculates the variance correctly when there is only one element in the list due to a change in the conditional expression. Therefore, the variance and standard deviation calculated by the mutant code are NaN for inputs with more than one element. This is shown in the first test case."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             3.000\nmean:               3.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "Both programs calculate the median, mean, variance, and standard deviation correctly for a list of size one. Therefore, both programs produce the same output for this test case."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: 1.581\n",
+      "mutant_output": "median:             3.000\nmean:               3.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program calculates the variance and standard deviation correctly for a list of size greater than or equal to 2. However, the mutant code calculates the variance correctly when there is only one element in the list due to a change in the conditional expression. Therefore, the variance and standard deviation calculated by the mutant code are NaN for inputs with more than one element. This is shown in the third test case."
+    }
+  ]
+},{
+  "mutant_program": "muta451_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The output of the mutated program is empty, indicating a runtime error. The mutant code removed a line of code that calculated the median properly, resulting in an uninitialized med variable being used to print the median. Therefore, the value printed is unpredictable and NaN."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The output of the mutated program is empty, indicating a runtime error. The code change did not impact the computation of the statistics, only added lines related to extern functions, resulting in a compilation error."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The output of the mutated program is empty, indicating a runtime error. The code change did not comprehend any mutations altering the original code, adding only extern lines that added math library functions, with no impact on the core logic of the code."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "median:             10.000\nmean:               10.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "",
+      "explanation": "The output of the mutated program is empty, indicating a runtime error. The code change removed the protection condition on var calculation when the input size is 1, leading to a division by 0 at the moment of computing sd, causing a runtime error and making the code unpredictive."
+    }
+  ]
+},{
+  "mutant_program": "muta453_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The mutant's calculation of variance uses the wrong number of samples when size is only 1, resulting in NaN output."
+    },
+    {
+      "input": [
+        4,
+        10,
+        12
+      ],
+      "original_output": "median:             10.000\nmean:               8.667\nvariance:           15.556\nstandard deviation: 3.947\n",
+      "mutant_output": "median:             10.000\nmean:               8.667\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The mutant's calculation of variance uses the wrong number of samples when size is only 1, resulting in NaN output."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The mutant's calculation of variance uses the wrong number of samples when size is only 1, resulting in NaN output."
+    }
+  ]
+},{
+  "mutant_program": "muta471_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": null,
+      "explanation": "The original program calculates the median and the mean correctly. The variance is also correct according to the test set. However, the mutant code only copies relevant lines of code from the original program. Due to the absence of initialization of the variable 'sum', the calculated output in the mutant code is expected to yield NaN."
+    },
+    {
+      "input": [],
+      "original_output": "median:             0.000\nmean:               0.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": null,
+      "explanation": "The original program calculates and prints all the statistics as 0 for an empty array, which is expected. The mutant code has the same issue as test set one, i.e., 'sum' is not initialized. Similar to the previous test set, a NaN value is expected as output due to the 'sum' variable not being initiated to any value."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           nan\nstandard deviation: nan\n",
+      "explanation": "The variance and standard deviation are by definition not defined when size is less than 2. The original program sets variance and sd to 0 in that case. The mutant code does not consider the case where size <= 1. Thus, the mutant code outputs a NaN which is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta477_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The mutant code contains unnecessary library declarations and definitions that have no effect on the logic of the function. It should still compile and run correctly, but the output will be empty or just a few irrelevant lines."
+    },
+    {
+      "input": [
+        4,
+        3,
+        6,
+        1,
+        8,
+        9
+      ],
+      "original_output": "median:             5.000\nmean:               5.167\nvariance:           7.029\nstandard deviation: 2.652\n",
+      "mutant_output": "median:             5.000\nmean:               5.167\nvariance:           7.029\nstandard deviation: 2.652\n",
+      "explanation": "The input is not large enough to trigger the issues with the original code, so both versions should print the same output."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": "median:             0.000\nmean:               0.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             0.000\nmean:               0.000\nvariance:           -nan\nstandard deviation: -nan\n",
+      "explanation": "The mean and median are 0, but since the input is empty, variance and standard deviation cannot be calculated. The original code returns 0 for variance in this case, while the mutant returns NaN."
+    }
+  ]
+},{
+  "mutant_program": "muta506_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The output of the original program calculates the median, mean, variance, and standard deviation of the input array [1,2,3]. The mutated program, however, has several issues that prevent it from functioning correctly. One of the key issues is the use of the macro TRAP_ON_NEGATIVE in the for loop. This macro is not defined anywhere in the program, leading to a compilation error. Additionally, the math library functions at the top of the program are not used, further contributing to the incorrect behavior of the program. Therefore, the mutated program does not produce any output."
+    },
+    {
+      "input": [
+        5,
+        10,
+        15
+      ],
+      "original_output": "median:             10.000\nmean:               10.000\nvariance:           16.667\nstandard deviation: 4.082\n",
+      "mutant_output": "",
+      "explanation": "The output of the original program calculates the median, mean, variance, and standard deviation of the input array [5,10,15]. The mutated program still contains the issues mentioned in the previous example, resulting in no output being produced."
+    },
+    {
+      "input": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           5.000\nstandard deviation: 2.236\n",
+      "mutant_output": "",
+      "explanation": "The output of the original program calculates the median, mean, variance, and standard deviation of the input array [2,4,6,8]. As before, the mutated program does not produce any output due to the issues with the TRAP_ON_NEGATIVE macro and unused math library functions."
+    }
+  ]
+},{
+  "mutant_program": "muta509_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The mutant program adds a new function 'TRAP_ON_NEGATIVE(size)' which is not defined anywhere. Therefore, the for loop condition in line 16 will cause an error and the mutated program will not sum all elements in the array. As a consequence, both variance and standard deviation, which require the sum of the squared difference between the data points and the mean, will produce NaN. The original program and the mutant program will not produce the same output."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "original_output": "median:             5.500\nmean:               5.500\nvariance:           1.667\nstandard deviation: 1.291\n",
+      "mutant_output": "median:             5.500\nmean:               5.500\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The same issue as in test case 1 occurs: there is an undefined function and the resulting code will produce NaNs instead of a standard deviation and variance values. Therefore, the tests show that the mutant program is not equivalent to the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta510_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5,
+        2,
+        1,
+        4
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: 1.581\n",
+      "mutant_output": "median:             3.000\nmean:               3.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program correctly calculates the variance and standard deviation of the input values. The mutant has a change that makes the calculation of the variance fail, which leads to the standard deviation also failing. The test set is equivalent for both programs, since they both produce the same median and mean values."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "median:             10.000\nmean:               10.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             10.000\nmean:               10.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "This test checks the behavior of the programs when only one value is given as input. The original program calculates the variance as 0, since there is no deviation from the mean. However, the mutant fails to calculate the variance, producing NaN values for both variance and standard deviation."
+    }
+  ]
+},{
+  "mutant_program": "muta512_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               -0.342\nvariance:           6106577516621556520453005712308352.000\nstandard deviation: 781065682498775036729769055946391590026346391714976.000\n",
+      "explanation": "The mutant introduces an index out of bounds exception by using TRAP_ON_NEGATIVE macro on the loop counter in the sum calculation. Also, the operation performed in sum causes a numeric overflow. Both of these introduce errors in the computations of median, mean, variance, and standard deviation, causing the outputs to differ significantly from the original program's outputs."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "original_output": "median:             5.500\nmean:               5.500\nvariance:           1.667\nstandard deviation: 1.291\n",
+      "mutant_output": "median:             5.000\nmean:               -0.530\nvariance:           15264637288560351125542404478636928.000\nstandard deviation: 390952290404840057869710260184575594512012724604416.000\n",
+      "explanation": "The mutant introduces an index out of bounds exception and a numeric overflow as well as the previous mutant. In this case, although the program doesn't seem to crash, the computed statistics are wildly different from the original program's output."
+    }
+  ]
+},{
+  "mutant_program": "muta518_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The mutant program includes an undefined macro TRAP_ON_NEGATIVE, causing a compilation error and preventing any output to be printed."
+    },
+    {
+      "input": [
+        4,
+        2,
+        8,
+        5
+      ],
+      "original_output": "median:             4.500\nmean:               4.750\nvariance:           5.917\nstandard deviation: 2.430\n",
+      "mutant_output": "",
+      "explanation": "Same as before, the mutant program cannot be compiled."
+    }
+  ]
+},{
+  "mutant_program": "muta519_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: 1.581\n",
+      "mutant_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: 1.581\n",
+      "explanation": "The original and the mutant program produce the same output using the suggested input values."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             0.000\nmean:               3.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original program outputs the correct values for all statistics measures. The mutant program calculates the median in an incorrect way and returns 0.000. Although both programs have the same output for mean, variance, and standard deviation, the median value differs."
+    }
+  ]
+},{
+  "mutant_program": "muta521_stats.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta524_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               -4884752351929651203284048653299660449399459855345272226416917654380776893834377176906071425398137144324195641022802471168.000\nvariance:           1145560893231722892367176760979825088.000\nstandard deviation: 1070366354.192\n",
+      "explanation": "The original program calculates the mean value correctly. However, the mutant program modifies the calculation of the mean by calling an undefined function (TRAP_ON_NEGATIVE). This causes the mean calculation to produce a virtually infinite negative number, which in turn affects the calculation of variance and standard deviation. The test input was chosen to include both positive and negative numbers to expose the issue with the mutant program."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The original program calculates the variance and standard deviation correctly. However, the mutant program introduces a change that affects the calculation of standard deviation, which now produces NaN (not a number) as a result. The input contains only one number, making it a good choice to highlight this issue."
+    },
+    {
+      "input": [
+        2,
+        4,
+        6
+      ],
+      "original_output": "median:             4.000\nmean:               4.000\nvariance:           2.000\nstandard deviation: 1.414\n",
+      "mutant_output": "median:             4.000\nmean:               4.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program calculates all statistics correctly. However, the mutant program introduces an undefined behavior by including several unused library functions. The input contains only positive even numbers to make it easier to spot unexpected negative results if they were produced."
+    }
+  ]
+},{
+  "mutant_program": "muta527_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: 1.581\n",
+      "mutant_output": "median:             3.000\nmean:               3.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The mutant program has a division by zero error when calculating the variance, resulting in NaN values for both variance and standard deviation. This error was not present in the original program."
+    },
+    {
+      "input": [
+        9
+      ],
+      "original_output": "median:             9.000\nmean:               9.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             9.000\nmean:               9.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "Both programs have the same output for an input array of length one, as this scenario is handled correctly in both programs."
+    },
+    {
+      "input": [
+        2,
+        6,
+        4,
+        3,
+        5,
+        7,
+        1,
+        9,
+        8
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           6.667\nstandard deviation: 2.582\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The mutant program produces NaN values for variance and standard deviation due to division by zero. The original program handles this correctly and thus has a different output from the mutant program for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta528_stats.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta530_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": [
+        "median:             2.000",
+        "mean:               2.000",
+        "variance:           1.000",
+        "standard deviation: 1.000"
+      ],
+      "mutant_output": [
+        "median:             2.000",
+        "mean:               2.000",
+        "variance:           nan",
+        "standard deviation: nan"
+      ],
+      "explanation": "The original program calculates a variance of 1 for the input [1,2,3], while the mutant program returns NaN. This is because the mutant code replaces the for loop condition for calculating the variance with a macro that includes a TRAP_ON_NEGATIVE function. The exception caused by values less than 0 is caught by matherr function, which replaces the value of varsum to NaN."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": [
+        "median:             2.000",
+        "mean:               2.000",
+        "variance:           0.000",
+        "standard deviation: 0.000"
+      ],
+      "mutant_output": [
+        "median:             2.000",
+        "mean:               2.000",
+        "variance:           0.000",
+        "standard deviation: nan"
+      ],
+      "explanation": "The original program calculates a variance and standard deviation of 0 for the input [2], while the mutant program returns NaN for the standard deviation. This is because the mutant code does not handle the case where size is equal to 1. When size equals 1, the variance is zero and the standard deviation is NaN, which represents an undefined value."
+    }
+  ]
+},{
+  "mutant_program": "muta533_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.817\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original program correctly calculates the variance of the input integers, but the mutated program gives a variance of 0 when given the same input. This is because the mutant code replaces the loop condition with a function call to TRAP_ON_NEGATIVE, which causes the loop to terminate early and exclude some values from the variance calculation. Thus, the programs have different output, meaning the mutant code is not equivalent to the original."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.667\nstandard deviation: 0.817\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original program correctly calculates the variance of the input integers, but the mutated program gives a variance of 0 when given the same input. This is because the mutant code replaces the loop condition with a function call to TRAP_ON_NEGATIVE, which causes the loop to terminate early and exclude some values from the variance calculation. Thus, the programs have different output, meaning the mutant code is not equivalent to the original."
+    },
+    {
+      "input": [],
+      "original_output": "median:             -0.000\nmean:               0.000\nvariance:           nan\nstandard deviation: nan\n",
+      "mutant_output": "median:             -0.000\nmean:               nan\nvariance:           nan\nstandard deviation: nan\n",
+      "explanation": "The original program correctly handles an empty input by producing NaN for variance and standard deviation, but the mutated program produces NaN for the mean as well. This means that the programs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta534_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           5.000\nstandard deviation: 2.236\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The mutant code includes a call to TRAP_ON_ZERO(size) in the loop condition for variable i in the for loop, which will return NaN when passed a value of 0. Thus, when the original code is passed an array of length 1, var = NaN and sd = NaN, while the mutant code sets var to 0 and so sd = 0. The test input [3] will demonstrate this difference in output."
+    },
+    {
+      "input": [
+        -2,
+        1,
+        5
+      ],
+      "original_output": "median:             1.000\nmean:               1.333\nvariance:           9.333\nstandard deviation: 3.057\n",
+      "mutant_output": "median:             1.000\nmean:               1.333\nvariance:           9.000\nstandard deviation: 3.000\n",
+      "explanation": "The mutant code changes nothing that should affect the output of the program, so it is equivalent to the original. The test input [-2,1,5] will demonstrate this output, which should be the same for both versions of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta536_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000",
+      "explanation": "Both programs generate the same output for a small input"
+    },
+    {
+      "input": [
+        10,
+        5,
+        -3,
+        9,
+        17,
+        14,
+        11,
+        20
+      ],
+      "original_output": "median:             11.500\nmean:               11.875\nvariance:           39.688\nstandard deviation: 6.304",
+      "mutant_output": "median:             11.500\nmean:               11.875\nvariance:           39.688\nstandard deviation: 6.304",
+      "explanation": "Both programs generate the same output for an input with negative numbers"
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: 0.000",
+      "mutant_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: 0.000",
+      "explanation": "Both programs generate the same output for an input with only one element as in this case."
+    },
+    {
+      "input": [
+        100,
+        200,
+        300,
+        400,
+        500
+      ],
+      "original_output": "median:             300.000\nmean:               300.000\nvariance:           25000.000\nstandard deviation: 158.114",
+      "mutant_output": "median:             300.000\nmean:               300.000\nvariance:           25000.000\nstandard deviation: 158.114",
+      "explanation": "Both programs generate the same output for a mid-size input."
+    },
+    {
+      "input": [],
+      "original_output": "median:             nan\nmean:               nan\nvariance:           nan\nstandard deviation: nan",
+      "mutant_output": "median:             nan\nmean:               nan\nvariance:           nan\nstandard deviation: nan",
+      "explanation": "Both programs generate the same output for an input with no elements."
+    }
+  ]
+},{
+  "mutant_program": "muta539_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           nan\nstandard deviation: nan\n",
+      "explanation": "The original code calculates the variance correctly in this case, but the mutant code produces a NaN value for the variance due to a change in the formula used to calculate it. The test set is small and does not cover the case where size <= 1, which also produces different output."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: 1.581\n",
+      "mutant_output": "median:             3.000\nmean:               3.000\nvariance:           nan\nstandard deviation: nan\n",
+      "explanation": "The original code calculates the variance correctly in this case, but the mutant code produces a NaN value for the variance due to a change in the formula used to calculate it."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           nan\nstandard deviation: nan\n",
+      "explanation": "The original code calculates the variance correctly in this case, but the mutant code produces a NaN value for the variance due to a change in the formula used to calculate it."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           nan\nstandard deviation: nan\n",
+      "explanation": "The original code calculates the variance correctly in this case, but the mutant code produces a NaN value for the variance due to a change in the formula used to calculate it."
+    }
+  ]
+},{
+  "mutant_program": "muta548_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           3.383\nstandard deviation: 1.839\n",
+      "explanation": "The original program calculates the variance correctly as 0.667, but the mutant program uses a non-existing function TRAP_ON_NEGATIVE(), which would cause a compilation error. However, even ignoring this syntactic error, the formula for variance in the mutant program is incorrect, resulting in a value of 3.383. Therefore, the programs are not equivalent, and this input serves as a test case that produces different outputs."
+    },
+    {
+      "input": [
+        4,
+        4
+      ],
+      "original_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             4.000\nmean:               4.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "This input has two numbers with the same value, which is a corner case for variance calculation. The original program returns the expected output, with variance and standard deviation being zero. However, the mutant program produces NaN (Not a Number) for the standard deviation, indicating an error. This behavior is consistent with the issue pointed out in the Java version of the code, where a similar problem occurs. Therefore, these outputs also show that the programs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta557_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original program computes the variance using the formula varsum / (size - 1) only when the size is greater than 1. However, the mutant program uses a macro function TRAP_ON_NEGATIVE that always returns 0 when the size is less than or equal to 1. Thus, the mutant program always returns a variance equal to 0 in such cases."
+    },
+    {
+      "input": [
+        7
+      ],
+      "original_output": "median:             7.000\nmean:               7.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             7.000\nmean:               7.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The original program computes the variance using the formula varsum / (size - 1) only when the size is greater than 1. However, the mutant program uses a macro function TRAP_ON_NEGATIVE that always returns 0 when the size is less than or equal to 1. Thus, the mutant program always returns a variance equal to 0 in such cases. Since the square root of 0 is not defined, the standard deviation becomes NaN."
+    }
+  ]
+},{
+  "mutant_program": "muta558_stats.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta560_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5,
+        7,
+        8,
+        10
+      ],
+      "original_output": "median:             7.000\nmean:               6.600\nvariance:           8.240\nstandard deviation: 2.870\n",
+      "mutant_output": "median:             7.000\nmean:               6.600\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program calculates the variance and standard deviation based on the sample formula and produces correct results. On the other hand, the mutant program replaces the division by size - 1 with a call to TRAP_ON_NEGATIVE function that returns the NaN value, producing incorrect results. Hence, the two programs are not equivalent."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The input array has only one element in both original and mutant programs, which should produce a variance of 0 due to a lack of dispersion. Therefore, both programs produce the same output."
+    },
+    {
+      "input": [
+        5,
+        2,
+        8,
+        2,
+        3
+      ],
+      "original_output": "median:             3.000\nmean:               4.000\nvariance:           6.800\nstandard deviation: 2.607\n",
+      "mutant_output": "median:             3.000\nmean:               4.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The input array has multiple values, which should produce the variance and standard deviation based on the sample formula. As the mutant program returns NaN for variance and standard deviation, it has a different output from the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta561_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The mutant code includes a call to TRAP_ON_ZERO, which is not in the original. This generates a NaN value when the varsum variable is zero. Therefore, the variance and standard deviation will now be NaN instead of 1. Additionally, the output format is the same as the original."
+    },
+    {
+      "input": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           6.667\nstandard deviation: 2.582\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The mutant code will generate a NaN value for the variance and standard deviation just like in the previous test, because varsum equals zero. Therefore, the outputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta563_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "",
+      "explanation": "The output of the original program for this input is a string with the calculated median, mean, variance and standard deviation. The output of the mutant program is an empty string, indicating that there was an error during execution, possibly due to the use of undefined macros like TRAP_ON_NEGATIVE."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median: 5.000\nmean: 5.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The test case is similar to the previous one, but with different input values. The expected output for the original program is a string with the calculated statistics, while the mutant program produces no output, indicating an error."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median: 8.000\nmean: 8.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The input values are changed again, but the expected behavior of the program is the same as before: to produce a string with the calculated statistics. However, the output of the mutant program is still empty, signaling that there was an error during execution."
+    }
+  ]
+},{
+  "mutant_program": "muta539_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median: 2.000\nmean: 2.000\nvariance: NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program correctly calculates the mean, variance, and standard deviation for the input [1,2,3]. However, the mutant code produces NaN (Not a Number) values for variance and standard deviation because of a floating point calculation error in the varsum calculation. Specifically, the mutant code performs an out-of-bounds access on the numbers array by using TRAP_ON_NEGATIVE(i) as an index modifier, resulting in the multiplication of a number by NaN, which propagates through the variance and standard deviation calculations. This can be demonstrated by running the input [1,2,3] on both programs and comparing the outputs."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "median: 4.000\nmean: 4.000\nvariance: 0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median: 4.000\nmean: 4.000\nvariance: 0.000\nstandard deviation: 0.000\n",
+      "explanation": "Both programs correctly calculate the median, mean, variance, and standard deviation for the input [4], which only has one element. Therefore, the mutant code is equivalent to the original program for this input, and no additional test is needed."
+    },
+    {
+      "input": [
+        7,
+        -8,
+        5,
+        6
+      ],
+      "original_output": "median: 5.500\nmean: 2.500\nvariance: 87.500\nstandard deviation: 9.354\n",
+      "mutant_output": "median: 5.000\nmean: 2.500\nvariance: 204.571\nstandard deviation: 14.299\n",
+      "explanation": "The original program correctly calculates the median, mean, variance, and standard deviation for the input [7, -8, 5, 6]. However, the mutant code produces different values for variance and standard deviation due to the floating point calculation error in varsum. By using TRAP_ON_NEGATIVE(i) as an index modifier, the mutant code accesses negative indices of the numbers array, which results in multiplying negative numbers by positive ones. This results in a larger variance and standard deviation than in the original program. This can be demonstrated by running the input [7, -8, 5, 6] on both programs and comparing the outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta548_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           NaN\nstandard deviation: nan\n\n",
+      "explanation": "The original code calculates the variance correctly, while the mutated code produces NaNs due to the expression used to calculate the variance. This is due to the use of the TRAP_ON_NEGATIVE function, which may produce negative values inside the square root."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           NaN\nstandard deviation: nan\n\n",
+      "explanation": "The original code calculates the variance correctly, while the mutated code produces NaNs due to the expression used to calculate the variance. This is due to the use of the TRAP_ON_NEGATIVE function, which may produce negative values inside the square root."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n\n",
+      "mutant_output": "median:             8.000\nmean:               8.000\nvariance:           NaN\nstandard deviation: nan\n\n",
+      "explanation": "The original code calculates the variance correctly, while the mutated code produces NaNs due to the expression used to calculate the variance. This is due to the use of the TRAP_ON_NEGATIVE function, which may produce negative values inside the square root."
+    }
+  ]
+},{
+  "mutant_program": "muta557_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3,
+        5,
+        7,
+        11
+      ],
+      "original_output": "median:             5.000\nmean:               5.600\nvariance:           9.040\nstandard deviation: 3.007\n",
+      "mutant_output": "ERROR:   input is too small\n",
+      "explanation": "The mutant program includes a new macro function call TRAP_ON_NEGATIVE. When size is less than or equal to 1, this function returns -1, which leads to the error message. The original program did not include this macro, so it did not have this error."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": "median:             0.000\nmean:               0.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "ERROR:   input is too small\n",
+      "explanation": "The input to both programs consists solely of zeroes, so the output of both programs is identical. Because the two programs are not equivalent, this is not a test of the mutant program."
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               1.500\nvariance:           0.500\nstandard deviation: 0.707\n",
+      "mutant_output": "ERROR:   input is too small\n",
+      "explanation": "The mutant program will return an error if the input is less than or equal to 1, which is the case with this test input. Hence, the outputs of the two programs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta558_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           1.583\nstandard deviation: 1.259\n",
+      "explanation": "The original program calculates variance with 'var = size <= 1 ? 0 : varsum / (size - 1)'. The mutant replaces 'size <= 1' with 'TRAP_ON_ZERO(size) <= 1'. The function 'TRAP_ON_ZERO' is not defined and will produce some machine-dependent result, different from 0, when 'size <= 0'. As a consequence, the variance is overestimated and, so, the standard deviation too."
+    }
+  ]
+},{
+  "mutant_program": "muta560_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           -nan\nstandard deviation: -nan\n",
+      "explanation": "The original program outputs the median, mean, variance and standard deviation of the input array. The test case has two elements, both with the value '1'. The variance calculation uses a condition to determine if size <= 1. The mutant program uses a macro 'TRAP_ON_NEGATIVE' to avoid negative variance, but it is not properly defined and returns -nan. Therefore, the outputs are different and the mutant program is not equivalent to the original."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "explanation": "Both programs output the same results for this test case, where the input array has four elements from 1 to 4. Therefore, the mutant program is equivalent to the original."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: -nan\n",
+      "explanation": "The test case has only one element in the input array. The calculation of variance fails in the original program because the denominator becomes 0. The mutant program uses a macro to avoid negative variance, but it is not defined, resulting in NaN output for variance. Therefore, the outputs are different and the mutant program is not equivalent to the original."
+    }
+  ]
+},{
+  "mutant_program": "muta561_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           nan\nstandard deviation: nan\n\n",
+      "explanation": "The original program calculates the variance correctly for an input list of size greater than one, while the mutant code does not handle this case correctly, producing NaNs. The input [1,2,3] was chosen to test this behavior."
+    },
+    {
+      "input": [
+        4,
+        5
+      ],
+      "original_output": "median:             4.500\nmean:               4.500\nvariance:           0.500\nstandard deviation: 0.707\n\n",
+      "mutant_output": "median:             4.500\nmean:               4.500\nvariance:           0.000\nstandard deviation: 0.000\n\n",
+      "explanation": "The original program and the mutant program behave equivalently for an input list of size two. This is a case where the mutation does not affect the outcome of the program."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "median:             0.000\nmean:               0.000\nvariance:           0.000\nstandard deviation: 0.000\n\n",
+      "mutant_output": "median:             0.000\nmean:               0.000\nvariance:           nan\nstandard deviation: nan\n\n",
+      "explanation": "The original program calculates the variance correctly for an input list of size greater than one, while the mutant code does not handle this case correctly, producing NaNs. The input [0] was chosen to test this behavior."
+    }
+  ]
+},{
+  "mutant_program": "muta563_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The mutant program modifies the calculation of the variance. It uses a TRAP_ON_NEGATIVE(size) macro that does not exist and will lead to a compilation error. By replacing it for an integer value of the size and due to the Ternary Operator, var will always be equal to 0, so it will not calculate the variance correctly, leading to different outputs."
+    },
+    {
+      "input": [
+        7,
+        5,
+        12,
+        6
+      ],
+      "original_output": "median:             6.500\nmean:               7.500\nvariance:           9.167\nstandard deviation: 3.027\n",
+      "mutant_output": "median:             6.500\nmean:               7.500\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The mutant will produce the same median and mean value as the original program, due to using the same algorithm. However, as we saw in the previous test, it always sets the variance to 0, therefore leading to different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta564_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "1",
+        "2",
+        "3"
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "In the mutated code, there is a new macro function TRAP_ON_ZERO, which is not defined in the original code. Thus, it will result in a compilation error. There is no output for the mutant."
+    },
+    {
+      "input": [
+        "5",
+        "6",
+        "7"
+      ],
+      "original_output": "median:             6.000\nmean:               6.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "In the mutated code, there is a new macro function TRAP_ON_ZERO, which is not defined in the original code. Thus, it will result in a compilation error. There is no output for the mutant."
+    },
+    {
+      "input": [
+        "7",
+        "8",
+        "9"
+      ],
+      "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "In the mutated code, there is a new macro function TRAP_ON_ZERO, which is not defined in the original code. Thus, it will result in a compilation error. There is no output for the mutant."
+    }
+  ]
+},{
+  "mutant_program": "muta566_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 1.000\nstandard deviation: 1.000",
+      "mutant_output": "median: 2.000\nmean: 2.000\nvariance: 1.000\nstandard deviation: -nan",
+      "explanation": "The original program calculates the standard deviation correctly, while the mutant program uses the TRAP_ON_NEGATIVE function to calculate it. This function returns NaN when called with a negative value, causing the mutation to produce incorrect output. The test is the same used for the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta575_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.333\nstandard deviation: 0.577\n",
+      "explanation": "The mutant code includes the use of a TRAP_ON_NEGATIVE macro in the calculation of variance. This macro replaces any negative value with a NaN, causing the calculation to fail. The original program does not use this macro and correctly calculates the variance. This is demonstrated by the different variance and standard deviation outputs in the test results."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.333\nstandard deviation: 0.577\n",
+      "explanation": "Same as previous test case."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             8.000\nmean:               8.000\nvariance:           0.333\nstandard deviation: 0.577\n",
+      "explanation": "Same as previous test case."
+    }
+  ]
+},{
+  "mutant_program": "muta578_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 2.000\nmean: 2.000\nvariance: 1.000\n",
+      "explanation": "The mutant program removed the print statement for standard deviation. The output is different from the original program."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median: 5.000\nmean: 5.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 5.000\nmean: 5.000\nvariance: 1.000\n",
+      "explanation": "The mutant program removed the print statement for standard deviation. The output is different from the original program."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "original_output": "median: 8.000\nmean: 8.500\nvariance: 1.667\nstandard deviation: 1.290\n",
+      "mutant_output": "median: 8.000\nmean: 8.500\nvariance: 1.667\n",
+      "explanation": "The mutant program removed the print statement for standard deviation. The output is different from the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta580_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly calculates the median, mean, variance and standard deviation for the input [1,2,3]. The mutant code fails to calculate the correct sum, which makes all further calculations incorrect."
+    },
+    {
+      "input": [
+        3,
+        1,
+        4,
+        5,
+        2
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           2.500\nstandard deviation: 1.581\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly calculates the median, mean, variance and standard deviation for the input [3,1,4,5,2]. The mutant code fails to add up all the numbers correctly, which makes all further calculations incorrect."
+    },
+    {
+      "input": [],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs would fail to produce any output when the input is an empty list, since calculating the median and variance require at least one number in the list."
+    }
+  ]
+},{
+  "mutant_program": "muta581_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 2.000\nmean: -7176446599879678336.000\nvariance: nan\nstandard deviation: nan\n",
+      "explanation": "The original program correctly computes the median, mean, variance, and standard deviation for the input [1,2,3]. The mutated program produces incorrect results for the mean, variance, and standard deviation, producing NaN values. The issue is that the variable 'sum' is not initialized before it is used to compute the mean. In the original program, 'sum' is initialized to 0.0, but in the mutated program, it is not. Therefore, the value of 'sum' is unpredictable, leading to incorrect results."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median: 5.000\nmean: 5.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 5.000\nmean: -7156856388177830912.000\nvariance: nan\nstandard deviation: nan\n",
+      "explanation": "The original program correctly computes the median, mean, variance, and standard deviation for the input [4,5,6]. The mutated program produces incorrect results for the mean, variance, and standard deviation, producing NaN values. The issue is that the variable 'sum' is not initialized before it is used to compute the mean. In the original program, 'sum' is initialized to 0.0, but in the mutated program, it is not. Therefore, the value of 'sum' is unpredictable, leading to incorrect results."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median: 8.000\nmean: 8.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 8.000\nmean: -7156856388177830912.000\nvariance: nan\nstandard deviation: nan\n",
+      "explanation": "The original program correctly computes the median, mean, variance, and standard deviation for the input [7,8,9]. The mutated program produces incorrect results for the mean, variance, and standard deviation, producing NaN values. The issue is that the variable 'sum' is not initialized before it is used to compute the mean. In the original program, 'sum' is initialized to 0.0, but in the mutated program, it is not. Therefore, the value of 'sum' is unpredictable, leading to incorrect results."
+    }
+  ]
+},{
+  "mutant_program": "muta582_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        3,
+        5
+      ],
+      "original_output": "median:             3.000\nmean:               3.000\nvariance:           3.333\nstandard deviation: 1.825\n",
+      "mutant_output": "median:             3.000\nmean:               NaN\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program code correctly calculates the median, mean, variance, and standard deviation of the input list, resulting in the output above. However, the mutant code initializes the variable 'i' with the value 0.0 (a double), which results in a type incompatibility issue when used as an integer index in the subsequent for-loops. As a result, the mutant's output contains NaNs for the mean, variance, and standard deviation."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "Both the original and mutant code use the same input list of length one, resulting in the same output for both programs. Though the mutant code has made several changes, none of them result in any differences in the output."
+    },
+    {
+      "input": [
+        7,
+        9,
+        4,
+        6,
+        1,
+        8
+      ],
+      "original_output": "median:             7.500\nmean:               5.833\nvariance:           7.767\nstandard deviation: 2.787\n",
+      "mutant_output": "median:             NaN\nmean:               NaN\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original code again calculates the median, mean, variance, and standard deviation of the input list correctly. However, the mutant code has the same issue with the 'i' variable initialization as in the first test. This prevents any of the calculations in the for-loops from properly executing, resulting in NaNs for all output values."
+    }
+  ]
+},{
+  "mutant_program": "muta583_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 2.000\nmean: 2.000\nvariance: -1.129\nstandard deviation: NaN\n",
+      "explanation": "The mutant program introduces a non-deterministic change by including unnecessary C standard library functions and typedefs, but more significantly, it initializes the variable sum with 0.0 instead of its intended initial value of sum = numbers[0]. This causes the output to be different in the case of odd-sized inputs since the median calculation is incorrect. The mutant program also produces a negative variance which is impossible in this context."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median: 5.000\nmean: 5.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 5.000\nmean: 5.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "explanation": "The input set has an odd number of elements, so the median is the middle element and must equal 5.0 for all cases. The mean, variance, and standard deviation are also identical between the original and mutant programs."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median: 8.000\nmean: 8.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 8.000\nmean: 8.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "explanation": "The input set has an odd number of elements, so the median is the middle element and must equal 8.0 for all cases. The mean, variance, and standard deviation are also identical between the original and mutant programs."
+    }
+  ]
+},{
+  "mutant_program": "muta584_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.817\n",
+      "mutant_output": "",
+      "explanation": "The mutation removed an initialization of the sum variable. This results in undefined behavior. As such, the program crashes and produces no output."
+    },
+    {
+      "input": [
+        4,
+        5,
+        2
+      ],
+      "original_output": "median:             4.000\nmean:               3.667\nvariance:           1.556\nstandard deviation: 1.247\n",
+      "mutant_output": "median:             4.000\nmean:               2.331\nvariance:           -810.716\nstandard deviation: nan\n",
+      "explanation": "The mutation replaces the initialization of sd with 0.0. This is incorrect, as sd should be computed using sqrt(var). The mutation instead computes sd as the square root of the mutated var value, which can result in NaNs or negative values. As such, the output for variance and standard deviation are incorrect."
+    },
+    {
+      "input": [
+        7,
+        8,
+        7,
+        10,
+        12
+      ],
+      "original_output": "median:             7.000\nmean:               8.800\nvariance:           4.700\nstandard deviation: 2.167\n",
+      "mutant_output": "median:             7.000\nmean:               8.800\nvariance:           -3.758\nstandard deviation: nan\n",
+      "explanation": "The mutation removes the size check in the calculation of var. This can cause var to be calculated with a size of zero or one, which results in undefined behavior or division by zero. This mutation causes var to be negative, which produces a NaN value for standard deviation. As such, the output for variance and standard deviation are incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta585_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:  2.000\nmean:  2.000\nvariance:  1.000\nstandard deviation:  1.000",
+      "mutant_output": null,
+      "explanation": "The original program computes the median, mean, variance and standard deviation of the input numbers. In this test case, the input has length 3, so the median is 2 (ignoring sorting issues), mean is 2, variance is 1, and standard deviation is 1. The mutant code includes math library functions that are unnecessary for the program and changes variable types, but since the same formula is used to compute the statistics, we could expect the same result. However, the mutant code includes the unnecessary parentheses (varsum=0.0) that causes the calculation of variance to always be 0, so the output is different."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:  6.500\nmean:  6.500\nvariance:  3.500\nstandard deviation:  1.870",
+      "mutant_output": null,
+      "explanation": "This test case has an input list of length 6. The original program should output the median, mean, variance and standard deviation for this list of numbers. The median should be 6.500 (ignoring sorting issues), the mean should be 6.500, the variance should be 3.500 and the standard deviation should be 1.870. Since the mutant code simply changes variable types and includes unnecessary library functions, it should output the same result. "
+    }
+  ]
+},{
+  "mutant_program": "muta638_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             1.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "The mutated code changed the calculation of median to (med = numbers[(i / 2)]), which is equivalent to (med = numbers[0]), the first element of the numbers list, instead of computing the median as the element in the middle of the sorted list. This change causes a different output for the given input of [1, 2, 3]."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             4.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "The mutated code changes how median is calculated and this causes a different output for the given input of [4, 5, 6]."
+    }
+  ]
+},{
+  "mutant_program": "muta663_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 2.000\nmean: 3.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "explanation": "The mutant changed the formula to compute the mean, from sum/size to sum/i. This causes the original program to compute the mean correctly, but the mutant program is computing the wrong value. The test set for this program is all integers from 1 to 5. The output for the original program computes the correct mean, variance and standard deviation for this set, but the mutated program computes the mean incorrectly."
+    }
+  ]
+},{
+  "mutant_program": "muta670_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": null,
+      "explanation": "The original program will output the statistics of the given input array. In this case, the median is 2.000, the mean is 2.000, the variance is 1.000, and the standard deviation is 1.000. However, the mutant code does not output anything because it has invalid usage of function calls, as well as unnecessary inclusions of libraries and global variables."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "original_output": "median:             5.500\nmean:               5.500\nvariance:           1.667\nstandard deviation: 1.291\n",
+      "mutant_output": null,
+      "explanation": "The original program will output the statistics of the given input array. In this case, the median is 5.500, the mean is 5.500, the variance is 1.667, and the standard deviation is 1.291. However, the mutant code does not output anything because it has invalid usage of function calls, as well as unnecessary inclusions of libraries and global variables."
+    }
+  ]
+},{
+  "mutant_program": "muta671_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           1.125\nstandard deviation: 1.061\n",
+      "explanation": "The mutated code changed the initialization of var, which affects the calculation of variance. With the given input, the variance value is different between the original and the mutant code."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The calculation of standard deviation is affected by the calculation of variance, which is not working correctly with inputs of length one. As a result, the output of standard deviation presents a NaN value in the mutated code."
+    }
+  ]
+},{
+  "mutant_program": "muta672_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        8,
+        15,
+        16,
+        23,
+        42
+      ],
+      "original_output": "median:             15.500\nmean:               18.000\nvariance:           112.000\nstandard deviation: 10.583\n",
+      "mutant_output": "",
+      "explanation": "The mutant code is not equivalent because it includes unnecessary and unrelated code. The original code calculates the standard deviation correctly while the mutant code calculates it as 0.0. Test set only for the original code."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "",
+      "explanation": "Test set only for the original code. The output of the original program shows that there is a problem with calculating the variance of a number set with only one element, which is equal to 0. The variance should not be calculated in this case."
+    },
+    {
+      "input": [],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Test set only for the original code. The function computeStats does not generate any output when called with empty input. It is important to note that the original and the mutant codes behave the same way in this situation."
+    }
+  ]
+},{
+  "mutant_program": "muta673_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The original program calculates the median and mean correctly, but the mutated program does not produce any output. This is because the mutated program includes unnecessary and unrelated external function prototypes and declarations, which can cause errors in the compilation process and prevent execution of the program."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The original program calculates the median and mean correctly, but the mutated program does not produce any output. This is because the mutated program includes unnecessary and unrelated external function prototypes and declarations, which can cause errors in the compilation process and prevent execution of the program."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "",
+      "explanation": "The original program calculates the median and mean correctly, but the mutated program does not produce any output. This is because the mutated program includes unnecessary and unrelated external function prototypes and declarations, which can cause errors in the compilation process and prevent execution of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta726_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.817\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original and mutant program have the same output for the given input values, however they are not equivalent programs. The mutant program uses the variable 'mean' instead of 'med' to calculate variance, causing the variance to be wrongly computed as 0 for this input set. This difference is not visible in the output for this input set, but would be noticeable for input sets in which the median and the mean of the set are not equal."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The original program computes variance as 0 for a set with a single element, but the mutant program erroneously uses the variable 'var' to calculate standard deviation and produces NaN as the output."
+    }
+  ]
+},{
+  "mutant_program": "muta728_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           -0.667\nstandard deviation: NaN\n",
+      "explanation": "The input is a small array with three elements. In the original program, the variance is correctly calculated as 1.0 and the standard deviation as 1.0. In the mutant program, the variance is erroneously calculated as -0.667 and the standard deviation as NaN. This indicates that there was a mistake in computing the variance, caused by replacing the right variable with the wrong one (var vs mean)."
+    },
+    {
+      "input": [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The input is an array with five elements, all equal to 5. In both the original and mutant program, the median, mean, variance, and standard deviation are all correctly calculated as 5.0, 5.0, 0.0, and 0.0 respectively. Therefore, the mutant output is equivalent to the original output."
+    },
+    {
+      "input": [],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "The input is an empty array. In both the original and mutant program, the output will be empty because nothing is printed by the program. Therefore, the mutant output is equivalent to the original output."
+    }
+  ]
+},{
+  "mutant_program": "muta729_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           8.332\nstandard deviation: 2.887\n\n",
+      "explanation": "The mutant changed the calculation of the variance by substituting 'sd' (which has not been initialized) for 'mean'. This causes the calculation of variance to be incorrect. The test inputs [1,2,3] were chosen to show the difference in variance calculated by the two programs. The original program output is as expected, while the mutant program output is larger than expected."
+    },
+    {
+      "input": [
+        4,
+        7,
+        10
+      ],
+      "original_output": "median:             7.000\nmean:               7.000\nvariance:           11.000\nstandard deviation: 3.317\n\n",
+      "mutant_output": "median:             7.000\nmean:               7.000\nvariance:           100.000\nstandard deviation: 10.000\n\n",
+      "explanation": "The mutant calculation of variance is incorrect. The test inputs [4,7,10] were chosen to show the difference in variance calculated by the two programs. The original program output is as expected, while the mutant program output is much larger than expected."
+    }
+  ]
+},{
+  "mutant_program": "muta730_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "original_output": "median: 3.500\nmean: 3.500\nvariance: 2.917\nstandard deviation: 1.707\n",
+      "mutant_output": "median: 3.000\nmean: 3.500\nvariance: 3.333\nstandard deviation: 1.825\n",
+      "explanation": "The original program calculates the variance of the data list correctly, while the mutant program calculates the variance incorrectly, based on using the summation of variance's numerator as (numbers[i] - sum), which just replaces the mean calculation. The result is an incorrect calculation of variance and standard deviation; and a different median (of 3 instead of 3.5) output."
+    },
+    {
+      "input": [
+        7,
+        -2,
+        1,
+        8,
+        4
+      ],
+      "original_output": "median: 4.000\nmean: 3.600\nvariance: 22.640\nstandard deviation: 4.757\n",
+      "mutant_output": "median: 1.000\nmean: 3.600\nvariance: 23.640\nstandard deviation: 4.862\n",
+      "explanation": "In this case, the mutant program returns incorrectly the median (of 1 instead of 4), based on the same issue explained before. The incorrect variance calculation results in mutant_output having a different value than the original_output."
+    }
+  ]
+},{
+  "mutant_program": "muta732_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           -6.222\nstandard deviation: NaN\n",
+      "explanation": "The original program computes the variance and standard deviation correctly with the given input. However, the mutant code computes the variance using an incorrect formula ((numbers[i] - size) instead of (numbers[i] - mean)) which results in a negative value. The standard deviation calculated from the incorrect variance is NaN. This difference between the outputs is verified by this test case."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program computes the statistical measures correctly with the input of a single number. The mutant code, however, does not compute the variance correctly as it divides by (size - 1) where size is 1. This results in a NaN variance and standard deviation. This difference between the outputs is verified by this test case."
+    },
+    {
+      "input": [
+        2,
+        5,
+        7,
+        6,
+        3
+      ],
+      "original_output": "median:             5.000\nmean:               4.600\nvariance:           3.040\nstandard deviation: 1.743\n",
+      "mutant_output": "median:             5.000\nmean:               4.600\nvariance:           -10.360\nstandard deviation: NaN\n",
+      "explanation": "The original program computes the statistical measures correctly with the given input. However, the mutant code computes the variance using (numbers[i] - size) instead of (numbers[i] - mean)) formula. This results in a negative variance value and thus standard deviation is NaN. This difference between the outputs is verified by this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta742_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original program calculates the correct variance whereas the mutated program incorrectly calculates the variance to be 0 for input [1,2,3]. This is because in the calculation of variance, instead of using the original median variable, the mutated program is using the mean variable which has already been altered. Hence the mutated program produces wrong output for the test case."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original program calculates the correct variance whereas the mutated program incorrectly calculates the variance to be 0 for input [4,5,6]. This is because in the calculation of variance, instead of using the original median variable, the mutated program is using the mean variable which has already been altered. Hence the mutated program produces wrong output for the test case."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "Both the original and the mutated programs calculate the variance correctly. However, the mutated program produces a NaN value when calculating the standard deviation for an input of length 1. This is because it is trying to take the square root of a negative number, which results in NaN. Hence the mutated program produces different, but still incorrect, output for the test case."
+    }
+  ]
+},{
+  "mutant_program": "muta744_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The original program correctly calculates the variance for a list of numbers with at least two elements. However, the mutant code calculates the variance using the 'var' variable instead of the 'mean' variable, which causes the variance to always be zero. This is due to a typo in the mutant code (using 'var' instead of 'mean')."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The original program correctly calculates the variance and standard deviation for a list of numbers with identical values. However, the mutant code produces a NaN value for the standard deviation due to using a divisor of zero in the sqrt() function. This is because the mutant code incorrectly calculates the variance using the 'var' variable instead of the 'varsum' variable (which becomes zero for this input). This causes the square root function to have a divisor of zero, leading to a NaN value."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs have an issue when the input has only one element, causing the variance to be undefined (divisor of zero). Therefore, there is no output to compare for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta745_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median: 2.000\nmean: 2.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 2.000\nmean: 2.000\nvariance: -0.974\nstandard deviation: .nan\n",
+      "explanation": "The mutant code replaced sd with the numbers list standard deviation. This results in a negative variance, which is impossible. In addition, the standard deviation is NaN because this new value cannot be determined from a negative variance."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median: 5.000\nmean: 5.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 5.000\nmean: 5.000\nvariance: -3.667\nstandard deviation: .nan\n",
+      "explanation": "The same issues that happened in the first test also affect this one. A negative variance and a NaN standard deviation are produced."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median: 8.000\nmean: 8.000\nvariance: 1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median: 8.000\nmean: 8.000\nvariance: -9.333\nstandard deviation: .nan\n",
+      "explanation": "The same issues that happened in the first test also affect this one. A negative variance and a NaN standard deviation are produced."
+    }
+  ]
+},{
+  "mutant_program": "muta746_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           5.000\nstandard deviation: 2.236\n",
+      "explanation": "The mutant code applies a different formula for variance calculation. The test checks if the variance and standard deviation are different"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The mutated program has a test that produces a variance of 0. The calculation for the standard deviation then produces NaN, while the original doesn't. Therefore, they are not equivalent."
+    },
+    {
+      "input": [],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Empty input in this case results in no output. Therefore, they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta748_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "median:             0.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             0.000\nmean:               1.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "Both programs receive an array with only one value, so med equals that value, mean equals that value. They diverge with var: in the original program, var equals 0, whereas in the mutated program, var equals -1. The original program calculates varsum using (numbers[i] - mean)^2, whereas the mutated program uses (numbers[i] - size)^2."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.667\nstandard deviation: 1.290\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           -2.833\nstandard deviation: NaN\n",
+      "explanation": "Both programs receive an array with four random values, so med equals the average of values at positions 2 and 3 (in this case, 2.5), mean equals 2.5. They diverge with var: in the original program, var equals 5/3, whereas in the mutated program, var equals -34/12=-2.833. The original program calculates varsum using (numbers[i] - mean)^2, whereas the mutated program uses (numbers[i] - size)^2."
+    }
+  ]
+},{
+  "mutant_program": "muta758_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The mutant code changed the calculation of the variance to use 'i' instead of 'size'. This results in the variance always being zero, as i is always 3 in the test case. This causes the standard deviation to also be zero. Therefore, the mutant program is not equivalent to the original program. "
+    },
+    {
+      "input": [
+        0,
+        1,
+        2
+      ],
+      "original_output": "median:             1.000\nmean:               1.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             1.000\nmean:               1.000\nvariance:           0.500\nstandard deviation: 0.707\n",
+      "explanation": "The output of the original program is the expected output. The mutant code changes the calculation of variance to use 'i' instead of 'size', so it does not have the same bug as the previous test case. Therefore, both programs behave differently on this test. "
+    },
+    {
+      "input": [
+        5,
+        5,
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The output of the original program is the expected output. The mutant program does not have the same bug as before in the calculation of variance, but it produces a NaN in the calculation of standard deviation due to division by zero. Therefore, these programs behave differently on this test. "
+    }
+  ]
+},{
+  "mutant_program": "muta772_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           -1.333\nstandard deviation: nan\n",
+      "explanation": "The mutant program changed the calculation of the 'var' variable to use a different variable 'i' which was not previously declared. Therefore, the condition of the ternary operator is always false, resulting in a negative variance and a subsequent nan value after the sqrt function is called. This is observed in the mutant's output, which differs from the original output."
+    },
+    {
+      "input": [
+        7,
+        9,
+        3,
+        1,
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           8.000\nstandard deviation: 2.828\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           -6.000\nstandard deviation: nan\n",
+      "explanation": "The mutant program changed the calculation of the 'var' variable to use a different variable 'i' which was not previously declared. Therefore, the condition of the ternary operator is always false, resulting in a negative variance and a subsequent nan value after the sqrt function is called. This is observed in the mutant's output, which differs from the original output."
+    }
+  ]
+},{
+  "mutant_program": "muta819_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           -0.000\nstandard deviation: NaN\n",
+      "explanation": "The original program and the mutant program have different outputs in the variance metric. In this specific test case, the variance is expected to be 1.0 in the original program and -0.0 (because of floating-point rounding errors) in the mutant code, resulting in an NaN standard deviation. This happens because the mutant code changed the function scalb1 to another one that is not related to the original code and, as expected, caused a behavioral change."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           -0.000\nstandard deviation: NaN\n",
+      "explanation": "The original program and the mutant program have different outputs in the variance metric. In this specific test case, the variance is expected to be 1.0 in the original program and -0.0 (because of floating-point rounding errors) in the mutant code, resulting in an NaN standard deviation. This happens because the mutant code changed the function scalb1 to another one that is not related to the original code and, as expected, caused a behavioral change."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "median:             8.000\nmean:               8.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             8.000\nmean:               8.000\nvariance:           -0.000\nstandard deviation: NaN\n",
+      "explanation": "The original program and the mutant program have different outputs in the variance metric. In this specific test case, the variance is expected to be 1.0 in the original program and -0.0 (because of floating-point rounding errors) in the mutant code, resulting in an NaN standard deviation. This happens because the mutant code changed the function scalb1 to another one that is not related to the original code and, as expected, caused a behavioral change."
+    }
+  ]
+},{
+  "mutant_program": "muta822_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original code calculates the variance only when the size of the numbers list is greater than 1, otherwise sets it to 0. The mutant code, however, changes this to always calculate the variance, resulting in NaN values when size=1. The test with input [1,2,3,4] results in different variance and standard deviation values, confirming the non-equivalence of the programs."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "Again, the mutant code fails to calculate the variance correctly for single element lists, resulting in NaN values. The test with input [5] confirms the non-equivalence of the programs."
+    }
+  ]
+},{
+  "mutant_program": "muta843_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.500\nmean:               2.500\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "The original program calculates the variance correctly, but the mutant code has a mutant operator PRED() that subtracts 1 from the number, making the variance calculation return NaN due to a division by zero. The test checks that the output of the original program is correct and that the mutant program returns NaN values for variance and standard deviation."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           NaN\nstandard deviation: NaN\n",
+      "explanation": "This test shows that the original program can handle a single input value and calculate 0 variance and standard deviation. The mutated code fails because the PRED() operator is applied to the only input value causing the variance calculation to return NaN."
+    }
+  ]
+},{
+  "mutant_program": "muta844_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           1.333\nstandard deviation: 1.155\n",
+      "explanation": "The mutant code includes a SUCC() function call that produces different results than the original code. By adding 1 to the numbers[i] in the calculation of varsum, it causes the variance and standard deviation to be different from the original version. The test set includes an array of 3 integers [3, 1, 2], and the expected output of the original code is 'median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n'. The mutant code produced output 'median:             2.000\nmean:               2.000\nvariance:           1.333\nstandard deviation: 1.155\n', which is different from the original code."
+    },
+    {
+      "input": [
+        4,
+        5,
+        3,
+        7
+      ],
+      "original_output": "median:             4.500\nmean:               4.750\nvariance:           3.917\nstandard deviation: 1.979\n",
+      "mutant_output": "median:             4.500\nmean:               4.750\nvariance:           4.583\nstandard deviation: 2.140\n",
+      "explanation": "The test set includes an array of 4 integers [4, 5, 3, 7]. The expected output of the original code is 'median:             4.500\nmean:               4.750\nvariance:           3.917\nstandard deviation: 1.979\n'. The mutant code produced output 'median:             4.500\nmean:               4.750\nvariance:           4.583\nstandard deviation: 2.140\n', which is different from the original code, as it has a different variance and standard deviation."
+    }
+  ]
+},{
+  "mutant_program": "muta845_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The mutant code replaces 'mean' with 'PRED(mean)' in the calculation of 'varsum'. This modification causes the calculation of 'var' to be incorrect. In the given input, both the original and mutant program compute the same values for median, mean, and standard deviation, but the variance calculation is different. The original program computes a non-zero variance, while the mutant program computes a zero variance, which is incorrect. Thus, the mutant code is not equivalent to the original code."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "original_output": "median:             5.500\nmean:               5.500\nvariance:           1.667\nstandard deviation: 1.290\n",
+      "mutant_output": "median:             5.500\nmean:               5.500\nvariance:           1.500\nstandard deviation: 1.225\n",
+      "explanation": "The original and mutant programs calculate different values for variance and standard deviation for the given input. Thus, the mutant code is not equivalent to the original code."
+    },
+    {
+      "input": [
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           7.500\nstandard deviation: 2.738\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           8.000\nstandard deviation: 2.828\n",
+      "explanation": "The original and mutant programs calculate different values for variance and standard deviation for the given input. Thus, the mutant code is not equivalent to the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta846_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median:             2.000\nmean:               1.000\nvariance:           0.333\nstandard deviation: 0.577\n",
+      "explanation": "The outputs are different because in the mutant code the varsum is calculated with numbers[i] - SUCC(mean), which subtracts SUCC(mean) instead of mean, leading to different values being computed."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median:             5.000\nmean:               4.000\nvariance:           0.333\nstandard deviation: 0.577\n",
+      "explanation": "The outputs are different because in the mutant code the varsum is calculated with numbers[i] - SUCC(mean), which subtracts SUCC(mean) instead of mean, leading to different values being computed."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "Both outputs are equivalent because the input size is 1, which is the special case where the calculation of var fails in the original code, but this case is correctly handled by both versions of the code."
+    }
+  ]
+},{
+  "mutant_program": "muta849_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           -2.360\nstandard deviation: nan\n",
+      "explanation": "The mutant code changes the calculation of var. In this specific case, the variance calculated by the mutant is negative and results in a nan standard deviation."
+    },
+    {
+      "input": [
+        4,
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               4.500\nvariance:           0.500\nstandard deviation: 0.707\n",
+      "mutant_output": "median:             5.000\nmean:               4.500\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "The mutant code changes the calculation of var. In this specific case, the variance calculated by the mutant is double the original and results in a bigger standard deviation."
+    },
+    {
+      "input": [
+        7
+      ],
+      "original_output": "median:             7.000\nmean:               7.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             7.000\nmean:               7.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The input list has length 1, making the calculation of var fail for both original and mutant code. Despite the error, both programs output the same result."
+    }
+  ]
+},{
+  "mutant_program": "muta850_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.000\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "explanation": "The original program calculates the median as the middle element of the sorted array. The mutant program does the same, but then uses a new function SUCC, which increments the number, and uses it in the calculation of variance, which produces a different result. The test set includes an array with an even number of elements to demonstrate the difference."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           0.000\nstandard deviation: nan\n",
+      "explanation": "The original program calculates the variance as 0 when the size of the array is less than or equal to 1. The mutant program does the same, but when calculating the standard deviation, uses the result of the variance calculation, which results in NaN. The test set includes an array with a single element to demonstrate the difference."
+    },
+    {
+      "input": [
+        5,
+        6,
+        7
+      ],
+      "original_output": "median:             6.000\nmean:               6.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             6.000\nmean:               6.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "Both the original and mutant program correctly calculate the median, mean, variance, and standard deviation. The test set includes an array with three elements to demonstrate equivalence in a standard case."
+    }
+  ]
+},{
+  "mutant_program": "muta851_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "explanation": "The original program correctly calculates the variance using a formula of (n-1), while the mutant program uses no condition, always using (n-1) which can lead to incorrect results. This test case demonstrates that the calculation of the variance is not equivalent between the original program and the mutant program."
+    },
+    {
+      "input": [
+        2,
+        3,
+        5,
+        7,
+        11,
+        13
+      ],
+      "original_output": "median:             6.000\nmean:               6.833\nvariance:           17.500\nstandard deviation: 4.183\n",
+      "mutant_output": "median:             6.000\nmean:               6.833\nvariance:           14.583\nstandard deviation: 3.818\n",
+      "explanation": "This test case demonstrates that the original and the mutant programs correctly calculate the median, mean and standard deviation. However, they differ in the var calculation output, as the mutant program uses no condition, always using (n-1) which can lead to incorrect results. "
+    }
+  ]
+},{
+  "mutant_program": "muta852_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           0.667\nstandard deviation: 0.816\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           6.000\nstandard deviation: 2.449\n",
+      "explanation": "The mutant code introduces a mutation in the calculation of variance by replacing (numbers[i] - mean) * (numbers[i] - mean) with (numbers[i] - mean) * (numbers[i] - SUCC(mean)), where SUCC is a function that returns the successor (x+1) of x. This introduces a significant change in the variance calculation, leading to different outputs for the test input [1,2,3]."
+    },
+    {
+      "input": [],
+      "original_output": "median:             -0.000\nmean:               -nan\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             nan\nmean:               -nan\n/variance:           nan\nstandard deviation: nan\n",
+      "explanation": "The original code fails to calculate the mean and the median of an empty list of numbers. The mutant code maintains the same issue and also introduces new issues with the calculation of variance, producing NaNs as output."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "explanation": "The test input [5,5] is a special case for the calculation of variance, which makes the outputs of the original and mutant code equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta876_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "median:             2.000\nmean:               2.000\nvariance:           1.000\nstandard deviation: 1.000\n",
+      "mutant_output": "median:             2.000\nmean:               2.000\nvariance:           1.333\nstandard deviation: 1.155\n",
+      "explanation": "The mutant code changes the calculation of variance formula from varsum = varsum + ((numbers[i] - mean) * (numbers [i] - mean)) to varsum = (varsum + (numbers[i] * (numbers[i] - mean))), which leads to a different variance value, causing the outputs to differ."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           2.000\nstandard deviation: 1.414\n",
+      "explanation": "The original program returns a variance of 0, as expected, since there is only one unique value in the numbers list. However, the mutant code does not handle this special case and calculates the variance using the same formula as when there are two or more unique numbers."
+    }
+  ]
+},{
+  "mutant_program": "muta878_stats.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.500\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "mutant_output": "median:             2.000\nmean:               2.500\nvariance:           1.250\nstandard deviation: 1.118\n",
+      "explanation": "The original code calculates the median of the input numbers by selecting the middle value of the sorted list. The mutant code still uses this approach. The original code calculates the variance using the formula (sum( (x - mean)^2 )) / (size - 1), while the mutant code omits the parentheses thus calculating the variance using the formula sum( (x - mean)^2 * x ) instead. With an input of [1,2,3,4], the original code evaluates to median: 2.500, while the mutant code evaluates to median: 2.000. Therefore, they are not equivalent."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: 0.000\n",
+      "mutant_output": "median:             5.000\nmean:               5.000\nvariance:           0.000\nstandard deviation: NaN\n",
+      "explanation": "The original code calculates the result as expected. However, since the variance in the mutant code is calculated differently and uses varsum/size-1, this results in a division by 0 and therefore evaluates to NaN. Therefore, they are not equivalent."
+    },
+    {
+      "input": [
+        1,
+        2,
+        2,
+        3,
+        4
+      ],
+      "original_output": "median:             2.000\nmean:               2.400\nvariance:           1.700\nstandard deviation: 1.305\n",
+      "mutant_output": "median:             2.000\nmean:               2.400\nvariance:           1.800\nstandard deviation: 1.342\n",
+      "explanation": "The original code calculates the result as expected. However, the mutant code, due to the missing parentheses uses a different formula for calculating variance (sum( (x - mean)^2 * x ) / size - 1), which results in a different variance value. Therefore, they are not equivalent."
+    }
+  ]
+}]
