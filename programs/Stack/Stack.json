@@ -1,1 +1,1749 @@
-[{"mutant_program": "muta0_Stack.c", "equivalent": false, "tests": [{"input": [1], "original_output": "Bottom - up: 1 \n", "mutant_output": "Bottom - up: 1 \n", "explanation": "When executed with the input 1, both the original and the mutant program produce the same output. This is because the input allows only one operation to be performed by both programs, which is pushing a value into the stack, to which both programs push one value.\n"}, {"input": [1, 2, 3], "original_output": "Bottom - up: 1 2 3 \n", "mutant_output": "Segmentation fault (core dumped)\n", "explanation": "When executed with the input 1,2,3, the original program pushes these three values into the stack and prints them using the print_stack() method, resulting in the output 'Bottom - up: 1 2 3 \n'. However, the mutant program produces a segmentation fault when executed with the same input, indicating a run-time error. This is because the mutation changes the behavior of the join() method, leading to an invalid memory access error.\n"}, {"input": [4, 5], "original_output": "Bottom - up: 4 5 \n", "mutant_output": "Bottom - up: 4 5 \n", "explanation": "When executed with the input 4,5, both the original and the mutant program produce the same output. This is because the input allows only two operations to be performed by both programs, which is pushing two values into the stack, to which both programs push these two values.\n"}]}]
+[{
+  "mutant_program": "muta100_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "The output is not deterministic because of the use of malloc, which is assigning memory based on the system's availability at the moment. We can't predict the output of the program with only one input."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Same as the previous test case."
+    }
+  ]
+},{
+  "mutant_program": "muta101_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Bottom - up: 5 \n",
+      "mutant_output": "Bottom - up: 5 ",
+      "explanation": "The original program prints the stack in bottom-up order with a newline character at the end, while the mutant program prints the stack in the same order but without the newline character. This is a behavioral difference."
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs behave the same way when trying to pop an item from an empty stack."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs behave the same way when trying to push an item onto the stack."
+    }
+  ]
+},{
+  "mutant_program": "muta102_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "The program receives one argument, but the driver function, which is not provided here, is missing. Since the arguments are not used on the provided code, any argument would be just fine."
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "The same as before."
+    },
+    {
+      "input": [],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "The same as before."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The stack starts empty. The original code uses a push operation and returns 1 for success, while the mutant code returns 0. The output for this test should be the argument, which is the only value in the stack."
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "We start with an empty stack and push two elements in it. The original code returns the last value pushed, while the mutant code returns 0, signifying some error. The output value should be 2, which is the last value pushed to the stack."
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty",
+      "mutant_output": "Stack is empty",
+      "explanation": "An empty stack should return an error message for both the original and mutant code."
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The test pushes two values to the stack and pops one of them. The original code returns the last value pushed, while the mutant code return 0. The correct output is 1."
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": "Bottom - up: 1 2 \n",
+      "mutant_output": "Bottom - up: 1 2 \n",
+      "explanation": "This test pushes two elements to an empty stack and prints them. Both the original and mutant code should output the same string."
+    }
+  ]
+},{
+  "mutant_program": "muta103_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "",
+      "explanation": "The original code handles the case when pop() is called on an empty stack and prints the message 'Stack is empty'. The mutant code does not print anything, so it fails to handle this case properly."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Bottom - up: 1 2 3 \n",
+      "explanation": "Both the original code and the mutant code produce the same output for a non-empty input stack, so they are equivalent in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta104_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Since the driver function is not provided, the output cannot be accurately predicted"
+    }
+  ]
+},{
+  "mutant_program": "muta117_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program pushes the value onto the stack correctly and returns 1, while the mutant program returns 0, indicating an unsuccessful push."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "Same as previous test case."
+    }
+  ]
+},{
+  "mutant_program": "muta11_Stack.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta122_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: 1\n",
+      "mutant_output": "Bottom - up: 1 \n",
+      "explanation": "The original program prints the stack elements without extra spaces, while the mutant program prints an extra space after the number."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs have the same behavior when popping an empty stack."
+    },
+    {
+      "input": [
+        3,
+        6,
+        9
+      ],
+      "original_output": "Bottom - up: 3 6 9 \n",
+      "mutant_output": "Bottom - up: 3  6  9 \n",
+      "explanation": "The original program prints the stack elements without extra spaces, while the mutant program prints two extra spaces after the first and second numbers."
+    }
+  ]
+},{
+  "mutant_program": "muta123_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: 1 \n",
+      "mutant_output": "Bottom - up: 1 \n",
+      "explanation": "Both original and mutant codes will output a stack containing only one element: 1."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Bottom - up: 1 2 3 \n",
+      "explanation": "Both original and mutant codes will output a stack containing 3 elements: 1, 2, and 3."
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both original and mutant codes will output an error message, as expected, when attempting to pop from an empty stack."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: \nStack is empty\n",
+      "mutant_output": "Bottom - up: \nError\n",
+      "explanation": "The mutant code will output an error message when attempting to pop from an empty stack, but it will not print the stack prior to the error message, unlike the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta124_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Bottom - up: 1 2 3 ",
+      "explanation": "The original program prints a new line after printing the stack while the mutant program does not."
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs output the same message when the stack is empty."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "Bottom - up: 4 5 6 \n",
+      "mutant_output": "Bottom - up: 4 5 6 ",
+      "explanation": "The original program prints a new line after printing the stack while the mutant program does not."
+    }
+  ]
+},{
+  "mutant_program": "muta125_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3\n",
+      "mutant_output": "Bottom - up: 3 2 1\n",
+      "explanation": "The original program pushes values from the bottom up and prints it that way. The mutant program still pushes values from the bottom up, but prints it from top to bottom, resulting in a different output."
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Empty stack produces the same output on both original and mutant programs."
+    }
+  ]
+},{
+  "mutant_program": "muta131_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Bottom - up: 1 2 3",
+      "explanation": "The original program prints a newline character after the list of values in the stack, while the mutant does not. Therefore, the outputs are not equivalent. "
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty",
+      "explanation": "The original program prints the message 'Stack is empty' followed by a newline character, while the mutant does not. Therefore, the outputs are not equivalent."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "Bottom - up: 1 2 3 4 \n",
+      "mutant_output": "Bottom - up: 1 2 3 4",
+      "explanation": "The original program prints a newline character after the list of values in the stack, while the mutant does not. Therefore, the outputs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta133_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": "Bottom - up: 1 \n",
+      "mutant_output": "Error\n",
+      "explanation": "The original program pushes \"1\" onto the stack and then prints the stack from bottom-up. The mutant program does the same thing, but it replaces the NULL check for new_node with a trap function UTRAP_ON_TRUE, which will always be true in this case and cause the program to print \"Error\" instead of pushing the value onto the stack. This results in a different output than the original program."
+    },
+    {
+      "input": [
+        "1",
+        "2",
+        "3"
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Error\n",
+      "explanation": "The original program pushes three values onto the stack and then prints the stack from bottom-up. The mutant program attempts to push these values onto the stack, but fails due to the trap function UTRAP_ON_TRUE. This results in a different output than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta139_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": "Bottom - up: 1 \n",
+      "mutant_output": "Bottom - up: 1 \n",
+      "explanation": "Both programs should output the same stack with one element"
+    },
+    {
+      "input": [
+        "1",
+        "2"
+      ],
+      "original_output": "Bottom - up: 2 1 \n",
+      "mutant_output": "Bottom - up: 2 1 \n",
+      "explanation": "Both programs should output the same stack with two elements"
+    },
+    {
+      "input": [
+        "1",
+        "2",
+        "3"
+      ],
+      "original_output": "Bottom - up: 3 2 1 \n",
+      "mutant_output": "Bottom - up: 3 2 1 \n",
+      "explanation": "Both programs should output the same stack with three elements"
+    },
+    {
+      "input": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "original_output": "Bottom - up: 4 3 2 1 \n",
+      "mutant_output": "Bottom - up: 4 3 2 1 \n",
+      "explanation": "Both programs should output the same stack with four elements"
+    },
+    {
+      "input": [],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Empty input should not output anything"
+    }
+  ]
+},{
+  "mutant_program": "muta140_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Bottom - up: 5 \n",
+      "mutant_output": "Bottom - up: 5 \n",
+      "explanation": "Both programs push a value 5 to the stack and print the stack using print_stack() function"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Error\nException caught in UTA\n",
+      "explanation": "Both programs try to pop a value from an empty stack, however the mutant code has an extra instruction to call UTRAP_ON_STAT() function which raises an exception"
+    }
+  ]
+},{
+  "mutant_program": "muta141_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: 1 \n",
+      "mutant_output": "Bottom - up: 1 \n",
+      "explanation": "Both original and mutant code push the value 1 to the stack and print the same output"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: 1 \n",
+      "mutant_output": "Signaling SIGTRAP: Trace/breakpoint trap\n",
+      "explanation": "This test is different due to the UTRAP_ON_STAT() macro, added in the mutant code. It will interrupt the program and output an error message"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both original and mutant code tries to pop a value from the empty stack and print the same output message"
+    }
+  ]
+},{
+  "mutant_program": "muta151_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3
+      ],
+      "original_output": "Bottom - up: 5 4 3 \n",
+      "mutant_output": "Bottom - up: 5 4 \n",
+      "explanation": "The original program correctly pushes three items to the stack and prints them in bottom-up order. The mutant program erroneously removes the bottom element before printing, resulting in a different output."
+    },
+    {
+      "input": [
+        2,
+        6,
+        8
+      ],
+      "original_output": "Bottom - up: 2 6 8 \n",
+      "mutant_output": "Bottom - up: 2 6 0 \n",
+      "explanation": "The original program correctly pushes three items to the stack and prints them in bottom-up order. The mutant program erroneously sets the last element of the stack to 0 instead of removing it, resulting in a different output."
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both the original program and the mutant program correctly handle an empty stack by printing an appropriate message."
+    }
+  ]
+},{
+  "mutant_program": "muta152_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The original program and the mutant program should output the same value for this input"
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "In the original program, the 'if (size == 1)' statement correctly checks whether the stack is empty and sets the bottom pointer to the new node. In the mutant program, the 'if  ( (TRAP_ON_ZERO(size) == 1) )' statement essentially does the same thing, but it is less readable and necessary. However, this statement contains a trap which is intended to catch situations where size equals 0 -- but the trap may not be triggered by all compilers. As a result, not all compilers or platforms will behave the same way and therefore the original and mutant program outputs may differ"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The original program checks that 'new_node' is not null before setting its data and joining it to the stack. The mutant program contains the same check, so the output should be the same for this input"
+    }
+  ]
+},{
+  "mutant_program": "muta16_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Bottom - up: 1 2  \n",
+      "explanation": "The original program correctly prints the stack from bottom to top, but the mutant program omits the top element and only prints up to the second element. This is because the mutant program changes the join function to only set the below pointer if above is not a null pointer, but in the case of the top element, above should be null. This results in the top element not having a below pointer, so when the print function traverses the stack from bottom to top, it stops at the top element."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "Bottom - up: 4 5 6 \n",
+      "mutant_output": "Bottom - up: 4 5 6 \n",
+      "explanation": "Both programs correctly push and pop the given values, resulting in the same stack. The print function also correctly prints the stack from bottom to top in both programs."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "Bottom - up: 7 8 9 \n",
+      "mutant_output": "Bottom - up: 7 8 9 \n",
+      "explanation": "Both programs correctly push and pop the given values, resulting in the same stack. The print function also correctly prints the stack from bottom to top in both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta18_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "1",
+        "2",
+        "3"
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "",
+      "explanation": "The input is a sequence of three integers that are pushed into the stack in the original program. The expected output is 'Bottom - up: 1 2 3 \n'. However, in the mutant program, the join() function has an extra condition that checks if 'above' is greater than or equal to null. This means that the original join() function only assigns the above and below pointers between two nodes, while the mutant join() function additionally checks if the above pointer is not null before inserting the below pointer. As a result, the links between nodes in the stack may be different, leading to a different output. In this case, the program crashes and outputs nothing."
+    },
+    {
+      "input": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "original_output": "Bottom - up: 7 8 9 10 \n",
+      "mutant_output": "",
+      "explanation": "The input is a sequence of four integers that are pushed into the stack in the original program. The expected output is 'Bottom - up: 7 8 9 10 \n'. However, in the mutant program, the join() function has an extra condition that checks if 'above' is greater than or equal to null. This means that the original join() function only assigns the above and below pointers between two nodes, while the mutant join() function additionally checks if the above pointer is not null before inserting the below pointer. As a result, the links between nodes in the stack may be different, leading to a different output. In this case, the program crashes and outputs nothing."
+    }
+  ]
+},{
+  "mutant_program": "muta202_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": "Bottom - up: 1\n",
+      "mutant_output": "Error\n",
+      "explanation": "The test pushes a single value onto the original and the mutated stack. The original program should print 'Bottom - up: 1'. The mutant program should print 'Error'. The mutant code changes the initial value of stack1 and stack2 from NULL to ((void *)0), which evaluates to false, so the if statement in push() that checks if the malloc call failed will always be false. Therefore, push() will always succeed in the mutant code, even if memory allocation fails, and return 1. However, the new_node pointer is never assigned to top, so this pointer points to its initialized value of NULL. join() then dereferences this uninitialized pointer, which will result in undefined behavior. If the heap is corrupt because of this, pop() will generate an error at run-time when trying to free this heap-allocated memory through a garbage pointer. Hence, the mutant code should print 'Error' when push() needs to return a failure status, but, in fact, never prints it."
+    },
+    {
+      "input": [
+        "2",
+        "3",
+        "4"
+      ],
+      "original_output": "Bottom - up: 2 3 4 \n",
+      "mutant_output": "Error\n",
+      "explanation": "The test pushes three values onto the original and the mutated stack. The original program should print 'Bottom - up: 2 3 4'. The mutant program should print 'Error'. The mutant code changes NULL to ((void *)0), as if there is a difference. The problem is that NULL is defined by some C header files as' ((void *)0)', and NULL is used by printf() to print '(null)' for strings. Therefore, the original code will print '(null)' as three values are popped from the stack, and freed node pointers set to NULL are found. The mutant code will print 'Error' instead, which is misleading for the user."
+    }
+  ]
+},{
+  "mutant_program": "muta204_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": 0,
+      "explanation": "The first test case is an edge case where the input is empty. The original program outputs 'Stack is empty\n' while the mutated program returns 0."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "The second test case is a regular test case where the input is a non-empty stack. Both the original and mutated program return the same output of 3."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "The third test case is a regular test case where the input is a stack with one element. Both the original and mutated program return the same output of 0."
+    }
+  ]
+},{
+  "mutant_program": "muta207_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both original and mutated program exhibit the same behavior when trying to pop from an empty stack"
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutated program successfully push 4 elements to the stack"
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both original and mutated program exhibit the same behavior when trying to pop from an empty stack"
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "Bottom - up: 4 3 2 1 \n",
+      "mutant_output": "Bottom - up: 4 3 2 1 \n",
+      "explanation": "Both original and mutated program print the stack in the expected order after pushing 4 elements"
+    },
+    {
+      "input": [],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutated program successfully pop 4 elements from the stack"
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both original and mutated program exhibit the same behavior when trying to pop from an empty stack"
+    },
+    {
+      "input": [],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutated program successfully remove the bottom element from the stack"
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both original and mutated program exhibit the same behavior when trying to remove from an empty stack"
+    }
+  ]
+},{
+  "mutant_program": "muta232_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "",
+      "explanation": "The original program handles the case where the stack is empty and prints an error message. The mutant program simply returns k, which is uninitialized in this case, and then returns 0 without printing any message. Thus, the original and mutant outputs are different."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Since both programs are mutated versions of the same original code, we can assume that if the original program works correctly for a certain test, the mutant program should also work the same way. However, we cannot predict the output for any specific test case due to the non-deterministic changes in the code."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Since both programs are mutated versions of the same original code, we can assume that if the original program works correctly for a certain test, the mutant program should also work the same way. However, we cannot predict the output for any specific test case due to the non-deterministic changes in the code."
+    }
+  ]
+},{
+  "mutant_program": "muta234_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both original and mutant code are expected to print 'Stack is empty' as there is no element in the stack. The tests confirms non-equivalence because the mutant code returns k, which is not defined in the 'Stack is empty' case."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant code should return the top element (3) correctly, as it is the last element pushed to the stack."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": 6,
+      "mutant_output": 6,
+      "explanation": "Both original and mutant code should return the top element (6) correctly, as it is the last element pushed to the stack."
+    }
+  ]
+},{
+  "mutant_program": "muta238_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutant program do not have any output for this input"
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Bottom - up: 2 \n",
+      "mutant_output": "Bottom - up: 2 \n",
+      "explanation": "Both original and mutant program have the same output for this input"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "",
+      "explanation": "The mutant program does not print the error message when trying to pop from an empty stack"
+    }
+  ]
+},{
+  "mutant_program": "muta248_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs should output the same text when trying to pop an element from an empty stack"
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both programs should output the last element inserted into the stack when popping from a non-empty stack"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": 3,
+      "mutant_output": "Stack is empty\n",
+      "explanation": "While both programs correctly output the element when popping from a non-empty stack, only the original program can handle popping from an empty stack without crashing and outputs the correct message."
+    }
+  ]
+},{
+  "mutant_program": "muta288_Stack.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta2_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3\n",
+      "mutant_output": "Bottom - up: 1 2 3\n",
+      "explanation": "Both programs should output the same stack since the mutation doesn't affect the stack's functionality."
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs should output the same message since the stack is empty."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3\n",
+      "mutant_output": "Bottom - up: 1 2\n",
+      "explanation": "The mutant code fails to update 'top' when 'bottom' is removed, which causes incorrect output when printing the stack. Therefore, the mutant program output one less element than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta43_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: 1 \n",
+      "mutant_output": "Bottom - up: 1 \n",
+      "explanation": "Both programs produce the same output for this test case"
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": "Bottom - up: 2 1 \n",
+      "mutant_output": "Bottom - up: 2 1 \n",
+      "explanation": "Both programs produce the same output for this test case"
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs produce the same output for this test case"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: 1 \n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "The mutant program does not handle the case where the stack is empty when calling pop(). The output is different from the original program"
+    }
+  ]
+},{
+  "mutant_program": "muta45_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly pushes the new value onto the stack and returns 1 to indicate success. However, the mutant program always returns 0, indicating failure, due to the changed return statement. This is not equivalent behavior."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "Same as the previous test."
+    },
+    {
+      "input": [],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "This test checks the case where the stack is empty. Both the original and mutant programs correctly return 0 when popping an empty stack."
+    }
+  ]
+},{
+  "mutant_program": "muta4_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "push",
+        5
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs should behave the same way when adding an element to the stack."
+    },
+    {
+      "input": [
+        "push",
+        3
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs should behave the same way when adding an element to the stack."
+    },
+    {
+      "input": [
+        "pop"
+      ],
+      "original_output": 3,
+      "mutant_output": null,
+      "explanation": "Original program removes the top element of the stack and returns its value. The mutant program does not compute the value of the top element correctly and returns null, as the pointers have not been properly set."
+    },
+    {
+      "input": [
+        "push",
+        2
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs should behave the same way when adding an element to the stack."
+    },
+    {
+      "input": [
+        "pop"
+      ],
+      "original_output": 2,
+      "mutant_output": null,
+      "explanation": "Original program removes the top element of the stack and returns its value. The mutant program does not compute the value of the top element correctly and returns null, as the pointers have not been properly set."
+    },
+    {
+      "input": [
+        "removeBottom"
+      ],
+      "original_output": 5,
+      "mutant_output": null,
+      "explanation": "Original program removes the bottom element of the stack and return its value. The mutant program does not compute the value of the bottom element correctly and returns null, as the pointers have not been properly set."
+    },
+    {
+      "input": [
+        "print_stack"
+      ],
+      "original_output": "Bottom - up: 3 5 2 \n",
+      "mutant_output": "Bottom - up: 3 5 2 \n",
+      "explanation": "Both programs should print the stack from bottom to top, in this case showing the values 3 5 2. The output is the same for both the original and the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta68_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program pushes the given value onto the stack. The mutant program differs from the original program because it adds the given value to the current value of the new node's 'data' field, instead of simply setting the new node's 'data' field to the given value. This will result in incorrect data being pushed onto the stack. For example, if the original program pushes the value 1 onto the stack and then pushes the value 2 onto the stack, the stack will contain '2 1'. If we apply the same test set on the mutant program then output will be like '3 0', which is incorrect."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program pushes the given value onto the stack. The mutant program differs from the original program because it adds the given value to the current value of the new node's 'data' field, instead of simply setting the new node's 'data' field to the given value. This will result in incorrect data being pushed onto the stack. For example, if the original program pushes the value 1 onto the stack and then pushes the value 2 onto the stack, the stack will contain '2 1'. If we apply the same test set on the mutant program then output will be like '4 0', which is incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta6_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Bottom - up: 5 \n",
+      "mutant_output": "Error\n",
+      "explanation": "The original program pushes the value 5 onto the stack and prints \"Bottom - up: 5 \n\". The mutant program also pushes 5 onto the stack but it has an error in the join function, which causes a segmentation fault when it tries to access the null pointer below the first node. Therefore, it prints \"Error\n\"."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Bottom - up: 10 \n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "The original program pushes the value 10 onto the stack and prints \"Bottom - up: 10 \n\". The mutant program has an error in the isEmpty function, where it returns true if size==0, instead of false. Therefore, when it tries to pop the empty stack, it prints \"Stack is empty\n\"."
+    }
+  ]
+},{
+  "mutant_program": "muta8_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Cannot determine output from empty test set"
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Bottom - up: 1 2 3 \n",
+      "explanation": "Both programs should produce the same output for this test set as they have not diverged yet"
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "Bottom - up: 4 5 6 \n",
+      "mutant_output": "Bottom - up: 4 5 6 \n",
+      "explanation": "Both programs should produce the same output for this test set as they have not diverged yet"
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "Bottom - up: 7 8 9 \n",
+      "mutant_output": "Bottom - up: 7 8 9 \n",
+      "explanation": "Both programs should produce the same output for this test set as they have not diverged yet"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Bottom - up: 10 \n",
+      "mutant_output": "Bottom - up: 10 \n",
+      "explanation": "Both programs should produce the same output for this test set as they have not diverged yet"
+    },
+    {
+      "input": [
+        11,
+        12
+      ],
+      "original_output": "Bottom - up: 11 12 \n",
+      "mutant_output": "Bottom - up: 11 12 \n",
+      "explanation": "Both programs should produce the same output for this test set as they have not diverged yet"
+    },
+    {
+      "input": [
+        13
+      ],
+      "original_output": "Bottom - up: 13 \n",
+      "mutant_output": "Bottom - up: 13 \n",
+      "explanation": "Both programs should produce the same output for this test set as they have not diverged yet"
+    },
+    {
+      "input": [
+        14,
+        15,
+        16
+      ],
+      "original_output": "Bottom - up: 14 15 16 \n",
+      "mutant_output": "Bottom - up: 14 15 16 \n",
+      "explanation": "Both programs should produce the same output for this test set as they have not diverged yet"
+    },
+    {
+      "input": [
+        17
+      ],
+      "original_output": "Bottom - up: 17 \n",
+      "mutant_output": null,
+      "explanation": "The mutant program does not handle the case where above is NULL in the join method, causing a segfault when trying to access above->below. Therefore, for this input, the original program would produce the expected output, while the mutant program would not terminate properly."
+    }
+  ]
+},{
+  "mutant_program": "muta91_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "The test is not provided as push operation is not applied to an input, but to the stack. However, the logic flow is slightly different in the mutant code due to the different condition in if statement inside push function (size <= 1). This condition allows the bottom pointer to point to the second element in the stack as well, instead of just the first element in the stack like in the original program code. Therefore, the output of the two programs can be different, mainly when there are only one or two elements in the stack. For example, if we add elements to the stack, one by one, in the original code the bottom always point to the first element, while in the mutant code, it will point to the last element when there is only one element pushed to the stack and thus changing the output"
+    }
+  ]
+},{
+  "mutant_program": "muta321_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant codes have the same result when stack is empty"
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant codes have the same result when stack is not empty"
+    },
+    {
+      "input": [
+        3,
+        4
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The third test checks if the mutant code correctly identifies a non-empty stack. The original code returns 0, indicating a non-empty stack, when given non-empty input. However, the mutant code returns 1, indicating an empty stack, when given non-empty input, which is incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta343_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs have the same output when the stack is empty"
+    },
+    {
+      "input": [],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The mutant program uses the TRAP_ON_NEGATIVE macro to check if the size variable is negative, which is unnecessary, as size should always be non-negative in this program. Therefore, when size is zero, the original program returns 1, indicating the stack is empty, while the mutant program returns 0."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs have the same output when the stack is not empty"
+    }
+  ]
+},{
+  "mutant_program": "muta345_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The original and the mutant program will both return 1 since the stack is empty"
+    },
+    {
+      "input": [],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The original program correctly identifies that the stack is empty and returns 1, while the mutant program has a bug where it checks if 'bottom == 0' instead of 'bottom == NULL', causing it to return 1 even when the stack is not empty"
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly identify that the stack is not empty and return 0"
+    }
+  ]
+},{
+  "mutant_program": "muta348_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Empty stack, both original and mutant return true"
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Non-empty stack, both original and mutant return false"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "Stack with one element, original returns false and mutant returns true"
+    }
+  ]
+},{
+  "mutant_program": "muta360_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: 1\n",
+      "mutant_output": "Bottom - up: 1\n",
+      "explanation": "Both programs output the same stack after pushing one element."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs output the same message when attempting to pop an empty stack."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 3 2 1 \n",
+      "mutant_output": "Bottom - up: 3 2 1 \n",
+      "explanation": "Both programs output the same stack after pushing three elements."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 3,
+      "explanation": "The pop function returns a different value between the original and mutant programs."
+    }
+  ]
+},{
+  "mutant_program": "muta361_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should output 1 since both are removing the bottom element from the stack and returning its value."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": 4,
+      "mutant_output": 0,
+      "explanation": "The original program correctly removes the bottom element and returns its value. However, the mutant code has a condition in removeBottom() that is always false, which means that bottom->below is never set to NULL. This causes a segmentation fault error when accessing bottom->above in subsequent calls to removeBottom()."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": 7,
+      "mutant_output": 7,
+      "explanation": "Both programs should output 7 since both are removing the bottom element from the stack and returning its value."
+    }
+  ]
+},{
+  "mutant_program": "muta362_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs output the same value when removing the bottom of a non-empty stack"
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs output the same message when trying to remove the bottom of an empty stack"
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": 4,
+      "mutant_output": 0,
+      "explanation": "The mutant program does not check if 'bottom' is NULL before accessing its 'below' attribute, which leads to a segmentation fault error when trying to access a memory location that does not exist. The original program correctly checks if 'bottom' is NULL before accessing its attributes."
+    }
+  ]
+},{
+  "mutant_program": "muta363_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Stack is empty\n",
+      "mutant_output": 0,
+      "explanation": "Both programs should output the same message, but the mutant outputs 0, which is not the expected behavior."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs should output the same message, but the mutant outputs the error message instead of returning 0, which is not the expected behavior."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": 0,
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs should output the same message, but the mutant outputs the error message instead of returning 0, which is not the expected behavior."
+    }
+  ]
+},{
+  "mutant_program": "muta364_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs are equivalent on this test case."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": 4,
+      "mutant_output": 0,
+      "explanation": "The original program correctly removes the bottom element and returns its value. However, the mutant program fails to handle a null bottom pointer and crashes with a segmentation fault."
+    },
+    {
+      "input": [
+        7,
+        3,
+        1
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs are equivalent on this test case."
+    }
+  ]
+},{
+  "mutant_program": "muta365_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: 1 \n",
+      "mutant_output": "Bottom - up: 1 \n",
+      "explanation": "The original and mutated program generate the same output for a simple push operation."
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": "Bottom - up: 1 2 \n",
+      "mutant_output": "Bottom - up: 1 2 \n",
+      "explanation": "The original and mutated program generate the same output when pushing two elements."
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs generate the same error message when popping an empty stack."
+    },
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": "Bottom - up: 2 1 \n",
+      "mutant_output": "Bottom - up: 1 2 \n",
+      "explanation": "The mutated program fails to remove the bottom element of the stack correctly, resulting in a different output compared to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta370_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "The first test is to check if both functions output the same message when the stack is empty"
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Bottom - up: 1 2 3 \n",
+      "explanation": "The second test is to output the elements of the stack, assuming that the order from bottom to top would not change between each test."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": 4,
+      "mutant_output": 6,
+      "explanation": "The third test is to remove the bottom element from the stack and check if the original program returns the value of the removed element (4 in this case), and if the mutant program returns the expected value (6)."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": 7,
+      "mutant_output": 9,
+      "explanation": "The fourth test is the same as the third, but with different input values."
+    }
+  ]
+},{
+  "mutant_program": "muta374_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "30",
+      "explanation": "The original program correctly handles the case when the stack is empty and outputs an error message. However, the mutant program does not output any error message and returns the data of the removed bottom element when the stack is empty."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Bottom - up: 2 3 \n",
+      "explanation": "Both programs are expected to remove the bottom element and return its data. However, the output order is different due to the removal of `b->below=NULL` in the mutant program, which causes the second-to-last element to be printed twice."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": "Bottom - up: 4 5 6 \n",
+      "mutant_output": "Bottom - up: 5 6 \n",
+      "explanation": "Both programs are expected to remove the bottom element and return its data. However, the output order is different due to the removal of `b->below=NULL` in the mutant program, which causes the second-to-last element to be printed twice."
+    }
+  ]
+},{
+  "mutant_program": "muta375_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "",
+      "explanation": "The original program has a check for empty stack in the pop() function. The mutant code removes this check, so it will not print anything when pop() is called on an empty stack."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 3 2 1 \n",
+      "mutant_output": "Bottom - up: 3 2 1 \n",
+      "explanation": "Both programs should have the same output when the stack is pushed with 3, 2, and 1, and then printed with print_stack()."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should have the same output when the stack is pushed with 3, 2, and 1, and then the top element is popped."
+    }
+  ]
+},{
+  "mutant_program": "muta387_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty",
+      "mutant_output": "Stack is empty",
+      "explanation": "Both programs should output 'Stack is empty' when trying to execute the removeBottom() function on an empty stack."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 3,
+      "mutant_output": 0,
+      "explanation": "The original program correctly removes the bottom element from the stack and returns its value. However, the mutant program introduces a TRAP_ON_POSITIVE() function call that negates the actual return value of the function, causing it to always return 0."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "Both programs correctly remove the bottom element from the stack and return its value."
+    }
+  ]
+},{
+  "mutant_program": "muta388_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The first element of the stack is removed, which is 1 in both original and mutant versions."
+    },
+    {
+      "input": [
+        4,
+        5
+      ],
+      "original_output": 4,
+      "mutant_output": -4,
+      "explanation": "The removeBottom function has been mutated to include a call to a TRAP_ON_NEGATIVE macro, which modifies the original behavior of the code. In this case, the input stack is [4,5], so the original program removes 4 and returns it as the output. However, the mutant program applies the TRAP_ON_NEGATIVE macro to the return value, resulting in -4 as the output."
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty",
+      "mutant_output": "Stack is empty",
+      "explanation": "Both original and mutant programs output the same message when attempting to remove an element from an empty stack."
+    }
+  ]
+},{
+  "mutant_program": "muta402_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both programs output the same message when trying to remove an item from an empty stack."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n1\nBottom - up: 2 3 \n2\nBottom - up: 3 \n3\nStack is empty\n",
+      "mutant_output": "Bottom - up: 1 2 3 \n1\nStack is empty\nStack is empty\n",
+      "explanation": "The mutant code changes the line `bottom->below = NULL` to `((bottom->above) = ((void (*)) 0))`. This causes that when we try to remove the bottom value, not only it is removed but also the second-to-bottom value is set to null, causing some unintended behavior. It outputs 'Stack is empty\n' twice because the stack is returned to an empty state after the first removal."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9
+      ],
+      "original_output": "Bottom - up: 7 8 9 \n7\nBottom - up: 8 9 \n8\nBottom - up: 9 \n9\nStack is empty\n",
+      "mutant_output": "Bottom - up: 7 8 9 \n7\nStack is empty\nStack is empty\n",
+      "explanation": "The mutant code outputs two 'Stack is empty\n' because the stack is returned to an empty state after the first removal."
+    }
+  ]
+},{
+  "mutant_program": "muta405_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both original and mutant program have the same behavior when stack is empty"
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Bottom - up: 1 2 3 \n",
+      "explanation": "Both original and mutant program have the same behavior when stack is not empty"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "1\n",
+      "mutant_output": "",
+      "explanation": "When attempting to remove bottom of stack with only one element, the original program returns the value, while the mutant program produces a segmentation fault due to a null pointer dereference."
+    }
+  ]
+},{
+  "mutant_program": "muta413_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: 1 \n",
+      "mutant_output": "Bottom - up: 1 \n",
+      "explanation": "Both original and mutant programs create and print a stack with a single element: '1'."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "Bottom - up: 1 2 3 4 \n",
+      "mutant_output": "Bottom - up: 1 2 3 4 \n",
+      "explanation": "Both original and mutant programs create and print a stack with four elements: '1', '2', '3' and '4'."
+    },
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Stack is empty\n",
+      "explanation": "Both original and mutant programs print 'Stack is empty' when trying to pop an element from an empty stack."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Bottom - up: \nError\n",
+      "mutant_output": "Bottom - up: \n",
+      "explanation": "The mutations replace the condition 'if (size == 1)' with '(size == 1)' in the original program's push function. As a result, the original program prints an error message when trying to access the bottom element of an empty stack, while the mutant program does not."
+    }
+  ]
+},{
+  "mutant_program": "muta415_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Stack is empty\n",
+      "mutant_output": "Bottom - up:  \n",
+      "explanation": "The original code properly handles the case where the stack is empty and prints 'Stack is empty', while the mutant code does not handle this case properly and instead tries to print the contents of the stack resulting in an empty string with a newline character."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 3 2 1 \n",
+      "mutant_output": "Bottom - up: 3 2 1 \n",
+      "explanation": "Both original and mutant code have the same behavior for a non-empty input of [1,2,3], as both properly print the stack elements in reverse order."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "Bottom - up: 4 \n",
+      "mutant_output": "Bottom - up: 4 \n",
+      "explanation": "Both original and mutant code have the same behavior for a non-empty input of [4], as both properly print the single element of the stack."
+    }
+  ]
+},{
+  "mutant_program": "muta418_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": "Bottom - up: 1 2 3 \n",
+      "mutant_output": "Segmentation Fault",
+      "explanation": "The mutation changed the conditional statement in the print_stack function from b != NULL to b > ((void (*)) 0) which is equivalent to b != NULL. However, the output is now a segmentation fault, indicating a problem with accessing illegal memory. This mutation likely caused a memory access issue that was not present in the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta449_Stack.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        7,
+        9
+      ],
+      "original_output": "Bottom - up: 5 7 9 \n",
+      "mutant_output": "Bottom - up: 5 0 0 \n",
+      "explanation": "The original program prints the stack from bottom to top with the correct values. However, the mutant program modifies the print_stack function to include a TRAP_ON_NEGATIVE macro which prints 0 instead of the actual data in the stack node. Therefore, the mutant program output incorrect values for the stack nodes."
+    }
+  ]
+}]
