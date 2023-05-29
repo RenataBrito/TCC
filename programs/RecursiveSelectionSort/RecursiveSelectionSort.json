@@ -1,1 +1,1398 @@
-[{"mutant_program": "muta0_RecursiveSelectionSort.c", "equivalent": false, "tests": [{"input": [3, 2, 1], "original_output": "******** Sorted numbers: \n1 2 3 \n", "mutant_output": "******** Sorted numbers: \n3 1 2 \n", "explanation": "The test set is an array of size 3 in decreasing order. The original program correctly sorts it in ascending order, but the mutated program does not, resulting in a different output."}, {"input": [5, 1, 7], "original_output": "******** Sorted numbers: \n1 5 7 \n", "mutant_output": "******** Sorted numbers: \n7 5 1 \n", "explanation": "The test set is an array of size 3 with random values. The original program correctly sorts it in ascending order, but the mutated program does not, resulting in a different output."}, {"input": [4, 4, 4], "original_output": "******** Sorted numbers: \n4 4 4 \n", "mutant_output": "******** Sorted numbers: \n4 4 4 \n", "explanation": "The test set is an array of size 3 with the same value. Both the original and mutated programs produce the same output as they should."}]}]
+[{
+  "mutant_program": "muta0_RecursiveSelectionSort.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 \n",
+      "explanation": "Both programs correctly sort the input in ascending order"
+    },
+    {
+      "input": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "original_output": "******** Sorted numbers: \n5 5 5 5 \n",
+      "mutant_output": "******** Sorted numbers: \n5 5 5 5 \n",
+      "explanation": "Both programs correctly handle repeated elements in the input"
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": "******** Sorted numbers: \n6 \n",
+      "mutant_output": "******** Sorted numbers: \n6 \n",
+      "explanation": "Both programs correctly handle input with only one element"
+    }
+  ]
+},{
+  "mutant_program": "muta133_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 \n",
+      "mutant_output": "******** Sorted numbers: \n1 3 2 \n",
+      "explanation": "The original program code correctly sorts the list in ascending order, while the mutant program code sorts the list with the first two elements in correct order but swaps the last two elements resulting in an incorrect order. The test verifies this by inputting a list of elements in descending order and comparing the outputs."
+    },
+    {
+      "input": [
+        5,
+        1,
+        4,
+        3,
+        2
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "******** Sorted numbers: \n1 5 2 3 4 \n",
+      "explanation": "The original program code correctly sorts the list in ascending order, while the mutant program code does some unnecessary multiplication in the for loop condition and sorts the first and last elements correctly but swaps the middle elements resulting in an incorrect order. The test verifies this by inputting a list of random unsorted elements and comparing the outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta134_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 \n",
+      "mutant_output": "******** Sorted numbers: \n2 1 3 \n",
+      "explanation": "The input is in reverse order. The original program sorts it in ascending order and the mutant program sorts it in descending order. This is due to the mutant program dividing low by 1 before assigning it to i in the for loop which makes no difference in the sorting process, but changes the order in which the smallest numbers are found and placed."
+    },
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "******** Sorted numbers: \n2 1 3 4 5 \n",
+      "explanation": "The input is in reverse order. The original program sorts it in ascending order and the mutant program sorts it in descending order. This is due to the mutant program dividing low by 1 before assigning it to i in the for loop which makes no difference in the sorting process, but changes the order in which the smallest numbers are found and placed."
+    }
+  ]
+},{
+  "mutant_program": "muta140_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3\n",
+      "mutant_output": "******** Sorted numbers: \n1 3 2\n",
+      "explanation": "The original program sorts the input list in ascending order. The test input [3,1,2] should result in the output '1 2 3'. The mutated program changes the initial value of 'i' in the for loop to be the bitwise OR operation of 'low' and 1. This cause the loop to skip the first element of the list and start at the second position. This test input will result in the output '1 3 2', which is different from the expected output of the original program, indicating that the mutation affects the program behavior."
+    },
+    {
+      "input": [
+        5,
+        9,
+        1,
+        4
+      ],
+      "original_output": "******** Sorted numbers: \n1 4 5 9\n",
+      "mutant_output": "******** Sorted numbers: \n1 9 5 4\n",
+      "explanation": "The original program sorts the input list in ascending order. The test input [5,9,1,4] should result in the output '1 4 5 9'. The mutated program changes the initial value of 'i' in the for loop to be the bitwise OR operation of 'low' and 1. This cause the loop to skip the first element of the list and start at the second position. This test input will result in the output '1 9 5 4', which is different from the expected output of the original program, indicating that the mutation affects the program behavior."
+    },
+    {
+      "input": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "original_output": "******** Sorted numbers: \n2 2 2 2\n",
+      "mutant_output": "******** Sorted numbers: \n2 2 2 2\n",
+      "explanation": "The original and the mutated program sort the input list in ascending order. The test input [2,2,2,2] is already sorted, so the output of both programs will be the same, confirming that the mutation does not affect the program behavior in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta171_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        1,
+        4,
+        2
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "******** Sorted numbers: \n0 2 3 4 5 \n",
+      "explanation": "The original program correctly sorts the input list in ascending order. However, the mutated program initializes 'min' to 0 + list[low], instead of just min = list[low], causing the resulting sorted list to be incorrect."
+    },
+    {
+      "input": [
+        10,
+        20,
+        30,
+        15,
+        25
+      ],
+      "original_output": "******** Sorted numbers: \n10 15 20 25 30 \n",
+      "mutant_output": "******** Sorted numbers: \n10 0 20 25 30 \n",
+      "explanation": "The original program correctly sorts the input list in ascending order. However, the mutated program incorrectly initializes 'min' to 0 + list[low], causing the '15' element to be skipped during the sorting process, resulting in an incorrect sorted list."
+    }
+  ]
+},{
+  "mutant_program": "muta173_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        5,
+        1,
+        2
+      ],
+      "original_output": "1 2 3 4 5 ",
+      "mutant_output": "0 0 0 0 0 ",
+      "explanation": "The original program correctly sorts the input array in ascending order, while the mutant code assigns a value of 0 to the variable 'indexOfMin' and then multiplies it by the value of 'low'. This completely changes the behavior of the code and results in an incorrect output."
+    },
+    {
+      "input": [
+        10,
+        9,
+        8,
+        7
+      ],
+      "original_output": "7 8 9 10 ",
+      "mutant_output": "0 0 0 0 ",
+      "explanation": "Once again, the mutant program assigns a value of 0 to 'indexOfMin' and multiplies it by 'low', resulting in an incorrect output. The original program correctly sorts the input array in ascending order."
+    }
+  ]
+},{
+  "mutant_program": "muta176_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "4",
+        "2",
+        "6",
+        "1",
+        "3",
+        "5"
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 6 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 4 6 5 \n",
+      "explanation": "The input array contains 6 elements and should be sorted in ascending order. The original program correctly sorts the array and prints the expected output. However, in the mutant program, the line (indexOfMin += low) ; modifies the value of indexOfMin, causing it to point to the wrong element of the array. As a result, the mutant program sorts the array incorrectly and produces a different output than the original program."
+    },
+    {
+      "input": [
+        "10",
+        "5",
+        "8",
+        "3",
+        "1",
+        "7",
+        "2",
+        "6",
+        "4",
+        "9"
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 6 7 8 9 10 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 4 5 6 7 8 10 9 \n",
+      "explanation": "The input array contains 10 elements and should be sorted in ascending order. The original program correctly sorts the array and prints the expected output. However, in the mutant program, the line (indexOfMin += low) ; modifies the value of indexOfMin, causing it to point to the wrong element of the array. As a result, the mutant program sorts the array incorrectly and produces a different output than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta201_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "4.5",
+        "2.3",
+        "1.0",
+        "3.2"
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 ",
+      "mutant_output": "******** Sorted numbers: \n1 4 3 2 ",
+      "explanation": "The mutant code changed the line 'indexOfMin = low;' to '(indexOfMin ^= low);' which uses the XOR operator to swap the values of 'indexOfMin' and 'low'. This is incorrect as the index of the smallest value should be assigned to 'indexOfMin'. The test set verifies that the original program outputs the correct sorted list, while the mutant program outputs an incorrect sorted list."
+    }
+  ]
+},{
+  "mutant_program": "muta202_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "explanation": "The original and mutant program are equivalent because they produce the same output for the given inputs."
+    },
+    {
+      "input": [
+        "-1",
+        "0",
+        "2",
+        "3",
+        "5"
+      ],
+      "original_output": "******** Sorted numbers: \n-1 0 2 3 5 \n",
+      "mutant_output": "******** Sorted numbers: \n-1 0 2 3 5 \n",
+      "explanation": "The original and mutant program are equivalent because they produce the same output for the given inputs."
+    },
+    {
+      "input": [
+        "8",
+        "6",
+        "7",
+        "9",
+        "5"
+      ],
+      "original_output": "******** Sorted numbers: \n5 6 7 8 9 \n",
+      "mutant_output": "******** Sorted numbers: \n5 6 7 8 9 \n",
+      "explanation": "The original and mutant program are equivalent because they produce the same output for the given inputs."
+    },
+    {
+      "input": [
+        "-1",
+        "5",
+        "0",
+        "2",
+        "3"
+      ],
+      "original_output": "******** Sorted numbers: \n-1 0 2 3 5 \n",
+      "mutant_output": "******** Sorted numbers: \n-1 0 2 3 5 \n",
+      "explanation": "The original and mutant program are equivalent because they produce the same output for the given inputs."
+    },
+    {
+      "input": [
+        "4.3",
+        "1.2",
+        "0",
+        "-3.2",
+        "2",
+        "-1"
+      ],
+      "original_output": "******** Sorted numbers: \n-3 0 1 2 4 \n",
+      "mutant_output": "******** Sorted numbers: \n-3 0 1 2 4 \n",
+      "explanation": "The original and mutant program are equivalent because they produce the same output for the given inputs."
+    }
+  ]
+},{
+  "mutant_program": "muta203_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        8,
+        4,
+        1,
+        7
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 4 5 7 8 \n",
+      "mutant_output": "******** Sorted numbers: \n4 2 5 8 1 7 \n",
+      "explanation": "The input is an array of 6 numbers, and the expected output is the sorted array. The original program correctly sorts the array in non-descending order. However, the mutant program uses a bitwise AND operation in the loop condition and starts i at (low+1)&low+1 instead of low+1, causing the loop to skip certain indices of the list. As a result, the output is a jumbled version of the input array, indicating that the mutant code is not equivalent to the original."
+    },
+    {
+      "input": [
+        3,
+        5,
+        2,
+        3,
+        8
+      ],
+      "original_output": "******** Sorted numbers: \n2 3 3 5 8 \n",
+      "mutant_output": "******** Sorted numbers: \n3 2 3 8 5 \n",
+      "explanation": "The input is another array of 5 numbers, and the expected output is the sorted array. The original program correctly sorts the array in non-descending order. However, as with the previous test, the mutant program outputs a jumbled version of the input array, indicating that the mutant code is indeed not equivalent to the original."
+    }
+  ]
+},{
+  "mutant_program": "muta218_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2.5,
+        1.0,
+        4.8,
+        3.1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 ",
+      "mutant_output": "******** Sorted numbers: \n4 2 3 1 ",
+      "explanation": "The original program sorts the list in ascending order, while the mutant program sorts it in descending order. The test case verifies this difference."
+    }
+  ]
+},{
+  "mutant_program": "muta227_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "3",
+        "2",
+        "1"
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 \n",
+      "explanation": "Both programs should sort the input array and print it in ascending order, which is what the test set shows. The difference between the original and the mutant code is the condition in the if statement inside the sort function. In the original code, the condition checks if low is less than high, while in the mutant code, it checks if low minus high is not equal to zero. Although mathematically these conditions might sometimes be equivalent, in this case they are not, resulting in different outputs for some input arrays that have redundant numbers. For example, in the input array [3,2,1], there are duplicate values. The original code sorts them correctly, resulting in [1,2,3], while the mutant code does not, resulting in [1,3,2]."
+    },
+    {
+      "input": [
+        "4",
+        "-2",
+        "1"
+      ],
+      "original_output": "******** Sorted numbers: \n-2 1 4 \n",
+      "mutant_output": "******** Sorted numbers: \n-2 1 4 \n",
+      "explanation": "Both programs should sort the input array and print it in ascending order, which is what the test set shows. The difference between the original and the mutant code is the condition in the if statement inside the sort function. In the original code, the condition checks if low is less than high, while in the mutant code, it checks if low minus high is not equal to zero. Although mathematically these conditions might sometimes be equivalent, in this case they are not, but the input array does not have redundant numbers, so the difference in the conditions does not affect the output."
+    },
+    {
+      "input": [
+        "5",
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "explanation": "Both programs should sort the input array and print it in ascending order, which is what the test set shows. The difference between the original and the mutant code is the condition in the if statement inside the sort function. In the original code, the condition checks if low is less than high, while in the mutant code, it checks if low minus high is not equal to zero. Although mathematically these conditions might sometimes be equivalent, in this case they are not, but the input array does not have redundant numbers, so the difference in the conditions does not affect the output."
+    }
+  ]
+},{
+  "mutant_program": "muta253_RecursiveSelectionSort.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "3",
+        "2",
+        "1"
+      ],
+      "original_output": "\n******** Sorted numbers: \n1 2 3 \n",
+      "mutant_output": "\n******** Sorted numbers: \n1 2 3 \n",
+      "explanation": "Both programs should sort the given input in non-descending order. The test set provides a decreasing order of input numbers. Both programs correctly sort the array into non-descending order and produce the same output."
+    },
+    {
+      "input": [
+        "5",
+        "3",
+        "4"
+      ],
+      "original_output": "\n******** Sorted numbers: \n3 4 5 \n",
+      "mutant_output": "\n******** Sorted numbers: \n3 4 5 \n",
+      "explanation": "Both programs should sort the given input in non-descending order. The test set provides an arbitrary order of input numbers. Both programs correctly sort the array into non-descending order and produce the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta263_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "3",
+        "2",
+        "6",
+        "1",
+        "4"
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 6 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 6 5 3 4 \n",
+      "explanation": "The original program sorts the input in ascending order. However, the mutant replaces the less than symbol with a less than or equal to symbol, which makes the sorting algorithm produce a different output. The input [5, 3, 2, 6, 1, 4] shows this difference, where 6 and 5 are swapped in the mutant output."
+    }
+  ]
+},{
+  "mutant_program": "muta289_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "******** Sorted numbers: \n",
+      "mutant_output": ";******** Sorted numbers: \n",
+      "explanation": "The mutant program adds a semicolon before the print statement, which does not affect the sorting algorithm but will print an extra semicolon before the output."
+    },
+    {
+      "input": [
+        4,
+        2,
+        7,
+        1,
+        8
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 4 7 8 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 7 1 8 \n",
+      "explanation": "In the mutant program, the indexOfMin variable is not initialized, so it may have a random value. In this test case, the output is different because the index of the minimum number is not correctly updated, resulting in an incorrect swap."
+    },
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "explanation": "Both programs correctly sort the list in ascending order, no test case results in different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta321_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        5,
+        3,
+        2
+      ],
+      "original_output": "\n******** Sorted numbers: \n2 3 4 5 ",
+      "mutant_output": "",
+      "explanation": "The original program correctly sorts the array [4, 5, 3, 2] in non-descending order and outputs '2 3 4 5'. However, the mutated program fails to execute due to a syntax error: 'TRAP_ON_NEGATIVE' is not defined as a function or macro."
+    },
+    {
+      "input": [
+        9,
+        0,
+        -2,
+        6,
+        4
+      ],
+      "original_output": "\n******** Sorted numbers: \n-2 0 4 6 9 ",
+      "mutant_output": "",
+      "explanation": "The original program correctly sorts the array [9, 0, -2, 6, 4] in non-descending order and outputs '-2 0 4 6 9'. However, the mutated program fails to execute due to a syntax error: 'TRAP_ON_NEGATIVE' is not defined as a function or macro."
+    }
+  ]
+},{
+  "mutant_program": "muta325_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "1 2 3 4 5",
+      "mutant_output": "1 2 3 4 5",
+      "explanation": "Both programs should output the same result for this input since it is a worst-case scenario for selection sort. The mutant code simply replaces the condition 'low < high' with the function call 'TRAP_ON_ZERO(high)', which does not change the logical behavior of the program."
+    },
+    {
+      "input": [
+        3.14,
+        2.72,
+        -1.0,
+        0.0
+      ],
+      "original_output": "-1 0 2 3",
+      "mutant_output": "-1 0 3 2",
+      "explanation": "This test is designed to expose the differences between the original program and the mutant code. The mutant code introduces a non-deterministic change by calling the function 'TRAP_ON_ZERO' with the 'high' parameter. Depending on the implementation of this function, it may introduce a bug that causes the program to incorrectly sort the list. In this case, the 'TRAP_ON_ZERO' function simply returns its input parameter, so the output of the mutant code is different from the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta327_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "\n******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "\n******** Sorted numbers: \n5 4 3 2 1 \n",
+      "explanation": "The input is a sorted list in descending order. The original program correctly sorts the list in ascending order, but the mutant code sorts it in descending order due to the use of the TRAP_ON_NEGATIVE function on the index parameter of the list."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": "\n******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "\n******** Sorted numbers: \n5 4 3 2 1 \n",
+      "explanation": "The input is a sorted list in ascending order. The original program correctly maintains the order. The mutant code swaps the first element with the minimum element and sorts the remaining list in descending order."
+    },
+    {
+      "input": [
+        5,
+        5,
+        5,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "original_output": "\n******** Sorted numbers: \n2 2 2 3 3 3 5 5 5 \n",
+      "mutant_output": "\n******** Sorted numbers: \n5 5 5 3 3 3 2 2 2 \n",
+      "explanation": "The input has multiple values that should be grouped together. The original program groups equal values together, maintaining the order. The mutant code does not group equal values together, and sorts the list in descending order."
+    }
+  ]
+},{
+  "mutant_program": "muta331_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3\n",
+      "mutant_output": "******** Sorted numbers: \n0 0 0\n",
+      "explanation": "The original program correctly sorts the input array in ascending order, whereas the mutant program replaces the comparison operation in line 9 with a function TRAP_ON_ZERO(), which always returns zero. As a result, the output of the mutant program contains zeros, indicating that the input array was not actually sorted."
+    },
+    {
+      "input": [
+        5,
+        1,
+        4,
+        2,
+        3
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5\n",
+      "mutant_output": "******** Sorted numbers: \n0 0 0 0 0\n",
+      "explanation": "Similarly to the previous test, the original program sorts the input array in ascending order, while the mutant program produces an array of zeros, indicating that the sorting was not successful due to the faulty comparison operation."
+    }
+  ]
+},{
+  "mutant_program": "muta333_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "10",
+        "20",
+        "18",
+        "5"
+      ],
+      "original_output": "******** Sorted numbers: \n5 10 18 20 \n",
+      "mutant_output": "",
+      "explanation": "The mutant program substitutes the assignment statement that initializes indexOfMin with a function call to TRAP_ON_NEGATIVE, which has no implementation in the given code. Therefore, the program will fail to compile and the mutant_output will be an empty string."
+    }
+  ]
+},{
+  "mutant_program": "muta336_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "2",
+        "8",
+        "1",
+        "3"
+      ],
+      "original_output": "1 2 3 5  8 \n",
+      "mutant_output": "1 2 5 3 8 \n",
+      "explanation": "The output of the original program is a sorted list of the input numbers. The test set consists of 5 numbers, and since the program is sorting the list, the expected output is a list containing the same numbers sorted in ascending order. The original program output matches the expected output, but the mutant program output differs because it replaces the 5 and 3."
+    }
+  ]
+},{
+  "mutant_program": "muta339_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "original_output": "1 2 3 4 5 \n",
+      "mutant_output": "",
+      "explanation": "The original program correctly sorts the input list in ascending order. The mutant program changes the for loop condition to call a trap macro when the iteration variable is negative, but this has no effect because the iteration variable can never be negative in this program. Therefore, the mutant program produces no output because the sort function is not called - an infinite loop occurs in the for loop."
+    }
+  ]
+},{
+  "mutant_program": "muta340_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        7,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 3 5 7 \n",
+      "mutant_output": "******** Sorted numbers: \n3 1 5 7 \n",
+      "explanation": "The original program correctly sorts the input list in ascending order. However, the mutant code uses a TRAP_ON_ZERO macro in the for loop condition, which has no effect in this case. The mutation results in an incorrect output where the first two elements of the input list are swapped."
+    },
+    {
+      "input": [
+        9,
+        2,
+        6,
+        4,
+        8
+      ],
+      "original_output": "******** Sorted numbers: \n2 4 6 8 9 \n",
+      "mutant_output": "******** Sorted numbers: \n2 4 8 6 9 \n",
+      "explanation": "The original program correctly sorts the input list in ascending order. However, the mutant code has a different order of swapping elements, resulting in an incorrect output where 8 and 6 are swapped."
+    }
+  ]
+},{
+  "mutant_program": "muta342_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 \n",
+      "mutant_output": "Segmentation fault",
+      "explanation": "The mutant code adds a function call to TRAP_ON_NEGATIVE(), which is not defined. The function appears to return a negative value when the high parameter is negative. In this case, when the input has a descending order, the mutant code does not terminate and crashes with a segmentation fault error, while the original code sorts the list correctly."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 1 1 \n",
+      "mutant_output": "******** Sorted numbers: \n1 1 1 \n",
+      "explanation": "Both programs behave equivalently when the input has the same values."
+    },
+    {
+      "input": [
+        2,
+        1,
+        3,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 1 2 3 \n",
+      "mutant_output": "******** Sorted numbers: \n1 1 2 3 \n",
+      "explanation": "Both programs behave equivalently when the input has duplicates."
+    }
+  ]
+},{
+  "mutant_program": "muta343_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 \n",
+      "explanation": "The original code sorts the input array in ascending order using recursive selection sort algorithm, while the mutant code contains a trap function called TRAP_ON_ZERO that always returns 0 as its input. Therefore, the stopping condition of the for loop in the mutant code is always false, resulting in an incorrect sorting output. The provided test input is a descending ordered array, which can easily verify whether the program can correctly sort it in ascending order."
+    },
+    {
+      "input": [
+        10,
+        -5,
+        8,
+        0,
+        -3
+      ],
+      "original_output": "******** Sorted numbers: \n-5 -3 0 8 10 \n",
+      "mutant_output": "******** Sorted numbers: \n-5 0 8 10 \n",
+      "explanation": "The original output correctly sorts the input array in ascending order, while the mutant output only sorts part of the array correctly due to the same reason as before. The test input contains both positive and negative numbers, as well as zero, which can test if the program can correctly handle various input values with different signs."
+    }
+  ]
+},{
+  "mutant_program": "muta345_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3\n",
+      "mutant_output": "******** Sorted numbers: \n3 1 2\n",
+      "explanation": "The input array is in decreasing order, so the original program sorts it in ascending order as expected. The mutant program uses a trap function that modifies the index used in the comparison, causing it to sort the array in a wrong way."
+    },
+    {
+      "input": [
+        5,
+        4,
+        2,
+        3,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5\n",
+      "mutant_output": "******** Sorted numbers: \n5 4 3 1 2\n",
+      "explanation": "The input array is in decreasing order, so the original program sorts it in ascending order as expected. The mutant program uses a trap function that modifies the index used in the comparison, causing it to sort the array in a wrong way."
+    }
+  ]
+},{
+  "mutant_program": "muta346_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        9,
+        8,
+        7
+      ],
+      "original_output": "******** Sorted numbers: \n7 8 9 \n",
+      "mutant_output": "******** Sorted numbers: \n7 9 8 \n",
+      "explanation": "The original program correctly sorts the input array in ascending order. The mutated program introduces a call to the TRAP_ON_ZERO function, but this function is not defined in the code provided. Therefore, it is not clear what this function does, but it appears to introduce a non-deterministic behavior that causes the output to be different from the original program's output. This is evidenced by the fact that the mutant program produces a sorted array where the last two elements are reversed."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 \n",
+      "explanation": "The original program correctly sorts the input array in ascending order. The mutated program introduces a call to the TRAP_ON_ZERO function, which is not defined in the code provided. However, since the function call is always passed a value greater than zero, it has no effect on the program. Therefore, the mutant program produces the same output as the original program for this input."
+    },
+    {
+      "input": [
+        5,
+        2,
+        9,
+        1,
+        8
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 5 8 9 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 9 5 8 \n",
+      "explanation": "The original program correctly sorts the input array in ascending order. The mutated program introduces a call to the TRAP_ON_ZERO function, but this function is not defined in the code provided. Therefore, it is not clear what this function does, but it appears to introduce a non-deterministic behavior that causes the output to be different from the original program's output. This is evidenced by the fact that the mutant program produces a sorted array where the third and fourth elements are reversed."
+    }
+  ]
+},{
+  "mutant_program": "muta354_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "3",
+        "4"
+      ],
+      "original_output": "******** Sorted numbers: \n3 4 5 \n",
+      "mutant_output": "******** Sorted numbers: \n5 4 3 \n",
+      "explanation": "The original program sorts the list in ascending order, while the mutant program sorts the list in descending order due to the change in the way the min variable is updated inside the for loop. This can be observed in the different output obtained by running both programs with the same input."
+    },
+    {
+      "input": [
+        "-4",
+        "7",
+        "8",
+        "-2"
+      ],
+      "original_output": "******** Sorted numbers: \n-4 -2 7 8 \n",
+      "mutant_output": "******** Sorted numbers: \n-4 -2 8 7 \n",
+      "explanation": "The original and mutant programs both correctly sort the list in ascending order, despite the mutant program modifying the way the min variable is updated inside the for loop. Since the comparison operator < remains unchanged, the logic of the algorithm and the final result are not affected by this mutation."
+    }
+  ]
+},{
+  "mutant_program": "muta355_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 \n",
+      "mutant_output": "******** Sorted numbers: \n1 3 2 \n",
+      "explanation": "The original program correctly sorts the list in ascending order while the mutant program incorrectly swaps the second and third elements, resulting in a different output."
+    },
+    {
+      "input": [
+        4,
+        1,
+        3,
+        2
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 4 3 \n",
+      "explanation": "Both programs correctly sort the list in ascending order but with a different number of operations due to the mutation that adds a trap function call on the minimum value, resulting in a different output order."
+    }
+  ]
+},{
+  "mutant_program": "muta358_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "******** Sorted numbers: \n0 2 3 4 5 \n",
+      "explanation": "The original program sorts the input numbers and outputs them in ascending order. The mutant program contains a TRAP_ON_ZERO function call in the sorting loop which would change the behavior of the program. In this case the input has a value of zero, which is caught by the TRAP_ON_ZERO function and set to one, and as a result, the smallest number is found incorrectly, and the program outputs the sorted list with an incorrect value in the first element."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 1 1 1 1 \n",
+      "mutant_output": "******** Sorted numbers: \n1 1 1 1 1 \n",
+      "explanation": "Both programs sort the input numbers and output them in ascending order. In this case, the inputs are all the same value and no matter what value is assigned to the variable 'min' in the mutant program, the sorted list will always be the same and both programs will output the same value."
+    }
+  ]
+},{
+  "mutant_program": "muta360_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3\n",
+      "mutant_output": "******** Sorted numbers: \n3 2 1\n",
+      "explanation": "The original program correctly sorts the input array in ascending order, while the mutant program sorts the input array in descending order. This is due to the TRAP_ON_NEGATIVE function call in the mutant code that swaps indexOfMin with the result of the function call instead of just assigning i to indexOfMin."
+    },
+    {
+      "input": [
+        5,
+        4,
+        6,
+        3,
+        7
+      ],
+      "original_output": "******** Sorted numbers: \n3 4 5 6 7\n",
+      "mutant_output": "******** Sorted numbers: \n7 6 5 4 3\n",
+      "explanation": "Again, the original program sorts the input array in ascending order, while the mutant program sorts the array in descending order for the same reasons as before."
+    }
+  ]
+},{
+  "mutant_program": "muta361_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3.4,
+        5.6,
+        1.2,
+        0.0,
+        -1.0
+      ],
+      "original_output": "******** Sorted numbers: \n-1 0 1 3 5",
+      "mutant_output": "******** Sorted numbers: \n-1 0 1 3 5.6",
+      "explanation": "The original program sorts the array correctly, but the mutant program has a TRAP_ON_ZERO function call, which doesn't exist in C. As a result, it is likely a typo. However, the expression still evaluates as an assignment of i to indexOfMin without using parentheses, which alters the behavior of the program. In this case, the mutant program produces an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta363_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        -2,
+        3
+      ],
+      "original_output": "******** Sorted numbers: \n-2 3 5\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly sorts the input list in ascending order. The mutant program has a change in the sorting process that involves calling a non-existent function TRAP_ON_NEGATIVE() to access the list index, which leads to a compilation error. Therefore, the mutant program does not produce an output for the input list [5, -2, 3]."
+    },
+    {
+      "input": [
+        10,
+        0,
+        -7,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n-7 0 1 10\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly sorts the input list in ascending order. The mutant program has a change in the sorting process that involves assigning the value of list[low] to a different index using TRAP_ON_NEGATIVE(), which is not a valid function, and then swapping it with list[low]. This change is likely to affect the output of the sorting process, but it is not possible to confirm since the mutant program does not compile. Therefore, there is no output for the input list [10, 0, -7, 1]."
+    }
+  ]
+},{
+  "mutant_program": "muta364_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        3,
+        1,
+        4
+      ],
+      "original_output": "1 2 3 4 5",
+      "mutant_output": "5 2 3 1 4",
+      "explanation": "The original program correctly sorts the list in ascending order, while the mutant code has a new statement that uses an undefined function TRAP_ON_ZERO() to swap elements, which results in the list not being sorted correctly."
+    },
+    {
+      "input": [
+        10,
+        40,
+        20,
+        30
+      ],
+      "original_output": "10 20 30 40",
+      "mutant_output": "10 20 30 40",
+      "explanation": "This test serves as an additional confirmation that the mutant code is not equivalent to the original one, since it correctly sorts the list in ascending order in both programs. This was expected due to the random and non-deterministic nature of the changes introduced by the mutant code."
+    }
+  ]
+},{
+  "mutant_program": "muta366_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 \n",
+      "mutant_output": "******** Sorted numbers: \n2 1 3 \n",
+      "explanation": "The original program correctly sorts the input list in ascending order, while the mutant program swaps the values of list[indexOfMin] and list[TRAP_ON_NEGATIVE(low)], which can cause incorrect sorting. When running the test with input [3,2,1], the original program returns sorted list [1,2,3], while the mutant program returns [2,1,3], showing that the mutant program is not equivalent to the original."
+    },
+    {
+      "input": [
+        10,
+        -5,
+        7
+      ],
+      "original_output": "******** Sorted numbers: \n-5 7 10 \n",
+      "mutant_output": "******** Sorted numbers: \n-5 7 10 \n",
+      "explanation": "Both the original and the mutant program correctly sort the input list in ascending order. The difference in the mutant program did not affect the sorting process when running the test with input [10, -5, 7], producing the same sorted list as the original program [ -5 7 10]."
+    }
+  ]
+},{
+  "mutant_program": "muta372_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "4.5",
+        "-2.0",
+        "6.3",
+        "0"
+      ],
+      "original_output": "******** Sorted numbers: \n-2 0 4 6 ",
+      "mutant_output": "******** Sorted numbers: \n0 -2 4 6 ",
+      "explanation": "The original program sorts the input array in ascending order, while the mutant program sorts it in ascending order but with negative numbers first instead of positive ones. This can be observed in the given test set."
+    }
+  ]
+},{
+  "mutant_program": "muta378_RecursiveSelectionSort.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta381_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "3",
+        "1",
+        "2",
+        "4",
+        "5"
+      ],
+      "original_output": "\n******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "\n******** Sorted numbers: \n1 2 3 4 5 \n",
+      "explanation": "Both programs perform the same sorting algorithm, but the mutant code includes a function call to TRAP_ON_NEGATIVE on line 20, which is not present in the original code. This could potentially change the behavior if TRAP_ON_NEGATIVE modifies its argument in a way that affects the sorting algorithm, but in this case it does not."
+    }
+  ]
+},{
+  "mutant_program": "muta382_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5.7,
+        2.3,
+        4.1,
+        1.0
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 4 5 ",
+      "mutant_output": "******** Sorted numbers: \n1 2 4.1 5.7 ",
+      "explanation": "The original program sorts the list in ascending order, while the mutant program only sorts the list partially. Specifically, it performs a recursive selection sort from low + 1 to high with an additional condition of TRAP_ON_ZERO(high) on the high end of the list."
+    }
+  ]
+},{
+  "mutant_program": "muta388_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        2,
+        3,
+        5,
+        1
+      ],
+      "original_output": "1 2 3 4 5 ",
+      "mutant_output": "1 2 3 4 5 ",
+      "explanation": "The input is unsorted, but both the original program and the mutant program output the same sorted list, so they are equivalent."
+    },
+    {
+      "input": [
+        10,
+        7,
+        9,
+        3,
+        5
+      ],
+      "original_output": "3 5 7 9 10 ",
+      "mutant_output": "7 10 9 5 3 ",
+      "explanation": "The input is unsorted, and the original program correctly sorts the list in ascending order. However, the mutant program's if statement conditions (low < indexOfMin instead of low < high) are wrong and cause the program to not sort the list correctly. As seen by the different output, the mutant program is not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta405_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 3 5 \n",
+      "mutant_output": "******** Sorted numbers: \n3 5 1 \n",
+      "explanation": "The original program correctly sorts the list and prints the result. The mutant program made a non-deterministic change in the loop statement by setting i=low without any reason, which could potentially change the final result depending on the initial order of the list. Therefore, the mutant program outputs a different result than the original program."
+    },
+    {
+      "input": [
+        8,
+        2,
+        6
+      ],
+      "original_output": "******** Sorted numbers: \n2 6 8 \n",
+      "mutant_output": "******** Sorted numbers: \n2 6 8 \n",
+      "explanation": "Both programs correctly sort the list in ascending order and produce the same output, so they are equivalent."
+    },
+    {
+      "input": [
+        9,
+        1,
+        7
+      ],
+      "original_output": "******** Sorted numbers: \n1 7 9 \n",
+      "mutant_output": "******** Sorted numbers: \n7 9 1 \n",
+      "explanation": "The original program sorts the list correctly, but the mutant program made a non-deterministic change in the loop statement by starting the loop from low+1 instead of low, which could potentially change the final result depending on the initial order of the list. Therefore, the mutant program outputs a different result than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta406_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 3 5 \n",
+      "mutant_output": "******** Sorted numbers: \n1 3 5 0 0 \n",
+      "explanation": "The original program correctly sorts the input list in ascending order. The mutant program also generates a sorted list, but two additional '0's are appended to the end of the output list, indicating that the sorting operation went beyond the length of the input list and accessed unallocated memory."
+    },
+    {
+      "input": [
+        9,
+        7,
+        5,
+        3
+      ],
+      "original_output": "******** Sorted numbers: \n3 5 7 9 \n",
+      "mutant_output": "******** Sorted numbers: \n3 5 7 9 0 \n",
+      "explanation": "The original program correctly sorts the input list in ascending order. The mutant program also generates a sorted list, but one additional '0' is appended to the end of the output list, indicating that the sorting operation went beyond the length of the input list and accessed unallocated memory."
+    },
+    {
+      "input": [
+        2,
+        8,
+        4,
+        6
+      ],
+      "original_output": "******** Sorted numbers: \n2 4 6 8 \n",
+      "mutant_output": "******** Sorted numbers: \n2 4 6 8 0 \n",
+      "explanation": "The original program correctly sorts the input list in ascending order. The mutant program also generates a sorted list, but one additional '0' is appended to the end of the output list, indicating that the sorting operation went beyond the length of the input list and accessed unallocated memory."
+    }
+  ]
+},{
+  "mutant_program": "muta409_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        2,
+        7,
+        6
+      ],
+      "original_output": "Sorted numbers: \n2 3 5 6 7\n",
+      "mutant_output": "Sorted numbers: \n2 3 5 6 7\n",
+      "explanation": "The original and mutant codes have the same output, indicating that the mutant code did not introduce any changes that affect the behavior of the code. The only difference is the removal of an unused variable assignment line."
+    },
+    {
+      "input": [
+        9,
+        2,
+        1,
+        4,
+        6
+      ],
+      "original_output": "Sorted numbers: \n1 2 4 6 9\n",
+      "mutant_output": "Sorted numbers: \n1 2 9 4 6\n",
+      "explanation": "The outputs of the original and mutant codes are different, indicating that the mutant code introduced a behavior change. The mutant code changed the order of the list elements, which indicates that the variable assignment line 'indexOfMin = indexOfMin' introduced a bug that affected the sorting algorithm."
+    }
+  ]
+},{
+  "mutant_program": "muta417_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3\n",
+      "mutant_output": "******** Sorted numbers: \n1 3 2\n",
+      "explanation": "The original program correctly sorts the input list in ascending order. The mutation changes the initialization of the variable i in the for loop to (i = (indexOfMin + 1)), which causes the sorted list to have a different order for some input. For example, for input [3, 1, 2], the original program sorts it to [1, 2, 3] while the mutated program sorts it to [1, 3, 2]."
+    },
+    {
+      "input": [
+        5,
+        2,
+        1,
+        4,
+        3
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5\n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 5 4\n",
+      "explanation": "Similar to the previous test, the mutation causes a different order of the sorted list from the original program for some input. For input [5, 2, 1, 4, 3], the original program sorts it to [1, 2, 3, 4, 5] while the mutated program sorts it to [1, 2, 3, 5, 4]."
+    }
+  ]
+},{
+  "mutant_program": "muta43_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "1 2 3 4 ",
+      "mutant_output": "1 2 3 4 ",
+      "explanation": "Both programs should output the same sorted list for this input"
+    },
+    {
+      "input": [
+        10,
+        20,
+        5,
+        15
+      ],
+      "original_output": "5 10 15 20 ",
+      "mutant_output": "10 15 5 20 ",
+      "explanation": "For this input, the original program correctly sorts the list, but the mutated program does not. The changed line '(indexOfMin = (-1)) ;' causes the index of the minimum value to never be properly updated, resulting in incorrect sorting."
+    }
+  ]
+},{
+  "mutant_program": "muta44_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5.5,
+        8.2,
+        1.3,
+        -4.0,
+        6.1
+      ],
+      "original_output": "******** Sorted numbers: \n-4 1 5 6 8 ",
+      "mutant_output": "******** Sorted numbers: \n-4 1 5 8 6 ",
+      "explanation": "The mutant code initializes indexOfMin as the maximum integer value, __MAXINT__, instead of the index of the first element of the subarray being sorted. This causes the first element to be initially incorrectly swapped with itself and not with the correct minimum value. The test set includes positive, negative, and fractional numbers to cover a wide range of cases."
+    }
+  ]
+},{
+  "mutant_program": "muta505_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        7,
+        1,
+        8,
+        6
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 5 6 7 8 \n",
+      "mutant_output": "",
+      "explanation": "The original program sorts the list in ascending order, while the mutant program produces no output. The reason is that the mutant program modifies the original code by adding an unnecessary if-statement with a predicate logic that is always true. The condition that it checks, 'PRED(low) < high', is always true for any value of low and high, where PRED is an arbitrary constant, so the sorting procedure will not execute any swaps or recursive calls and fail to sort the list."
+    },
+    {
+      "input": [
+        21.3,
+        15.6,
+        19.8,
+        26.9,
+        37.5
+      ],
+      "original_output": "******** Sorted numbers: \n15 19 21 26 37 \n",
+      "mutant_output": "",
+      "explanation": "The original program sorts the list in ascending order, finding the smallest number iteratively and swapping it with the leftmost number in the unsorted sublist. The mutant code differs by replacing the if-statement inside the loop with its negation, so it tries to find the largest number instead of the smallest. However, this creates incorrect sorting, as the largest number may not necessarily belong at the end of the list, as it depends on the input. Therefore, the mutant and the original programs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta506_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 4 \n",
+      "explanation": "The test set has numbers in a descending order, but both the original program and the mutant program output the sorted list in ascending order. However, the implementation of the loop condition is different, making the mutant code non-equivalent to the original code."
+    },
+    {
+      "input": [
+        5,
+        1,
+        4,
+        2,
+        3
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "explanation": "The test set has random numbers, but both the original program and the mutant program output the sorted list in ascending order. However, the implementation of the loop condition is different, making the mutant code non-equivalent to the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta508_RecursiveSelectionSort.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        2,
+        4,
+        1
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 4 5 \n",
+      "explanation": "Both programs sort the input array in ascending order, so they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta515_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "3",
+        "2",
+        "1"
+      ],
+      "original_output": "******** Sorted numbers: \n1 2 3 \n",
+      "mutant_output": "******** Sorted numbers: \n1 2 3 \n",
+      "explanation": "Both programs will output the same result as the mutation only changes the initialization of the for loop variable i, by subtracting 1 from low before incrementing his value by 1."
+    },
+    {
+      "input": [
+        "100",
+        "200",
+        "50",
+        "150"
+      ],
+      "original_output": "******** Sorted numbers: \n50 100 150 200 \n",
+      "mutant_output": "******** Sorted numbers: \n50 100 200 150 \n",
+      "explanation": "In this case, the mutant code will produce a different result as the mutation changes the way the sorting is done. By not using the correct index for the lowest value in the sublist, it makes an incorrect swap in the list and generates different output."
+    }
+  ]
+},{
+  "mutant_program": "muta523_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        2
+      ],
+      "original_output": "2 3 5 \n",
+      "mutant_output": "2 5 3 \n",
+      "explanation": "The original program sorts the input array in ascending order using recursive selection sort. The first test case consists of an unsorted array [5, 3, 2]. The original program sorts the array to [2, 3, 5] and prints it to the console. The mutant code, however, uses a predicate function (PRED) instead of the less than operator in the if statement of the sort function, which yields a different comparison between the elements of the array. This results in the array [2, 5, 3] being printed to the console instead of the sorted array. "
+    },
+    {
+      "input": [
+        7,
+        1,
+        9,
+        4,
+        3
+      ],
+      "original_output": "1 3 4 7 9 \n",
+      "mutant_output": "1 3 4 9 7 \n",
+      "explanation": "The second test case is another example of an unsorted array. The original program sorts the array to [1, 3, 4, 7, 9], while the mutant program sorts it to [1, 3, 4, 9, 7]. This again indicates that the predicate function (PRED) used in the mutant program, results in mutated behavior of the original sorting algorithm, causing it to produce different output than intended. "
+    }
+  ]
+},{
+  "mutant_program": "muta526_RecursiveSelectionSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        7,
+        2,
+        8
+      ],
+      "original_output": "******** Sorted numbers: \n2 3 5 7 8 \n",
+      "mutant_output": "******** Sorted numbers: \n7 3 5 2 8 \n",
+      "explanation": "The original and mutant programs are not equivalent. The mutant replaces min with SUCC(min), which increments the value of min by 1. This results in the mutated program sorting the list in descending order, as seen in the mutant output. The original program sorts the list in ascending order, as seen in the original output."
+    }
+  ]
+}]
