@@ -1,1 +1,900 @@
-[{"mutant_program": "muta0_trashAndTakeOut.c", "equivalent": false, "tests": [{"input": [6], "original_output": "o is: 504\n", "mutant_output": "o is: 252\n", "explanation": "The original output is achieved by passing an integer greater than 5 to the trash function, which results in the value of 'o' being computed as 504. However, in the mutant code, the initial value of 'm' is set to 4, and is never updated since the if condition (x > 0) is always true. Therefore, the computed value of 'o' is incorrect and results in a different output than the original program."}, {"input": [-1], "original_output": "o is: 168\n", "mutant_output": "o is: 84\n", "explanation": "The original output is achieved by passing an integer less than or equal to 0 to the trash function, which results in the value of 'o' being computed as 168. However, in the mutant code, the initial value of 'm' is set to 4, and is never updated since the if condition (x > 0) is always true. Therefore, the computed value of 'o' is incorrect and results in a different output than the original program."}]}]
+[{
+  "mutant_program": "muta10_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 48",
+      "mutant_output": "o is: 36",
+      "explanation": "For the original program, since 6 is greater than 5, m is set to 4, then n is set to 3 * m = 12 and o is calculated as takeOut(4, 12) = 48. For the mutant program, since 6 is greater than 4, m is set to 4, then n is set to 3 * m = 12 and o is calculated as takeOut(4, 12) = 36. Therefore, the outputs for these inputs are different."
+    },
+    {
+      "input": [
+        -3
+      ],
+      "original_output": "o is: 134",
+      "mutant_output": "o is: 124",
+      "explanation": "For inputs less than or equal to 0, both programs will set m to 0 and n to 4 * m = 0. Then, o is calculated as takeOut(0, 0) = 0 + (42 * 0) = 0. Therefore, the outputs for these inputs are the same. "
+    },
+    {
+      "input": [
+        9
+      ],
+      "original_output": "o is: 108",
+      "mutant_output": "o is: 81",
+      "explanation": "For the original program, since 9 is greater than 5, m is set to 4, then n is set to 3 * m = 12 and o is calculated as takeOut(4, 12) = 48. For the mutant program, since 9 is greater than 4, m is set to 4, then n is set to 3 * m = 12 and o is calculated as takeOut(4, 12) = 36. Therefore, the outputs for these inputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta121_trashAndTakeOut.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta124_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 8",
+      "explanation": "The mutation changed the initialization of variable m to (m += 0), which does not change the value of m and makes the first if statement always false, resulting in m being 0 and n being 0, so the value of o is different in the mutant program."
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 48",
+      "mutant_output": "o is: 72",
+      "explanation": "The mutation does not affect the value of m or n, so the output of takeOut function is the only thing that changed, resulting in a different value for o."
+    }
+  ]
+},{
+  "mutant_program": "muta125_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 0\n",
+      "mutant_output": "o is: 0\n",
+      "explanation": "When x is 0, both the original and mutant will output 'o is: 0'\n"
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 48\n",
+      "mutant_output": "o is: 16\n",
+      "explanation": "When x is 6, the original output is 'o is: 48', but the mutant output is 'o is: 16'. This is because the mutant code has a non-deterministic change that modifies the value of m, causing different computations in takeOut(), and therefore a different output.\n"
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "o is: 0\n",
+      "mutant_output": "o is: 0\n",
+      "explanation": "When x is -1, both the original and mutant will output 'o is: 0'\n"
+    }
+  ]
+},{
+  "mutant_program": "muta129_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "o is: 84\n",
+      "mutant_output": "o is: 80\n",
+      "explanation": "The original code sets the value of m to 4 when x is greater than 0, while the mutant code increments the value of m by 4. When x is 1, the original code sets m to 4 and calculates n as 3 times 4 which is 12. Then it passes m = 4 and n = 12 to takeOut function. The mutant code, however, sets m to 0 and then increments it to 4 and calculates n as 4 times 4 which is 16. Then it passes m = 4 and n = 16 to takeOut function, causing the output to be different."
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 504\n",
+      "mutant_output": "o is: 504\n",
+      "explanation": "Both the original and mutant code sets m to 4 and n to 12 and then pass them to the takeOut function. Since the mutant code does not affect the calculation of takeOut method, the outputs are the same."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 0\n",
+      "mutant_output": "o is: 0\n",
+      "explanation": "Both the original and mutant code sets m to 0 and n to 0 and then pass them to the takeOut function. Since the mutant code does not affect the calculation of takeOut method, the outputs are the same."
+    }
+  ]
+},{
+  "mutant_program": "muta12_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "o is: 1008",
+      "mutant_output": "o is: 0",
+      "explanation": "The original program will set the value of n to 12 (3*4) since x > 5 is true. The mutant program will set the value of n to 0, which will affect the calculation of e in takeOut. Therefore, the output of the programs will be different."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "Both programs will set the value of n to 0, which will affect the calculation of e in takeOut. Therefore, the output of the programs will be the same."
+    }
+  ]
+},{
+  "mutant_program": "muta125_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "The original program sets m to 0. The mutant program modifies this line to \u2018(m -= 0)\u2019 which has no effect on the value of m. Thus, both programs output the same value."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": 56,
+      "mutant_output": 58,
+      "explanation": "For x=2, the original program computes m=4 and n=16. The function call takeOut(m,n) returns 56 which is printed to the screen. The mutant program modifies the line \u2018n = 4 * m;\u2019 to \u2018n = 4 * m + 2;\u2019 which makes n=18. Therefore, takeOut(m,n) returns 58 which is printed to the screen when running the mutant program."
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": 210,
+      "mutant_output": 230,
+      "explanation": "For x=-5, the original program computes m=0 and n=0. The function call takeOut(m,n) returns 210 which is printed to the screen. The mutant program modifies the line \u2018n=4*m;\u2019 to \u2018n=4*m+20;\u2019 which makes n=20. Therefore, takeOut(m,n) returns 230 which is printed to the screen when running the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta146_trashAndTakeOut.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta147_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "o is: 764",
+      "mutant_output": "o is: 1528",
+      "explanation": "The original program sets m to 4 because x > 0. The mutant sets m to 0, but then uses a bitwise XOR with 0, which does not change the value of m. Therefore, m is effectively set to 4 in both programs. However, the mutant program calculates n as 3 * m instead of 4 * m because the condition x > 5 is not satisfied. This leads to a different value of o being returned by the takeOut function, and thus different output."
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "o is: 168",
+      "mutant_output": "o is: 56",
+      "explanation": "In the original program, m is set to 0 because x is not greater than 0. In the mutant program, m is again set to 0 using the bitwise XOR with 0. However, the if condition on line 7 is not satisfied, so n is set to 4 * m instead of 3 * m. This leads to a different value of o being calculated by the takeOut function and thus a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta148_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 42",
+      "explanation": "When m is initialized as 0 in the original program code, it always takes the else statement, resulting in n and o being 0. In the mutant code, m is OR-ed with 0, which doesn't change its value, but it causes the condition 'if (a > 0)' in takeOut to be true, resulting in a different output."
+    },
+    {
+      "input": [
+        7
+      ],
+      "original_output": "o is: 42",
+      "mutant_output": "o is: 574",
+      "explanation": "In this test case, m is assigned 4 and n is assigned 12 because x > 5. The value of m is passed to takeOut, which multiplies it by 42 and assigns it to d. Since m is greater than 0, e is assigned 2 * n + d, resulting in e being 66. In the mutant code, m is assigned 0 at the beginning due to the bitwise OR with 0. n is still assigned 12, but since m is now 0, e is assigned b + d, resulting in e being 504. Therefore, the outputs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta150_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "o is: 53160",
+      "mutant_output": "o is: 212232",
+      "explanation": "The original code sets the value of m to 4 when x > 0. The mutant code uses a bitwise XOR operator to toggle the value of m between 0 and 4 when x > 0. This means that when x > 0, m will be 4 in the original code and either 0 or 4 in the mutant code. This difference is reflected in the output of the takeOut function and results in different values for 'o'."
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "In this test case, x is negative, so neither code sets the value of m to 4. Instead, m remains 0 and the value of 'o' is 0 in both the original and mutant code."
+    },
+    {
+      "input": [
+        7
+      ],
+      "original_output": "o is: 360684",
+      "mutant_output": "o is: 771912",
+      "explanation": "Similar to the first test case, the value of m is different between the original and mutant code when x > 0. This difference is reflected in the output of the takeOut function and results in different values for 'o'."
+    }
+  ]
+},{
+  "mutant_program": "muta151_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "o is: 0\n",
+      "mutant_output": "o is: 0\n",
+      "explanation": "Both programs behave equivalently when provided with a negative input for function trash(). The output is o is: 0."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "o is: 48\n",
+      "mutant_output": "o is: 48\n",
+      "explanation": "Both programs behave equivalently when provided with a positive input (3) for function trash(). The output is o is: 48."
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 48\n",
+      "mutant_output": "o is: 144\n",
+      "explanation": "Providing an input of 6 for function trash() results in different outputs for the original and mutant programs. The original program computes n as 4 * m, while the mutant program uses a bitwise OR to set the value of m to 4. This leads to the mutant program computing n as 3 * 4 = 12 * 4 = 48. However, the original program computes n as 4 * 4 = 16. The resulting output for the original program is o is: takeOut(4,16) = 112. The resulting output for the mutant program is o is: takeOut(4,48) = 210."
+    }
+  ]
+},{
+  "mutant_program": "muta161_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "o is: 504",
+      "mutant_output": "o is: 168",
+      "explanation": "The original program sets m to 4 and therefore calculates n as 3 times 4, which is 12. The mutant code shorts m to 0 by shifting it left by 0, which does not change m's value. As a result, n is calculated as 0, which leads to a different output from the original program."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "Both programs should produce the same output when given 0 as input, since m is 0 and n is calculated as 4 times m in both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta162_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": "o is: 564",
+      "mutant_output": "o is: 432",
+      "explanation": "The mutant program modifies the trash function by introducing a bitwise right shift operator that shifts the value of m by 0. This change does not affect the functionality of the program, and both the original and mutant program produce the same output for this input. "
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 210",
+      "explanation": "The original program sets m to zero when x is less than 1 and does not define any value for n in this case. However, the mutant program modifies the trash function by introducing a bitwise right shift operator that shifts the value of m by 0. This change has the effect of masking the value of m, which results in setting m to 0 for all inputs. As a consequence, the value of n is always 4m. For this input (-5), m=0, n=0, and e=d=0 in the mutant program. In contrast, the original program sets m=0, n is undefined, and o=0 in this case."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "o is: 504",
+      "mutant_output": "o is: 504",
+      "explanation": "The mutant program modifies the trash function by introducing a bitwise right shift operator that shifts the value of m by 0. This change does not affect the functionality of the program, and both the original and mutant program produce the same output for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta18_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 36",
+      "mutant_output": "o is: 24",
+      "explanation": "The original program will set m=4 and n=12 if x=6, while the mutant program will set m=4 and n=16. So, the outputs will be different."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "o is: 84",
+      "mutant_output": "o is: 60",
+      "explanation": "The original program will set m=4 and n=12 if x=3, while mutant program will set m=4 and n=16. So, the outputs will be different."
+    }
+  ]
+},{
+  "mutant_program": "muta201_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 48",
+      "mutant_output": "o is: 72",
+      "explanation": "For the original code, since x is greater than 5, n will be computed as 3*m=3*4=12 and then o will be computed as takeOut(4, 12)=48. However, for the mutant code, m is computed as 4 since x>=0, then n is computed as 3*m=3*4=12 and then o is computed as takeOut(4, 12)=72. Therefore, the outputs are different."
+    },
+    {
+      "input": [
+        -3
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 168",
+      "explanation": "For the original code, since x is negative, m remains equal to 0 and n is computed as 4*m=4*0=0, then o is computed as takeOut(0, 0)=0. However, for the mutant code, m is computed as 4 since x>=0, then n is computed as 4*m=4*4=16 and then o is computed as takeOut(4, 16)=168. Therefore, the outputs are different."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "For both the original and mutant code, since x is equal to 0, m is computed as 4 and then n is computed as 4*m=4*4=16, then o is computed as takeOut(4, 16)=64. Therefore, the outputs are the same."
+    }
+  ]
+},{
+  "mutant_program": "muta222_trashAndTakeOut.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta251_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "Both programs have the same output since n and m start as 0 when x = 0"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "o is: 507",
+      "mutant_output": "o is: 252",
+      "explanation": "For x = 3, the original program sets m=4 and n=16, while the mutant program sets m=4 and n=252, as a result, the outputs are different."
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 24",
+      "mutant_output": "o is: 24",
+      "explanation": "Both programs have the same output since n and m start as 0 when x = 0"
+    }
+  ]
+},{
+  "mutant_program": "muta252_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 84",
+      "mutant_output": "o is: 146",
+      "explanation": "For input 0, the original program assigns m=0 and n=4. However, the mutant program uses the TRAP_ON_ZERO macro to trap any access to m with the value of zero and return a value of 1, which is then used to calculate n=3*1=3. Thus, the mutant program returns a different value for n and ultimately a different value for o."
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 168",
+      "mutant_output": "o is: 168",
+      "explanation": "For input 6, both the original and mutant programs assign m=4 and n=12. Therefore, they produce the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta254_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "Both original and mutant program output the same value because the input is less than or equal to zero, making the if condition false and n being assigned the value of 4*m."
+    },
+    {
+      "input": [
+        7
+      ],
+      "original_output": "o is: 614",
+      "mutant_output": "o is: 834",
+      "explanation": "The original program computes n = 3 * m because x is greater than 5. The mutant program, however, runs the function TRAP_ON_NEGATIVE on m before assigning it to n. since m is greater than zero, the value assigned is the same, but multiplied by 2, resulting in a different output from the original program."
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "Both original and mutant program output the same value because the input is less than or equal to zero, making the if condition false and n being assigned the value of 4*m."
+    }
+  ]
+},{
+  "mutant_program": "muta257_trashAndTakeOut.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta260_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "When x is 0, n will be equal to m * 4. In the original code, o will also be equal to 0, since takeOut() will return 0. In the mutant code, however, TRAP_ON_NEGATIVE() will be applied to n, but since n is always positive, it will not affect the result, making the outputs of both programs the same."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "o is: 336",
+      "mutant_output": "",
+      "explanation": "When x is 4, n will be equal to m * 4. Since m is assigned to 4, n = 16. In the original code, takeOut() will receive 4 and 16 as arguments, returning 808. In the mutant code, TRAP_ON_NEGATIVE() will be applied to n, resulting in a negative value (-48), which will be sent to takeOut(). Since takeOut() has no provisions for negative values, it will fall on the else branch, resulting in a return of n + d = -48 + 168 = 120. Therefore, the outputs of both programs are different."
+    },
+    {
+      "input": [
+        -2
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "",
+      "explanation": "When x is -2, m will be equal to 0. Then, n will also be equal to 0, since m is not greater than 5. In the original code, takeOut() will receive 0 and 0 as arguments, returning 0. In the mutant code, TRAP_ON_NEGATIVE() will be applied to n, resulting in a negative value (-8), which will be sent to takeOut(). Since takeOut() has no provisions for negative values, it will fall on the else branch, resulting in a return of n + d = -8 + 0 = -8. Therefore, the outputs of both programs are different."
+    }
+  ]
+},{
+  "mutant_program": "muta263_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "o is: 84",
+      "mutant_output": "o is: 84",
+      "explanation": "The output of both programs is the same as the mutation does not affect the functionality of the program."
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 36",
+      "mutant_output": "o is: -36",
+      "explanation": "When x>5, original program calculates n=3*m and calls takeOut with m=4. In the mutant code, TRAP_ON_NEGATIVE(o) is passed as an argument to printf. This is equivalent to just passing o to printf since o is always a positive integer as it is returned by takeOut. Both programs should behave the same for this input. However, the mutant program outputs -36 instead of the expected 36, suggesting that the mutation damaged the program."
+    },
+    {
+      "input": [
+        -3
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "Both programs should behave the same for this input as x<=0 and the output of takeOut is not negative. The output of both programs is 0 since m=0 and n=0."
+    }
+  ]
+},{
+  "mutant_program": "muta265_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant code produce the same output for input x=0."
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": 24,
+      "mutant_output": 0,
+      "explanation": "For input x=6, original code assigns n=12 (3*4) and mutant code assigns n=0. This results in different outputs."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": 42,
+      "mutant_output": 42,
+      "explanation": "Both original and mutant code produce the same output for input x=-1."
+    }
+  ]
+},{
+  "mutant_program": "muta266_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 48\n",
+      "mutant_output": "o is: 32\n",
+      "explanation": "For input 6, the original program sets m to 4 and n to 12. The mutant program sets o to 0, which does not affect the output. However, since m is not initialized in the mutant program, both n and o are set to 0, resulting in a different output."
+    },
+    {
+      "input": [
+        -2
+      ],
+      "original_output": "o is: 0\n",
+      "mutant_output": "o is: -84\n",
+      "explanation": "For input -2, both programs set m to 0 and n to 0. However, in the mutant program, the value of d is set to -84, which results in a different output when the value of a is 0."
+    }
+  ]
+},{
+  "mutant_program": "muta31_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": 336,
+      "mutant_output": 78,
+      "explanation": "When input is 0, the original program sets m = 0 and takes a different branch as compared to mutant program where the value of n is directly set to 12 instead of 4 * m, causing different output."
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": 384,
+      "mutant_output": 78,
+      "explanation": "When input is 6, the original program sets m = 4 and n = 8, and then proceeds to calculate the value of 'o' using takeOut function. However, the mutant program sets the value of n to directly be 12, causing different output."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": 42,
+      "mutant_output": 42,
+      "explanation": "When input is negative, both original and mutant program take the same branch and the output remains the same."
+    }
+  ]
+},{
+  "mutant_program": "muta505_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3
+      ],
+      "original_output": "o is: 306",
+      "mutant_output": "o is: 30",
+      "explanation": "For the original program, since x=3 is greater than 0, m=4. Since x=3 is less than 5, n=4*m=16. Then, o=takeOut(4,16)=306. Hence, the output is 'o is: 306'. For the mutant code, the only difference is the condition in the if-statement in takeOut function, which is (a>=0) instead of (a>0). In this case, the value of m is still 4, but n=2*b+d=74 since the second condition in the if-statement is met. Then, o=takeOut(4,74)=30. Hence, the output is 'o is: 30', which is different from the original program."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "For x=0, m=0, and n=4*m=0 for both original and mutant programs. Then, o=takeOut(0,0)=0. Hence, the output is 'o is: 0' for both original and mutant programs. Therefore, the mutant code is still correct for the given input."
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "o is: -420",
+      "mutant_output": "o is: -421",
+      "explanation": "For the original program, since x=-5 is less than or equal to 0, m=0. Then, n=4*m=0. Then, o=takeOut(0,0)=0+d since the first condition in the if-statement is met. Then, o=42*0+0=0. Hence, the output is 'o is: 0'. For the mutant code, the value of m is still 0, but n=b+d=-42 since the first condition in the if-statement is met. Then, o=takeOut(0,-42)=2*-42+0=-84. Hence, the output is 'o is: -84', which is different from the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta518_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "When x = 0, m is assigned 0 and n is assigned 0, which results in the same takeOut function call and therefore the outputs are equivalent."
+    },
+    {
+      "input": [
+        7
+      ],
+      "original_output": 588,
+      "mutant_output": 602,
+      "explanation": "When x = 7, m is assigned 4 and n is assigned 12, which results in different values being passed to takeOut function. In the original code, the value of e is 588, whereas in mutant code, the value of e is 602, which shows that the mutant code is not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta535_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2
+      ],
+      "original_output": "o is: 360\n",
+      "mutant_output": "o is: 316\n",
+      "explanation": "The mutant code replaces the calculation of 2*b with TRAP_ON_NEGATIVE(b), which is not defined in the program. In this case, n evaluates to 0 since x <= 5 and m = 0. Therefore, b is 0 and the mutant code passes 0 to TRAP_ON_NEGATIVE, which results in undefined behavior. The original program does not have this issue and correctly returns o = 360."
+    },
+    {
+      "input": [
+        -6
+      ],
+      "original_output": "o is: 0\n",
+      "mutant_output": "o is: 252\n",
+      "explanation": "Both programs return different outputs for this test. In the original program, x <= 0 so m is 0 and e is 0. In the mutant code, a <= 0 so e = b + d = 0 + 0 = 0, which is incorrect. This is because the change made in the mutant code only affects the calculation of e when a > 0. Therefore, the mutant code is not equivalent to the original program."
+    },
+    {
+      "input": [
+        7
+      ],
+      "original_output": "o is: 504\n",
+      "mutant_output": "o is: 1260\n",
+      "explanation": "Both programs return different outputs for this test. In the original program, x > 5 so n = 3 * m = 3 * 4 = 12 and e = 2 * n + d = 2 * 12 + 42 * 4 = 108. In the mutant code, e = TRAP_ON_NEGATIVE(3 * m) + d = TRAP_ON_NEGATIVE(3 * 4) + 42 * 4 = undefined behavior. This is because the mutant code uses TRAP_ON_NEGATIVE instead of the correct calculation of e like the original program. Therefore, the mutant code is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta536_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        12
+      ],
+      "original_output": 144,
+      "mutant_output": 300,
+      "explanation": "The original program calculates 'e' using 2*b+d. The mutant program uses TRAP_ON_ZERO macro on 'b', which will either be 0 or a non-zero value. If 'b' is non-zero, the mutant program will calculate (2*b+d) and assign to 'e'. But if 'b' is 0, it will execute the trap, which means the program will terminate abnormally. Running the test input [2,12], 'b' is non-zero and so the original program and mutant program will be different."
+    },
+    {
+      "input": [
+        0,
+        100
+      ],
+      "original_output": 4200,
+      "mutant_output": "abnormal termination",
+      "explanation": "The original program calculates 'e' using b+d. The mutant program uses TRAP_ON_ZERO macro on 'b', which will either be 0 or a non-zero value. If 'b' is non-zero, the mutant program will calculate (2*b+d) and assign to 'e'. But if 'b' is 0, it will execute the trap, which means the program will terminate abnormally. Running the test input [0,100], 'b' is 0 and so the mutant program will terminate abnormally before producing the output."
+    }
+  ]
+},{
+  "mutant_program": "muta538_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: -42",
+      "explanation": "In the original program, if a is less than or equals to 0, e is assigned as b + d. However, in the mutant program, even if a is negative, the value of d is still used to calculate e. Therefore, the output of the original and the mutant program is different for this input."
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": "o is: 12",
+      "mutant_output": "o is: 48",
+      "explanation": "In the original program, if x is greater than 5, n is assigned as 3 * m, which is 3 * 4 = 12. However, in the mutant program, the calculation of e is changed to ((2 * b) + TRAP_ON_NEGATIVE(d)), which is equivalent to (2 * n + 42 * a). Therefore, if x is greater than 5, the value of o is calculated as takeOut(4, 2 * 12 + 42 * 4) = 48 in the mutant program. This is different than the value of o calculated in the original program, which is 12."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "o is: 12",
+      "mutant_output": "o is: 12",
+      "explanation": "In the original program, if x is less than or equals to 5, n is assigned as 4 * m, which is 4 * 4 = 16. However, in the mutant program, the calculation of e is changed to ((2 * b) + TRAP_ON_NEGATIVE(d)), which is equivalent to (2 * n + 42 * a). Therefore, if x is less than or equals to 5, the value of o is calculated as takeOut(4, 2 * 16 + 42 * 4) = 12 in both the original and the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta539_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "o is: 588",
+      "mutant_output": "o is: 1324",
+      "explanation": "The mutant code adds a TRAP_ON_ZERO call to the if statement where a > 0. This means that if d (which is 42*a) is 0, the program will exit. In the original code, this doesn't affect the outcome because the else statement covers the case where a <= 0. However, in the mutant code, the value of e is different if a > 0 and d is 0, so we can use a test case where a > 0 and d is 0 to show that the programs produce different output."
+    },
+    {
+      "input": [
+        -5
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: -168",
+      "explanation": "We can use a negative value for x to test that the else statement is working correctly. In both the original and the mutant code, m equals 0 for negative x values, so we don't need to test for that. We can see that the else statement doesn't have an impact on the original code because n is always 4 * m when x <= 5. However, in the mutant code, if a is less than or equal to 0, e will be b + d, and if a is greater than 0, e is 2 * b + d. So, in this case, we can test that e is equal to b + d."
+    }
+  ]
+},{
+  "mutant_program": "muta541_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        6
+      ],
+      "original_output": 144,
+      "mutant_output": 156,
+      "explanation": "The original program calculates 'e' as 50, but the mutant program adds a call to TRAP_ON_NEGATIVE if 'a' is negative, which causes a different calculation and returns 156."
+    },
+    {
+      "input": [
+        -1,
+        8
+      ],
+      "original_output": -92,
+      "mutant_output": -146,
+      "explanation": "The mutant program adds a call to TRAP_ON_NEGATIVE if 'a' is negative, which causes a different calculation and returns -146. The original program does not have this call, and it returns -92."
+    },
+    {
+      "input": [
+        0,
+        10
+      ],
+      "original_output": 420,
+      "mutant_output": 420,
+      "explanation": "The variable 'e' is calculated the same way in both programs when 'a' is zero, so the outputs are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta543_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs will output 0 since the input values are 0 and do not trigger any conditional statement."
+    },
+    {
+      "input": [
+        2,
+        70
+      ],
+      "original_output": 308,
+      "mutant_output": 448,
+      "explanation": "The original program will compute e = 2 * 70 + 42 * 2 = 308. The mutant program will compute TRAP_ON_POSITIVE(84) which returns 1 (true) and thus assigns e = (70 + 1) which results in e = 71. Hence, the programs are not equivalent."
+    },
+    {
+      "input": [
+        -3,
+        16
+      ],
+      "original_output": -58,
+      "mutant_output": -58,
+      "explanation": "Both programs will output -58 since the input value for a is negative and thus the conditional statements will assign e = b + d."
+    }
+  ]
+},{
+  "mutant_program": "muta555_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        6
+      ],
+      "original_output": 96,
+      "mutant_output": 54,
+      "explanation": "In the original code, the condition for calculating 'e' is based on the value of 'a', but in the mutant code, it was changed to be based on the value of 'd'. Therefore, the output of the mutant code is different from the original for this test case."
+    },
+    {
+      "input": [
+        -1,
+        -2
+      ],
+      "original_output": -84,
+      "mutant_output": -84,
+      "explanation": "For negative input values, both the original and the mutant code will always return -84 regardless of the changes made in the code, since the 'if' condition in 'takeOut' for these cases is always false."
+    },
+    {
+      "input": [
+        0,
+        10
+      ],
+      "original_output": 420,
+      "mutant_output": 420,
+      "explanation": "In this case, both the original and the mutant code will always return 420, since the value of 'd' will always be 0, and therefore 'e' will be equal to 'b' regardless of the changes made in the code."
+    }
+  ]
+},{
+  "mutant_program": "muta581_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        6
+      ],
+      "original_output": 54,
+      "mutant_output": 54,
+      "explanation": "In this case, PRED(a) would evaluate to (2-1) which is still greater than 0, resulting in the same output for both programs."
+    },
+    {
+      "input": [
+        0,
+        7
+      ],
+      "original_output": 294,
+      "mutant_output": 301,
+      "explanation": "In the original program, since a <= 0, e = b + d, hence e = 294. However, in the mutant program, even though a <= 0 as well, PRED(a) > 0 which causes e = 2*b + d and hence e = 301."
+    },
+    {
+      "input": [
+        -5,
+        3
+      ],
+      "original_output": 126,
+      "mutant_output": 129,
+      "explanation": "In the original program, since a <= 0, e = b + d, hence e = 126. However, in the mutant program, because PRED(a) > 0, e = 2*b + d and hence e = 129."
+    }
+  ]
+},{
+  "mutant_program": "muta5_trashAndTakeOut.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2
+      ],
+      "original_output": "o is: 336",
+      "mutant_output": "o is: 168",
+      "explanation": "The original program executes the first if statement if x > 0 and sets m = 4. The mutant program executes the first if statement only if x > 3 and sets m = 4. Therefore, the input 2 will not execute the first if statement and set m = 0 in the mutant program, while it will set m = 4 in the original program. This leads to the mutation affecting the output of takeOut, resulting in different outputs for the original and mutant programs."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "o is: 168",
+      "mutant_output": "o is: 168",
+      "explanation": "Both the original and the mutant program execute the else statement and set n = 4 * m since x is not greater than 5. Therefore, both programs will have the same output for the input 5."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "o is: 0",
+      "mutant_output": "o is: 0",
+      "explanation": "Both the original and the mutant program execute the first if statement because x > 0. Therefore, both programs will have the same output for the input -1."
+    }
+  ]
+}]
