@@ -1,1 +1,1707 @@
-[{"mutant_program": "muta0_oddOrPos.c", "equivalent": false, "tests": [{"input": [-3, -2, 0, 1, 4], "original_output": 3, "mutant_output": 2, "explanation": "The original program counts both positive and odd elements in the array x. The mutant code starts the loop counter at 2 instead of 0, which means it skips x[0] and x[1], and only counts odd or positive elements from x[2] onwards. This causes the mutant code to miss counting -3, which is an odd element. Hence, the outputs differ."}, {"input": [-1, -1, -1, -1], "original_output": 0, "mutant_output": 0, "explanation": "Both original and mutant programs correctly count that there are no positive or odd elements in the input array."}, {"input": [2, 2, 2, 2], "original_output": 4, "mutant_output": 2, "explanation": "Both original and mutant programs correctly count that there are 4 positive elements in the input array. However, the mutant code starts the loop counter at 2 instead of 0, which means it skips x[0] and x[1]. Since all elements in this input array are even, the skipped elements do not affect the output. Hence, both programs output the same value."}]}]
+[{
+  "mutant_program": "muta11_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program correctly counts elements that are odd or positive, but the mutant program counts elements that are greater than 1 instead of greater than 0. Thus, the mutant program counts 0 as an odd or positive number, resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta12_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "In the original program code, the if statement checks if the element is either odd or positive (or both) by checking if their remainder when divided by 2 is either 1 or -1 respectively, or greater than 0. However, in the mutant code, it only checks if the element is either odd or its value is 1 or more. Thus, the mutant code will not count the negative odd number (-3) which the original code does, resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta13_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant program count the number of elements that are either odd or positive (or both) in the array. The mutant program only changes the condition in the if statement but it is still logically equivalent to the original condition, thus producing the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta22_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant codes evaluate the same condition to identify elements that are either odd or positive (or both)."
+    }
+  ]
+},{
+  "mutant_program": "muta25_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant versions will return 3 for the given input test case. The mutant code just uses more convoluted logic to check for odd or positive integers."
+    }
+  ]
+},{
+  "mutant_program": "muta26_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts the number of elements in the array that are either odd or positive or both, and returns 3. However, the mutant introduces an unnecessary extra set of parentheses in the condition for checking oddness: (2 % 2) == 1. This condition will never be true, but it does not affect the output in this test case because all the odd numbers will still be correctly counted. However, the mutant introduces an additional counterexample to its modified condition, 2. The mutant output is 4 instead of the expected 3"
+    }
+  ]
+},{
+  "mutant_program": "muta3_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program counts elements that are odd or positive or both, while the mutant program counts all elements that have a remainder of 1 when divided by 1 (which is all elements), or have a remainder of -1 when divided by 2, or are greater than 0. Therefore, the mutant program counts more elements than the original program in the given input."
+    }
+  ]
+},{
+  "mutant_program": "muta55_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program counts the number of elements in x that are either odd or positive (or both), while the mutant program counts the number of elements that are odd or have an index of -1 or are greater than 0. The mutant program will count -3 as odd and -2 as having an index of -1, resulting in a greater count."
+    }
+  ]
+},{
+  "mutant_program": "muta56_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts the number of elements that are either odd or positive, or both. The mutant program behaves in the same way, but contains an extra condition in the if statement: (((x[__MAXINT__] % 2) == 1) || ((x[i] % 2) == (- 1))). This extra condition is always true because __MAXINT__ is not a defined variable, which means it is interpreted as the maximum possible integer value. As a result, the mutated program also counts elements that are not odd or positive, increasing the count by 1 for every array index that does not exist."
+    }
+  ]
+},{
+  "mutant_program": "muta58_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and the mutant program count the same number of elements that are either odd or positive (or both) in the input array. The mutant code replaced the original condition with a convoluted boolean expression that evaluates to the same result as the original."
+    }
+  ]
+},{
+  "mutant_program": "muta5_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts -2 as an even number, while the mutant program counts it as odd, increasing the count to 4."
+    },
+    {
+      "input": [
+        5,
+        7,
+        9
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs correctly identify all elements as odd and positive, so the outputs are the same."
+    },
+    {
+      "input": [
+        -5,
+        -3,
+        -1
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly identify that there are no positive elements, and all elements are odd, so the outputs are the same."
+    }
+  ]
+},{
+  "mutant_program": "muta60_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs use the same logic, even though the mutant code has complex conditionals to check for odd and negative numbers. However, the result is the same as the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta62_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program correctly computes the number of elements that are odd or positive or both in the input array which is 3. However, the mutant code adds an additional condition for even numbers using a macro __MININT__ which is defined as the smallest possible integer value. This condition will always be true as the smallest negative integer is odd and thus the mutant code increments the count for every even number and returns 5 instead of 3."
+    }
+  ]
+},{
+  "mutant_program": "muta88_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "The original program correctly counts 3 elements that are either odd or positive in the input array [-3,-2,0,1,4]: -3, 1 and 4. The mutant program incorrectly counts only 2 of them because it has a mistake in the first condition inside the if statement. The mutant program adds 2 to x[i] before comparing it to 1, so x[i]+2 must be equal to 1 for the condition to be true. But -3+2=-1, not 1, so this correct element will not be counted by the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta89_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "The original program correctly counts the number of elements that are odd or positive, while the mutant program incorrectly includes elements that are even and positive by subtracting 2 from each element in the input in the conditional statement. Thus, the test case with [-3,-2,0,1,4] should return an output of 3 for the original program and an output of 2 for the mutant program, making them not equivalent."
+    },
+    {
+      "input": [
+        2,
+        4,
+        -6,
+        -7,
+        8
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both programs should correctly count the number of elements that are odd or positive in the input of [2,4,-6,-7,8] and return an output of 2."
+    }
+  ]
+},{
+  "mutant_program": "muta90_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts the elements that are either odd or positive, including 0, because 0 is positive. The mutant program counts only those elements that are strictly odd or positive, excluding 0. Therefore, the mutant program increments the count for x[2] = 0, while the original program doesn't. "
+    }
+  ]
+},{
+  "mutant_program": "muta91_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -2,
+        0,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 3,
+      "explanation": "The original program counts only the element at position 2 as positive (1). The mutant program counts all elements as positive (3) since it divides the element by 2 to check if it is odd."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": 2,
+      "mutant_output": 2,
+      "explanation": "Both programs count 2 elements (1 and 3) as odd or positive"
+    },
+    {
+      "input": [
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 3,
+      "explanation": "The original program counts only the element at position 4 as positive (1). The mutant program counts all elements as positive (3) since it divides the element by 2 to check if it is odd."
+    }
+  ]
+},{
+  "mutant_program": "muta96_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts only the numbers that are odd or positive. The mutant program counts numbers that are odd, positive, or the result of a bitwise OR operation with 2, which includes negative even numbers. The input array in the test includes negative even numbers that should not be counted, therefore the original program is correct and the mutant program is incorrect."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly identify that there are no odd or positive numbers in the input array."
+    },
+    {
+      "input": [
+        1,
+        3,
+        5,
+        7,
+        9
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "Both programs correctly identify that all numbers in the input array are odd and positive."
+    }
+  ]
+},{
+  "mutant_program": "muta97_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts elements that are either odd or positive, while the mutant program counts elements whose last binary digit is 1, that are odd or whose remainder when divided by 2 is -1, which is equivalent to being odd for positive numbers. However, the mutant program also counts negative numbers whose last binary digit is 1 (such as -3), which are neither odd nor positive, leading to a different output. "
+    }
+  ]
+},{
+  "mutant_program": "muta98_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program correctly counts the number of elements in the input array that are odd or positive, while the mutant program counts elements whose squared value is 1 or whose modulus operation with 2 equals -1, which is incorrect. The mutant program counts -3 and 4, which have squared values of 9 and 16, respectively, neither of which equals 1. Therefore, these two elements should not be counted."
+    }
+  ]
+},{
+  "mutant_program": "muta99_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts the number of elements in the array that are either odd or positive (or both), correctly checking if the remainder of the integer division by 2 is equal to 1 or if the integer is greater than 0. The mutant program, however, changes the condition to check if the remainder of the integer division by 2 is equal to 1 OR if the bitwise OR operation between the integer and 2 is equal to -1 (which is never true) OR if the integer is greater than 0. This change adds an unnecessary condition that will never be true and ends up counting one more element than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta107_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts elements that are odd OR positive OR both, while the mutant program counts elements that are greater than 2 OR odd OR positive OR both, resulting in an additional element being counted (2 is not greater than 2)."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1,
+        0,
+        -1,
+        -2,
+        -3
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "Both programs count the same elements: 3, 1, 2, 0"
+    },
+    {
+      "input": [],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly handle empty arrays"
+    }
+  ]
+},{
+  "mutant_program": "muta109_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program considers any negative odd number as odd, while the mutated program only considers negative odd numbers less than or equal to -3 as odd. Therefore, the mutated program counts -3 as odd, resulting in a different output than the original program."
+    },
+    {
+      "input": [
+        -1,
+        -5,
+        0,
+        2,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs should count 3 elements that are either odd or positive, which is -1, -5, and 2. Therefore, the outputs are the same."
+    },
+    {
+      "input": [
+        0,
+        0,
+        -2,
+        -4,
+        -6
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs should not count any elements since they are either not odd or not positive. Therefore, the outputs are the same."
+    }
+  ]
+},{
+  "mutant_program": "muta110_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program correctly counts the number of elements that are odd or positive, including 1, 4, and -3. However, the mutant program incorrectly considers 2 as odd, resulting in an extra count and an output of 4."
+    },
+    {
+      "input": [
+        0,
+        -1,
+        -2,
+        -3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly count the only element that is positive or odd (which is -1)."
+    },
+    {
+      "input": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs correctly count that there are no elements that are positive or odd."
+    }
+  ]
+},{
+  "mutant_program": "muta118_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "Both programs count the number of elements that are odd or positive. However, the mutant code uses a bitshift instead of modulus operator to check if an element is odd. This causes the mutant program to incorrectly identify 4 as odd (when it is actually equal to 0*2^2 + 1), resulting in one extra count compared to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta119_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "The original program considers x[i] % 2 == -1 as an odd number, but the mutant program uses a shift right operation (x[i] >> 2) == 1, which is not equivalent. This means that the mutant program does not consider -1 as an odd number, resulting in a different count output. This test case shows that the two programs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta124_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 0,
+      "explanation": "The original program correctly counts the number of elements that are either odd or positive, whereas the mutant program sets the value of i to 0 and never updates it, resulting in an infinite loop and a count of 0."
+    },
+    {
+      "input": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "This test case includes only even numbers, which are neither odd nor positive, so the original and mutant programs should both output 0."
+    }
+  ]
+},{
+  "mutant_program": "muta127_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "The original program counts the number of elements in the input array that are either odd, positive or both, and the mutant code is an equivalent version of it."
+    },
+    {
+      "input": [
+        -3,
+        -2,
+        -1,
+        0,
+        4
+      ],
+      "original_output": 2,
+      "mutant_output": 3,
+      "explanation": "The input array contains two negative elements and the original program counts them since either they are odd or positive. However, the mutant code has an unnecessary initialization of the loop counter, setting it to 0, which means that the first element in the array will be skipped, resulting in a different count."
+    }
+  ]
+},{
+  "mutant_program": "muta129_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program counts elements that are odd or positive by checking the remainder of division by 2 and if the number is greater than zero. The mutant program starts the variable i with zero by using a bitwise AND with 0. This causes the mutant to miss the first element of the input array, resulting in an incorrect count. The mutated program counts 2 more elements because the condition 'x[i] % 2 == -1' is always false. Therefore, the test fails for the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta136_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs return 3 as output when given the test set [-3, -2, 0, 1, 4]. The mutant code simply changes the if condition by adding redundant parentheses and extra binary operators."
+    }
+  ]
+},{
+  "mutant_program": "muta137_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "The original code counts the numbers that are either odd or positive using a condition that includes both, but the mutant code uses a more complicated condition that subtracts the boolean value of (x[i] % 2 == -1) from the boolean value of (x[i] % 2 == 1), which is equivalent to checking if x[i] is odd. Therefore, the mutant code does not count the number  -3, which is odd and negative."
+    }
+  ]
+},{
+  "mutant_program": "muta141_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs use the same logic to count the number of elements that are odd or positive (or both). The difference between them is just the formatting of the conditions in the if statement of the oddOrPos function, which does not alter the final output."
+    }
+  ]
+},{
+  "mutant_program": "muta146_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs have the same logic and calculate the number of elements in x that are either odd or positive (or both) correctly. The mutant code only changes the formatting of the logical expression, but it does not impact the output."
+    }
+  ]
+},{
+  "mutant_program": "muta148_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "The original code and the mutant code have equivalent logic and will produce the same output for the given input."
+    }
+  ]
+},{
+  "mutant_program": "muta149_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutated program have the same output for the given test case, indicating that the mutation did not affect the behavior of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta160_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts elements that are either odd or positive. The mutant program counts elements that are either odd but not negative or even but negative. The input [-3, -2, 0, 1, 4] contains 3 elements that are either odd or positive. The original program correctly outputs 3, while the mutant program outputs 4 erroneously counting the negative even number -2."
+    }
+  ]
+},{
+  "mutant_program": "muta165_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant code count the number of elements in x that are either odd or positive (or both) using the same conditions."
+    },
+    {
+      "input": [
+        3,
+        -1,
+        7,
+        -9,
+        2
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "Both original and mutant code count the number of elements in x that are either odd or positive (or both) using the same conditions."
+    }
+  ]
+},{
+  "mutant_program": "muta178_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 1,
+      "explanation": "The original program correctly counts 3 elements that are odd or positive: -3, 1, and 4. However, the mutant program only counts elements that are strictly equal to 1 or have a modulo of -1 (i.e., are odd and negative). Therefore, it only counts the element -3, resulting in a mutant output of 1. "
+    }
+  ]
+},{
+  "mutant_program": "muta179_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutant code will produce the same output as the changes made in the mutant code do not affect the logic of the program."
+    },
+    {
+      "input": [
+        2,
+        -1,
+        5,
+        -7,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutant code will produce the same output as the changes made in the mutant code do not affect the logic of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta180_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "The mutant code performs the same operations as the original code, with only changes in the syntax of the if statement. However, the changes do not modify the logic of the boolean expression, so the mutant program is equivalent to the original one."
+    }
+  ]
+},{
+  "mutant_program": "muta185_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant code follow the same logic and produce the same output for the given input. The mutant changes the condition for odd numbers from 'x[i] % 2 == 1 || x[i] % 2 == -1' to '((x[i] % 2) == 1) || (x[i] % 2)', but since both are equivalent, the program produces the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta188_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant code will give the same result because the mutated condition in the if statement won't have any impact since (-1) % 2 equals -1. Therefore, the mutant code is equivalent to the original."
+    }
+  ]
+},{
+  "mutant_program": "muta194_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program counts the number of elements in x that are either odd or positive while the mutant program does not terminate the loop with the correct condition, hence counting one extra element. This is evident in this test case where the mutant program counts all the elements, including -2 and 0, resulting in an output of 5 instead of the expected 3."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 8,
+      "explanation": "Both programs have no odd or positive elements to count, hence the expected output is 0. However, the mutant program incorrectly counts all the elements resulting in an output of 8."
+    }
+  ]
+},{
+  "mutant_program": "muta200_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutated code will produce the same output as the mutation replaces a longer expression with an equivalent shorter expression without changing the logic of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta201_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutant code will produce the same output as the only difference is in the use of redundant parentheses in the mutant code."
+    },
+    {
+      "input": [
+        -5,
+        -4,
+        0,
+        2,
+        6
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutant code will produce the same output as the only difference is in the use of redundant parentheses in the mutant code."
+    }
+  ]
+},{
+  "mutant_program": "muta202_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutant programs have the same implementation and logic. The mutant code contains unnecessary brackets and unnecessary calculations, but they do not affect the output of the function."
+    }
+  ]
+},{
+  "mutant_program": "muta205_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program counts elements that are either odd or positive. The mutant program also counts elements whose remainder is -1 when divided by 2, which includes negative odd numbers. Thus, the mutant program returns a higher count of 5 instead of 3."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs count zero as a positive number, so they return the same output of 0 for an array of all zeroes."
+    }
+  ]
+},{
+  "mutant_program": "muta206_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program counts any number that is odd or positive, but the mutant program counts any number that is odd, or has an odd quotient or is positive."
+    }
+  ]
+},{
+  "mutant_program": "muta215_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program counts the number of elements in x that are either odd or positive or both (including -1 which is odd). The mutant uses bitwise XOR to iterate over the array, which effectively runs the loop one extra time for arrays with odd length. This causes the mutant to count one extra element when the last element of the array is even and negative (which is not counted in the original program)."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 3,
+      "explanation": "Both programs should count 0 as a positive integer, however, the mutant program does not do this due to using bitwise XOR as a loop termination condition, resulting in an incorrect output."
+    },
+    {
+      "input": [
+        -1,
+        -3,
+        -5,
+        -7,
+        -9
+      ],
+      "original_output": 5,
+      "mutant_output": 5,
+      "explanation": "Both programs correctly count all the negative odd numbers in the array, resulting in the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta217_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs have the same logic to check if a number is odd or positive. The only difference is how the `x[i] % 2` operation is performed. The original code checks if the result is equal to 1 or -1, while the mutant code uses the bitwise AND operation with 1. However, both approaches lead to the same result and the rest of the code is identical."
+    }
+  ]
+},{
+  "mutant_program": "muta220_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original program and the mutant program output the same results for the given input since the mutant code just changes the logical operator in the if statement from || to |."
+    }
+  ]
+},{
+  "mutant_program": "muta228_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "The mutant code only changes the condition in the if statement, but still checks for odd or positive numbers, so it produces the same output for the same input."
+    },
+    {
+      "input": [
+        2,
+        4,
+        -6,
+        -8
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs return 0 since there are no odd or positive numbers in the input list."
+    },
+    {
+      "input": [
+        2,
+        -3,
+        4,
+        -5,
+        6,
+        -7
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "The input has 4 odd or positive numbers (-3, 4, -5, -7), and both programs count them correctly, producing the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta230_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original code correctly counts the number of elements in the array x that are either odd or positive (or both). However, the mutant code has a syntax error in its conditional statement that incorrectly counts an element that is neither odd nor positive. Specifically, the sub-expression '((x[i] % 2) && (- 1))' will always evaluate to either 0 or 1, regardless of the value of x[i], since the '&&' operator performs a logical AND operation. Therefore, this sub-expression will be true whenever 'x[i] % 2' is non-zero, which includes both odd and even numbers, resulting in an additional element being counted. Thus, the mutant code produces an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta234_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program correctly counts the number of elements that are odd or positive, while the mutant program mistakenly includes the last element (x[length]), which is not part of the array."
+    }
+  ]
+},{
+  "mutant_program": "muta237_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs return the expected output with the given input."
+    },
+    {
+      "input": [
+        0,
+        -2,
+        -4,
+        -6,
+        -8
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs return 0 since there are no positive or odd numbers in the array."
+    },
+    {
+      "input": [
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs return 0 since there are no positive or odd numbers in the array."
+    }
+  ]
+},{
+  "mutant_program": "muta239_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "The original program counts elements that are odd or positive or both, while the mutant program counts elements that are odd (including negative odd numbers) or positive. Therefore, the input [-3, -2, 0, 1, 4] should return 3 for the original program, but the mutant program will count -3 as an odd number and return 2."
+    }
+  ]
+},{
+  "mutant_program": "muta241_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs return the same output for the given test case since the mutation did not alter the logic of the code, just the placement of parentheses."
+    }
+  ]
+},{
+  "mutant_program": "muta245_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutant code will produce the same result as the mutation did not change the program behavior. The test set includes a mix of negative and positive integers along with zero as inputs that will satisfy the criteria defined within the program."
+    }
+  ]
+},{
+  "mutant_program": "muta255_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs return the same output for this test case."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs return the same output for this test case, given that there are no odd or positive numbers."
+    },
+    {
+      "input": [
+        -3,
+        -2,
+        -1,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both programs return the same output for this test case, given that there are no odd or positive numbers."
+    }
+  ]
+},{
+  "mutant_program": "muta256_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutant code will return 3 because they both contain the same logical condition to check if an element is odd or positive."
+    }
+  ]
+},{
+  "mutant_program": "muta257_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts the number of elements that are odd or positive using the condition (x[i] % 2 == 1 || x[i] % 2 == -1 || x[i] > 0). The mutant program changes the condition to ((((x[i] % 2) == 1) || ((x[i] % 2) << (- 1))) || (x[i] > 0)), which incorrectly counts an element with value -2 as odd and positive. The mutant program outputs 4 instead of the correct value of 3."
+    }
+  ]
+},{
+  "mutant_program": "muta258_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original code considers a number odd if it has a remainder of 1 or -1 when divided by 2. The mutant code uses a right-shift operator with a negative number to also consider -2 odd, which is incorrect. Therefore, the mutant code counts -2 as odd and returns a count of 4 instead of 3."
+    },
+    {
+      "input": [
+        0,
+        10,
+        -2,
+        -4,
+        8,
+        6
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both the original and mutated code correctly count 3 elements that are either odd or positive (or both) in this input set."
+    },
+    {
+      "input": [
+        -3,
+        -1,
+        2,
+        4,
+        6
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "Both the original and mutated code correctly count 4 elements that are either odd or positive (or both) in this input set."
+    }
+  ]
+},{
+  "mutant_program": "muta285_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program checks if the array element is odd or positive (or both) using 'x[i] % 2 == 1 || x[i] % 2 == -1 || x[i] > 0', while the mutant program uses 'TRAP_ON_NEGATIVE(i) < length' to terminate the loop. This means that if the length of the array is negative, the mutant will loop infinitely, leading to a wrong output. In this case, the length is 5, hence the original program and the mutant program execute the loop for 5 times but while the original program counts 3 elements that are odd or positive, the mutant counts 4 elements because it fails to terminate the loop when i=-1."
+    }
+  ]
+},{
+  "mutant_program": "muta288_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program counts the number of elements in x that are either odd or positive (or both), but the mutant program adds a trap on negative values in the loop condition, which means that negative values will not be considered at all. This causes the mutant program to count 2 additional elements that are not odd or positive, producing a different output than the original program."
+    },
+    {
+      "input": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18
+      ],
+      "original_output": 10,
+      "mutant_output": 10,
+      "explanation": "Both programs return the same output for an input of all even numbers because none of them are odd or negative."
+    },
+    {
+      "input": [
+        -1,
+        -3,
+        -5,
+        -7,
+        -9
+      ],
+      "original_output": 5,
+      "mutant_output": 0,
+      "explanation": "The original program counts all negative elements as odd or positive, which results in a count of 5 for this input. However, the mutant program does not consider negative values in the loop condition, and since there are no positive odd numbers in the input, it returns a count of 0."
+    }
+  ]
+},{
+  "mutant_program": "muta291_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "The mutated program includes a function call to TRAP_ON_NEGATIVE that is not defined, resulting in a compilation error. Assuming this is fixed, the mutant program will give a different output because it only considers the oddness of x[i] when i is positive or 0, while the original program considers the oddness of x[i] when it is negative and odd. Therefore, the input [-3, -2, 0, 1, 4] will result in an original output of 3, because -3 is odd, as well as 1 and 4, while the mutant output will be 2, because -3 will not be considered odd."
+    }
+  ]
+},{
+  "mutant_program": "muta297_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "The original code counts -3 as odd, but the mutant code does not due to the change in the modulo operation of negative numbers. Instead, the mutant code counts 0 as odd which the original code does not. Therefore, these programs are not equivalent based on this input."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 0,
+      "mutant_output": 5,
+      "explanation": "Both programs count 0 as positive, but the mutant code counts all 5 elements as odd which the original code does not. Therefore, these programs are not equivalent based on this input."
+    }
+  ]
+},{
+  "mutant_program": "muta303_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program considers any odd number or positive number (including 0) to be counted. The mutant program adds a function call to TRAP_ON_NEGATIVE. Assuming this function returns the absolute value of the input parameter, this would cause the mutant program to count -1 as positive, resulting in an incorrect count of 4 instead of 3."
+    }
+  ]
+},{
+  "mutant_program": "muta309_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 2147483647,
+      "explanation": "The original program returns the correct count of elements that are either odd or positive, which in this case is 3. The mutant program, on the other hand, uses a macro function TRAP_ON_NEGATIVE that sends the program into an infinite loop when a negative count is returned. Since the count is never negative in this program, the loop continues indefinitely and the output is the maximum integer value in C, which is 2147483647."
+    }
+  ]
+},{
+  "mutant_program": "muta319_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The mutant code changed the condition inside the if statement. In the original code, the condition 'x[i] % 2 == -1' is used to include negative odd integers. In the mutant code, 'x[count] % 2 == 1' is used, which is equivalent to 'x[i] % 2 == 1' since 'count' is always equal to 'i'. However, to include negative odd integers, the mutant code uses the condition '(x[i] % 2) == (-1)'. This condition is not equivalent to the original since it does not include negative odd integers. As a result, the mutant code counts an extra element that the original code does not count."
+    }
+  ]
+},{
+  "mutant_program": "muta320_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts the number of elements that are either odd or positive (or both). The mutant program does the same, but it makes an array out of the index 'length' of the input array, which is out of bounds and causes undefined behavior. In this case, it happens to be a positive number, so the mutant program counts one extra element."
+    }
+  ]
+},{
+  "mutant_program": "muta338_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 5,
+      "explanation": "The original program checks if the number is odd or positive or both with the condition x[i] % 2 == 1 || x[i] % 2 == -1 || x[i] > 0. The mutant program uses an altered condition that checks if the PRED(i) is less than length and not the i index itself. This makes a difference when i becomes negative. For example, PRED(-1) would be the maximum value of an unsigned int and the mutant would run indefinitely, producing an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta341_oddOrPos.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 4,
+      "explanation": "The original program counts the number of elements in the input array that are odd or positive, or both. The mutant program uses the SUCC function to increment the iteration limit, which results in one additional iteration that falsely counts the last element of the array as odd or positive, so the mutant program returns 4 instead of 3 for the given input."
+    }
+  ]
+},{
+  "mutant_program": "muta344_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both programs should return 3, as the mutant code only introduces unnecessary parentheses around the conditions in the if statement, but it doesn't change the final result."
+    }
+  ]
+},{
+  "mutant_program": "muta347_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant code execute the same condition to count the elements that are either odd or positive or both, so they are equivalent in this example."
+    }
+  ]
+},{
+  "mutant_program": "muta352_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant code outputs the expected result because the change made does not affect the logic of the original code. Both codes return the count of elements in the input array that are either odd or positive."
+    },
+    {
+      "input": [
+        -5,
+        -4,
+        -3,
+        -2
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant code can handle negative integers as input and does not count them as odd or positive, so they both output 0."
+    }
+  ]
+},{
+  "mutant_program": "muta358_oddOrPos.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        -3,
+        -2,
+        0,
+        1,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 3,
+      "explanation": "Both original and mutant code count the same number of elements that are either odd or positive"
+    },
+    {
+      "input": [],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant code returns 0 for empty input array"
+    },
+    {
+      "input": [
+        -1,
+        -3,
+        -5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant code returns 0 since there are no elements that are both odd and positive"
+    }
+  ]
+}]
