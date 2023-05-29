@@ -1,1 +1,2674 @@
-[{"mutant_program": "muta0_Heap.c", "equivalent": false, "tests": [{"input": ["aa", "bb", "cc"], "original_output": 1, "mutant_output": 0, "explanation": "The original program compares the positions (i-1) and (j-1) of the array pq to check if the string in the i-th position is less than the string in the j-th position. The mutant code uses expressions (i - 0) and (j - 1) which are equivalent to (i) and (j - 1), that is, it does no subtract 1 from i. This results in comparing the wrong indices of the array and causing the program output to be different from the original one."}, {"input": ["zoo", "bed", "dad", "all", "bad", "yet", "yes"], "original_output": 1, "mutant_output": 0, "explanation": "The chosen test case verifies if the program can sort strings of different sizes. The original program outputs 1 because it sorts the strings correctly, while the mutant program outputs 0 because it compares the wrong indices of the array pq, causing the strings to be incorrectly sorted."}, {"input": ["D", "a", "b", "e", "A", "C", "B"], "original_output": 1, "mutant_output": 0, "explanation": "The test case verifies if the program sorts capital letters appropriately. The original program outputs 1 because it sorts the strings correctly, while the mutant program outputs 0 because it compares the wrong indices of the array pq, causing the strings to be incorrectly sorted."}]}]
+[{
+  "mutant_program": "muta100_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello",
+        "bye",
+        "world",
+        "fun"
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The original program compares the i-th element of the array pq with the j-th element and returns 1 if the i-th is less than j-th element. The mutant program introduces a TRAP_ON_NEGATIVE function that could potentially change the value of j, which would alter the comparison between the i-th and j-th elements."
+    },
+    {
+      "input": [
+        "are",
+        "you",
+        "sure",
+        "about",
+        "this"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "This test case demonstrates that the original program returns 0 when the array is correctly sorted, while the mutant program always return 0, regardless of the state of the array. This is because the mutation introduced a function call that does not affect the flow of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta101_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "apple",
+        "banana",
+        "orange"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "In the original code, less01 compares two strings using their corresponding indices i and j. In the mutant code, TRAP_ON_ZERO function call is used with j as a parameter. It is not specified what TRAP_ON_ZERO does, but it might trap on zero or null pointer and result in unexpected behavior. Hence, the mutant code is not equivalent to the original. Test input: ['apple','banana','orange'], Expected Original Output: 1 (i=2, j=3), Mutant Output: 0 (TRAP_ON_ZERO(3)=undefined)"
+    },
+    {
+      "input": [
+        "cat",
+        "dog",
+        "bird"
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "In the original code, less01 compares two strings using their corresponding indices i and j. In the mutant code, TRAP_ON_ZERO function call is used with j as a parameter. It is not specified what TRAP_ON_ZERO does, but it might trap on zero or null pointer and result in unexpected behavior. Hence, the mutant code is not equivalent to the original. Test input: ['cat','dog','bird'], Expected Original Output: 0 (i=1, j=2), Mutant Output: 1 (TRAP_ON_ZERO(2)=undefined)"
+    }
+  ]
+},{
+  "mutant_program": "muta227_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nA\nM\nP\nL\nE\n",
+      "mutant_output": "S\nE\nM\nP\nL\nA\n",
+      "explanation": "The original program sorts the input strings lexicographically. The mutant program replaces the expression pq[i-1] with pq[(TRAP_ON_NEGATIVE(i) - 1)]. This may lead to swapping the wrong elements and as a result incorrect lexicographic ordering. The provided test input S,A,M,P,L,E results in different outputs for the original and the mutant program."
+    },
+    {
+      "input": [
+        "all",
+        "bad",
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "all\nbad\nbed\ndad\nyes\nyet\nzoo\nbug\n",
+      "explanation": "The original program sorts the input strings lexicographically. The mutant program replaces the expression pq[i-1] with pq[(TRAP_ON_NEGATIVE(i) - 1)]. This may lead to swapping the wrong elements and as a result incorrect lexicographic ordering. The provided test input all,bad,bed,bug,dad,yes,zoo results in different outputs for the original and the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta228_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "c",
+        "a",
+        "b"
+      ],
+      "original_output": "***************** Sorted Strings *****************\n'a'\n'b'\n'c'\n",
+      "mutant_output": "***************** Sorted Strings *****************\n'a'\n'c'\n'b'\n",
+      "explanation": "The original program sorts the array 'a' lexicographically, from index 0 to index length-1, using Heap sort. The 'exch' function in the original code swaps two positions in the array 'a' given the positions of the elements, which is a vital operation for heap sorting. The mutant program modifies the 'exch' function to include a macro function called 'TRAP_ON_ZERO(i)', which ultimately increments i before accessing an array. This changes the original behavior of the 'exch' function and swaps every value with a wrong one, compromising the outcome of the heap sorting by the 'sort' method. The test shows that when the input to the original code has a length greater or equal to 2, the output is '***************** Sorted Strings *****************\n' followed by the lexicographically sorted elements, each of them with quotes. The test demonstrates that the first test input has 'a', 'b', and 'c' as elements in any order, and produces a lexicographically sorted output when run with the original program. In contrast, the same input runs with the mutant program and generates a lexicographically sorted output different from the previous. Therefore, the programs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta230_Heap.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta231_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "a",
+        "c",
+        "b"
+      ],
+      "original_output": "a\nb\nc\n",
+      "mutant_output": "b\na\nc\n",
+      "explanation": "The original program sorts the input strings in alphabetical order using the heapsort algorithm, while the mutant replaces a simple exchange operation with an unnecessary conditional statement that includes a trap on zero, resulting in a different output for the same input."
+    },
+    {
+      "input": [
+        "25",
+        "10",
+        "30",
+        "20"
+      ],
+      "original_output": "10\n20\n25\n30\n",
+      "mutant_output": "10\n30\n25\n20\n",
+      "explanation": "This test case shows another example where the original program produces the correct output, but the mutant produces a different output due to the unnecessary conditional statement that alters the exchange operation in the sink function."
+    }
+  ]
+},{
+  "mutant_program": "muta233_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "b",
+        "a"
+      ],
+      "original_output": [
+        "a",
+        "b"
+      ],
+      "mutant_output": [
+        "b",
+        "a"
+      ],
+      "explanation": "The original code exchanges position i with j correctly using a temporary variable swap. The mutated code changed the position j with TRAP_ON_NEGATIVE(j), which may cause an out-of-bounds access or may not swap the correct values, depending on the value of j. For example, if j = 0, then pq[TRAP_ON_NEGATIVE(j) - 1]  will be pq[-1] which is an invalid position. If j = 2, then pq[TRAP_ON_NEGATIVE(j) - 1] will be pq[1], and the method will perform a swap between positions i and 1 instead of positions i and 2. Therefore, the mutant output is changed. "
+    }
+  ]
+},{
+  "mutant_program": "muta234_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "A\nE\nL\nM\nO\nP\nR\nS\nT\nX\n",
+      "mutant_output": "A\nE\nX\nM\nO\nP\nR\nS\nT\nL\n",
+      "explanation": "The original program swaps pq[i-1] with pq[j-1] using a temp variable. The mutant code changes the second parameter to TRAP_ON_ZERO(j), which is a non-existent function, resulting in an incorrect swapping operation. The output is not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta236_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "hello",
+        "world",
+        "foo",
+        "bar"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nbar\nfoo\nhello\nworld\n",
+      "mutant_output": "***************** Sorted Strings *****************\nbar\nfoo\nworld\nhello\n",
+      "explanation": "The mutant replaces pq[j-1] with pq[(TRAP_ON_NEGATIVE(j) - 1)]. TRAP_ON_NEGATIVE is not defined, so this could have different behavior depending on how it is defined. In this case, it changes the index to access a different location in the array, resulting in a different ordering."
+    }
+  ]
+},{
+  "mutant_program": "muta237_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "Heap",
+        "compilation",
+        "execution"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nHeap\ncompilation\nexecution\n",
+      "mutant_output": "***************** Sorted Strings *****************\ncompilation\nHeap\nexecution\n",
+      "explanation": "The original program code sorts the input arguments in alphabetical order using heapsort and the exch() function interchange two elements of a priority queue. The mutant program code also uses the exch() function, but it includes a TRAP_ON_ZERO(j) function call in the second argument of the pq[] array, which is equivalent to subtracting 1 from j and then accessing the pq[] array. This means that the element to be exchanged is now different from the original program code, which leads to sorting the strings in a different order. For example, with the input [\"Heap\",\"compilation\",\"execution\"], the original program code sorts them as \"Heap\\ncompilation\\nexecution\\n\" whereas the mutant program code sorts them as \"compilation\\nHeap\\nexecution\\n\"."
+    }
+  ]
+},{
+  "mutant_program": "muta258_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        [
+          "foo",
+          "bar",
+          "baz"
+        ],
+        1,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code compares the strings at indexes i-1 and j-1, whereas the mutant code compares them with respect to their ASCII values by using < 1 instead of < 0. This results in a different output for the given input."
+    },
+    {
+      "input": [
+        [
+          "foo",
+          "bar",
+          "baz"
+        ],
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The original code compares the strings at indexes i-1 and j-1, whereas the mutant code compares them with respect to their ASCII values by using < 1 instead of < 0. This results in the same output for the given input."
+    },
+    {
+      "input": [
+        [
+          "foo",
+          "bar",
+          "baz"
+        ],
+        3,
+        1
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The original code compares the strings at indexes i-1 and j-1, whereas the mutant code compares them with respect to their ASCII values by using < 1 instead of < 0. This results in a different output for the given input."
+    }
+  ]
+},{
+  "mutant_program": "muta288_Heap.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta2_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        2,
+        4
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "For the input ['A','B','C','D','E'], 2, 4, the original program returns 1 because the element in position 2 is less than the element in position 4. However, the mutant program returns 0 because it is using a different comparison operator in the condition of the if statement, returning the opposite result."
+    },
+    {
+      "input": [
+        [
+          "Z",
+          "Y",
+          "X",
+          "W"
+        ],
+        1,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "For the input ['Z','Y','X','W'], 1, 3, both the original and mutant program return 1 because the element in position 1 is less than the element in position 3."
+    },
+    {
+      "input": [
+        [
+          "M",
+          "N",
+          "L",
+          "O",
+          "P",
+          "Q"
+        ],
+        3,
+        5
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "For the input ['M','N','L','O','P','Q'], 3, 5, both the original and mutant program return 1 because the element in position 3 is less than the element in position 5."
+    }
+  ]
+},{
+  "mutant_program": "muta408_Heap.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta410_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "E",
+        "A",
+        "S",
+        "Y"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nA\nE\nS\nY\n",
+      "mutant_output": "***************** Sorted Strings *****************\nA\nY\nS\nE\n",
+      "explanation": "The original program uses 'j + 1' to access the index of the right child of the current node. The mutant program uses (j ^ 1) to get the index of the right child. binary^ inverts the last bit of 'j', so if 'j' is odd, (j ^ 1) returns an even index, indicating the right child. But if 'j' is even, (j ^ 1) returns an odd index, pointing to a wrong position. This situation occurs when the sibling of the left child is out of bounds and the left child is the last node's child. In this case, (j ^ 1) equals j - 1, and the code accesses the previous element as the right child"
+    }
+  ]
+},{
+  "mutant_program": "muta53_Heap.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta74_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        [
+          "B",
+          "A"
+        ],
+        1,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code compares the strings in pq[i-1] and pq[j-1] using the strcmp() function. The mutant code uses <= instead of < and encloses the whole comparison in parentheses. This will cause the test case with input [['B', 'A'], 1, 2] to fail, as 'A' <= 'B' returns true and therefore less01 will return 1, while the original code will correctly return 0"
+    },
+    {
+      "input": [
+        [
+          "cat",
+          "bat",
+          "rat"
+        ],
+        1,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant code will correctly return 1 for the given input, as 'bat' < 'cat'"
+    },
+    {
+      "input": [
+        [
+          "mat",
+          "hat",
+          "cat"
+        ],
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant code will correctly return 1 for the given input, as 'cat' < 'mat'"
+    }
+  ]
+},{
+  "mutant_program": "muta86_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        [
+          "c",
+          "b",
+          "a"
+        ],
+        1,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program compares the strings in positions pq[i-1] and pq[j-1] and returns 1 if pq[i-1] < pq [j-1]. The mutant program has an empty statement in the 'if' block, which means it will not return anything when pq[i-1] < pq [j-1], making the output different than the original."
+    },
+    {
+      "input": [
+        [
+          "s",
+          "r",
+          "h",
+          "k",
+          "e",
+          "g"
+        ],
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The original program compares the strings in positions pq[i-1] and pq[j-1] and returns 1 if pq[i-1] < pq [j-1]. The mutant program has an empty statement in the 'if' block, which means it will not return anything when pq[i-1] < pq [j-1]. In this case, the strings in positions pq[2-1] and pq[3-1] are 'r' and 'h', respectively, and 'r' is not less than 'h'. Therefore, the function will return 0 in both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta97_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        [
+          "bed",
+          "bug",
+          "dad",
+          "yes",
+          "zoo",
+          "all",
+          "bad",
+          "yet"
+        ],
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original code compares two strings using indices i and j. The mutant code uses a macro called TRAP_ON_NEGATIVE on index i, which could return an index out of bounds or negative. This could lead to accessing memory outside the array and a possible segmentation fault. Also, this conditions is not necessary since the code already has a condition in less01 function where i < j. The test helps to show a conflict in less01 function when comparing strings using indices 2 and 3."
+    }
+  ]
+},{
+  "mutant_program": "muta98_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        [
+          "apple",
+          "banana",
+          "orange"
+        ],
+        1,
+        2
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The mutant adds a call to an unknown function TRAP_ON_ZERO around the i index. If i is 0, the call returns 0 and the function returns false. This behavior will affect the program's output by changing the comparison indexes. Original program less01(a, 1, 2) = 1 while mutant less01(a, 1, 2) = 0"
+    },
+    {
+      "input": [
+        [
+          "tomato",
+          "potato",
+          "onion"
+        ],
+        2,
+        3
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The indexes used in the comparison are not zero, so both programs will produce the same output."
+    },
+    {
+      "input": [
+        [
+          "Java",
+          "Python",
+          "C++"
+        ],
+        3,
+        1
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The comparison indexes are in the correct order. Both programs will produce the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta504_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "h",
+        "e",
+        "a",
+        "p"
+      ],
+      "original_output": "***************** Sorted Strings *****************\n a\n e\n h\n p\n",
+      "mutant_output": "***************** Sorted Strings *****************\n a\n e\n p\n h\n",
+      "explanation": "The original program sorts the strings lexicographically using heapsort algorithm. The mutant changes the condition in line 23 so that j and j+1 are compared only if (j - N) is true, causing only j+1 to be compared when j == N. This breaks the heap invariant because j+1 may be greater than j. This condition throws a warning 'comparison of integers of different signs' because j-N is an integer and less than j+1; In this test case the conditional is satisfied several times, causing the strings 'p' and 'h' to be inverted in the output of the mutated program."
+    }
+  ]
+},{
+  "mutant_program": "muta507_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nA\nE\nE\nL\nM\nO\nP\nR\nS\nT\nX\n",
+      "mutant_output": "***************** Sorted Strings *****************\nA\nE\nE\nL\nM\nO\nP\nR\nS\nX\nT\n",
+      "explanation": "The mutant has a condition in the sink function that uses modulo N to check if j + 1 exists, which is wrong. This causes the algorithm to sort the array incorrectly. The input is the same as the one provided in the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta513_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "c",
+        "a",
+        "b"
+      ],
+      "original_output": "Sorted Strings\na\nb\nc\n",
+      "mutant_output": "Sorted Strings\nc\na\nb\n",
+      "explanation": "The original program correctly sorts the input strings in ascending order. The mutant program uses a different criteria to determine which of the child nodes of the current node to swap with (j ^ N) && less01(pq, j, (j + 1)), which is not equivalent to the original program's criteria (j < N && less01(pq, j, j+1)). As a result, the mutant program outputs the strings in a different order than the original program."
+    },
+    {
+      "input": [
+        "dog",
+        "cat",
+        "bird"
+      ],
+      "original_output": "Sorted Strings\nbird\ncat\ndog\n",
+      "mutant_output": "Sorted Strings\ndog\ncat\fbird\n",
+      "explanation": "The original program correctly sorts the input strings in ascending order. The mutant program uses a different criteria to determine which of the child nodes of the current node to swap with (j ^ N) && less01(pq, j, (j + 1)), which is not equivalent to the original program's criteria (j < N && less01(pq, j, j+1)). As a result, the mutant program outputs the strings in a different order than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta527_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\nall\nbad\nbed\ndad\nbug\nyet\nyes\nzoo\n",
+      "explanation": "The mutant code changes the condition in the if statement inside the `sink` function, causing it to be true on one more case, thus changing the way the array is sorted. The provided test set is an array of strings to be sorted alphabetically. The original program outputs the expected sorted array, while the mutated program outputs a different sorted array."
+    }
+  ]
+},{
+  "mutant_program": "muta539_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "dad",
+        "bed",
+        "bad",
+        "all"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\ndad\n",
+      "mutant_output": "***************** Sorted Strings *****************\nall\nbed\nbad\ndad\n",
+      "explanation": "The mutated program has a return statement inside the sink function. So, the loop in the sink function is terminated when the if statement is satisfied, even if the less function is not less02. This changes how the sorting is performed, which results in a different output for the same input."
+    },
+    {
+      "input": [
+        "zoo",
+        "yet",
+        "yes"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nyes\nyet\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\nyes\nzoo\nyet\n",
+      "explanation": "The mutated program has the same outputs everywhere except when the input contains 3 items, and one of them is equal to another. When there are items equal to another, the order will become random because the if statement does not consider whether the elements being swapped are equal. In this particular input, the original program orders the elements alphabetically, and the mutated program orders it in a random way."
+    }
+  ]
+},{
+  "mutant_program": "muta572_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nA\nE\nE\nL\nM\nO\nP\nR\nS\nT\nX\n",
+      "mutant_output": "***************** Sorted Strings *****************\nA\nE\nL\nM\nO\nP\nR\nS\nT\nX\nE\n",
+      "explanation": "The mutation replaced the condition in the while loop of the sink function by ((2 * TRAP_ON_NEGATIVE(k)) <= N), which will never be satisfied since TRAP_ON_NEGATIVE function is not implemented. Therefore, the sink function will never be executed, and the array will not be sorted correctly."
+    }
+  ]
+},{
+  "mutant_program": "muta573_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "C",
+        "A",
+        "B"
+      ],
+      "original_output": [
+        "A",
+        "B",
+        "C"
+      ],
+      "mutant_output": [
+        "A",
+        "C",
+        "B"
+      ],
+      "explanation": "The mutant changed the sink function by adding an extra condition on line 25 that multiplies 2 by TRAP_ON_ZERO(k). This causes the program to sort the array incorrectly, since the order of certain elements is changed due to the added condition."
+    },
+    {
+      "input": [
+        "dog",
+        "frog",
+        "cow",
+        "camel",
+        "bat"
+      ],
+      "original_output": [
+        "bat",
+        "camel",
+        "cow",
+        "dog",
+        "frog"
+      ],
+      "mutant_output": [
+        "bat",
+        "camel",
+        "dog",
+        "frog",
+        "cow"
+      ],
+      "explanation": "This test also shows how the mutant changed the sorting order due to the extra condition in the sink function. The original program correctly sorts the array, but the mutant incorrectly orders the words."
+    }
+  ]
+},{
+  "mutant_program": "muta575_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "E",
+        "A",
+        "S",
+        "Y"
+      ],
+      "original_output": "A\nE\nS\nY\n",
+      "mutant_output": "A\nY\nS\nE\n",
+      "explanation": "The original program sorts the input strings using heapsort. The mutation modified the sink function by adding a new condition within the while loop, changing the value of N. The TRAP_ON_NEGATIVE function modifies the value of N to be negative when it is odd, thus altering the process of sorting, by sinking up instead of sinking down. This is a different behavior than the original program, resulting in a different output order."
+    }
+  ]
+},{
+  "mutant_program": "muta576_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "dad",
+        "all",
+        "bed"
+      ],
+      "original_output": "all\nbed\ndad\n",
+      "mutant_output": "all\ndad\nbed\n",
+      "explanation": "The original program correctly implements the sink function to sort the input strings in ascending order. The mutant program, however, contains a non-deterministic change which replaces the condition in the while loop of the sink function with an equivalent function that checks if (2 * k) is less than or equal to the output of TRAP_ON_ZERO(N). Since the function TRAP_ON_ZERO is undefined, the output of the mutant program is not guaranteed to be equivalent to the original program. In fact, the mutant program produces a different output for the input ['dad','all','bed']."
+    }
+  ]
+},{
+  "mutant_program": "muta578_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "E",
+        "A",
+        "S",
+        "Y",
+        "Q",
+        "U",
+        "E",
+        "S",
+        "T",
+        "I",
+        "O",
+        "N"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nA\nE\nE\nI\nN\nO\nQ\nS\nS\nT\nU\nY\n",
+      "mutant_output": "***************** Sorted Strings *****************\nA\nE\nE\nI\nN\nO\nS\nQ\nS\nT\nU\nY\n",
+      "explanation": "The mutated code changes line 20, from j = 2*k to j = 2 * TRAP_ON_NEGATIVE(k), where TRAP_ON_NEGATIVE is a function that applies a negative trap if k is negative. This change affects the position of the elements in the heap and thus changes the final sort order, as shown in the outputs above for a test input array."
+    }
+  ]
+},{
+  "mutant_program": "muta579_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "zoo",
+        "dad",
+        "all",
+        "yes",
+        "bed",
+        "yet",
+        "bug",
+        "bad"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nyet\ndad\nbug\nges\nzoo\n",
+      "explanation": "The mutant program changed the line 'j = 2*k;' to '(j = (2 * TRAP_ON_ZERO(k))) ;'. This operation changes the computed value of j under the circumstance when k is 0. The consequence is that the original program always sinks the first element of the heap. The mutant doesn't. The test output for the original program shows all values sorted lexicographically. The test output for the mutant program shows that 'yet' and 'yes' were swapped."
+    }
+  ]
+},{
+  "mutant_program": "muta581_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\n...\nyes\nyet\nzoo\n",
+      "mutant_output": "all\nbad\nyet\nbed\ndad\n...\nbug\nyes\nzoo\n",
+      "explanation": "The mutated program includes the TRAP_ON_NEGATIVE function inside the sink function, which changes the behavior of the function by checking the limit condition when comparing indices. The original program just used the < operator to compare j and N, while the mutated program calls TRAP_ON_NEGATIVE(j) and compares it to N, which is a different condition. This change in the limit condition can affect the ordering of the heap and the resulting sorted array, as we can see in the test output."
+    }
+  ]
+},{
+  "mutant_program": "muta582_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "zoo",
+        "dad",
+        "bad",
+        "bed",
+        "yes",
+        "all",
+        "yet",
+        "bug"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "all\nbed\nbad\ndad\nbug\nyes\nyet\nzoo\n",
+      "explanation": "The mutant program adds a condition on line 23 that checks if j+1 is less than N before calling the less01 function. This change can alter which value is assigned to variable j, thus leading to a different sorting order."
+    }
+  ]
+},{
+  "mutant_program": "muta584_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "z",
+        "w",
+        "a",
+        "h"
+      ],
+      "original_output": "***************** Sorted Strings *****************\na\nh\nw\nz\n",
+      "mutant_output": "***************** Sorted Strings *****************\na\nz\nw\nh\n",
+      "explanation": "'TRAP_ON_NEGATIVE(N)' is an undefined macro in the mutant code, which causes an error while compiling. Assuming it is a macro that returns N when N is positive, the function behaves very differently compared to the original. The 'sink' function may end up comparing j to (j+1) even when j is actually equal to N/2, for instance, because the mutated condition is always true if N is negative. This can lead to all kinds of different results. For instance, for the input ['z', 'w', 'a', 'h'], the original program sorts the array showing the output 'a\nh\nw\nz\n', while the mutant program, due to the non-deterministic effects of the mutation, sorts it as 'a\nz\nw\nh\n'."
+    }
+  ]
+},{
+  "mutant_program": "muta585_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "zoo",
+        "bad",
+        "all",
+        "yes",
+        "bed",
+        "dad",
+        "yet",
+        "bug"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\nall\nbad\nyet\ndad\nbed\nbug\nyes\nzoo\n",
+      "explanation": "The original program sorts the strings by using heapsort. The mutant, however, has a conditional statement within the sink function, which could change the behavior of the sorting algorithm. To test the differences, an input array of strings is used. The output of the original program is correct, but the output of the mutant has bed, bug, and yet in the wrong order. This test shows that the mutant is not equivalent to the original program because it does not produce the same output as the original."
+    }
+  ]
+},{
+  "mutant_program": "muta587_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": [
+        "all",
+        "bad",
+        "bed",
+        "bug",
+        "dad",
+        "yet",
+        "yes",
+        "zoo"
+      ],
+      "mutant_output": [
+        "all",
+        "bad",
+        "yet",
+        "bug",
+        "dad",
+        "bed",
+        "yes",
+        "zoo"
+      ],
+      "explanation": "The mutant made a change in the sink function where it added TRAP_ON_NEGATIVE(j) comparison that can lead to index out of bounds error if j is less than 1. This will ultimately cause a memory error."
+    }
+  ]
+},{
+  "mutant_program": "muta588_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "aa",
+        "bb",
+        "cc"
+      ],
+      "original_output": "***************** Sorted Strings *****************\naa\nbb\ncc\n",
+      "mutant_output": "***************** Sorted Strings *****************\naa\ncb\ncc\n",
+      "explanation": "The mutant code replaces a comparison between indexes (j < N && less01(pq , TRAP_ON_ZERO(j) , (j + 1)))) by ((j < N) && less01(pq , TRAP_ON_ZERO(j) , (j + 1))) ), adding extra parenthesis that change the if conditional. This makes the mutant sink function to not swap the indexes correctly which results in a different output. The test case used is an input with three distinct character vectors that are sorted alphabetically."
+    }
+  ]
+},{
+  "mutant_program": "muta590_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "a",
+        "c",
+        "b"
+      ],
+      "original_output": "a\nb\nc\n",
+      "mutant_output": "a\nc\nb\n",
+      "explanation": "The original program sorts the strings in ascending order, while the mutant program sorts them in descending order due to the change in the comparison function used in the sink function."
+    },
+    {
+      "input": [
+        "19",
+        "8",
+        "31",
+        "15"
+      ],
+      "original_output": "15\n19\n31\n8\n",
+      "mutant_output": "31\n19\n15\n8\n",
+      "explanation": "The original program sorts the strings in ascending order, while the mutant program sorts them in descending order due to the change in the comparison function used in the sink function."
+    }
+  ]
+},{
+  "mutant_program": "muta591_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "A\nE\nL\nM\nO\nP\nR\nS\nT\nX\nE\n",
+      "mutant_output": "A\nE\nL\nM\nO\nP\nS\nR\nT\nX\nE\n",
+      "explanation": "The mutant introduces a TRAP_ON_ZERO(j) function in the if evaluation to verify whether its first operand (j < N) is non-zero (true). This function will always return 0 since it doesn't receive any argument and will trigger a fault. So, the 'less than' condition j < N will never be fulfilled and it will always enter the else block and assign j to 2*k, resulting in an incorrect swapping of elements, making the sorted array differs from the expected one."
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\nyet\ndad\nyes\nzoo\n",
+      "explanation": "The same as before, the mutant introduces a faulty function and breaks the comparison between elements in a similar way, generating a different order to the output array anyway."
+    }
+  ]
+},{
+  "mutant_program": "muta593_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\nall\nbad\nbed\ndad\nzoo\nbug\nyes\nyet\n",
+      "explanation": "The mutant code introduces a new conditional at line 25, changing the behavior of the while loop. The test set provided is a small collection of strings that are sorted alphabetically. The original program outputs the expected sorted order, while the mutant code changes the order of 'zoo' and 'bug', resulting in the mutant's output order being incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta594_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo"
+      ],
+      "original_output": [
+        "all",
+        "bad",
+        "bed",
+        "bug",
+        "dad",
+        "...",
+        "yes",
+        "yet",
+        "zoo"
+      ],
+      "mutant_output": [
+        "all",
+        "bad",
+        "bed",
+        "dad",
+        "bug",
+        "...",
+        "yes",
+        "yet",
+        "zoo"
+      ],
+      "explanation": "The mutant changes the conditional statement inside the while loop in the sink function. The original statement checks if the parent node is less than the child node, while the mutant statement checks if the parent node is NOT less than the child node. This results in the formation of different heaps which leads to different sorted outputs."
+    },
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": [
+        "A",
+        "E",
+        "E",
+        "L",
+        "M",
+        "O",
+        "P",
+        "R",
+        "S",
+        "T",
+        "X"
+      ],
+      "mutant_output": [
+        "A",
+        "E",
+        "E",
+        "L",
+        "O",
+        "M",
+        "P",
+        "R",
+        "S",
+        "T",
+        "X"
+      ],
+      "explanation": "The original and mutated program outputs differ due to the conditional statement inside the while loop in the sink function. The original statement checks if the parent node is less than the child node, while the mutant statement checks if the parent node is NOT less than the child node. This results in the formation of different heaps which leads to different sorted outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta596_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "A\nE\nL\nM\nO\nP\nR\nS\nT\nX\n",
+      "mutant_output": "A\nE\nO\nM\nL\nP\nR\nS\nT\nX\n",
+      "explanation": "The mutant added a trap condition to the if statment that selects the child element to be swapped with. The trap condition will return the opposite of less01, which inverts the way the elements are ordered in the heap. This leads to a different order of swapping. In the given input, this causes a different output where M and L are swapped."
+    }
+  ]
+},{
+  "mutant_program": "muta597_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "z",
+        "a"
+      ],
+      "original_output": "a\nz\n",
+      "mutant_output": "z\na\n",
+      "explanation": "The original sink function maintains the heap invariant by checking if the parent is greater than its children and swaps them if not. The mutant function has an additional trap condition that checks if j is 0, which should never be the case as the left child index is always 2k. This causes the sink function to fail for certain inputs where the parent is less than its left child but greater than its right child. For example, for the input {\"z\", \"a\"}, the original program outputs \"a\\nz\\n\" indicating that the strings are sorted in lexicographic order. However, the mutated program outputs \"z\\na\\n\" which is not sorted and is in fact completely reversed. "
+    },
+    {
+      "input": [
+        "cat",
+        "apple",
+        "dog"
+      ],
+      "original_output": "apple\ncat\ndog\n",
+      "mutant_output": "apple\ndog\ncat\n",
+      "explanation": "The original program correctly sorts the strings but the mutated program does not. Since the mutated program has additional trap conditions, it fails to maintain the heap invariant properly which can lead to incorrect sorting order as seen in this test case where \"dog\" and \"cat\" are swapped."
+    }
+  ]
+},{
+  "mutant_program": "muta599_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "E",
+        "C",
+        "A",
+        "B",
+        "H",
+        "F",
+        "M",
+        "L",
+        "K",
+        "D",
+        "N",
+        "J",
+        "G",
+        "I"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nA\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM\nN\n",
+      "mutant_output": "***************** Sorted Strings *****************\nA\nB\nC\nD\nE\nF\nI\nH\nK\nL\nJ\nN\nM\nG\n",
+      "explanation": "The original program sorts the input strings using Heap sort algorithm. The mutant program is almost similar to the original program except it applies a trap operator on negative i index value in line 20 of the sink function. The trap operator modifies the array index value by taking its absolute value, preventing it from going below 0. Although the mutant program looks like it is sorting the array, it actually sorts an incorrect array, which becomes clear from its output being significantly different from the output of the original program. The given test set contains a random sequence of 14 strings that are sorted in ascending order by the original program. When we run the same test for the mutant program, it provides a different and incorrect output. Therefore, the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta600_Heap.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta602_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "z",
+        "o",
+        "d",
+        "e"
+      ],
+      "original_output": "d\ne\no\nz\n",
+      "mutant_output": "d\no\ne\nz\n",
+      "explanation": "The mutated program has a trap condition inside the while loop in the sink function that exchanges the values when the result of the less01 function is negative. This modifies the sequence of values and causes the sorted output to be different from the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta603_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "c",
+        "a",
+        "b"
+      ],
+      "original_output": "a\nb\nc\n",
+      "mutant_output": "a\nc\nb\n",
+      "explanation": "The original program and the mutant program have different outputs for the input ['c', 'a', 'b']. This is because in the mutant program, during the sink function, the exchange of two elements is performed using the function TRAP_ON_ZERO, which is not defined. Therefore, TRAP_ON_ZERO(j) returns 0, causing the last element of the heap to always be exchanged with the root element during the sorting process. As a result, the output order may not be correct."
+    },
+    {
+      "input": [
+        "10",
+        "9",
+        "8",
+        "7",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "original_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n",
+      "mutant_output": "1\n2\n3\n10\n6\n5\n4\n8\n9\n7\n",
+      "explanation": "The original program and the mutant program have different outputs for the input ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1']. This is because the sink function of the mutant program has an incorrect implementation of the exchange operator, causing the order of elements to be exchanged erroneously during the sorting process."
+    }
+  ]
+},{
+  "mutant_program": "muta605_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "all\nbed\nbug\ndad\nyet\nyes\nzoo\nbad\n",
+      "explanation": "The original program sorts the strings in lexicographic order by using the less01() function to compare the elements. The mutant program is identical to the original, with the exception of a non-deterministic change: after calling exch(), it applies a trap function to the variable k, which may lead to different outcomes depending on the value of j. The provided test set consists of an input list of 8 strings. The original program sorts them alphabetically and returns the expected result. However, the mutant program outputs the list as if it was sorted in reverse order starting from the second element. Therefore, the mutant program is not equivalent to the original."
+    }
+  ]
+},{
+  "mutant_program": "muta606_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "all\nbad\nyet\ndad\nbug\nbed\nyes\nzoo\n",
+      "explanation": "The original program sorts the input lexicographically, while the mutant program does not. The difference is caused by the TRAP_ON_ZERO function call, which modifies the k index in sink function, but it does not affect the lexicographic comparison. The test input is used from the original implementation."
+    }
+  ]
+},{
+  "mutant_program": "muta667_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\nzoo\nyes\nyet\ndad\n",
+      "explanation": "The original program sorts the input strings in ascending lexicographic order, while the mutant program sorts them in descending order. The test input contains a mix of capitalized and uncapitalized strings, but since strcmp() considers capitalized characters as smaller than uncapitalized ones, this does not affect the correctness of the sorting. The original output is obtained by running the original program with the provided input, while the mutant output is obtained by running the mutant program with the same input."
+    }
+  ]
+},{
+  "mutant_program": "muta672_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "all\nbad\nbed\ndad\nbug\nyes\nyet\nzoo\n",
+      "explanation": "The mutant changes the for loop where k gets assigned to make k=5, which causes the loop to iterate one less time. As a result, the function does not sort correctly. This is proven by the different results in the output."
+    },
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "A\nE\nL\nM\nO\nP\nR\nS\nT\nX\n",
+      "mutant_output": "A\nE\nL\nM\nO\nP\nR\nS\nT\nX\n",
+      "explanation": "The original tests will run equally to the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta673_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "zoo\nyet\nyes\ndad\ndad\nbug\nbed\nbad\n",
+      "explanation": "The mutant code added an extra loop condition in the for-loop of sort function that introduces extra execution cycles so the code does not follow the intended sorting logic anymore. The difference can be observed in the output of the sorting funciton, from the tests given above."
+    }
+  ]
+},{
+  "mutant_program": "muta674_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "a",
+        "c",
+        "b"
+      ],
+      "original_output": "***************** Sorted Strings *****************\n\na\nc\nb\n",
+      "mutant_output": "***************** Sorted Strings *****************\n\na\nb\nc\n",
+      "explanation": "The original program sorts the input strings using heapsort, while the mutant program sorts them using selection sort. The provided test set is a case where selection sort has a different behavior than heapsort, resulting in different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta717_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "dad",
+        "bad",
+        "all",
+        "bug"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbug\ndad\n",
+      "mutant_output": "***************** Sorted Strings *****************\nall\nbad\ndad\nbug\n",
+      "explanation": "The mutant changes the initial value of k in the sort function from k=length/2 to k=length+2. This causes the sort function to skip the first element of the input array and start comparisons from the second element onwards. As a result, the sorted output is different than that of the original program. The test input contains a few strings in random order, and the difference in output can be observed by comparing the order of strings in the sorted result."
+    },
+    {
+      "input": [
+        "zoo",
+        "yes",
+        "bed",
+        "bad",
+        "yet"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nzoo\nyes\nyet\n",
+      "explanation": "The input for this test contains a few strings in random order. The output of the original program sorts the input strings in lexicographic order, whereas the output of the mutant sorts the strings in an order that is not lexicographic. This confirms that the output of the two programs is different, and the mutant is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta718_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": [
+        "all",
+        "bad",
+        "bed",
+        "bug",
+        "dad",
+        "yet",
+        "yes",
+        "zoo"
+      ],
+      "mutant_output": [
+        "all",
+        "bad",
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "yet",
+        "zoo"
+      ],
+      "explanation": "The mutant code changes the initial value of variable k in sort() function to (length - 2), which means that it doesn't take into account the previous step where k is initialized as length/2. This produces different behavior on sinking the elements into the heap and, hence, a non-equivalent behavior. Test input is the same as in the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta719_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "",
+      "explanation": "For the given input, original program sorts the strings and returns the output whereas the mutant program sorts the strings and doesn't return anything."
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\n... might have additional values\nyes\nyet\nzoo\n",
+      "mutant_output": "",
+      "explanation": "For the given input, original program sorts the strings and returns the output whereas the mutant program sorts the strings and doesn't return anything."
+    }
+  ]
+},{
+  "mutant_program": "muta721_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo",
+      "mutant_output": "***************** Sorted Strings *****************\nbed\nall\nbug\ndad\nyes\nyet\nzoo\nbad",
+      "explanation": "The mutant program modifies a line in the sort function where it sets k to a bit-wise OR operation of length and 2 (k = (length | 2)). This line modifies the calculation of k and results in an unequal output compared to the original program. The test set contains just one array of strings that are in random order and different lengths. The original program sorts the strings in lexicographical order and produces the expected output. The mutant program sorts the strings with the original implementation of the sort function and results in a different lexicographical output."
+    }
+  ]
+},{
+  "mutant_program": "muta732_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "explanation": "The input is already sorted, so both the original and the mutated programs output the same result."
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "...\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "all\n...\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "explanation": "The mutated program sorts the '...' string before the others, resulting in a different output compared to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta749_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "S\nE\nR\nO\nT\nX\nA\nM\nP\nL\nE\n",
+      "explanation": "The original program sorts the input strings using heapsort, while the mutant program sorts them using heapsort as well but with a different approach on line 28, which sets the initial value of the variable 'k' with 'k=length', instead of 'k=length/2', making it always start at the end of the input array. Due to this, the order of the sorted array is different in the mutant program. The test checks the sorting of 11 strings."
+    }
+  ]
+},{
+  "mutant_program": "muta751_Heap.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta753_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "E\nO\nR\nT\nS\nX\nA\nM\nP\nL\nE\n",
+      "explanation": "The original program uses a while loop to sort the strings in a descending order and swap the first element with the last after each iteration, while the mutant is sorting in descending order but is indirectly comparing the second element as a priority with its right sibling using function less01. It is swapping the first element with the last after each iteration as well. The output is different since the original is creating an ordered list descendant while the mutant's is ascending. "
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "bad",
+        "all",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "bad\nall\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "explanation": "The original program sorts the strings in ascending order, while the mutant is sorting in descending order but is indirectly comparing the first element as a priority with its right sibling using function less01. It is swapping the first element with the last after each iteration as well, like the original. The output is different since the original is creating an ordered list and mutant is descending. "
+    }
+  ]
+},{
+  "mutant_program": "muta757_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "T\nS\nR\nO\nE\nX\nA\nM\nP\nL\nE\n",
+      "explanation": "The original program sorts the array using heap sort. The mutant program does not sort correctly since it changes the condition of the for loop that initializes k as a decreasing variable. The mutant program keeps k decreasing but applies a multiplication that will be always true for a positive integer number and the loop is executed indefinitely. The test set used provides a small size array, but the difference between the sorted array from the original program and the mutant program is evident."
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "bed\nbug\ndad\nyes\nzoo\nall\nbad\nyet\n",
+      "explanation": "The original program sorts the array using heap sort. The mutant program does not sort correctly since it changes the condition of the for loop that initializes k as a decreasing variable. The mutant program keeps k decreasing but applies a multiplication that will be always true for a positive integer number and the loop is executed indefinitely. The test set used provides a small size array, but the difference between the sorted array from the original program and the mutant program is evident."
+    }
+  ]
+},{
+  "mutant_program": "muta758_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "a",
+        "b",
+        "c"
+      ],
+      "original_output": "a\nb\nc\n",
+      "mutant_output": "a\nb\nc\n",
+      "explanation": "Both programs output the sorted strings correctly for the given input"
+    },
+    {
+      "input": [
+        "Z",
+        "Y",
+        "X",
+        "W"
+      ],
+      "original_output": "W\nX\nY\nZ\n",
+      "mutant_output": "W\nY\nX\nZ\n",
+      "explanation": "For the mutant code, the sink function has been altered by including an infinite loop due to a change in the conditional statement, this change does not affect the output for the first test case, but it affects the output for the second test case provided. In the second test case, the difference between the lengths of the string on position 1 and 2 is greater than 1 and for this reason it is necessary to do an exchange between them, but the mutant code never finishes the first iteration inside the while loop in the sink function, because of this, the mutated program provides an incorrect output."
+    },
+    {
+      "input": [
+        "fgh",
+        "abc",
+        "lmn",
+        "wxy"
+      ],
+      "original_output": "abc\nfgh\nlmn\nwxy\n",
+      "mutant_output": "abc\nfgh\nlmn\nwxy\n",
+      "explanation": "Both programs output the sorted strings correctly for the given input"
+    }
+  ]
+},{
+  "mutant_program": "muta761_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\n...\nyes\nyet\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\ndad\n...\nzoo\nyes\nyet\n",
+      "explanation": "The mutant code has a mistake at line 41, where its termination condition is based on a boolean expression ((length - 1) evaluates to true or false), while the correct termination condition is simply (length > 1). This condition is responsible for terminating the outer loop in the sort method; therefore, the mutant code sorts one less string than the original. As a consequence, the original output is sorted correctly and the mutant output is not."
+    }
+  ]
+},{
+  "mutant_program": "muta762_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "explanation": "The test set is the same on both programs, also their expected outcomes. However, the mutant code has an error on the while condition in the sort function that makes the program to loop infinitely, so no output is shown. This mutant code is not equivalent to the original program code."
+    }
+  ]
+},{
+  "mutant_program": "muta763_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "explanation": "The original and the mutant program produce the same output."
+    },
+    {
+      "input": [
+        "5",
+        "3",
+        "10",
+        "8"
+      ],
+      "original_output": "3\n5\n8\n10\n",
+      "mutant_output": "3\n5\n8\n10\n",
+      "explanation": "The original and the mutant program produce the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta772_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "explanation": "The original program sorts the strings in lexicographic order. The mutant program tries to modify the condition to run the loop to continuously with 1, leading to an infinite loop."
+    }
+  ]
+},{
+  "mutant_program": "muta774_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "zoo",
+        "dad",
+        "yes",
+        "bug",
+        "bed",
+        "all",
+        "yet",
+        "bad"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "explanation": "The test set is already in alphabetical order, and both the original and the mutant outputs produced the same result. However, the mutant code is not equivalent because the while loop at line 40 was modified and now contains a condition that will always evaluate to false, so the loop will never execute. This is obvious by looking at the condition itself '((length && 1)' because it's missing a logical operator between 'length' and '1'. In this scenario, only the first iteration of the while loop will be executed, and it will automatically exit because length is not equal to 1."
+    },
+    {
+      "input": [
+        "c",
+        "b",
+        "a"
+      ],
+      "original_output": "***************** Sorted Strings *****************\na\nb\nc\n",
+      "mutant_output": "***************** Sorted Strings *****************\na\nb\nc\n",
+      "explanation": "The second test set is not sorted, and thus it can be used to determine that the two programs are not equivalent. The original program correctly sorts the strings in alphabetical order. The mutant code, in contrast, will again execute only the first iteration of the while loop in line 40, but then it will sort the strings in descending order, producing incorrect output. Thus, the mutant code is not equivalent to the original."
+    }
+  ]
+},{
+  "mutant_program": "muta782_Heap.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "explanation": "The original and mutated program perform the same operations and produce the same output for the provided input."
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\n...yes\nyet\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\ndad\n...yes\nyet\nzoo\n",
+      "explanation": "The original and mutated program perform the same operations and produce the same output for the provided input."
+    }
+  ]
+},{
+  "mutant_program": "muta785_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\nyet\nyes\nzoo\nall\nbad\nbed\nbug\ndad\n",
+      "explanation": "The original program and the mutant program are not equivalent. The mutant program uses a bitwise shift operation instead of division to decrement the value of k in the sink function. This will make k loop indefinitely and may cause the program to crash or result in an infinite loop. We can observe that the test results in different outputs for the original and mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta787_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "explanation": "The input is already sorted, so both programs should output the same result."
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "...\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "...\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "explanation": "The input is already sorted, so both programs should output the same result."
+    },
+    {
+      "input": [
+        "ba",
+        "a",
+        "ca",
+        "b",
+        "c"
+      ],
+      "original_output": "a\nb\nba\nc\nca\n",
+      "mutant_output": "a\nb\nba\nc\nc3\n",
+      "explanation": "The mutated code has an error in the while condition of the sort function, which causes it to run indefinitely. Therefore, it does not sort the array correctly and produces a different output than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta788_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "O",
+        "W",
+        "G",
+        "J",
+        "F",
+        "P",
+        "C",
+        "Y",
+        "K",
+        "I"
+      ],
+      "original_output": [
+        "C",
+        "F",
+        "G",
+        "I",
+        "J",
+        "K",
+        "O",
+        "P",
+        "W",
+        "Y"
+      ],
+      "mutant_output": [
+        "C",
+        "F",
+        "G",
+        "I",
+        "J",
+        "K",
+        "O",
+        "Y",
+        "P",
+        "W"
+      ],
+      "explanation": "The original program sorts the input array correctly, while the mutant uses bitwise shift operators instead of integer division and the last element is not swapped, resulting in an incorrect sort."
+    }
+  ]
+},{
+  "mutant_program": "muta1012_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "a",
+        "d",
+        "c",
+        "b"
+      ],
+      "original_output": "a\nd\nc\nb\n",
+      "mutant_output": "b\nd\nc\na\n",
+      "explanation": "The original program prints the strings in order, while the mutant code initializes variable i to zero before it enters the loop that prints the strings, resulting in the strings being printed in reverse order."
+    },
+    {
+      "input": [
+        "this",
+        "is",
+        "a",
+        "test"
+      ],
+      "original_output": "a\nis\ntest\nthis\n",
+      "mutant_output": null,
+      "explanation": "No explanation provided"
+    }
+  ]
+},{
+  "mutant_program": "muta1017_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "a",
+        "c",
+        "b"
+      ],
+      "original_output": "a\nb\nc\n***************** Sorted Strings *****************\na\nb\nc\n",
+      "mutant_output": "b\nc\na\n***************** Sorted Strings *****************\nb\nc\na\n",
+      "explanation": "The original program sorts the input strings lexicographically using heapsort algorithm and the correct string order is printed. The mutant changed the increment operator in the 'show' function to a bitwise AND with 0, which has the same effect but is harder to read. This caused the order of strings in the output to change, indicating that the program is not equivalent with the original one. The provided test input is a set of three strings in non-lexical order, which ensures that their order is changed in the mutant output."
+    }
+  ]
+},{
+  "mutant_program": "muta1026_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "Nothing will be printed. There is an infinite loop in the show function.",
+      "explanation": "The mutant program has an infinite loop in the show function's for loop condition. Therefore, the program will not print anything. The original program sorts and prints a list of strings from standard input."
+    }
+  ]
+},{
+  "mutant_program": "muta1032_Heap.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\n...\nyes\nyet\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\ndad\n...\nyes\nyet\nzoo\n",
+      "explanation": "The mutant program has made minor changes to variable names and a condition to check when an array is done showing. The outputs are the same because the changes only affected those parts of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta1039_Heap.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nA\nE\nE\nL\nM\nO\nP\nR\nS\nT\nX\n",
+      "mutant_output": "***************** Sorted Strings *****************\nA\nE\nE\nL\nM\nO\nP\nR\nS\nT\nX\n",
+      "explanation": "The mutant code is equivalent to the original program code."
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "explanation": "The mutant code is equivalent to the original program code."
+    }
+  ]
+},{
+  "mutant_program": "muta1058_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\n",
+      "explanation": "The original program prints all strings in the array, while the mutant program is using a macro function TRAP_ON_NEGATIVE(i) in the show function, which returns a negative value or 0 when the input i is negative. In the first loop of the function the index i is incremented if it is lower than the length parameter, but using TRAP_ON_NEGATIVE can cause the string in the last position to not be printed, as the macro would return a value greater or equal to length causing the loop to terminate. The test set used is the array in the example of the original program"
+    }
+  ]
+},{
+  "mutant_program": "muta1061_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo"
+      ],
+      "original_output": "bed\nbug\ndad\nyes\nzoo\n",
+      "mutant_output": "bed\nbug\ndad\nyes\n",
+      "explanation": "The mutant program introduces a trap function in the show() method that limits the number of iterations to a negative value if the length parameter is negative. This means that the for loop in the modified function can terminate prior to printing all elements in the input array, resulting in a different output when compared to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta1064_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad"
+      ],
+      "original_output": "bed\nbug\ndad\nyes\nzoo\nall\nbad\n",
+      "mutant_output": "bed\nbug\nyes\ndad\nzoo\nall\nbad\n",
+      "explanation": "The mutant has a call to a non-existent function TRAP_ON_NEGATIVE(i), which will cause an error. The original program prints the strings in order, whereas the mutant print the strings with a misordering of indexes."
+    }
+  ]
+},{
+  "mutant_program": "muta815_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nA\nE\nE\nL\nM\nO\nP\nR\nT\nX\n",
+      "mutant_output": "A\nE\nL\nM\nO\nP\nR\nS\nT\nX\nE\n",
+      "explanation": "The original program correctly sorts the input array in ascending order, while the mutant program sorts in descending order. This can be observed in the output, where the sorted strings are in the opposite order. The input used for this test is the one provided in the original program's comments."
+    },
+    {
+      "input": [
+        "all",
+        "bad",
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "yet"
+      ],
+      "original_output": "... \nall \nbad \nbed \nbug \ndad \nyes \nyet \nzoo \n",
+      "mutant_output": "zoo \nyet \nyes \ndad \nbug \nbed \nbad \nall \n... \n",
+      "explanation": "The original program correctly sorts the input array in ascending order, while the mutant program sorts in descending order. This can be observed in the output, where the sorted strings are in the opposite order. The input used for this test is the one provided in the original program's comments."
+    }
+  ]
+},{
+  "mutant_program": "muta817_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyes\nzoo\nyet\n",
+      "explanation": "The mutant code replaces the length/2 parameter of the loop in the sort function with a macro that will trap on negative values. This has the effect of truncating the division and causing the loop to start at length, preventing the first element of the array from being sorted correctly. The test case given is a set of strings in random order and therefore not likely to be equivalent between the two functions. The original program sorts the strings in lexicographic order, while the produced output by the mutant function has 'zoo' and 'yet' in the incorrect order at the end."
+    }
+  ]
+},{
+  "mutant_program": "muta820_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo",
+      "explanation": "The mutant code has a TRAP_ON_NEGATIVE() function call in line 34, which will get an integer parameter as input and it returns the absolute value. It causes issues in line 30. The original code works correctly and returns all sorted strings, where each string appears on a separate line. In contrast, the mutant code omits the last newline. Therefore, the output is different. "
+    }
+  ]
+},{
+  "mutant_program": "muta823_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        ".",
+        ".",
+        ".",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "***************** Sorted Strings *****************\n\n.\n.\n.\nall\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "mutant_output": "***************** Sorted Strings *****************\n\nbed\nbug\ndad\nyes\nzoo\n.\n.\n.\nall\nbad\nyet\n",
+      "explanation": "The mutant program replaces the parameter `k` to the function `sink` with `TRAP_ON_NEGATIVE(k)`, which could result in a negative value and cause undefined behavior. In this case, the sorting order of the strings will be different between the original and mutant programs, leading to a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta824_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "S\nO\nR\nT\nE\nX\nA\nM\nL\nP\nE\n",
+      "explanation": "The mutant program executes a TRAP_ON_ZERO function inside the sink function. This function is undefined and will cause the program to crash. Therefore, the mutant program will not produce any output. To test the equivalent branch, the test will be the same as for the original program."
+    },
+    {
+      "input": [
+        "all",
+        "bad",
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyes\nzoo\n...\nyet\n",
+      "mutant_output": "",
+      "explanation": "The test set is the same as the original program, but since the mutant program crashes, it does not produce any output."
+    }
+  ]
+},{
+  "mutant_program": "muta826_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\ndad\nyes\nyet\nzoo\n",
+      "explanation": "The output of the original program and the mutated program are different. The mutant code replaces the length of the heap by calling the macro 'TRAP_ON_NEGATIVE'. This generates a false expectation that the sorting is correct. The original program produces the expected sorted output while the mutated program does not."
+    }
+  ]
+},{
+  "mutant_program": "muta827_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "zoo",
+        "bad",
+        "dad",
+        "yes",
+        "bed"
+      ],
+      "original_output": "all\nbad\nbed\ndad\nyes\nzoo\n",
+      "mutant_output": "all\nbad\nzoo\ndad\nbed\nyes\n",
+      "explanation": "The original program outputs the strings sorted, whereas the mutant program outputs them sorted but with one string (zoo) in the wrong position."
+    },
+    {
+      "input": [
+        "b",
+        "a",
+        "c"
+      ],
+      "original_output": "a\nb\nc\n",
+      "mutant_output": "a\nc\nb\n",
+      "explanation": "The original program outputs the strings sorted, whereas the mutant program outputs them sorted but with two strings (b and c) in the wrong position."
+    }
+  ]
+},{
+  "mutant_program": "muta829_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "c",
+        "b",
+        "a"
+      ],
+      "original_output": "***************** Sorted Strings *****************\na\nb\nc\n",
+      "mutant_output": "***************** Sorted Strings *****************\na\nc\nb\n",
+      "explanation": "The original program sorts the input strings lexicographically. The mutant program, however, introduces a non-deterministic change by using a TRAP_ON_NEGATIVE macro in the while loop condition of the sort function. This causes the loop to continue for an extra iteration after the length of the array is reduced to 1, resulting in incorrect output since the last element should already be in its correct position. The test input of [c, b, a] highlights this difference, with the original program outputting 'a\nb\nc\n' and the mutant program outputting 'a\nc\nb\n'."
+    },
+    {
+      "input": [
+        "dog",
+        "cat",
+        "bird"
+      ],
+      "original_output": "***************** Sorted Strings *****************\nbird\ncat\ndog\n",
+      "mutant_output": "***************** Sorted Strings *****************\nbird\ndog\ncat\n",
+      "explanation": "This test input is similar to the first one, with strings in descending lexicographical order. Once again, the original program sorts the strings correctly while the mutant program outputs an incorrect order. The mutant program's use of the TRAP_ON_NEGATIVE macro causes the loop to continue after the array has already been sorted. The original program outputs 'bird\ncat\ndog\n' while the mutant program outputs 'bird\ndog\ncat\n'."
+    }
+  ]
+},{
+  "mutant_program": "muta832_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "S\nX\nR\nT\nE\nO\nA\nM\nP\nL\nE\n",
+      "explanation": "The mutant modifies the sort function by passing TRAP_ON_NEGATIVE(length) as parameter to the function sink. This causes the function to nunca terminate, as the condition in the while loop always evaluates to true, and there is no decrement of k. Thus, the function will run into an endless loop that will not allow the swapping of elements. We can verify this behavior in the test: length is initialized with 11, then it is decremented below 0 in the first iteration of the while loop. This causes the program to go into an endless loop. The original program outputs sorted input."
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\nyet\nyes\nzoo\n...\n",
+      "mutant_output": "all\nzoo\nbed\nbug\ndad\nyes\n...\nbad\nyet",
+      "explanation": "The mutant modifies the sort function by passing TRAP_ON_NEGATIVE(length) as parameter to the function sink. This causes the function to nunca terminate, as the condition in the while loop always evaluates to true, and there is no decrement of k. Thus, the function will run into an endless loop that will not allow the swapping of elements. We can verify this behavior in the test: length is initialized with 9, then it is decremented below 0 in the first iteration of the while loop. This causes the program to go into an endless loop. The original program outputs sorted input."
+    }
+  ]
+},{
+  "mutant_program": "muta833_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\n...\nyes\nyet\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\ndad\n...\nyet\nzoo\nyes\n",
+      "explanation": "The mutated program has changed the sink function inside the sort function. The second parameter of the call sink(pq , 1 , TRAP_ON_ZERO(length)) is a non-existent function, so it could cause an error. On the other hand, it does not change the output when the  argument length is greater than 1."
+    }
+  ]
+},{
+  "mutant_program": "muta844_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n",
+      "mutant_output": "S\nO\nR\nT\nE\nX\nA\nM\nP\nL\nE\n\n",
+      "explanation": "The mutant code includes a change in the 'k' initialization line inside the sort function, changing the formula to (SUCC(length) / 2), which is equivalent to (length + 1) / 2. This change introduces a non-deterministic behavior that generates a different output from the original program, as we can see here.\nThe test input is the same as the 'tiny.txt' file mentioned in the program comments."
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "...",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": "all\nbad\nbed\nbug\ndad\n... \nyes\nyet\nzoo\n",
+      "mutant_output": "all\nbad\nbed\nbug\ndad\n... \nyes\nyet\nzoo\n\n",
+      "explanation": "Again, the same non-deterministic change in the 'k' initialization line of the sort() function causes a different output in the same heap sorting algorithm. The test input is the same as the 'words3.txt' file mentioned in the program comments."
+    }
+  ]
+},{
+  "mutant_program": "muta852_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "sort",
+        "test",
+        "case"
+      ],
+      "original_output": "***************** Sorted Strings *****************\ncase\nsort\ntest\n",
+      "mutant_output": "***************** Sorted Strings *****************\ncase\ntest\nsort\n",
+      "explanation": "The original program sorts the input strings in lexicographical order and produces the expected output. However, the mutated program changes the heap sort algorithm so that it uses an invalid condition in the while loop, which causes it to sort the input strings incorrectly and produce a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta867_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "Both programs receive an array of strings as input and check whether it is sorted or not. However, the mutant has a different condition statement for checking if the array is sorted. The mutant uses a hardcoded 1st index instead of using the loop iteration variable (i) to compare the current and previous element, leading to wrong output. The test set is a pre-sorted array for easy verification."
+    },
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs receive an array of strings as input and check whether it is sorted or not. In this test, the input array is not pre-sorted, but both programs return the same output because the array can be sorted by both programs using the heapsort algorithm."
+    }
+  ]
+},{
+  "mutant_program": "muta907_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "z",
+        "x",
+        "c",
+        "y"
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "In this case, the original program would output 0, indicating that the array is not sorted, while the mutated program would output 1, indicating that the array is sorted. This is because the mutation changed the less02 function that is used in the isSorted function, causing it to compare elements using different indexes and creating a different sorting order."
+    },
+    {
+      "input": [
+        "apple",
+        "banana",
+        "pear"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "In this case, the original program would output 1, indicating that the array is sorted, while the mutated program would output 0, indicating that the array is not sorted. This is because the mutation changed the less01 function that is used in the sink function, causing it to use the wrong comparison function and create an incorrect heap structure."
+    }
+  ]
+},{
+  "mutant_program": "muta965_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly identifies that the given input is sorted. However, the mutant program uses a macro TRAP_ON_NEGATIVE(i), which does not make sense for the loop condition and allows it to access negative array indexes, resulting in unexpected behavior."
+    }
+  ]
+},{
+  "mutant_program": "muta966_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "B",
+        "A",
+        "C",
+        "D"
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The original program output should be 0 since the input is not sorted, but the mutant program output will be 1 because the TRAP_ON_ZERO macro in the for-loop condition will always be satisfied, causing an infinite loop and preventing the less02 function from being called."
+    },
+    {
+      "input": [
+        "explore",
+        "discover",
+        "observe",
+        "learn"
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The input is already sorted, so both programs should output 1, indicating the array is sorted."
+    }
+  ]
+},{
+  "mutant_program": "muta968_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "zebra",
+        "tiger",
+        "lion",
+        "elephant"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly sorts the input strings in lexicographic order. However, the mutant program includes a trap function (TRAP_ON_NEGATIVE) in the isSorted function's loop condition that may lead to an off-by-one error. Specifically, if length is negative, the trap function will return a negative value that will result in an infinite loop; in this case, the loop condition should be i < length, but instead is i < TRAP_ON_NEGATIVE(length), which is always true for non-zero values."
+    },
+    {
+      "input": [
+        "red",
+        "green",
+        "blue",
+        "yellow",
+        "orange"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "In this case, the input strings are already sorted in lexicographic order, and thus the original program returns 1 to indicate it is sorted. However, the mutant program with the off-by-one bug in isSorted will terminate with an infinite loop, resulting in a different output."
+    },
+    {
+      "input": [
+        "apple",
+        "banana",
+        "grape",
+        "orange",
+        "strawberry"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "Similar to the first test case, the input strings are correctly sorted by the original program, but cause the mutant program to terminate with an infinite loop. The difference in outputs comes from the negative off-by-one value returned by the TRAP_ON_NEGATIVE function."
+    }
+  ]
+},{
+  "mutant_program": "muta971_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "yes",
+        "no",
+        "maybe"
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The original program will output 0 since 'no' comes before 'yes' and 'maybe' in the sorted list. The mutant program, however, will output 1 since it swaps the position of 'no' and 'yes' in the less02 call within the isSorted function, effectively reversing the sorting order. "
+    },
+    {
+      "input": [
+        "moon",
+        "sun",
+        "stars"
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutant program will output 0 since the input string array is already sorted."
+    },
+    {
+      "input": [
+        "apple",
+        "banana",
+        "cherry"
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The original program will output 0 since the input array is sorted in lexical order. The mutant program, however, will output 1 since it reverses the sorting order in the less02 call within the isSorted function."
+    }
+  ]
+},{
+  "mutant_program": "muta972_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "yes",
+        "zoo",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program sorts the input array and checks if it is sorted correctly. The mutant changes the index used to access the first element of the array in the less02 function, using TRAP_ON_ZERO macro instead of subtracting 1 from i. This will cause the first element of the array to be out of bounds, leading to undefined behavior. The suggested test set is the same as the one provided in the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta974_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bad",
+        "bed",
+        "bug",
+        "dad",
+        "all",
+        "yet",
+        "yes",
+        "zoo"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The mutant code changes the isSorted function by replacing the comparison between a[i-1] and a[i+1-1] with the expression less02(a[i], a[(TRAP_ON_NEGATIVE(i) - 1)]). TRAP_ON_NEGATIVE is a hypothetical function that should return 1 for i=1 and 2 otherwise; however, it does not exist and thus causes undefined behavior. Therefore, the outputs are different, since less02 considers only the first argument while the mutant replaces the second argument of less02 with a negative index."
+    }
+  ]
+},{
+  "mutant_program": "muta975_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "bed",
+        "bug",
+        "dad",
+        "all",
+        "bad",
+        "yet"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The mutant program includes a trap on the index 'i' in the isSorted function. When the value of 'i' is zero, the trap returns the length of the array minus one. This causes an out of bounds error, as the last element of the array is checked against a non-existing element. The original program does not have this issue and produces the correct output."
+    }
+  ]
+},{
+  "mutant_program": "muta983_Heap.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "yes",
+        "bed",
+        "bug",
+        "dad"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program sorts the array of strings in ascending order and returns 1 if the array is sorted and 0 otherwise. The mutant program changes the loop condition in the isSorted function from (i < length) to (SUCC(i) < length), which means that the last element of the array will not be compared. Therefore, the mutant program incorrectly returns 0 for the input ['yes','bed','bug','dad']."
+    },
+    {
+      "input": [
+        "S",
+        "O",
+        "R",
+        "T",
+        "E",
+        "X",
+        "A",
+        "M",
+        "P",
+        "L",
+        "E"
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original program and mutant program sort the array of strings using heap sort and return 1 if the array is sorted and 0 otherwise. Therefore, they are equivalent for this test case."
+    },
+    {
+      "input": [
+        "all",
+        "bad",
+        "bed",
+        "bug",
+        "dad",
+        "yet",
+        "zoo",
+        "yes"
+      ],
+      "original_output": 1,
+      "mutant_output": 0,
+      "explanation": "The original program correctly sorts the array of strings in ascending order and returns 1. However, the mutant program fails to compare the last two elements 'yes' and 'yet' correctly, resulting in an incorrect output of 0."
+    }
+  ]
+}]
