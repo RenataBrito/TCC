@@ -1,1 +1,971 @@
-[{"mutant_program": "muta0_twoPred.c", "equivalent": false, "tests": [{"input": [5, 3], "original_output": "A", "mutant_output": "B", "explanation": "For this test case, the original program returns 'A' because z is assigned to 1 since x < y, and x + y equals 8 which is equal to 10 - 2 (since x is less than y and not greater or equal to). The mutant code always assigns z to 0, causing the condition in the second if statement to always evaluate to false, thus returning 'B'."}, {"input": [4, 6], "original_output": "B", "mutant_output": "B", "explanation": "For this test case, both the original and mutant program should always return 'B' since z is assigned to 0, and the condition in the second if statement will always evaluate to false."}, {"input": [7, 7], "original_output": "B", "mutant_output": "B", "explanation": "For this test case, both the original and mutant program should always return 'B' since z is assigned to 0, and the condition in the second if statement will always evaluate to false."}]}]
+[{
+  "mutant_program": "muta101_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "In this case, the original program returns 'B' because (z && x + y == 10) is false, but the mutant program returns 'A' because the bitwise XOR operator (^) modifies the value of z to 1 which makes the condition true."
+    },
+    {
+      "input": [
+        4,
+        6
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this case, both programs return 'B' because (z && x + y == 10) is false for both cases."
+    },
+    {
+      "input": [
+        5,
+        4
+      ],
+      "original_output": "A",
+      "mutant_output": "A",
+      "explanation": "In this case, both programs return 'A' because (z && x + y == 10) is true for both cases when x=5, y=4."
+    }
+  ]
+},{
+  "mutant_program": "muta102_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "For the original code, since 2<3 and 2+3=5, z=1 and 'A' is returned. For the mutant code, z is bitwise ORed with 1, making z=1. Then, 'B' is returned. Thus, the outputs are different."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "For both the original and mutant code, since 5 is not less than 5 and 5+5=10 is false, z=0 and 'B' is returned. Thus, the outputs are the same."
+    },
+    {
+      "input": [
+        8,
+        6
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "For both the original and mutant code, since 8 is not less than 6 and 8+6=14 is false, z=0 and 'B' is returned. Thus, the outputs are the same."
+    }
+  ]
+},{
+  "mutant_program": "muta103_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this case, both the original and mutant code result in 'B' as z is not true and x+y is not equal to 10."
+    },
+    {
+      "input": [
+        4,
+        6
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In this case, the original program results in 'A' as expected because z is true and x+y is equal to 10. However, the mutant code results in 'B' because the else statement sets z to 0, breaking the condition for 'A'."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this case, both the original and mutant code result in 'B' as z is not true and x+y is not equal to 10."
+    }
+  ]
+},{
+  "mutant_program": "muta104_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "In this test, the original program will return 'B' because 5 + 3 is not equal to 10, therefore the second if statement evaluates to false. However, the mutated program will return 'A' because even though the else block is executed, the bitwise XOR operation with 0 will not change the value of z, so the second if statement evaluates to true."
+    },
+    {
+      "input": [
+        7,
+        7
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this test, both programs will return 'B' because even though the first if statement evaluates to false, z is assigned a value of 0 and the second if statement evaluates to false as well."
+    },
+    {
+      "input": [
+        -2,
+        10
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "In this test, the original program will return 'B' because -2 is not less than 10, so z is assigned a value of 0 and the second if statement evaluates to false. However, the mutated program will return 'A' because z is assigned a value of 0 in the else block, but the XOR operation with 0 will toggle the value of z to 1, so the second if statement evaluates to true."
+    }
+  ]
+},{
+  "mutant_program": "muta105_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both the original and mutant code have x < y so z will be 1 in both cases, and since x+y is not equal to 10, they will both return B"
+    },
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In the original code, x < y so z is 1, and x+y is 5+3=8, which is not equal to 10, therefore it returns 'B'. In the mutant code, z is set to 0 using a bitwise OR operation, but it has no effect on the subsequent conditional statement. So, the output should have been 'B', but instead, it returns 'A', so the code is not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta108_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        7
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In the original code, if z is true and x + y equals 10, the function returns 'A', otherwise it returns 'B'. In the mutant code, if x is not less than y, z is not set to 1, instead z is being shifted left by 0 bits, which leaves its value as 0. Therefore, when x = 3 and y = 7, z = 0 and x + y = 10, yet the mutant code returns 'B' instead of 'A'."
+    },
+    {
+      "input": [
+        10,
+        4
+      ],
+      "original_output": "A",
+      "mutant_output": "A",
+      "explanation": "In this test case, both the original and mutant code give the same output. In both cases, z is true and x + y equals 10, so the function returns 'A'. The mutation in the mutant code did not affect the behavior of the program in this case."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this test case, z is false in both original and mutant code. Therefore, the function returns 'B' in both cases. The mutation in the mutant code did not affect the behavior of the program in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta109_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        4
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "The original program sets z to 1 if x < y and to 0 if x >= y. The mutant program sets z to 0 if x >= y, but uses a bitwise right shift operation that has no effect on z. Therefore, both programs behave the same way."
+    },
+    {
+      "input": [
+        7,
+        3
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In this case, the original program sets z to 1 and returns 'A' because x + y = 10. However, the mutant program sets z to 0 regardless of whether x < y or not, so it returns 'B'. This shows that the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta112_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both programs take the else branch and return 'B'"
+    },
+    {
+      "input": [
+        6,
+        4
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In the original program, z is 1 and x+y is 10, so it returns' A'. In the mutant program, z is also 1, but the condition is checked with multiplication, so it returns 'B'."
+    },
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both programs take the first 'if' branch and set z to 1, but x+y is not 10, so it returns 'B'."
+    }
+  ]
+},{
+  "mutant_program": "muta116_twoPred.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both original and mutant programs execute the same path since the conditional operator `&&` in `if (z && x + y == 10)` and the bitwise operator `&` in `(z & ((x + y) == 10))` have the same result when `z` is equal to 1 and `x + y` equals 10, and 0 if the expression evaluates to false."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "A",
+      "mutant_output": "A",
+      "explanation": "Both original and mutant programs execute the same path when `x + y = 10` since `z` is set to 1 in that case and the comparison operator in `if (x < y)` is not relevant."
+    },
+    {
+      "input": [
+        7,
+        6
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both original and mutant programs execute the same path when `x + y != 10` since `z` is set to 0 when `x >= y`."
+    }
+  ]
+},{
+  "mutant_program": "muta126_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "The original code will return 'B' because z is 1 (since 5 is greater than 3) and the sum of x and y is not equal to 10. But the mutant code will return 'A' because it is checking if z is equal to the result of the expression ((x + y) == 10), which will be true for input [5,3] and therefore return 'A'."
+    },
+    {
+      "input": [
+        2,
+        8
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both the original and mutant code will return 'B' because z is 0 (since 2 is not greater than 8) and the sum of x and y is not equal to 10."
+    },
+    {
+      "input": [
+        4,
+        6
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "The original code will return 'B' because z is 0 (since 4 is not less than 6) and the sum of x and y is not equal to 10. But the mutant code will return 'A' because it is checking if z is equal to the result of the expression ((x + y) == 10), which will be true for input [4,6] and therefore return 'A'."
+    }
+  ]
+},{
+  "mutant_program": "muta139_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "In the original program code, if x is less than y, z is set to 1 and the condition z && x + y == 10 is checked. But in the mutant code, z is set to 1 if x - y is true, which means that if x is greater than y, z will be set to 1. Therefore, the condition z && x + y == 10 is still satisfied for some inputs that would otherwise result in 'B' output in the original program. For example, for input [2, 5], the original program outputs 'B' but the mutant program outputs 'A'."
+    },
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this case, both the original program and the mutant program set z to 1 because x is less than y in the original and x - y is less than 0 in the mutant. Then, the condition z && x + y == 10 is not satisfied in either program, resulting in 'B' output for both."
+    }
+  ]
+},{
+  "mutant_program": "muta159_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": "A",
+      "mutant_output": "A",
+      "explanation": "Both the original and the mutant program will return 'A' since x is less than y and their sum is equal to 8, which satisfies the condition in the first if statement."
+    },
+    {
+      "input": [
+        8,
+        2
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "The original program will return 'B' because z is equal to 0. However, the mutant program will return 'A' since the condition in the first if statement is satisfied even if x is not strictly less than y."
+    },
+    {
+      "input": [
+        2,
+        8
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both the original and the mutant program will return 'B' since z is equal to 0 and x+y is not equal to 10, which satisfies the condition in the second if statement."
+    }
+  ]
+},{
+  "mutant_program": "muta166_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "The original and the mutant program have the same output for this test case. Both 'if' condition in the code will be satisfied for this test case, but the output in both cases is 'B'."
+    },
+    {
+      "input": [
+        3,
+        7
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "The original and the mutant program have different outputs for this test case. In the original code, the 'if' condition in the code will not be satisfied and the output will be 'B'. Whereas in the mutant code, the 'if' condition in the code will be satisfied and the output will be 'A'."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "A",
+      "mutant_output": "A",
+      "explanation": "The original and the mutant program have the same output for this test case. Both 'if' condition in the code will be satisfied for this test case, and the output in both cases is 'A'."
+    }
+  ]
+},{
+  "mutant_program": "muta175_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both original and mutant satisfy the first if condition, and hence returns 'B'."
+    },
+    {
+      "input": [
+        6,
+        4
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "Original program satisfies both the if conditions and hence returns 'A'. But the mutant program returns 'B' as it exits after the 'else' block."
+    },
+    {
+      "input": [
+        9,
+        0
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both original and mutant satisfy the first if condition, and hence returns 'B'."
+    }
+  ]
+},{
+  "mutant_program": "muta185_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "With input [5, 5], the original code returns 'B' because z=0 and x+y is not equal to 10. However, the mutant code skips the else statement and therefore z is not initialized to 0. This causes the condition z && x+y==10 to be true and 'A' is returned."
+    },
+    {
+      "input": [
+        10,
+        3
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "With input [10, 3], the original and mutant codes both return 'B' because z=0 and x is not less than y, thus the second if statement does not evaluate to true."
+    },
+    {
+      "input": [
+        1,
+        9
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "With input [1, 9], the original code returns 'B' because z=0 and x+y is not equal to 10. However, the mutant code skips the else statement and therefore z is not initialized to 0. This causes the condition z && x+y==10 to be true and 'A' is returned."
+    }
+  ]
+},{
+  "mutant_program": "muta1_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "With the original program, z is set to 1 when x is less than y, but in the mutant program, z is set to 10 instead. Therefore, the condition z && x + y == 10 will evaluate to true with the mutant program when it should be false. This is demonstrated with the input [5,4]."
+    },
+    {
+      "input": [
+        1,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "With the input [1,5], neither the original program or the mutant program will satisfy the condition z && x + y == 10. Therefore, the outputs will be the same."
+    },
+    {
+      "input": [
+        3,
+        7
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "With the input [3,7], neither the original program or the mutant program will satisfy the condition z && x + y == 10. Therefore, the outputs will be the same."
+    }
+  ]
+},{
+  "mutant_program": "muta204_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        6
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "In the original code, z is set to 1 if x is less than y, but in the mutant code, there is a trap on zero for x which will always evaluate to false since x is not zero. Therefore, z is always set to 0 in the mutant code. As a result, the conditions for returning 'A' are never satisfied and the mutant code always returns 'B'."
+    },
+    {
+      "input": [
+        2,
+        8
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "Same as previous test. Since z is always 0 in the mutant code, 'A' is never returned and 'B' is always returned."
+    },
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this case, the conditions for returning 'A' are not satisfied for both the original and mutant code since z is 0. Therefore, both programs return 'B'."
+    }
+  ]
+},{
+  "mutant_program": "muta206_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In the original program, if x is less than y, z is set to 1, and if z is true and the sum of x and y is equal to 10, 'A' is returned. In the mutant code, the condition to set z to 1 is changed to 'x < TRAP_ON_NEGATIVE(y)', which is not equivalent to 'x < y' for all possible values. Thus, for input [5,3], the original program returns 'A', while the mutant program returns 'B'."
+    },
+    {
+      "input": [
+        1,
+        -7
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "In this test case, the mutant code could produce a different output due to the use of TRAP_ON_NEGATIVE(y) for the value of y=-7. Depending on the implementation of that function, it might return a different value than -7, which could affect the outcome of the program. However, since we do not know the implementation of TRAP_ON_NEGATIVE, we cannot be certain of the output for the mutant program."
+    }
+  ]
+},{
+  "mutant_program": "muta207_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        4
+      ],
+      "original_output": "A",
+      "mutant_output": "A",
+      "explanation": "The original code and the mutant code both result in the output 'A' because x < y is true and x + y equals 7, which equals 10 - 3."
+    },
+    {
+      "input": [
+        6,
+        5
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "The original code returns 'A' because  x < y is false and x + y equals 11, which does not equal 10; the mutant code returns 'B' because TRAP_ON_ZERO(y) evaluates to y and x < y is true, therefore z is equal to 1, but x + y equals 11, which does not equal 10, so it returns 'B'."
+    },
+    {
+      "input": [
+        8,
+        2
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "The original code and the mutant code both result in the output 'B' because x < y is false and x + y equals 10, which equals 10, therefore it returns 'B'."
+    }
+  ]
+},{
+  "mutant_program": "muta209_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        6
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both programs take the else clause because 3 is not less than 6. Therefore, z and x+y are not allowed to be the necessary values to return 'A'."
+    },
+    {
+      "input": [
+        2,
+        8
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "In the original program, z is set to 0 because 2 < 8 is False. In the mutant program, because TRAP_ON_NEGATIVE is not defined, the expression is the same as (0 && (2 + 8) == 10), which is also False. However, the mutant program still returns 'A', causing an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta223_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        4
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "In the original code, if (x < y) z = 1, but in the mutant code, it is changed to (x = 0), which would change the value of x and not set z to 1. Hence, the condition z && x + y == 10 would evaluate to false in the mutant code, causing it to return 'B' instead of 'A', which is the output of the original code with this input."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In the original code, if (x < y) z = 1, and since x and y are equal in this test, z remains 0. But in the mutant code, (x = 0) would set x to 0 and not set z to 1. Hence, the condition z && x + y == 10 would evaluate to false in the mutant code, causing it to return 'B' instead of 'A', which is the output of the original code with this input."
+    }
+  ]
+},{
+  "mutant_program": "muta224_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In the original program, if x < y, then z = 1, otherwise z = 0. In the mutant program, if x < y, then z = 1, otherwise y = 0. The mutant program changes the value of y in the else statement, which can affect the final result. When x = 5 and y = 4, the original program returns 'A' because z is equal to 1 and x + y = 9, which is equal to 10-1. However, the mutant program sets y to 0 in the else statement, so when x = 5 and y = 4, z is equal to 1 but x + y is equal to 5, so the mutant program returns 'B'."
+    },
+    {
+      "input": [
+        3,
+        7
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "When x = 3 and y = 7, z is equal to 0 in both the original program and the mutant program because x is not less than y. Therefore, both programs return 'B'."
+    },
+    {
+      "input": [
+        2,
+        6
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "When x = 2 and y = 6, z is equal to 0 in both the original program and the mutant program because x is not less than y. Therefore, both programs return 'B'."
+    }
+  ]
+},{
+  "mutant_program": "muta232_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In the original program, if x is less than y, then z is set to 1, otherwise it is set to 0. In the mutant program, the comparison is replaced with SUCC(x) < y. It is not clear what SUCC represents, but it is likely that it is some function that modifies the value of x. This means that the comparison might not be the same as before. For example, if SUCC(x) adds 1 to x, then the input (5,4) would result in z = 0. Since z is 0, the program should return 'B'. Therefore, the output of the original program 'A' does not match the output of the mutant program 'B' for this input."
+    },
+    {
+      "input": [
+        3,
+        7
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this test case, both the original and mutant program should return 'B', since z would be 0 in both cases."
+    },
+    {
+      "input": [
+        1,
+        9
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Similar to the previous test case, both programs should return 'B', since z would be 0 in both cases."
+    }
+  ]
+},{
+  "mutant_program": "muta233_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        7
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "In the original program, if x is less than y, z is set to 1, otherwise z is set to 0. In the mutant, PRED(y) is used instead of y which means that y-1 will be evaluated. So, if x is less than (y-1), z is set to 1, and if x is greater than or equal to (y-1), z is set to 0. Therefore, for the input [5,7], the original program will return 'B' but the mutant will return 'A'."
+    },
+    {
+      "input": [
+        8,
+        8
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "For inputs where x and y are equal, both original and mutant programs will result in z being set to 0. Therefore, both programs will return 'B'."
+    },
+    {
+      "input": [
+        4,
+        3
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "For input [4,3], the original program sets z to 1 because x is less than y. Then, because z is 1 and x+y equals 7 which is equal to 10-3, 'A' is returned. However, in the mutant program, PRED(y) is used which will evaluate to 2. Since x is not less than 2, z is set to 0, and 'B' is returned instead of 'A' as in the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta26_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        6
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "For this input, original code returns 'B' because z is 0 and the second condition to return 'A' is not met. Mutant code returns 'A' because it changes the condition to z < 1, which is true in this case (z is 0) and the second condition is met (x + y == 10)."
+    },
+    {
+      "input": [
+        5,
+        10
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "For this input, original code returns 'A' because z is 1 (x < y condition) and the second condition is met (x + y == 10). Mutant code returns 'B' because it changes the condition to x < 1, which is false in this case and z is 0, making the function return 'B'."
+    },
+    {
+      "input": [
+        8,
+        2
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "For this input, both original and mutant code return 'B'. In this case, z is 0 (x > y condition) and the second condition is not met (x + y != 10), so the function returns 'B' in both cases."
+    }
+  ]
+},{
+  "mutant_program": "muta2_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "In this case, the original program returns 'B' since the condition (z && x+y==10) is false. However, the mutant code assigns 'A' to z when the condition (x<y) is true, making the (z && x+y==10) condition true and changing the return value to 'A'."
+    },
+    {
+      "input": [
+        10,
+        3
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this case, both programs return 'B' since the first condition (x<y) is false and z=0."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this case, both programs return 'B' since the first condition (x<y) is false and z=0. The sum of x+y is not equal to 10."
+    }
+  ]
+},{
+  "mutant_program": "muta3_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "The original code sets z to 1 if x is less than y, but the mutant code always sets z to 'B'. Therefore, if x is less than y, the original code will return 'A', but the mutant code will return 'B'."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "Both the original and mutant code will set z to 0, and x + y is not equal to 10. Therefore, the original code and mutant code will return 'B' and 'A' respectively."
+    },
+    {
+      "input": [
+        7,
+        4
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this case, x is greater than y, so the original and mutant code will both set z to 0 and return 'B'."
+    }
+  ]
+},{
+  "mutant_program": "muta93_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        2
+      ],
+      "original_output": "B",
+      "mutant_output": "A",
+      "explanation": "The original program outputs 'B' because the condition z && x + y == 10 is false. The mutant program, on the other hand, increments z by 1 instead of setting it to 1. Therefore, the condition z && x + y == 10 is true, resulting in an output of 'A'."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "A",
+      "mutant_output": "A",
+      "explanation": "Both programs output 'A' because the condition z && x + y == 10 is true."
+    },
+    {
+      "input": [
+        10,
+        8
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both programs output 'B' because the condition z && x + y == 10 is false."
+    }
+  ]
+},{
+  "mutant_program": "muta94_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In the original program, if x is less than y, z is assigned 1. However, in the mutant program, z is decremented by 1. This change means that if x is less than y, z is assigned -1, which still evaluates as true in the second if statement, resulting in a return of 'B' instead of 'A'."
+    },
+    {
+      "input": [
+        6,
+        4
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this case, the original program assigns z to 0 because x is not less than y. The mutant program also assigns z to 0, but through a different path. Therefore, both programs return 'B' for this input, which means they are equivalent."
+    },
+    {
+      "input": [
+        10,
+        0
+      ],
+      "original_output": "A",
+      "mutant_output": "A",
+      "explanation": "In this case, x + y equals 10, so the first condition evaluates to true. Both programs assign z to 1 and return 'A', making them equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta95_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        7
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both programs will execute the else block, z will be assigned the value 0, and then return 'B'"
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "For the original program, z will be assigned the value 1, and x + y will equal 10. The function will return 'A'. For the mutant program, z will be assigned the value 0, so it will execute the else block and return 'B'"
+    },
+    {
+      "input": [
+        2,
+        10
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "For both the original and mutant program, z will be assigned the value 0, so it will execute the else block and return 'B'"
+    }
+  ]
+},{
+  "mutant_program": "muta98_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both the original and mutant code follow the else statement and return 'B'."
+    },
+    {
+      "input": [
+        7,
+        3
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "For the original code, z = 1 and x + y = 10, so it enters the first if statement and returns 'A'. However, in the mutant code, z is set to 0 in the else statement and x + y != 10, so it enters the second if statement and returns 'B'."
+    },
+    {
+      "input": [
+        2,
+        2
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Both the original and mutant code follow the else statement and return 'B'."
+    }
+  ]
+},{
+  "mutant_program": "muta99_twoPred.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": "A",
+      "mutant_output": "B",
+      "explanation": "In the original code, if z was set to 1, then x+y would need to be equal to 10 in order for the function to return 'A'. However, in the mutant code, z is decremented by 0 in the else statement, effectively doing nothing. Therefore, if x is less than y, then z will be set to 1, but the condition for 'A' will not be met and the function will always return 'B'."
+    },
+    {
+      "input": [
+        5,
+        5
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "In this case, both the original and mutant code will set z to 0, so the condition for 'A' cannot be met, resulting in both functions returning 'B'."
+    },
+    {
+      "input": [
+        8,
+        6
+      ],
+      "original_output": "B",
+      "mutant_output": "B",
+      "explanation": "Similar to the previous test case, both the original and mutant code will set z to 0, so the condition for 'A' cannot be met, resulting in both functions returning 'B'."
+    }
+  ]
+}]
