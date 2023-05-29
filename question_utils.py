@@ -39,28 +39,75 @@ def handle_response(string):
     else:
         return None
 
+def format_json(json_str):
+    # Regular expression pattern to match square brackets with text inside
+    pattern = r'(?<!")(\[([^[\]]+)\])'
+
+    # Find all matches and replace them with double quotes around the text
+    formatted_json = re.sub(pattern, r'["\1"]', json_str)
+
+    # Load the formatted JSON string to validate its correctness
+    try:
+        parsed_json = json.loads(formatted_json)
+        return parsed_json
+    except json.JSONDecodeError as e:
+        print("format_json - Invalid JSON format:", e)
+        mutant_program_pattern = r'"mutant_program":\s*"([^"]+)"'
+        equivalent_pattern = r'"equivalent":\s*(\w+)'
+
+        # Find the matches
+        mutant_program_match = re.search(mutant_program_pattern, json_str)
+        equivalent_match = re.search(equivalent_pattern, json_str)
+
+        # Extract the values
+        mutant_program = mutant_program_match.group(1) if mutant_program_match else None
+        equivalent = equivalent_match.group(1) if equivalent_match else None
+        error_json = {
+            "mutant_program": mutant_program,
+            "equivalent": equivalent,
+            "tests": []
+        }
+        print("error_json: ", error_json)
+        print("response: ", json_str)
+        return error_json
+        #return None
+
+def transform_to_json(input_dict):
+    json_object = json.dumps(input_dict)
+    return json_object
+
+def remover_quebra_linha(string):
+    padrao = re.compile(r'\n')
+    return re.sub(padrao, '', string)
+
 def read_file(file_path):
     with open(file_path, "r") as file:
         content = file.read()
     return content
 
-def txt_to_json(txt_file, program_name):
-    with open(txt_file, 'r') as f:
-        data = f.read()
+def write_responses_to_file(response, program_name):
+    filename = f"{program_name}.json"
+    file_exists = os.path.isfile(filename)
 
-    dicts = [eval(line) for line in data.split('\n') if line]
+    with open(filename, "a") as file:
+        if file_exists:
+            # Remove o colchete de fechamento anterior
+            file.seek(file.tell() - 1)
+            file.truncate()
 
-    json_data = json.dumps(dicts)
+            # Adiciona uma vírgula para separar os objetos JSON
+            file.write(",")
 
-    with open(f"{program_name}.json", 'w') as f:
-        f.write(json_data)
-    
-    os.remove(txt_file)
+        else:
+            file.write("[")
 
-def write_responses_to_file(responses, program_name):
-    with open(f"{program_name}.txt", "w") as file:
-        for response in responses:
-            file.write(f"{response}\n")
+        json.dump(response, file, indent=2)
+
+    # Adicione o colchete de fechamento no final do arquivo JSON
+    with open(filename, "a") as file:
+        file.write("]")
+
+
 
 def analysis(json_file, equivalent_file, minimal_file, output_file):
     with open(json_file, 'r') as f1:

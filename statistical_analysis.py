@@ -1,18 +1,23 @@
 import sys
+import os
 import numpy as np
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 from mlxtend.plotting import plot_confusion_matrix
 
-#example: python3 statistical_analysis.py programs\sum\analysis_sum.txt
+# Example: python3 statistical_analysis.py C:\Users\renat\Desktop\TCC\projeto\TCC\programs
 
-filename = sys.argv[1]
+directory_path = sys.argv[1]
 
 data = []
-with open(filename) as f:
-    for line in f:
-        row = line.strip()[1:-1].split(',')
-        data.append([row[0], eval(row[1]), eval(row[2]), eval(row[3])])
+for root, dirs, files in os.walk(directory_path):
+    for file in files:
+        if file.startswith("analysis_") and file.endswith(".txt"):
+            filename = os.path.join(root, file)
+            with open(filename) as f:
+                for line in f:
+                    row = line.strip()[1:-1].split(',')
+                    data.append([row[0], eval(row[1]), eval(row[2]), eval(row[3])])
 
 data = np.array(data)
 
