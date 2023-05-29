@@ -1,1 +1,339 @@
-[{"mutant_program": "muta0_lastZero.c", "equivalent": false, "tests": [{"input": [0, 1, 0], "original_output": 2, "mutant_output": 1, "explanation": "The original program correctly returns the index of the last 0 in the input array [0, 1, 0], which is 2. The mutant program, however, simply checks if each element is truthy or falsy, and returns the index of the last truthy element, which is 1, instead of the index of the last zero."}, {"input": [45, 0, 0, 89, 0, 23], "original_output": 4, "mutant_output": 3, "explanation": "The original program correctly returns the index of the last 0 in the input array [45, 0, 0, 89, 0, 23], which is 4. The mutant program, however, returns the index of the third element, which is the last truthy value, instead of the correct index."}]}]
+[{
+  "mutant_program": "muta122_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the last occurrence of 0 in the input array and returns its index (2). In contrast, the mutant program contains a TRAP_ON_NEGATIVE condition in the for loop, which does not allow the i variable to take negative values but does not provide any relevant functionality to the program. Therefore, the mutant program always returns -1 no matter what values are provided as input. "
+    },
+    {
+      "input": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the last occurrence of 0 in the input array and returns its index (3). In contrast, the mutant program contains a TRAP_ON_NEGATIVE condition in the for loop, which does not allow the i variable to take negative values but does not provide any relevant functionality to the program. Therefore, the mutant program always returns -1 no matter what values are provided as input, resulting in different output compared to the original program. "
+    }
+  ]
+},{
+  "mutant_program": "muta125_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the last index of 0 in the input array [0,1,0], which is 2. However, the mutant code uses a function TRAP_ON_NEGATIVE() that is not defined or provided in the code, causing an error at compile-time. Therefore, the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta128_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly returns the index of the last 0 in the input array [0, 1, 0], which is 2. However, in the mutant program, a function called TRAP_ON_NEGATIVE is used to transform the loop variable i, which always produces a negative value. This causes the mutant program to always return -1 as the index of the last 0 even if the input array contains 0."
+    }
+  ]
+},{
+  "mutant_program": "muta134_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly returns the index of the last zero, which is 2. However, the mutant program uses the TRAP_ON_NEGATIVE function, which is not defined in the program, to set the index value. This results in -1 being returned instead of the correct index."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both the original and mutant program correctly return -1 since there are no zeros in the input array."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly returns the index of the last zero, which is 2. However, the mutant program uses the undefined function, resulting in -1 being returned instead."
+    }
+  ]
+},{
+  "mutant_program": "muta52_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original code correctly identifies the index of the last 0 in the input array as 2, but the mutant code uses the bitwise AND operator (&=) instead of the assignment operator (=) to update the index, resulting in an incorrect index calculation. Therefore, the mutant code returns -1 when it should return 2."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both the original and mutant code correctly identify that there is no 0 in the input array, resulting in a return value of -1."
+    }
+  ]
+},{
+  "mutant_program": "muta65_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The test checks for the last index of 0 in the array. The original program correctly returns 2 as the last index. However, the mutant program incorrectly returns -1 as the mutation in the for loop condition causes the loop to terminate early and not search the entire array."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "This test checks for the last index of 0 in an array that does not contain 0. Both the original and mutant programs correctly return -1."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": -1,
+      "explanation": "This test checks for the last index of 0 in an array that only contains 0. The original program correctly returns 3 as the last index. However, the mutant program incorrectly returns -1 as the mutation in the for loop causes it to never iterate over any elements in the array."
+    }
+  ]
+},{
+  "mutant_program": "muta76_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly returns the index of the last 0 in the input array, which is 2. However, the mutant program uses a bitwise XOR operation instead of less than operator in the termination condition of the loop. Therefore, the loop does not iterate over all the elements in the input array, resulting in a wrong output of -1 instead of 2."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "This test is similar to the previous one, and it also verifies that the mutant program does not traverse the entire array. The expected output is 2 because it is the index of the last 0 in the input array. However, the mutant program returns -1."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "This test verifies the case when the input array does not contain any 0. Both programs should return -1, which indicates that 0 does not occur in x."
+    }
+  ]
+},{
+  "mutant_program": "muta88_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The original program returns the index of the LAST 0 in x. The mutant program stops iterating when i is no longer different than length, therefore, if the last zero is not the last element in the array, the mutant program will return an incorrect index. In this case, the original program correctly returns 2 as the last index of zero, while the mutant program returns 0."
+    },
+    {
+      "input": [
+        3,
+        0,
+        2,
+        0,
+        4
+      ],
+      "original_output": 3,
+      "mutant_output": 1,
+      "explanation": "The original program correctly returns the index of the LAST 0 in x, which in this case is 3. However, the mutant program will stop iterating at index 2, since it is different than the length of the array, and return 1 as the index of the last zero, which is incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta91_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": 1,
+      "explanation": "The original program correctly returns the index of the last occurrence of 0 in the array, which is 2. The mutant program, on the other hand, returns the index of the last negative or zero element in the array, which could potentially be any element in the array. In this case, it returns 1, which is incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta92_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": 1,
+      "explanation": "The original program correctly returns the index of the last zero (2). However, the mutant code returns the index of the last non-negative number (1), which is incorrect."
+    },
+    {
+      "input": [
+        0,
+        -1,
+        3,
+        0
+      ],
+      "original_output": 3,
+      "mutant_output": 2,
+      "explanation": "In this case, the original program returns the index of the last zero (3). However, the mutant code returns the index of the last non-negative number (2), which is incorrect. This test shows that the mutant code is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta39_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly returns the index of the last 0 in the array, which is 2. However, the mutant code initializes 'i' to 0 instead of leaving it uninitialized, causing the loop to never execute and the function to always return -1. This is evident in the test case where the input array is [0,1,0], which should return 2 but the mutant code returns -1."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both the original program and the mutant code correctly return -1 because there are no 0s in the input array."
+    },
+    {
+      "input": [
+        0,
+        0,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly returns the index of the last 0 in the array, which is 2. However, the mutant code initializes 'i' to 0 instead of leaving it uninitialized, causing the loop to never execute and the function to always return -1. This is evident in the test case where the input array is [0,0,0], which should return 2 but the mutant code returns -1."
+    }
+  ]
+},{
+  "mutant_program": "muta42_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": 0,
+      "explanation": "The original program correctly finds and returns the index of the last occurrence of 0 which is 2. However, the mutant code initializes 'i' to be 0 and then increments it, which is equivalent to just initializing 'i' to be 0. Therefore, the loop will always start at index 0 and the function will return the index of the first occurrence of 0 which is 0 instead of the correct index which is 2."
+    },
+    {
+      "input": [
+        1,
+        2,
+        0,
+        0,
+        5,
+        0
+      ],
+      "original_output": 5,
+      "mutant_output": 2,
+      "explanation": "In this case, the original program correctly returns the index of the last occurrence of 0 which is 5. However, the mutant code will once again start at index 0 and return the index of the first occurrence of 0 which is 2 instead of the correct index which is 5."
+    }
+  ]
+},{
+  "mutant_program": "muta49_lastZero.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "original_output": 2,
+      "mutant_output": -1,
+      "explanation": "The original program correctly identifies the last index of zero, which should be 2. However, in the mutant code, the initialization of i using bitwise AND with 0 will always result in i being 0. Therefore, the loop will never run, causing the function to incorrectly return -1. This can be seen in the mutated program's output."
+    }
+  ]
+}]
