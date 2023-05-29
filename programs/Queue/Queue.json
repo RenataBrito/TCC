@@ -1,29 +1,839 @@
-[
+[{
+  "mutant_program": "muta11_Queue.c",
+  "equivalent": false,
+  "tests": [
     {
-        "mutant_program": "muta0_Queue.c",
-        "equivalent": false,
-        "tests": [
-            {
-                "input": [],
-                "original_output": "Invalid Queue\n",
-                "mutant_output": "Segmentation fault (core dumped)\n",
-                "explanation": "When called with an empty queue, the original program correctly returns an error message. However, the mutant code attempts to access the null pointer, resulting in a segmentation fault."
-            },
-            {
-                "input": [
-                    "2",
-                    "3"
-                ],
-                "original_output": "Invalid Queue\n",
-                "mutant_output": "Invalid Queue\n",
-                "explanation": "When called with two arguments, both original and mutant programs return the same output - indicating that the error checking is functioning correctly."
-            },
-            {
-                "input": [],
-                "original_output": "Invalid Queue\n",
-                "mutant_output": "Segmentation fault (core dumped)\n",
-                "explanation": "When called with an empty queue, the original program correctly returns an error message. However, the mutant code attempts to access the null pointer, resulting in a segmentation fault."
-            }
-        ]
+      "input": [
+        "[NULL]"
+      ],
+      "original_output": "Invalid Queue",
+      "mutant_output": "Invalid Queue",
+      "explanation": "Both programs will output an error message when given an invalid queue as input"
+    },
+    {
+      "input": [
+        "[valid_queue]"
+      ],
+      "original_output": "Initialized queue head and tail to 0",
+      "mutant_output": "Initialized queue head and tail to 0",
+      "explanation": "Both programs will initialize the queue head and tail to 0 when given a valid queue as input"
     }
-]
+  ]
+},{
+  "mutant_program": "muta122_Queue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta124_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both programs output the same message when given an invalid queue."
+    },
+    {
+      "input": [
+        "10"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted",
+      "explanation": "Both programs output the same message when an element is successfully inserted into the queue."
+    },
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Queue is empty\n",
+      "explanation": "Both programs output the same message when attempting to dequeue from an empty queue."
+    },
+    {
+      "input": [
+        "4"
+      ],
+      "original_output": "\n\t\t :katie",
+      "mutant_output": "\n\t\t :katie",
+      "explanation": "Both programs output the same message when displaying the contents of a non-empty queue."
+    },
+    {
+      "input": [
+        "15"
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "Queue is full\nInvalid Queue\n",
+      "explanation": "The mutant program outputs an additional message when attempting to enqueue into a full queue."
+    },
+    {
+      "input": [
+        "20"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\nInvalid Queue\n",
+      "explanation": "The mutant program outputs an additional message when attempting to initialize an invalid queue."
+    },
+    {
+      "input": [
+        "30"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\nInvalid Queue\n",
+      "explanation": "The mutant program outputs an additional message when checking if an invalid queue is full."
+    }
+  ]
+},{
+  "mutant_program": "muta14_Queue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta168_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted",
+      "explanation": "Both programs should behave exactly the same on valid input"
+    },
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "Queue is full\nInvalid Queue\n",
+      "explanation": "The mutant code fails to run the is_full() function correctly when the pointer to QUEUE is null, causing an additional error message to be printed."
+    },
+    {
+      "input": [],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\nSegmentation fault (core dumped)\n",
+      "explanation": "The mutant code fails to run the is_empty() function correctly when the pointer to QUEUE is null, causing a segmentation fault when trying to access the variable pq."
+    }
+  ]
+},{
+  "mutant_program": "muta174_Queue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta189_Queue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta1_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": null,
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "The original program initializes the head and tail values of a queue to 0 in the init() function. The mutant program initializes both values to 0 using the *(pointer) operation, which sets the value to 0 and also deallocates the memory of the variable, causing a segmentation fault when the enqueue() function is called. Therefore, the mutant program is not equivalent to the original program. Test input is not possible since it will result in a segmentation fault, which may crash the program or the system."
+    }
+  ]
+},{
+  "mutant_program": "muta22_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "\nQueue is empty\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "The original program initializes the queue size as QSIZE, while the mutant uses a hardcoded value of 10. This means that the is_full() function of the mutant can incorrectly return true when there is still space available in the queue, causing the enqueue() function to output 'Queue is full' when it is not. The output of the tests will differ because the empty queue is initialized using different values, so is_empty() function will trigger and give an irrelevant explanation in the mutant implementation."
+    },
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": "\nQueue is empty\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Similar to the previous test, the mutant implementation gives the incorrect explanation as it is hardcoded to detect an empty queue through the condition '(pq->head == pq->tail)'."
+    },
+    {
+      "input": [
+        "2",
+        "Alex"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted",
+      "explanation": "Both implementations enqueue a new element with no issue when the queue is not full."
+    },
+    {
+      "input": [
+        "6",
+        "Alex",
+        "Bob",
+        "Charlie",
+        "David",
+        "Eva",
+        "Frank",
+        "Gabriel"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\n\t\t :Alex\n\t\t :Bob\n\t\t :Charlie\n\t\t :David\n\t\t :Eva\n\t\t :Frank\n\t\t :Gabriel\n",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\nInvalid Queue\nInvalid Queue\nInvalid Queue\nInvalid Queue\n\nInvalid Queue\nInvalid Queue\n",
+      "explanation": "The original program is able to enqueue all six names and display them in the queue using the display() function. The mutant implementation is unable to enqueue all the names as it is hardcoded to have a maximum queue size of 10. Since it is impossible to insert more than 10 names into the queue, the enqueue() function is incorrectly returning the message 'Invalid Queue' when it is given the name to be added after the queue is already full."
+    }
+  ]
+},{
+  "mutant_program": "muta230_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "Both programs return -1 when given an empty input."
+    },
+    {
+      "input": [
+        "test"
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs return 1 when given an input of one string and called is_empty."
+    },
+    {
+      "input": [
+        "test1",
+        "test2"
+      ],
+      "original_output": 0,
+      "mutant_output": 1,
+      "explanation": "The original program returns 0 when given two inputs, while the mutant program returns 1. This is because the mutant program executes a macro called TRAP_ON_NEGATIVE, which alters the way the program checks if the queue is empty. While this change may not always lead to a difference in output (as shown in the previous test), it does in this case because TRAP_ON_NEGATIVE forces init(pq) to be called before returning 1."
+    }
+  ]
+},{
+  "mutant_program": "muta233_Queue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta249_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "\nQueue is empty\n",
+      "mutant_output": "\nInvalid Queue\n",
+      "explanation": "When enqueue is called with a null parameter in the original code, it prints \"Invalid Queue\", but in the mutant code it mistakenly checks for a null value on the function pointer itself, which will never happen, resulting in a different output"
+    },
+    {
+      "input": [
+        "2"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted\nQueue is empty\n",
+      "mutant_output": "\nInvalid Queue\n",
+      "explanation": "When enqueue is called with a null parameter in the original code, it prints \"Invalid Queue\", but in the mutant code it mistakenly checks for a null value on the function pointer itself, which will never happen, resulting in a different output"
+    }
+  ]
+},{
+  "mutant_program": "muta254_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "2"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both the original and mutant program print the 'Invalid Queue' message in this case."
+    },
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": "\n\n\t\t Element Successfully InsertedInvalid Queue\n",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted",
+      "explanation": "The original program prints an additional 'Invalid Queue' message because it checks pq against a null pointer using 'pq == NULL' while the mutant program compares it against the null character using 'pq <= ((void (*)) 0)'."
+    },
+    {
+      "input": [
+        "0"
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "In this case, the original program correctly returns that the queue is empty while the mutant code reports 'Invalid Queue'."
+    }
+  ]
+},{
+  "mutant_program": "muta27_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "4"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both programs should output the same message for an invalid queue input."
+    },
+    {
+      "input": [
+        "2"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted",
+      "explanation": "Both programs should output the same message for a successful enqueue."
+    },
+    {
+      "input": [
+        "2"
+      ],
+      "original_output": "\n\t\t :1\n\t\t :2\n",
+      "mutant_output": "\n\t\t :1\n\t\t :2\n",
+      "explanation": "Both programs should output the same message for a display of the contents of the queue."
+    },
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Queue is empty\n",
+      "explanation": "Both programs should output the same message for attempting to dequeue from an empty queue."
+    },
+    {
+      "input": [
+        "11"
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "Queue is full\n",
+      "explanation": "Both programs should output the same message for attempting to enqueue to a full queue."
+    }
+  ]
+},{
+  "mutant_program": "muta304_Queue.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta388_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5",
+        "Alice",
+        "Bob",
+        "Charlie"
+      ],
+      "original_output": "\n\t\t :Alice\n\t\t :Bob\n\t\t :Charlie\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "The original program adds the input strings to the queue and displays them using the display() function. The mutant program returns 'Invalid Queue' for all cases since it checks if the queue is null using ((void*)0) instead of NULL, which is not equivalent."
+    },
+    {
+      "input": [
+        "2",
+        "Alice",
+        "Bob",
+        "Charlie"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\nQueue is full\n\n\t\t :Alice\n\t\t :Bob\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "The original program adds the input strings to the queue until it is full (size 2) and then tries to add one more string (Charlie) resulting in 'Queue is full' message. The mutant program returns 'Invalid Queue' for all cases since it checks if the queue is null using ((void*)0) instead of NULL, which is not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta392_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": "NULL",
+      "original_output": "Invalid Queue",
+      "mutant_output": "Segmentation fault",
+      "explanation": "The original program checks for NULL before initializing the head and tail of the queue to 0s, whereas the mutant program does not, resulting in a segmentation fault when given a NULL input."
+    },
+    {
+      "input": "non-NULL",
+      "original_output": "initialized queue",
+      "mutant_output": "initialized queue",
+      "explanation": "Both programs should behave the same way when given a non-NULL input, and correctly initialize the head and tail of the queue to 0s."
+    }
+  ]
+},{
+  "mutant_program": "muta398_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both programs output the same error message for invalid input."
+    },
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "The original program identifies an empty queue and outputs a message, but the mutant program reports an invalid queue instead."
+    },
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "\n\t\t :foo",
+      "mutant_output": "\n\t\t :foo",
+      "explanation": "Both programs correctly display the single value in the queue."
+    },
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "The original program identifies a full queue and outputs a message, but the mutant program reports an invalid queue instead."
+    }
+  ]
+},{
+  "mutant_program": "muta405_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted",
+      "explanation": "Both programs should behave the same way in this test case"
+    },
+    {
+      "input": [
+        "-5"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both programs should behave the same way in this test case"
+    },
+    {
+      "input": [
+        "10"
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "Queue is full\nInvalid Queue\n",
+      "explanation": "The mutant code adds a return statement that is not in the original code. This causes the function to return twice in the case of a full queue, leading to different outputs."
+    },
+    {
+      "input": [
+        ""
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Queue is empty\nInvalid Queue\n",
+      "explanation": "The mutant code adds a return statement that is not in the original code. This causes the function to return twice in the case of an empty queue, leading to different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta412_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Queue is empty",
+      "explanation": "The output messages are different, the original program adds a \\n character at the end of the message while the mutant program doesn't."
+    },
+    {
+      "input": [
+        "15"
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "Queue is full",
+      "explanation": "The output messages are different, the original program adds a \\n character at the end of the message while the mutant program doesn't."
+    }
+  ]
+},{
+  "mutant_program": "muta443_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Segmentation fault (core dumped)\n",
+      "explanation": "The original program checks if the QUEUE pointer is NULL before initializing its head and tail variables. The mutant program checks for a null pointer, but uses a different syntax which results in a segmentation fault when attempting to access pq->head."
+    },
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both programs should output the same error message when no arguments are passed to the program."
+    },
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\nQueue is full\nQueue is full\n\n\t\t :apple\n\n\t\t :banana\n\n\t\t :cherry\n\n\n",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\nQueue is full\nSegmentation fault (core dumped)\n",
+      "explanation": "The test inserts three elements into the queue before attempting to insert two more, causing the queue to become full. The original program outputs the error message properly and displays the contents of the queue correctly. The mutant program outputs the error message but then crashes due to a segmentation fault when trying to display the queue."
+    }
+  ]
+},{
+  "mutant_program": "muta446_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "The original program correctly identifies an empty queue and returns an error message. The mutant program incorrectly identifies a null queue as invalid, causing it to return an error message in a situation where it should be returning a different error message."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted",
+      "explanation": "Both the original and mutant program function correctly when adding an element to the queue, so the outputs are the same."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both the original and mutant program function correctly when given an invalid queue and return the same error message."
+    }
+  ]
+},{
+  "mutant_program": "muta449_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted",
+      "mutant_output": "[Invalid Queue\n]",
+      "explanation": "The test case enqueues an element in the queue. The original program successfully inserts the element and prints a message to the console. However, the mutant program returns an error message since it considers the queue to be invalid."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "[Invalid Queue\n]",
+      "explanation": "The test case fills the queue with 10 elements, leaving no empty slots for new elements. Both the original program and the mutant program correctly detect that the queue is full. However, the original program prints an appropriate message to the console while the mutant program returns an error message since it considers the queue to be invalid."
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "[Invalid Queue\n]",
+      "explanation": "The test case tries to dequeue an element from an empty queue. Both the original program and the mutant program correctly detect that the queue is empty. However, the original program prints an appropriate message to the console while the mutant program returns an error message since it considers the queue to be invalid."
+    }
+  ]
+},{
+  "mutant_program": "muta450_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both original and mutant code provide correct error message for invalid queue input."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutant code correctly initializes the queue when given a valid input."
+    },
+    {
+      "input": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j"
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "",
+      "explanation": "The original code outputs the correct error message when attempting to add more elements to a full queue. However, the mutant code does not output anything, indicating that it fails to correctly check for full queues."
+    }
+  ]
+},{
+  "mutant_program": "muta452_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "1"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both programs handle an invalid queue as expected."
+    },
+    {
+      "input": [
+        "2"
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Queue is empty\n",
+      "explanation": "Both programs handle an empty queue as expected."
+    },
+    {
+      "input": [
+        "3"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted",
+      "explanation": "Both programs successfully insert an element into the queue."
+    },
+    {
+      "input": [
+        "4"
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "Queue is full\n",
+      "explanation": "Both programs handle a full queue as expected."
+    },
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "",
+      "explanation": "The mutant program returns nothing instead of printing an error message, making it not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta54_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both original and mutant code should print an error message when given invalid input"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted",
+      "explanation": "Both original and mutant code should successfully enqueue an element"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Queue is empty\n",
+      "explanation": "Both original and mutant code should print an error message when attempting to dequeue an empty queue"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "Queue is full\n",
+      "explanation": "Both original and mutant code should print an error message when attempting to enqueue a full queue"
+    }
+  ]
+},{
+  "mutant_program": "muta6_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        {
+          "head": 0,
+          "tail": 5,
+          "names": [
+            [
+              "Tom"
+            ],
+            [
+              "John"
+            ],
+            [
+              "Marta"
+            ],
+            [
+              "Maria"
+            ],
+            [
+              "Liam"
+            ]
+          ]
+        }
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs will output the same result, since the mutant code only simplified the syntax of the original code. However, it introduced a non-deterministic change by multiplying the head by 0 in the init function. This will always reset the head to 0, even if the queue was not empty. To illustrate this, the input contains a non-empty queue that will be reset by the mutant code but not by the original code."
+    },
+    {
+      "input": [
+        {
+          "head": 0,
+          "tail": 0,
+          "names": [
+            [
+              "Tom"
+            ],
+            [
+              "John"
+            ],
+            [
+              "Marta"
+            ],
+            [
+              "Maria"
+            ],
+            [
+              "Liam"
+            ]
+          ]
+        }
+      ],
+      "original_output": null,
+      "mutant_output": null,
+      "explanation": "Both programs will output the same result, since there is no difference between the queue states."
+    }
+  ]
+},{
+  "mutant_program": "muta76_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both the original and the mutant program output the same error message for an invalid queue"
+    },
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "The mutant program incorrectly outputs an invalid queue error message instead of an empty queue message"
+    },
+    {
+      "input": [
+        "5",
+        "Alice",
+        "Bob",
+        "Charlie",
+        "David",
+        "Eve",
+        "Frank"
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\nQueue is full\n\n\n\n\t\t :Alice\n\n\t\t :Bob\n\n\t\t :Charlie\n\n\t\t :David\n\n\t\t :Eve\n",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\t\t Element Successfully Inserted\n\n\n\n\t\t :Alice\n\n\t\t :Bob\n\n\t\t :Charlie\n\n\t\t :David\n\n\t\t :Eve\n\n\t\t :Frank\n",
+      "explanation": "The original program correctly outputs a full queue message when attempting to add more elements than the maximum size. The mutant program outputs an extra name and does not identify that the queue is full, instead outputting the element successfully inserted message."
+    }
+  ]
+},{
+  "mutant_program": "muta87_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "\n\n\t\t Element Successfully Inserted",
+      "mutant_output": "\n\n\t\t Element Successfully Inserted",
+      "explanation": "Both programs enqueue an element successfully"
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both programs detect invalid queue pointer"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Queue is empty\n",
+      "explanation": "Both programs detect empty queue"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "Queue is full\n",
+      "explanation": "Both programs detect full queue"
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "\n\t\t :a\n\t\t :b\n",
+      "mutant_output": "\n\t\t :a\n\t\t :b\n",
+      "explanation": "Both programs display the elements in the queue"
+    }
+  ]
+},{
+  "mutant_program": "muta93_Queue.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both programs produce the same output when given an empty input"
+    },
+    {
+      "input": [
+        "[NULL]"
+      ],
+      "original_output": "Invalid Queue\n",
+      "mutant_output": "Invalid Queue\n",
+      "explanation": "Both programs produce the same output when given a null input"
+    },
+    {
+      "input": [
+        "[malloc(sizeof(QUEUE))]"
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs produce the same empty output when given a properly initialized QUEUE"
+    },
+    {
+      "input": [
+        "[malloc(sizeof(QUEUE))]"
+      ],
+      "original_output": "Queue is full\n",
+      "mutant_output": "Queue is full\n",
+      "explanation": "Both programs produce the same output when queue is full"
+    },
+    {
+      "input": [
+        "[malloc(sizeof(QUEUE))]"
+      ],
+      "original_output": "Queue is empty\n",
+      "mutant_output": "Queue is empty\n",
+      "explanation": "Both programs produce the same output when queue is empty"
+    }
+  ]
+}]
