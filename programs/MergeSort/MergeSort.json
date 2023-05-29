@@ -1,1 +1,3007 @@
-[{"mutant_program": "muta0_MergeSort.c", "equivalent": false, "tests": [{"input": [5, 3, 1], "original_output": [1, 3, 5], "mutant_output": [1, 5, 3], "explanation": "The mutant code modifies the order in which the second half is sorted before being merged with the first half, resulting in a different sorted output than the original code."}, {"input": [4, 8, 2, 6], "original_output": [2, 4, 6, 8], "mutant_output": [2, 8, 6, 4], "explanation": "Same as previous."}, {"input": [10, 7, 9, 1, 5], "original_output": [1, 5, 7, 9, 10], "mutant_output": [1, 7, 5, 9, 10], "explanation": "Same as previous."}]}]
+[{
+  "mutant_program": "muta124_MergeSort.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta128_MergeSort.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta129_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6,
+        2,
+        8,
+        3,
+        9,
+        1,
+        5,
+        4,
+        7
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        5,
+        4,
+        6,
+        8,
+        7,
+        9
+      ],
+      "explanation": "The mutant changes the arraycopy function by adding a trap that modifies the dest index even if it is positive, which changes the order of the elements in the resulting array. This causes the sorted output to be incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta133_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explanation": "The original program sorts the input list in ascending order using mergeSort, while the mutant program sorts the list correctly but uses TRAP_ON_NEGATIVE(i) in the arraycopy function, which doesn't affect the sorting output."
+    },
+    {
+      "input": [
+        6,
+        -1,
+        8,
+        2
+      ],
+      "original_output": [
+        -1,
+        2,
+        6,
+        8
+      ],
+      "mutant_output": [
+        -1,
+        2,
+        8,
+        6
+      ],
+      "explanation": "In this test case, the mutant program fails to sort the input list correctly since the two swapped elements in the sorted mutant list correspond to the difference in i added by TRAP_ON_NEGATIVE."
+    },
+    {
+      "input": [
+        5,
+        5,
+        1,
+        10,
+        -2
+      ],
+      "original_output": [
+        -2,
+        1,
+        5,
+        5,
+        10
+      ],
+      "mutant_output": [
+        -2,
+        1,
+        5,
+        5,
+        10
+      ],
+      "explanation": "In this test case, the original program sorts the input list in ascending order using mergeSort, while the mutant program sorts the list correctly, but the output remains the same for both cases."
+    }
+  ]
+},{
+  "mutant_program": "muta136_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        2,
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        1,
+        3
+      ],
+      "original_output": [
+        0,
+        3,
+        4,
+        5,
+        0
+      ],
+      "mutant_output": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "explanation": "The mutant program has a trap on negative value of 'srcstart'. When calling the function with parameters '[[1,2,3,4,5], 2, [0,0,0,0,0], 1, 3]', the original program copies elements from index 2 to index 4 of the source array to index 1 to index 3 of the destination array. However, the mutant program calls 'TRAP_ON_NEGATIVE' function on 'srcstart', which will cause an unexpected behavior, making all elements of the destination array to be zero instead of copying the selected elements from the source array."
+    },
+    {
+      "input": [
+        [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        0,
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        2,
+        3
+      ],
+      "original_output": [
+        0,
+        0,
+        5,
+        4,
+        3
+      ],
+      "mutant_output": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "explanation": "The mutant program has a trap on negative value of 'srcstart'. When calling the function with parameters '[[5,4,3,2,1], 0, [0,0,0,0,0], 2, 3]', the original program copies elements from index 0 to index 2 of the source array to index 2 to index 4 of the destination array. However, the mutant program calls 'TRAP_ON_NEGATIVE' function on 'srcstart', causing it to become negative and resulting in an unexpected behavior. In this case, the destination array is all zeros, instead of containing the expected copied elements."
+    },
+    {
+      "input": [
+        [
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        1,
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        3,
+        2
+      ],
+      "original_output": [
+        0,
+        0,
+        10,
+        11,
+        0
+      ],
+      "mutant_output": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "explanation": "The mutant program has a trap on negative value of 'srcstart'. When calling the function with parameters '[[7,8,9,10,11], 1, [0,0,0,0,0], 3, 2]', the original program copies elements from index 1 to index 3 of the source array to index 3 to index 5 of the destination array. However, the mutant program calls 'TRAP_ON_NEGATIVE' function on 'srcstart', causing it to become negative and resulting in an unexpected behavior. In this case, the destination array is all zeroes instead of containing the expected copied elements."
+    }
+  ]
+},{
+  "mutant_program": "muta139_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explanation": "The input array is sorted in both original and mutant code."
+    },
+    {
+      "input": [
+        4,
+        3,
+        6,
+        5,
+        7,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "mutant_output": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "explanation": "The mutated arraycopy() function uses the TRAP_ON_NEGATIVE(i) macro which will result in dereferencing negative indexes of the source array. This will cause a segmentation fault and the function will not copy the entire source array. Therefore, the mergeSort() function will not sort the entire array which results in different outputs. "
+    }
+  ]
+},{
+  "mutant_program": "muta201_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "The mutant code incorrectly halves length in the arraycopy call (len/1 instead of len/2), resulting in only the first half of the array being sorted."
+    },
+    {
+      "input": [
+        10,
+        9,
+        8,
+        7,
+        6
+      ],
+      "original_output": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "mutant_output": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "explanation": "The mutant code incorrectly divides length by 1 in the arraycopy call, resulting in the second half of the array being sorted before the first half."
+    },
+    {
+      "input": [
+        1,
+        3,
+        5,
+        2,
+        4
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        3,
+        2,
+        5,
+        4
+      ],
+      "explanation": "The test set has an unsorted array, the original code sorts it correctly, while the mutant code incorrectly merges the second half before the first half, resulting in an incorrect sorting outcome."
+    }
+  ]
+},{
+  "mutant_program": "muta212_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        8,
+        10,
+        6,
+        3,
+        2
+      ],
+      "original_output": [
+        2,
+        3,
+        6,
+        8,
+        10
+      ],
+      "mutant_output": [
+        2,
+        3,
+        6,
+        10,
+        8
+      ],
+      "explanation": "The mutant code incorrectly sorts the secondHalf array and merges it with the firstHalf array resulting in a different output."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "original_output": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mutant_output": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "explanation": "The input array is already sorted, so both programs will output the same result."
+    },
+    {
+      "input": [
+        5,
+        2,
+        9,
+        1,
+        4
+      ],
+      "original_output": [
+        1,
+        2,
+        4,
+        5,
+        9
+      ],
+      "mutant_output": [
+        1,
+        2,
+        5,
+        4,
+        9
+      ],
+      "explanation": "The mutant code incorrectly merges the firstHalf array with the secondHalf array resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta222_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        8,
+        5,
+        1,
+        3,
+        6
+      ],
+      "original_output": [
+        1,
+        3,
+        5,
+        6,
+        8
+      ],
+      "mutant_output": [
+        1,
+        3,
+        5,
+        6,
+        8
+      ],
+      "explanation": "The original and the mutant code both sort the input correctly. However, the mutant code parameterized the second recursive call to mergeSort with an integer value of 0, instead of len/2. This would result in an infinite recursion that will cause a stack overflow exception. Therefore, it is not equivalent to the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta280_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        9,
+        4,
+        8,
+        3
+      ],
+      "original_output": [
+        3,
+        4,
+        8,
+        9
+      ],
+      "mutant_output": [
+        3,
+        4,
+        8,
+        9
+      ],
+      "explanation": "The original and mutant programs output the same sorted list for this input."
+    },
+    {
+      "input": [
+        5,
+        7,
+        2,
+        6
+      ],
+      "original_output": [
+        2,
+        5,
+        6,
+        7
+      ],
+      "mutant_output": [
+        5,
+        2,
+        6,
+        7
+      ],
+      "explanation": "The mutant program outputs a different sorted list compared to the original program for this input."
+    },
+    {
+      "input": [
+        1,
+        3,
+        2,
+        4
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "The original and mutant programs output the same sorted list for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta296_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        2,
+        1,
+        3,
+        5,
+        4
+      ],
+      "explanation": "The original program code sorts the input array in increasing order using the merge sort algorithm, while the mutant program code has a bitwise OR in the arraycopy function call, which results in incorrect copying of the first half of the input array to the temporary array. This causes the mutation to produce a different output than the original code."
+    },
+    {
+      "input": [
+        2,
+        7,
+        4,
+        1,
+        8,
+        5,
+        3,
+        6
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "mutant_output": [
+        2,
+        1,
+        4,
+        7,
+        3,
+        5,
+        8,
+        6
+      ],
+      "explanation": "The original program code correctly sorts the input array in increasing order using the merge sort algorithm, while the mutant program code still has the bitwise OR in the arraycopy function call, causing it to produce a different output from the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta351_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        3,
+        2,
+        1
+      ],
+      "explanation": "The original program uses len/2 to define the size of the first half, while the mutant code uses len instead, which is incorrect. This leads to incorrect sorting output as shown in the test results."
+    },
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "explanation": "The mutant program uses len instead of len/2 in defining the size of the first half, leading to incorrect sorting output as shown in the test results."
+    }
+  ]
+},{
+  "mutant_program": "muta375_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        7,
+        5,
+        3,
+        1
+      ],
+      "original_output": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "mutant_output": [
+        3,
+        5,
+        1,
+        7
+      ],
+      "explanation": "The input array is sorted in ascending order by the original program, but the mutated program sorts it in descending order"
+    },
+    {
+      "input": [
+        15,
+        10,
+        8,
+        6,
+        4,
+        5,
+        2,
+        1,
+        12
+      ],
+      "original_output": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        8,
+        10,
+        12,
+        15
+      ],
+      "mutant_output": [
+        2,
+        5,
+        4,
+        6,
+        8,
+        12,
+        10,
+        15,
+        1
+      ],
+      "explanation": "The input array is sorted in ascending order by the original program, but the mutated program sorts it incorrectly"
+    }
+  ]
+},{
+  "mutant_program": "muta404_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        3,
+        1,
+        4,
+        2,
+        5
+      ],
+      "explanation": "The original program sorts the input list in ascending order using merge sort algorithm. The mutant program has a TRAP_ON_ZERO(len) condition that checks if len is greater than 1. This condition will always be true, so the program will sort the input list. The mutant program produces a different order in the output list, indicating that it is not equivalent to the original program."
+    },
+    {
+      "input": [
+        10,
+        6,
+        8,
+        3,
+        5,
+        4
+      ],
+      "original_output": [
+        3,
+        4,
+        5,
+        6,
+        8,
+        10
+      ],
+      "mutant_output": [
+        5,
+        8,
+        4,
+        10,
+        3,
+        6
+      ],
+      "explanation": "The original program correctly sorts the input list. The mutant program produces a different order in the output list, indicating that it is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta406_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "Both outputs are the same since the mutation only changes the way the length of the array is passed to the arraycopy function. However, this mutation could have caused a segmentation fault or other unexpected behavior depending on the size of the input array."
+    },
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        2,
+        3,
+        1,
+        5,
+        4
+      ],
+      "explanation": "The mutation causes the first half of the array to be sorted incorrectly, which results in an incorrect final output."
+    },
+    {
+      "input": [
+        6,
+        1,
+        5,
+        3,
+        4,
+        2
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "explanation": "Both outputs are the same since the mutation only changes the way the length of the array is passed to the arraycopy function. However, this mutation could have caused a segmentation fault or other unexpected behavior depending on the size of the input array."
+    }
+  ]
+},{
+  "mutant_program": "muta407_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "Both original and mutant programs should return a sorted array, but the mutant code includes a call to a TRAP_ON_ZERO macro that could potentially cause unexpected behavior."
+    },
+    {
+      "input": [
+        9,
+        5,
+        7,
+        2,
+        8
+      ],
+      "original_output": [
+        2,
+        5,
+        7,
+        8,
+        9
+      ],
+      "mutant_output": [
+        2,
+        5,
+        8,
+        7,
+        9
+      ],
+      "explanation": "The mutant code sorts the second half of the array incorrectly, which results in a different sorted output compared to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta409_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        3,
+        2
+      ],
+      "explanation": "The input is a reverse sorted array. The original program will sort it in ascending order while the mutant program will result in a different output due to the trap function TRAP_ON_NEGATIVE applied to the length argument of mergeSort instead of performing len/2."
+    },
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        3,
+        2,
+        4,
+        5
+      ],
+      "explanation": "The input is a reverse sorted array. The original program will sort it in ascending order while the mutant program will result in a different output due to the trap function TRAP_ON_NEGATIVE applied to the length argument of mergeSort instead of performing len/2."
+    }
+  ]
+},{
+  "mutant_program": "muta410_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "explanation": "The original program and mutant code have the same output for this test case. The input array is already in sorted order, so both the original program and mutant code will return the same result."
+    },
+    {
+      "input": [
+        3,
+        7,
+        2,
+        1,
+        8,
+        6,
+        5,
+        4
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "explanation": "The original program and mutant code have the same output for this test case. The input array is unsorted, but both the original program and mutant code will correctly sort it in ascending order."
+    },
+    {
+      "input": [
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "explanation": "The original program and mutant code have different outputs for this test case. The input array is in descending order, but the mutant code has an extra call to TRAP_ON_ZERO before calling mergeSort on the first half of the array. This causes the first half of the array to be sorted in descending order, resulting in an incorrect final output."
+    }
+  ]
+},{
+  "mutant_program": "muta412_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "The original program sorts the input array in ascending order. The mutated program should have a different behavior since it introduces a malicious code in the mergeSort method.Although the input was sorted in both algorithms, we can see that they are not equivalent because of the different way in which they sorted it. "
+    },
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explanation": "The original program sorts the input array in ascending order. The mutated program should have a different behavior since it introduces a malicious code in the mergeSort method. Although the input was sorted in both algorithms, we can see that they are not equivalent because of the different way in which they sorted it."
+    }
+  ]
+},{
+  "mutant_program": "muta413_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        2,
+        3,
+        1,
+        5,
+        4
+      ],
+      "explanation": "The mutated code replaces the correct calculation of the index for the second half with a TRAP_ON_ZERO function call that stops the execution of the program if the input is 0. Therefore, this mutant program fails when the input has an even number of elements, because TRAP_ON_ZERO returns 0 and the second half is not copied correctly. Test case input [5,4,3,2,1] and output [1,2,3,4,5] are used to demonstrate the correct functioning of the original code, while test case input [10,9,8,7,6,5,4,3,2,1] and output [1,3,2,5,4,7,6,9,8,10] are used to demonstrate the failure of the mutant code when it uses even number of inputs. "
+    },
+    {
+      "input": [
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "mutant_output": [
+        1,
+        3,
+        2,
+        5,
+        4,
+        7,
+        6,
+        9,
+        8,
+        10
+      ],
+      "explanation": "See explanation in test 1."
+    }
+  ]
+},{
+  "mutant_program": "muta415_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        3,
+        2
+      ],
+      "explanation": "The original program sorts the input array in ascending order using merge sort algorithm, while the mutated program sorts the first half in ascending order, but the second half is sorted with a length equal to TRAP_ON_NEGATIVE(secondHalfLength), which can result in unpredictable behavior if secondHalfLength is negative."
+    },
+    {
+      "input": [
+        4,
+        5,
+        6,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        6,
+        5,
+        4
+      ],
+      "explanation": "The original program correctly sorts the input array in ascending order using merge sort algorithm, while the mutated program sorts the first half in ascending order, but the second half is sorted with a length equal to TRAP_ON_NEGATIVE(secondHalfLength). The difference in the first three elements indicates that the mutated program is not equivalent to the original."
+    }
+  ]
+},{
+  "mutant_program": "muta416_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "The test inputs an unsorted array of length 5, tests if the original program outputs a sorted array, and tests if the mutant program outputs an incomplete sorted array."
+    },
+    {
+      "input": [
+        11,
+        2,
+        7,
+        4,
+        5,
+        6,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        11
+      ],
+      "mutant_output": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        11
+      ],
+      "explanation": "The test inputs an unsorted array of length 7, tests if the original program outputs a sorted array, and tests if the mutant program outputs a sorted array."
+    }
+  ]
+},{
+  "mutant_program": "muta418_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        [
+          5,
+          3,
+          1,
+          2,
+          4
+        ],
+        5
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        5,
+        4
+      ],
+      "explanation": "The mutant program has a TRAP_ON_NEGATIVE call on the secondHalfLength argument inside mergeSort function, which will cause an error when a negative number is passed. This change can alter the sorting process by removing some elements or changing their positions, depending on the specific input. In the provided test case, both programs sort the array correctly, but the mutant program switches the position of elements 4 and 5, producing a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta419_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "Both programs should correctly sort the input array. However, the mutant code has a trap on zero for the secondHalfLength parameter in the mergeSort function call that could potentially cause an infinite recursion if the input array length is odd. This is not a problem in the original code. This test checks if both programs correctly sort an array of length 4."
+    },
+    {
+      "input": [
+        5,
+        1,
+        3,
+        2,
+        4
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        3,
+        2,
+        4,
+        5
+      ],
+      "explanation": "This test checks if both programs correctly sort an array of length 5. The mutated program should have the same sorting result as the original program, but with a different ordering due to the order in which the values in secondHalf are sorted by mergeSort."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": [
+        2
+      ],
+      "mutant_output": [
+        2
+      ],
+      "explanation": "Both programs should correctly sort an array of length 1, which is already sorted. This test is provided to ensure the programs handle edge cases correctly."
+    }
+  ]
+},{
+  "mutant_program": "muta421_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        32,
+        20,
+        51,
+        65,
+        5,
+        1,
+        8
+      ],
+      "original_output": [
+        1,
+        5,
+        8,
+        20,
+        32,
+        51,
+        65
+      ],
+      "mutant_output": [
+        1,
+        5,
+        8,
+        20,
+        32,
+        51,
+        65
+      ],
+      "explanation": "The original and mutant code both output the sorted list correctly in ascending order, so they are equivalent."
+    },
+    {
+      "input": [
+        1,
+        0,
+        -1,
+        2
+      ],
+      "original_output": [
+        -1,
+        0,
+        1,
+        2
+      ],
+      "mutant_output": [
+        0,
+        1,
+        2,
+        -1
+      ],
+      "explanation": "The mutant code introduces a TRAP_ON_NEGATIVE function which causes the length of the first half of the list to be negative. This leads to the sorted list being different from the original code. Specifically, the element with value -1 will not appear next to 0 in the sorted list."
+    }
+  ]
+},{
+  "mutant_program": "muta422_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        7,
+        3,
+        5,
+        2,
+        8
+      ],
+      "original_output": [
+        2,
+        3,
+        5,
+        7,
+        8
+      ],
+      "mutant_output": [
+        2,
+        3,
+        5,
+        7,
+        8
+      ],
+      "explanation": "The original and the mutant program are equivalent. The test uses a list of integers to sort using MergeSort. Both programs return the list sorted in ascending order."
+    },
+    {
+      "input": [
+        9,
+        6,
+        1,
+        4,
+        2
+      ],
+      "original_output": [
+        1,
+        2,
+        4,
+        6,
+        9
+      ],
+      "mutant_output": [
+        1,
+        4,
+        2,
+        6,
+        9
+      ],
+      "explanation": "The original and the mutant program are not equivalent. The input data is a list of integers to sort using MergeSort. The original program sort the list in ascending order. The mutant program applies a trap operator that would only cause a modification of the middle element in the first half of the list. Thus, the resulting list is not sorted in ascending order."
+    }
+  ]
+},{
+  "mutant_program": "muta424_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "Both programs should output the same result on this input."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        5,
+        4
+      ],
+      "explanation": "The mutant program has a trap condition to trap on a negative index, but len - len/2 can result in a 0 value which is negative if len is odd. This can cause an incorrect result when merging the second half with the first half in the sorted list. This test case should expose that bug."
+    }
+  ]
+},{
+  "mutant_program": "muta425_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "Both the original and mutant programs correctly sort the input array in ascending order. However, the mutant code includes a call to a TRAP_ON_ZERO function which could potentially result in an error if the secondHalfLength variable is 0. This introduces a small chance for non-equivalence."
+    },
+    {
+      "input": [
+        8,
+        5,
+        3,
+        9
+      ],
+      "original_output": [
+        3,
+        5,
+        8,
+        9
+      ],
+      "mutant_output": [
+        3,
+        5,
+        8,
+        9
+      ],
+      "explanation": "Both the original and mutant programs correctly sort the input array in ascending order. Again, the TRAP_ON_ZERO function call introduces a small chance for non-equivalence, but in this specific test case the length of secondHalf is greater than 0 so both programs behave the same."
+    },
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explanation": "Both programs correctly sort the input array in ascending order, but the mutant code adds unnecessary parentheses around the arguments passed to the merge function. This does not affect the outcome of the program and both programs produce the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta443_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        1,
+        2,
+        4
+      ],
+      "original_output": "1 2 3 4 5",
+      "mutant_output": "1 5 3 4 2",
+      "explanation": "The original program uses the correct length to copy the first half of the list, but the mutant program uses the successor of len divided by 2, which makes the first half one element bigger, leading to a different sorting. Testing with input [5,3,1,2,4] shows that the original code sorts it in ascending order, while the mutant sorts it differently."
+    }
+  ]
+},{
+  "mutant_program": "muta449_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        3,
+        2
+      ],
+      "explanation": "The original program sorts the input array in ascending order using the merge sort algorithm. The mutant program introduces a change by applying the SUCC function to the secondHalfLength variable when calling the arraycopy function. This will make the second half of the array copy one element more than needed, resulting in incorrect sorting. The test input reversely sorts an array of size 3, which is a simple case for testing, and verifies that the original and mutated programs produce different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta455_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "The output of the original and mutant program is the expected sorted array."
+    },
+    {
+      "input": [
+        5,
+        8,
+        3,
+        2,
+        1,
+        9,
+        7,
+        6,
+        0,
+        4
+      ],
+      "original_output": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "mutant_output": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        9,
+        5,
+        7,
+        8,
+        6
+      ],
+      "explanation": "The original program produces the expected sorted array, but the mutant program does not because it passes the secondHalfLength parameter plus one to the merge function, resulting in incorrect merging and therefore an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta603_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        1,
+        2,
+        4
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        3,
+        5,
+        2,
+        4
+      ],
+      "explanation": "The mutant code changes the while loop in merge function to ((current1 < list1len) * (current2 < list2len)), which evaluates to 1 if both conditions are true and 0 otherwise. This is not equivalent to the original code which uses the logical AND operator. This results in different ordering of the list and hence different output."
+    }
+  ]
+},{
+  "mutant_program": "muta607_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "Both programs should output a sorted list when given an unsorted input. This test case is designed to see if the sorting algorithm works properly. The original program should output [1,2,3,4] and the mutated program should also output [1,2,3,4]."
+    },
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "This test case is designed to see if the mutated program can handle a larger input than the original program. The original program should output [1,2,3,4,5] and the mutated program should output [1,2,3,4]."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explanation": "Both programs should output a sorted list when given a sorted input. This test case is designed to see if the sorting algorithm works properly. The original program should output [1,2,3,4,5] and the mutated program should also output [1,2,3,4,5]."
+    }
+  ]
+},{
+  "mutant_program": "muta617_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "Both programs sort the input list correctly as [1, 2, 3], regardless of the mutation."
+    },
+    {
+      "input": [
+        5,
+        3,
+        8,
+        2
+      ],
+      "original_output": [
+        2,
+        3,
+        5,
+        8
+      ],
+      "mutant_output": [
+        2,
+        8,
+        3,
+        5
+      ],
+      "explanation": "The mutation changes the condition in the while loop of the merge function to ((current1 < list1len) == (current2 < list2len)), which will prevent the loop from executing if both lists have the same length but still have elements to be merged. This results in the mutation returning the wrong output when the input lists have an odd number of elements and one of the halves has one more element than the other."
+    }
+  ]
+},{
+  "mutant_program": "muta634_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "mutant_output": [
+        1,
+        3,
+        2,
+        4
+      ],
+      "explanation": "The original program sorts the input array in ascending order using the merge sort algorithm. The mutant program has a modified condition in the while loop of the merge function, which truncates the first part of the input array if the current1 pointer exceeds the list1len pointer. This results in the mutant program discarding some elements during the merge process, leading to a different order of elements in the sorted output array."
+    },
+    {
+      "input": [
+        10,
+        5,
+        30,
+        20,
+        15,
+        25
+      ],
+      "original_output": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "mutant_output": [
+        5,
+        10,
+        20,
+        15,
+        25,
+        30
+      ],
+      "explanation": "The original program correctly sorts the input array in ascending order using the merge sort algorithm. The mutant program, however, fails to produce the expected output due to the erroneous condition in the while loop of the merge function."
+    }
+  ]
+},{
+  "mutant_program": "muta639_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6,
+        2,
+        8,
+        4
+      ],
+      "original_output": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "mutant_output": [
+        2,
+        4
+      ],
+      "explanation": "The mutant code has a mistake in the while condition inside the merge function, using a subtraction instead of comparison. This leads to prematurely exiting the while loop and only partially merging the lists. The input [6,2,8,4] is used to show this difference in output. The original program correctly sorts it to [2,4,6,8], while the mutant program only merges the first two elements and returns [2,4]."
+    }
+  ]
+},{
+  "mutant_program": "muta694_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6,
+        4,
+        7,
+        2,
+        3,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        6
+      ],
+      "explanation": "The mutant code changes the order of the elements when merging the two sorted lists in the merge function. This causes the output to be different even though the input is the same."
+    },
+    {
+      "input": [
+        9,
+        5,
+        8,
+        1
+      ],
+      "original_output": [
+        1,
+        5,
+        8,
+        9
+      ],
+      "mutant_output": [
+        1,
+        8,
+        5,
+        9
+      ],
+      "explanation": "Similar to the first test, the mutant code changes the order of the elements in the merged list resulting in a different output compared to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta704_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explanation": "Both the original and mutant program will produce the same output for this input."
+    },
+    {
+      "input": [
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "explanation": "Both the original and mutant program will produce the same output for this input."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1,
+        6,
+        5,
+        4,
+        9,
+        8,
+        7
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "explanation": "Both the original and mutant program will produce the same output for this input."
+    },
+    {
+      "input": [
+        5,
+        3,
+        1,
+        2,
+        4
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        5,
+        4,
+        3
+      ],
+      "explanation": "The mutant program produces a different output by taking the second half of the array after the merging as the merged list i.e., the counting for list2len in the while loop of 'merge' method should have been (current2 < list2len) instead of (current2 <= list2len)."
+    }
+  ]
+},{
+  "mutant_program": "muta760_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        8,
+        4,
+        2,
+        7,
+        1,
+        6
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "mutant_output": [
+        1,
+        2,
+        4,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "explanation": "The mutated code includes a call to the TRAP_ON_NEGATIVE() function which results in an infinite loop because the current1 variable never increments. This causes the mergeSort function to never reach its base case and results in the incorrect ordering of the output."
+    }
+  ]
+},{
+  "mutant_program": "muta764_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "The original program will correctly sort the input array in ascending order. The mutant program has a trap that will cause an infinite loop when the length of list1 is equal to zero, which can happen depending on the input data. Thus, the mutant program will not be able to sort some arrays and may cause the program to hang."
+    },
+    {
+      "input": [
+        9,
+        7,
+        8,
+        6,
+        5,
+        4
+      ],
+      "original_output": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "mutant_output": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "explanation": "The original program will correctly sort the input array in ascending order. The mutant program has a trap that will cause an infinite loop when the length of list1 is equal to zero, which can happen depending on the input data. Thus, the mutant program will not be able to sort some arrays and may cause the program to hang."
+    }
+  ]
+},{
+  "mutant_program": "muta766_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "The original program implement the merge algorithm as expected, having the two sorted halves, the algorithm merges the arrays correctly but the mutant introduced a bug in the merge function by changing the termination condition in the while loop. The mutant code never compares the same element twice; this means that if an element in list1 is greater than the last element in list2, the mutant code doesn't add the last element in list2 to temp array leading to an omitted element and a smaller array size"
+    },
+    {
+      "input": [],
+      "original_output": [],
+      "mutant_output": [],
+      "explanation": "Empty array."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "Array already sorted."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "Array sorted in reverse."
+    }
+  ]
+},{
+  "mutant_program": "muta772_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        3,
+        2
+      ],
+      "explanation": "The input array is sorted in ascending order in the original code by the mergeSort function. The mutant code introduces a trap that swaps the positions of the second and third elements of the first half of the array. Therefore, the resulting array is not sorted in ascending order, resulting in a different output."
+    },
+    {
+      "input": [
+        7,
+        1,
+        5,
+        2
+      ],
+      "original_output": [
+        1,
+        2,
+        5,
+        7
+      ],
+      "mutant_output": [
+        1,
+        7,
+        2,
+        5
+      ],
+      "explanation": "The input array is sorted in ascending order in the original code by the mergeSort function. The mutant code introduces a trap that swaps the positions of the second and fourth elements of the array. Therefore, the resulting array is not sorted in ascending order, resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta778_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "1 2 3 4 ",
+      "mutant_output": "1 3 2 4 ",
+      "explanation": "The original program sorts the input array in non-decreasing order. The mutant program makes a non-deterministic change in the merge function, which may result in elements being merged into the output list in the wrong order. This is demonstrated by the difference in output when sorting the input array [4,3,2,1], where the original program correctly produces the sorted list [1,2,3,4], but the mutant program produces [1,3,2,4]."
+    }
+  ]
+},{
+  "mutant_program": "muta790_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        2,
+        6,
+        3,
+        1,
+        5
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "explanation": "The original program should correctly sort the input list. The mutant program performs the merge operation incorrectly by adding a trap that limits the sorting of list1 to be less than list1len; this will prevent list1 from being completely sorted."
+    },
+    {
+      "input": [
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "mutant_output": [
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "explanation": "The original program should correctly sort the input list. The mutant program performs the merge operation incorrectly by adding a trap that results in an infinite loop due to the conditional statement always being true."
+    }
+  ]
+},{
+  "mutant_program": "muta799_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        8,
+        3,
+        9,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        5,
+        8,
+        9
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        5,
+        8,
+        9
+      ],
+      "explanation": "Both programs will give the same output"
+    },
+    {
+      "input": [
+        10,
+        4,
+        6,
+        7
+      ],
+      "original_output": [
+        4,
+        6,
+        7,
+        10
+      ],
+      "mutant_output": [
+        4,
+        6,
+        10,
+        7
+      ],
+      "explanation": "The mutant code contains TRAP_ON_NEGATIVE(current2), which will always result in a positive output and will break the while loop earlier than expected, resulting in a different output than the original program."
+    },
+    {
+      "input": [
+        1,
+        1
+      ],
+      "original_output": [
+        1,
+        1
+      ],
+      "mutant_output": [
+        1,
+        1
+      ],
+      "explanation": "Both programs will give the same output"
+    }
+  ]
+},{
+  "mutant_program": "muta88_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        0,
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        2,
+        3
+      ],
+      "original_output": [
+        0,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "mutant_output": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "explanation": "The mutant changed the condition in the while loop from (i<length) to (i-length), causing it to run indefinitely. As a result, the destination array is not updated and the output remains all zeros."
+    },
+    {
+      "input": [
+        [
+          5,
+          2,
+          9,
+          1,
+          3
+        ],
+        0,
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        2,
+        3
+      ],
+      "original_output": [
+        0,
+        0,
+        5,
+        2,
+        9
+      ],
+      "mutant_output": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "explanation": "The same issue as above occurs in this test case, resulting in the output to all be zeros."
+    },
+    {
+      "input": [
+        [
+          10,
+          5,
+          2,
+          7,
+          3
+        ],
+        1,
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        3,
+        2
+      ],
+      "original_output": [
+        0,
+        5,
+        2,
+        10,
+        7
+      ],
+      "mutant_output": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "explanation": "Once again, the output is all zeros due to the same issue with the while loop condition."
+    }
+  ]
+},{
+  "mutant_program": "muta902_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        8,
+        3
+      ],
+      "original_output": [
+        2,
+        3,
+        5,
+        8
+      ],
+      "mutant_output": [
+        2,
+        3,
+        8,
+        5
+      ],
+      "explanation": "The mutant code changes the while loop condition on line 32, making it compare the current indices of the lists instead of their lengths, resulting in a different ordering of the elements in the merged list. This can be observed in the output of the second test case."
+    },
+    {
+      "input": [
+        10,
+        4,
+        1,
+        8,
+        6
+      ],
+      "original_output": [
+        1,
+        4,
+        6,
+        8,
+        10
+      ],
+      "mutant_output": [
+        1,
+        4,
+        8,
+        6,
+        10
+      ],
+      "explanation": "The same issue as the previous test case occurs here, causing a different ordering of the elements in the merged list."
+    }
+  ]
+},{
+  "mutant_program": "muta906_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        4,
+        1,
+        5
+      ],
+      "original_output": [
+        1,
+        1,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        1,
+        3,
+        4,
+        5
+      ],
+      "explanation": "Both original and mutant codes implement merge sort algorithm. This test case checks if they both produce the same sorted output for the given input list. Since the test output for the original and mutant codes is the same, they are equivalent."
+    },
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "explanation": "This test case checks if the outputs of the original and mutant codes are different for the worst-case input to the sorting algorithm - a list sorted in descending order. The original code correctly sorts the list in ascending order, while the mutant code produces an output equal to the input list, indicating a fault in the merge function implementation."
+    }
+  ]
+},{
+  "mutant_program": "muta959_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        2,
+        7,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        4,
+        7
+      ],
+      "mutant_output": [
+        4,
+        2,
+        7,
+        1
+      ],
+      "explanation": "The mutant code changes the condition inside the if statement of the merge function, causing the new program to sort the arrays in a different order."
+    },
+    {
+      "input": [
+        9,
+        6,
+        3,
+        2,
+        5
+      ],
+      "original_output": [
+        2,
+        3,
+        5,
+        6,
+        9
+      ],
+      "mutant_output": [
+        9,
+        6,
+        2,
+        3,
+        5
+      ],
+      "explanation": "The mutated code produces a different output than the original for the same input, since it changed the main condition besides the while loop of the merge function."
+    }
+  ]
+},{
+  "mutant_program": "muta960_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "mutant_output": [
+        2,
+        6,
+        3,
+        4,
+        5
+      ],
+      "explanation": "The original program uses '<' to compare values while the mutant uses 'SUCC' function. The test case forces the mutant to run a different code path in which 6 gets compared with 3."
+    },
+    {
+      "input": [
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        10,
+        8,
+        9,
+        7
+      ],
+      "explanation": "The test case forces the mutant to run a different code path in which 'len' is even. Here, the mutant produces a different output than the original because the last 'while loop' runs for 'list2' instead of 'list1'."
+    }
+  ]
+},{
+  "mutant_program": "muta964_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        8,
+        3,
+        6,
+        9
+      ],
+      "original_output": [
+        3,
+        5,
+        6,
+        8,
+        9
+      ],
+      "mutant_output": [
+        3,
+        6,
+        5,
+        8,
+        9
+      ],
+      "explanation": "The mutant program modifies the condition in line 24 with a non-deterministic change of adding 1 to the second element of list2. This changes the order of the merge and hence the output."
+    },
+    {
+      "input": [
+        2,
+        4,
+        7,
+        1,
+        3,
+        6
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "mutant_output": [
+        1,
+        2,
+        4,
+        3,
+        6,
+        7
+      ],
+      "explanation": "The mutant program modifies the condition in line 24 with a non-deterministic change of adding 1 to the second element of list2. This changes the order of the merge and hence the output."
+    }
+  ]
+},{
+  "mutant_program": "muta975_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        9,
+        7,
+        1,
+        8
+      ],
+      "original_output": [
+        1,
+        3,
+        5,
+        7,
+        8,
+        9
+      ],
+      "mutant_output": [
+        1,
+        3,
+        5,
+        7,
+        8,
+        9
+      ],
+      "explanation": "Both programs sorts the array correctly."
+    },
+    {
+      "input": [
+        10,
+        2,
+        12,
+        8,
+        16,
+        4
+      ],
+      "original_output": [
+        2,
+        4,
+        8,
+        10,
+        12,
+        16
+      ],
+      "mutant_output": [
+        2,
+        4,
+        8,
+        10,
+        12,
+        16
+      ],
+      "explanation": "Both programs sorts the array correctly."
+    },
+    {
+      "input": [
+        1,
+        3,
+        2,
+        4,
+        8,
+        7
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8
+      ],
+      "explanation": "Both programs sorts the array correctly."
+    },
+    {
+      "input": [
+        3,
+        5,
+        1,
+        6,
+        2,
+        4
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3,
+        5,
+        4,
+        6
+      ],
+      "explanation": "The mutant introduced an off-by-one error in the merge function, that makes the last element of list2 not be included in the merged list. This test case shows this problem."
+    }
+  ]
+},{
+  "mutant_program": "muta978_MergeSort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": [
+        1,
+        2,
+        3
+      ],
+      "mutant_output": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "The original and mutant program will execute the same output as it needs to be sorted."
+    },
+    {
+      "input": [
+        5,
+        1,
+        4,
+        2,
+        3
+      ],
+      "original_output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "mutant_output": [
+        1,
+        2,
+        4,
+        3,
+        5
+      ],
+      "explanation": "The mutant changes the while loop in the merge function to (current2 < SUCC(list2len)) instead of (current2 < list2len), which adds 1 to the list2 length and results in incorrect sorting of the list"
+    }
+  ]
+}]
