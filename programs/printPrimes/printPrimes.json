@@ -1,1 +1,1597 @@
-[{"mutant_program": "muta0_printPrimes.c", "equivalent": false, "tests": [{"input": [1], "original_output": "Prime:    2\n", "mutant_output": "Prime:    2\n", "explanation": "Both programs will generate the same output when n is 1 because the list will contain only the first prime number: 2."}, {"input": [5], "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\n", "mutant_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\n", "explanation": "Both programs will generate the same output when n is 5 because the mutant code will not change the logic of the original code and will generate a list with the first 5 prime numbers."}, {"input": [10], "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\nPrime:    13\nPrime:    17\nPrime:    19\nPrime:    23\nPrime:    29\n", "mutant_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\nPrime:    13\nPrime:    17\nPrime:    19\nPrime:    23\nPrime:    29\n", "explanation": "Both programs will generate the same output when n is 10 because the mutant code will not change the logic of the original code and will generate a list with the first 10 prime numbers."}, {"input": [0], "original_output": "", "mutant_output": "", "explanation": "Both programs will generate an empty output when n is 0 because there are no prime numbers to be found."}]}]
+[{
+  "mutant_program": "muta100_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \n",
+      "explanation": "The original program and the mutant both find and print 5 prime numbers. However, the mutant code allows for the possibility of a double-count of the prime number at index 2 (value 5), which actually yields an additional, non-prime integer at the end. Thus, the mutant's output includes an extra prime number 13 at the end. "
+    },
+    {
+      "input": [
+        3
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \n",
+      "explanation": "The original program and the mutant both find and print 3 prime numbers. However, the mutant code allows for the possibility of a double-count of the prime number at index 2 (value 5), which actually yields an additional prime integer (7) at the end. Thus, the mutant's output includes an extra prime number at the end and it differs from the original by including 7."
+    }
+  ]
+},{
+  "mutant_program": "muta101_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    9 \n",
+      "explanation": "The mutant changes the value of isPrime variable when there is a divisor, by assigning it value 2. This is incorrect as it is changing the intended logic of the program. The test set is [5]. The output of the original program is 'Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n' and the output of the mutant program is 'Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    9 \n'."
+    }
+  ]
+},{
+  "mutant_program": "muta110_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both programs should output the same when n=1, the only prime number on the range."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \n",
+      "explanation": "Both programs should output the same when n=5, with the first 5 prime numbers being (2, 3, 5, 7, 11)"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \n",
+      "explanation": "For n=10, the original program generates the first 10 prime numbers, while the mutant program only generates the first 9, as it skips the last number, 29 (which is a prime number)."
+    }
+  ]
+},{
+  "mutant_program": "muta52_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both versions should output the same result when n=1"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "Both versions should output the same result when n=10"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both versions should output nothing when n=0"
+    }
+  ]
+},{
+  "mutant_program": "muta74_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \n",
+      "explanation": "The original and mutant program output the list of first 5 prime numbers. The mutant code is not equivalent to the original code as it adds an extra prime number in the output. "
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "The original and mutant program output the list of first 10 prime numbers. The mutant code is equivalent to the original code. "
+    }
+  ]
+},{
+  "mutant_program": "muta75_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \n",
+      "explanation": "The mutant code is not equivalent to the original program. It has changed the TRAP_ON_ZERO(j) % i == 0 which always evaluates to false. This means that the output of the two program codes will be different. The input consists of only one value, which is 10 in this case. The original code outputs the first 10 prime numbers, while the mutated code outputs only the first 9 prime numbers as it misses the last value of 29. "
+    }
+  ]
+},{
+  "mutant_program": "muta77_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \n",
+      "explanation": "The mutant adds an extra prime number and the output is different than the original program code."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \n",
+      "explanation": "The mutant adds an extra prime number and the output is different than the original program code."
+    }
+  ]
+},{
+  "mutant_program": "muta78_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "The mutant code computes division according to TRAP_ON_ZERO, but the mutant is equivalent to the original because TRAP_ON_ZERO(0) returns 1, and 1 * anything = anything."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \n",
+      "explanation": "The mutant code computes division according to TRAP_ON_ZERO, but the mutant is equivalent to the original because TRAP_ON_ZERO(0) returns 1, and 1 * anything = anything."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "The mutant code computes division according to TRAP_ON_ZERO, but the mutant is equivalent to the original because TRAP_ON_ZERO(0) returns 1, and 1 * anything = anything."
+    }
+  ]
+},{
+  "mutant_program": "muta94_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    9 \n",
+      "explanation": "The output differs because the mutant assigns the value 1 to curPrime, which is the initial value of numPrimes in the original. This makes the code to print the number 9 as a prime, when it is in fact not one"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both outputs are the same because the input value is too small for the program code to discern any differences."
+    },
+    {
+      "input": [
+        15
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    9 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \n",
+      "explanation": "The output differs because the mutant assigns the value 1 to curPrime, which is the initial value of numPrimes in the original. This makes the code to print the number 9 as a prime, when it is in fact not one"
+    }
+  ]
+},{
+  "mutant_program": "muta234_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "The output is an empty string because there are no primes to print in this case."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "This is a case where both the original and the mutant programs produce the same output. There is only one prime number in this case and it is 2."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \n",
+      "explanation": "This is a case where the original and mutant programs produce different outputs. The mutant program uses the xor operator (^) instead of the subtraction operator (-) to calculate the upper limit of the for loop in line 31. As a result, the mutant program stops when it reaches the 7th prime (17), instead of the 5th prime (11) like the original program. This is a case where the mutant program is not equivalent to the original program."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "This is a case where both the original and the mutant programs produce the same output. The input is 10, so both programs generate and output the first 10 prime numbers."
+    }
+  ]
+},{
+  "mutant_program": "muta255_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "The original and mutated code produce the same output for n = 5."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "The original and mutated code produce the same output for n = 10."
+    },
+    {
+      "input": [
+        15
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \n",
+      "explanation": "The original and mutated code produce the same output for n = 15."
+    },
+    {
+      "input": [
+        4
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \n",
+      "explanation": "The original and mutated code produce the same output for n = 4."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "The original and mutated code produce the same output for n = 1."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Prime:    \n",
+      "mutant_output": "Prime:    \n",
+      "explanation": "The original and mutated code produce the same output for n = 0."
+    }
+  ]
+},{
+  "mutant_program": "muta271_printPrimes.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "The mutant program is equivalent to the original program due to a non-deterministic change. Both programs find and print the first n prime integers."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "The mutant program is equivalent to the original program due to a non-deterministic change. Both programs find and print the first n prime integers."
+    }
+  ]
+},{
+  "mutant_program": "muta276_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both programs output the first prime, since the input is one."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    13 \n",
+      "explanation": "The expected output of the original program is the first five prime numbers: 2, 3, 5, 7, and 11. The mutated program outputs the same numbers, but instead of 11, the last prime is 13. This is due to the mutation changing the way curPrime is incremented in the while loop, starting in 0, then 2, and then just incrementing by one. This produces another prime number after 11, which is 13 instead of 12 (which is not prime)."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    31 \n",
+      "explanation": "Both programs output the first 10 prime numbers. The mutation did not significantly change the program's logic, it only changed the last prime number printed, which went from 29 to 31, but is still a prime number."
+    }
+  ]
+},{
+  "mutant_program": "muta281_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "5"
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "The original and mutant output are the same because they use the same input value, which sets the number of prime integers to find to 5, thus both results are the same. The difference between the original and mutant code lies in the 'isPrime' variable, which in the original code is set to 1 at the beginning of each iteration of the while loop and updated based on whether or not the current 'curPrime' value can be divided by any of the numbers in the 'primes' array. In the mutant code, however, the 'isPrime' variable is set to 0 when a divisor is found but is then incremented by 1 even if 'curPrime' is not prime. This means that the 'isPrime' check at the end of the while loop does not function correctly and can result in non-prime values being added to the 'primes' array. Although the test output of the original and mutated programs is the same for the given input, deviations in results are expected when testing the programs with different inputs."
+    }
+  ]
+},{
+  "mutant_program": "muta283_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\n",
+      "mutant_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\n",
+      "explanation": "The original program and mutant program both generate the correct output for n=5. The mutant program initializes variable i with a value of 0 by using the expression 'i *= 0' instead of just 'i = 0' in the for loop. However, this operation has no effect since 0 multiplied by any integer is still 0. Therefore, the mutant program is functionally equivalent to the original program."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2\n",
+      "mutant_output": "Prime:    2\nPrime:    3\n",
+      "explanation": "In this case, the original program and mutant program generate different outputs for n=1. The original program correctly identifies 2 as the only prime number less than or equal to 1, while the mutant program incorrectly includes 3 as well. This is because the mutant program initializes variable i to 0 instead of 1, causing the condition j%i==0 to be true for j=3 and i=0. Therefore, the mutant program generates incorrect output and is not functionally equivalent to the original program for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta288_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nprime:    13 \nPrime:    17 \n",
+      "explanation": "The original program prints the correct amount of primes, however, the mutant also includes the number 13, which is not a prime according to the program's algorithm."
+    }
+  ]
+},{
+  "mutant_program": "muta298_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "The output of both programs is an empty string because 0 means no primes are printed."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "",
+      "explanation": "The original program prints the first prime number (2) while the mutant program prints an empty string."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \n",
+      "explanation": "The mutant program also produces the first five prime numbers as the original program, but produces an additional prime (13)."
+    }
+  ]
+},{
+  "mutant_program": "muta303_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime: 2 \nPrime: 3 \nPrime: 5 \nPrime: 7 \nPrime: 11 \n",
+      "mutant_output": "Prime: 2 \nPrime: 3 \nPrime: 5 \nPrime: 7 \nPrime: 11 \n",
+      "explanation": "The output of the original and the mutant program is the same for this input."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both the original and the mutant program return an empty string since no prime number is to be printed for an input of 0."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime: 2 \n",
+      "mutant_output": "",
+      "explanation": "The output of the original and the mutant program is different for this input. The original program prints a single prime number, 2, whereas the mutant program returns an empty string."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Prime: 2 \nPrime: 3 \n",
+      "mutant_output": "Prime: 3 \n",
+      "explanation": "The output of the original and the mutant program is different for this input. The original program prints two prime numbers, 2 and 3, whereas the mutant program only prints one prime number, 3."
+    }
+  ]
+},{
+  "mutant_program": "muta307_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "The original and mutant programs returns the same output since the bitwise XOR operation applied on the variable numPrimes does not affect the execution of the program. Thus, any input for n should output the same primes and both programs are logically equivalent."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "The original and mutant programs returns an empty string since n=0 does not print any primes. Thus, any input for n should output an empty string and both programs are logically equivalent."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "The original and mutant programs returns the first prime number since n=1 requests only one prime number. Thus, any input for n=1 should output the first prime (2) and both programs are logically equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta308_printPrimes.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta310_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both programs return the same output for this input which is the list of primes up to 2"
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \n",
+      "explanation": "Both programs return the same output for this input which is the list of primes up to 5"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \n",
+      "explanation": "The original program and the mutant program have different outputs because the mutation changed the initialization of curPrime with a bitwise XOR operation (^=) instead of assigning 2 to it. Therefore, the first prime number in the list is not 2 but the result of XOR 2 (^2), which is 0. This leads to an infinite loop where curPrime is always 0 and the program never terminates. Hence, the mutant program is incorrect and not equivalent to the original program. This input tests that the program can handle a large enough input without entering an infinite loop."
+    }
+  ]
+},{
+  "mutant_program": "muta311_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    9 \n",
+      "explanation": "The original program correctly prints the first 5 prime numbers. The mutant program incorrectly includes the number 9 as a prime, resulting in a different output."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    9 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \n",
+      "explanation": "The original program correctly prints the first 10 prime numbers. The mutant program incorrectly includes the number 9 as a prime, resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta313_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both programs should output the same since they are equivalent"
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "Both programs should output the same since they are equivalent"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "Both programs should output the same since they are equivalent"
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs should output the same since they are equivalent, but the output is an empty string since we are supposed to print 0 primes."
+    },
+    {
+      "input": [
+        100
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \nPrime:    61 \nPrime:    67 \nPrime:    71 \nPrime:    73 \nPrime:    79 \nPrime:    83 \nPrime:    89 \nPrime:    97 \nPrime:    101 \nPrime:    103 \nPrime:    107 \nPrime:    109 \nPrime:    113 \nPrime:    127 \nPrime:    131 \nPrime:    137 \nPrime:    139 \nPrime:    149 \nPrime:    151 \nPrime:    157 \nPrime:    163 \nPrime:    167 \nPrime:    173 \nPrime:    179 \nPrime:    181 \nPrime:    191 \nPrime:    193 \nPrime:    197 \nPrime:    199 \nPrime:    211 \nPrime:    223 \nPrime:    227 \nPrime:    229 \nPrime:    233 \nPrime:    239 \nPrime:    241 \nPrime:    251 \nPrime:    257 \nPrime:    263 \nPrime:    269 \nPrime:    271 \nPrime:    277 \nPrime:    281 \nPrime:    283 \nPrime:    293 \nPrime:    307 \nPrime:    311 \nPrime:    313 \nPrime:    317 \nPrime:    331 \nPrime:    337 \nPrime:    347 \nPrime:    349 \nPrime:    353 \nPrime:    359 \nPrime:    367 \nPrime:    373 \nPrime:    379 \nPrime:    383 \nPrime:    389 \nPrime:    397 \nPrime:    401 \nPrime:    409 \nPrime:    419 \nPrime:    421 \nPrime:    431 \nPrime:    433 \nPrime:    439 \nPrime:    443 \nPrime:    449 \nPrime:    457 \nPrime:    461 \nPrime:    463 \nPrime:    467 \nPrime:    479 \nPrime:    487 \nPrime:    491 \nPrime:    499 \nPrime:    503 \nPrime:    509 \nPrime:    521 \nPrime:    523 \nPrime:    541 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \nPrime:    61 \nPrime:    67 \nPrime:    71 \nPrime:    73 \nPrime:    79 \nPrime:    83 \nPrime:    89 \nPrime:    97 \nPrime:    101 \nPrime:    103 \nPrime:    107 \nPrime:    109 \nPrime:    113 \nPrime:    127 \nPrime:    131 \nPrime:    137 \nPrime:    139 \nPrime:    149 \nPrime:    151 \nPrime:    157 \nPrime:    163 \nPrime:    167 \nPrime:    173 \nPrime:    179 \nPrime:    181 \nPrime:    191 \nPrime:    193 \nPrime:    197 \nPrime:    199 \nPrime:    211 \nPrime:    223 \nPrime:    227 \nPrime:    229 \nPrime:    233 \nPrime:    239 \nPrime:    241 \nPrime:    251 \nPrime:    257 \nPrime:    263 \nPrime:    269 \nPrime:    271 \nPrime:    277 \nPrime:    281 \nPrime:    283 \nPrime:    293 \nPrime:    307 \nPrime:    311 \nPrime:    313 \nPrime:    317 \nPrime:    331 \nPrime:    337 \nPrime:    347 \nPrime:    349 \nPrime:    353 \nPrime:    359 \nPrime:    367 \nPrime:    373 \nPrime:    379 \nPrime:    383 \nPrime:    389 \nPrime:    397 \nPrime:    401 \nPrime:    409 \nPrime:    419 \nPrime:    421 \nPrime:    431 \nPrime:    433 \nPrime:    439 \nPrime:    443 \nPrime:    449 \nPrime:    457 \nPrime:    461 \nPrime:    463 \nPrime:    467 \nPrime:    479 \nPrime:    487 \nPrime:    491 \nPrime:    499 \nPrime:    503 \nPrime:    509 \nPrime:    521 \nPrime:    523 \nPrime:    541 \n",
+      "explanation": "Both programs should output the same since they are equivalent, but they output different results because the mutated program uses bitwise XOR on isPrime variable instead of the boolean value 1. The original program sets isPrime to 1 each time it checks if curPrime can be divided among the prime numbers found so far, this ensures that if it finds a divisor, isPrime gets reset so that curPrime isn't considered a prime number. On the other hand, the mutated program invalidates this logic by using bitwise XOR to toggle the value of isPrime. This means isPrime will always start at 0, and will always start to toggle itself every time a divisor is found for the current curPrime so it becomes 1 again. This is problematic because isPrime being 1 while iterating through the previously found prime numbers means that if any of them can't divide curPrime, isPrime won't be reset and the function will consider a non-prime curPrime a prime number."
+    }
+  ]
+},{
+  "mutant_program": "muta314_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    1 \nPrime:    2 \n",
+      "explanation": "The original program correctly prints the prime number 2, whereas the mutant program incorrectly prints 1 as a prime number before printing 2."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    1 \nPrime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \n",
+      "explanation": "The original program correctly identifies and prints the first 5 prime numbers, whereas the mutant program incorrectly prints the non-prime number 1 before printing the primes."
+    }
+  ]
+},{
+  "mutant_program": "muta315_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \n",
+      "explanation": "The mutant program has a bitwise-AND operator instead of an assignment operator in the initialization of the 'i' variable in the for loop inside the 'printPrimes' function. This causes the 'i' variable to always be 0, making the loop an infinite loop, never reaching the last prime number (29). Therefore, the mutant program outputs the primes up to 23, and the original program outputs the primes up to 29."
+    }
+  ]
+},{
+  "mutant_program": "muta318_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both original and mutant program should output the single prime number 2."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \n",
+      "explanation": "The original program outputs the first 5 prime numbers, while the mutant program only outputs the first 4 prime numbers. This is because the mutant program incorrectly uses bitwise AND (&=) instead of logical AND (&&) to check if a number is prime, so isPrime is always evaluated to 0 once a divisor is found. As a result, the mutant program misses the prime number 11."
+    }
+  ]
+},{
+  "mutant_program": "muta324_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime: 2 \nPrime: 3 \nPrime: 5 \nPrime: 7 \nPrime: 11 \n",
+      "mutant_output": "Prime:   2 \n",
+      "explanation": "The original program prints all prime numbers up until the nth prime, while the mutant program prints only the first prime number and exits because of the masking operation applied to variable j in the for loop header in the printPrimes function. "
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime: 2 \nPrime: 3 \nPrime: 5 \nPrime: 7 \nPrime: 11 \nPrime: 13 \nPrime: 17 \nPrime: 19 \nPrime: 23 \nPrime: 29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \n",
+      "explanation": "The original program prints all prime numbers up until the 10th prime number, while the mutant program prints only the first two prime numbers (2 and 3) and exits because of the masking operation applied to variable j in the for loop header in the printPrimes function."
+    }
+  ]
+},{
+  "mutant_program": "muta353_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both outputs are the same because both programs should print only one prime (2) when the input n is 1."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    11 \nPrime:    13 \n",
+      "explanation": "The original program prints the first 5 prime numbers (2, 3, 5, 7, 11), while the mutant program prints the first 5 prime numbers (2, 3, 5, 11, 13), because the mutant program is missing one prime number in the for loop inside the function printPrimes."
+    }
+  ]
+},{
+  "mutant_program": "muta363_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\n",
+      "mutant_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\n",
+      "explanation": "The mutant changed the condition of the while loop to (numPrimes % n), which leads to an infinite loop. Therefore, the mutant program produces an incomplete list of primes."
+    }
+  ]
+},{
+  "mutant_program": "muta365_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    9 \n",
+      "explanation": "The original program correctly finds the first 5 prime numbers (2, 3, 5, 7, and 11) and prints them to the console. The mutant program introduces a non-equivalent change to the loop condition in line 23, causing the iteration to continue indefinitely. This leads the program to generate wrong(9 instead of 11) fifth prime number"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    9 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \n",
+      "explanation": "The original program correctly finds the first 10 prime numbers and prints them to the console. The mutant program does not generate the correct output, it generates an extra prime (9) This is caused because of the non-equivalent change in line 23, the loop will stop when it have numPrimes - 1 == i which is not expected"
+    }
+  ]
+},{
+  "mutant_program": "muta371_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    4 \nPrime:    5 \n",
+      "explanation": "The mutant program has a change in the statement if(isPrime==1) and always evaluates to true (isPrime * 1) which adds '4' as a prime number, making the mutant program output different from the original program."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    4 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \n",
+      "explanation": "The mutant program has a change in the statement if(isPrime==1) and always evaluates to true (isPrime * 1) which adds '4' as a prime number, making the mutant program output different from the original program."
+    },
+    {
+      "input": [
+        20
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \nPrime:    61 \nPrime:    67 \nPrime:    71 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    4 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \nPrime:    61 \nPrime:    67 \n",
+      "explanation": "The mutant program has a change in the statement if(isPrime==1) and always evaluates to true (isPrime * 1) which adds '4' as a prime number, making the mutant program output different from the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta372_printPrimes.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta384_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "The original and mutated code will output the same values since the difference between them is in the loop condition. In the original code, the condition is 'i <= numPrimes-1', while in the mutant code, it is '(i ^ (numPrimes - 1))'. Both conditions iterate 'numPrimes' times, resulting in equivalent outputs."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "The original and mutated code will output the same values since the difference between them is in the loop condition. In the original code, the condition is 'i <= numPrimes-1', while in the mutant code, it is '(i ^ (numPrimes - 1))'. Both conditions iterate 'numPrimes' times, resulting in equivalent outputs."
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \n",
+      "explanation": "The original and mutated code will output different values. In the original code, the loop condition is 'i <= numPrimes-1', so it iterates 'numPrimes' times. In the mutant code, the loop condition is '(i ^ (numPrimes - 1))', which does not iterate 'numPrimes' times, so the mutated code outputs one more prime than the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta386_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both programs should output the same result since the input is only 1, which means the only prime number to be printed is 2."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    11 \nPrime:    13 \n",
+      "explanation": "The mutant program is different from the original one because it uses a bitwise operator & instead of a logical operator && to check if a number is prime. This means that the mutant program will catch as prime also some numbers that are not actually prime. To test this difference, we pass the input 5 to the programs. Both programs will print the first 5 prime numbers, but the mutant program will print 11 instead of 13 as the fourth prime number, because it will catch 121 as a prime number (11*11), since 1 & 1 = 1."
+    }
+  ]
+},{
+  "mutant_program": "muta396_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Prime:    2\nPrime:    3\n",
+      "mutant_output": "Prime:    2\nPrime:    4\n",
+      "explanation": "The original program correctly identifies the first two prime numbers, which are 2 and 3. The mutant program changes the insertion condition in line 34 to include an unnecessary and always true conditional statement. This causes the mutant program to insert a non-prime number, 4, into the list of primes, rather than the correct number, 3."
+    },
+    {
+      "input": [
+        6
+      ],
+      "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\nPrime:    13\n",
+      "mutant_output": "Prime:    2\nPrime:    4\nPrime:    6\nPrime:    10\nPrime:    14\nPrime:    15\n",
+      "explanation": "The input is a list of indices indicating the number of prime integers to be printed. The original program produces a list of the first 6 prime numbers: [2, 3, 5, 7, 11, 13], while the mutant function produces a list containing 2, 4, 6, 10, 14, and 15. The mutant program inserts 4 and 6 into the list of primes, which are not prime numbers, while failing to include both 11 and 13."
+    }
+  ]
+},{
+  "mutant_program": "muta404_printPrimes.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both programs output the same result when n=1, since the first prime number is 2."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "Both programs output the same result when n=5, since they correctly find the first 5 prime numbers."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "Both programs output the same result when n=10, since they correctly find the first 10 prime numbers."
+    }
+  ]
+},{
+  "mutant_program": "muta408_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "The original program and the mutant program should output the same result. Both should print the first five primes 2, 3, 5, 7, and 11."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both the original program and the mutant program should output an empty string if n = 0. This is because there are no prime integers to print."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \n",
+      "explanation": "The original program and mutant program should output different results with n = 1. The original program should print the first prime number, which is 2. The mutant program prints 2 and then erroneously prints the next number which is 3, resulting in a false positive."
+    }
+  ]
+},{
+  "mutant_program": "muta412_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:     ",
+      "explanation": "The original program prints the first 5 prime numbers, while the mutant program adds an extra line for prime 11 with a trailing space. This causes the last prime to be printed on a separate line with no value, resulting in a different output."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \nPrime:    ",
+      "explanation": "The original program correctly prints the first prime number (2), while the mutant program incorrectly adds an extra line for the second prime with no value. This results in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta423_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\nPrime:    13\nPrime:    17\nPrime:    19\nPrime:    23\nPrime:    29\n",
+      "mutant_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\nPrime:    13\nPrime:    17\nPrime:    19\nPrime:    23\nPrime:    29\n",
+      "explanation": "The original and mutant outputs are the same. The mutant code is equivalent to the original."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\n",
+      "mutant_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    11\nPrime:    19\n",
+      "explanation": "The original and mutant outputs are different. The mutant code performs a bit shift of the 'isPrime' variable (equivalent to multiplying by 2), which does not correctly determine primality and leads to including some non-prime numbers in the output. For example, with n=5, the original output includes 7 as a prime, but the mutant output includes 19 instead."
+    }
+  ]
+},{
+  "mutant_program": "muta427_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "The output is the same because the mutant code only changed a break statement with a continue statement in the for loop. The change doesn't affect the final result."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "The output is the same because the mutant code only changed a break statement with a continue statement in the for loop. The change doesn't affect the final result."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "The output is the same because the mutant code only changed a break statement with a continue statement in the for loop. The change doesn't affect the final result."
+    },
+    {
+      "input": [
+        20
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \nPrime:    61 \nPrime:    67 \nPrime:    71 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \nPrime:    61 \nPrime:    67 \nPrime:    71 \n",
+      "explanation": "The output is the same because the mutant code only changed a break statement with a continue statement in the for loop. The change doesn't affect the final result."
+    }
+  ]
+},{
+  "mutant_program": "muta463_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime: 2 \nPrime: 3 \nPrime: 5 \nPrime: 7 \nPrime: 11 \n",
+      "mutant_output": "Prime: 2 \nPrime: 3 \nPrime: 5 \nPrime: 7 \nPrime: 11 \nPrime: 13 \n",
+      "explanation": "The original program prints the first five prime numbers, while the mutant code prints the first six prime numbers. Therefore, they are not equivalent. The test input is 5, which is the number of primes to be printed."
+    },
+    {
+      "input": [
+        7
+      ],
+      "original_output": "Prime: 2 \nPrime: 3 \nPrime: 5 \nPrime: 7 \nPrime: 11 \nPrime: 13 \nPrime: 17 \n",
+      "mutant_output": "Prime: 2 \nPrime: 3 \nPrime: 5 \nPrime: 7 \nPrime: 11 \nPrime: 13 \nPrime: 17 \nPrime: 19 \n",
+      "explanation": "The original program prints the first seven prime numbers, while the mutant code prints the first eight prime numbers. Therefore, they are not equivalent. The test input is 7, which is the number of primes to be printed."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime: 2 \nPrime: 3 \nPrime: 5 \nPrime: 7 \nPrime: 11 \nPrime: 13 \nPrime: 17 \nPrime: 19 \nPrime: 23 \nPrime: 29 \n",
+      "mutant_output": "Prime: 2 \nPrime: 3 \nPrime: 5 \nPrime: 7 \nPrime: 11 \nPrime: 13 \nPrime: 17 \nPrime: 19 \nPrime: 23 \nPrime: 29 \nPrime: 31 \n",
+      "explanation": "The original program prints the first ten prime numbers, while the mutant code prints the first eleven prime numbers. Therefore, they are not equivalent. The test input is 10, which is the number of primes to be printed."
+    }
+  ]
+},{
+  "mutant_program": "muta505_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime: 2 \n",
+      "mutant_output": "",
+      "explanation": "The original program finds the first prime number 2 and prints it. The mutant program has a non-deterministic change where it has a TRAP_ON_NEGATIVE function that will never be negative, so the while loop never ends. Therefore, the mutant program will not print any prime numbers."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "",
+      "explanation": "The original program finds the first 10 prime numbers and prints them. However, the mutant program has a non-deterministic change where it has a TRAP_ON_NEGATIVE function that will never be negative, so the while loop never ends. Therefore, the mutant program will not print any prime numbers."
+    }
+  ]
+},{
+  "mutant_program": "muta506_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \n",
+      "explanation": "The original program finds and prints the first 5 prime integers. The mutant program should be equivalent, but it outputs an extra prime number (13) that should not be part of the output. "
+    }
+  ]
+},{
+  "mutant_program": "muta508_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "The original and the mutant program produces exactly the same output. This is because the mutant only applies a trap on negative values to the input. But since the input is always expected to be positive in the context of the program, the mutation does not have any effect."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "The original and mutant program is expecting a positive integer as its input. 0 is not a positive integer and thus, the program will not produce any output. Both outputs are equivalent but not informative."
+    },
+    {
+      "input": [
+        -10
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "The original and mutant program is expecting a positive integer as its input. -10 is not a positive integer and the mutant program applies a trap on negative inputs, thus no output. They both produce the same output and are equivalent in this case."
+    }
+  ]
+},{
+  "mutant_program": "muta511_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": null,
+      "explanation": "Both the original and the mutant programs should return the value 2 as it's the first prime number. This test case ensures that both programs are working."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": null,
+      "explanation": "This is a test case to check whether the program can find and print the first 5 prime numbers. There are no non-deterministic changes in the code, so the outputs of both programs should be the same."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "This test case checks whether both programs can handle the edge case where input is 0. Both programs should return an empty string."
+    },
+    {
+      "input": [
+        -1
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "This test case checks whether both programs can handle the edge case where input is negative. Both programs should return an empty string."
+    }
+  ]
+},{
+  "mutant_program": "muta514_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\n",
+      "mutant_output": "",
+      "explanation": "The mutation replaces the variable numPrimes-1 with a function TRAP_ON_NEGATIVE(numPrimes) in the for loop. This may cause the code to loop an additional time and not correctly identify the number of primes."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\nPrime:    13\nPrime:    17\nPrime:    19\nPrime:    23\nPrime:    29\n",
+      "mutant_output": "",
+      "explanation": "The same mutation as above is still present and will affect larger values of n in the same way."
+    }
+  ]
+},{
+  "mutant_program": "muta515_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs will output empty string if the input is 0."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "Both programs are equivalent when the input is 5. They will output the same prime numbers."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "Both programs are equivalent when the input is 10. They will output the same prime numbers."
+    },
+    {
+      "input": [
+        12
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \n",
+      "explanation": "Both programs are equivalent when the input is 12. They will output the same prime numbers."
+    },
+    {
+      "input": [
+        100
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \nPrime:    61 \nPrime:    67 \nPrime:    71 \nPrime:    73 \nPrime:    79 \nPrime:    83 \nPrime:    89 \nPrime:    97 \nPrime:    101 \nPrime:    103 \nPrime:    107 \nPrime:    109 \nPrime:    113 \nPrime:    127 \nPrime:    131 \nPrime:    137 \nPrime:    139 \nPrime:    149 \nPrime:    151 \nPrime:    157 \nPrime:    163 \nPrime:    167 \nPrime:    173 \nPrime:    179 \nPrime:    181 \nPrime:    191 \nPrime:    193 \nPrime:    197 \nPrime:    199 \nPrime:    211 \nPrime:    223 \nPrime:    227 \nPrime:    229 \nPrime:    233 \nPrime:    239 \nPrime:    241 \nPrime:    251 \nPrime:    257 \nPrime:    263 \nPrime:    269 \nPrime:    271 \nPrime:    277 \nPrime:    281 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \nPrime:    61 \nPrime:    67 \nPrime:    71 \nPrime:    73 \nPrime:    79 \nPrime:    83 \nPrime:    89 \nPrime:    97 \nPrime:    101 \nPrime:    103 \nPrime:    107 \nPrime:    109 \nPrime:    113 \nPrime:    127 \nPrime:    131 \nPrime:    137 \nPrime:    139 \nPrime:    149 \nPrime:    151 \nPrime:    157 \nPrime:    163 \nPrime:    167 \nPrime:    173 \nPrime:    179 \nPrime:    181 \nPrime:    191 \nPrime:    193 \nPrime:    197 \nPrime:    199 \nPrime:    211 \nPrime:    223 \nPrime:    227 \nPrime:    229 \nPrime:    233 \nPrime:    239 \nPrime:    241 \nPrime:    251 \nPrime:    257 \nPrime:    263 \nPrime:    269 \nPrime:    271 \nPrime:    277 \nPrime:    281 \n",
+      "explanation": "Both programs are equivalent when the input is 100. They will output the same prime numbers."
+    }
+  ]
+},{
+  "mutant_program": "muta517_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \n",
+      "explanation": "Both programs output the same primes for a simple input of 2."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "Both programs output the same primes for a larger input of 10."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Neither program outputs any primes for a input of 0."
+    },
+    {
+      "input": [
+        25
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \n",
+      "explanation": "The original program outputs the correct primes for an input of 25. However, the mutant program includes one extra prime, 59. This difference is due to the use of a defined function TRAP_ON_NEGATIVE that does not exist in the original program. It is likely that this function modified the index parameter, i, in a way that wrongly allowed for 59 to be included as a prime, even though it is not."
+    }
+  ]
+},{
+  "mutant_program": "muta520_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both original and mutant program print nothing when 0 is passed as input"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both original and mutant program print 2 when 1 is passed as input"
+    },
+    {
+      "input": [
+        2
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "The original program prints primes 2 and 3 when 2 is passed as input. The mutant program prints only the first prime 2 and misses the prime 3"
+    }
+  ]
+},{
+  "mutant_program": "muta521_printPrimes.c",
+  "equivalent": "false",
+  "tests": []
+},{
+  "mutant_program": "muta523_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:\t2 \nPrime:\t3 \n",
+      "explanation": "The original program correctly prints out the first prime number 2. The mutant program also prints out 2, but it also incorrectly prints out the next prime, which is 3. This is because the TRAP_ON_NEGATIVE function called in the mutant program causes an integer overflow when curPrime is incremented to 3, resulting in a negative number. This causes the isDivisible function to always return true, erroneously marking 3 as a prime number"
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:\t5 \nPrime:\t7 \nPrime:\t11 \nPrime:\t13 \n ",
+      "explanation": "The original program correctly prints out the first five prime numbers. The mutant program also prints out the same prime numbers, but it also includes extra prime numbers 13 and 17. These extra numbers indicate that the isDivisible function in the mutant program is not functioning properly and incorrectly identifying 13 and 17 as prime numbers"
+    }
+  ]
+},{
+  "mutant_program": "muta524_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    15 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "The mutant program includes the TRAP_ON_ZERO function inside the isDivisible call. This will cause the program to not recognize a prime number, since TRAP_ON_ZERO will make any factor (i.e., i) equal to zero. This can be seen by comparing the output of the original and the mutant program. The output is different since the mutant program contains 15 as a prime, which is wrong."
+    }
+  ]
+},{
+  "mutant_program": "muta526_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \n",
+      "explanation": "The input is 1, so the expected output is the first prime number, which is 2; the original program correctly prints this value. The mutant program also prints 2 as the first prime number, but it continues to check for more primes and incorrectly finds 3 as another prime number, resulting in a different output."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "The input is 5, so the expected output is the first 5 prime numbers; the original and mutant program both correctly find and print these prime numbers, resulting in the same output."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "The input is 0, which means that there are no prime numbers to find; both the original and mutant programs return an empty output."
+    }
+  ]
+},{
+  "mutant_program": "muta529_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\n",
+      "mutant_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\nPrime:    13\n",
+      "explanation": "The original program finds and prints the first 5 prime numbers, while the mutant program finds and prints the first 6 prime numbers. The mutation introduces a call to the non-existent function TRAP_ON_NEGATIVE. Both programs run without errors and result in different outputs, as the mutant program includes an extra prime number."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs receive an input of 0, which returns an empty output, as there are no prime numbers to be found."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\nPrime:    13\nPrime:    17\nPrime:    19\nPrime:    23\nPrime:    29\n",
+      "mutant_output": "Prime:    2\nPrime:    3\nPrime:    5\nPrime:    7\nPrime:    11\nPrime:    13\nPrime:    17\nPrime:    19\nPrime:    23\nPrime:    29\n",
+      "explanation": "Both programs correctly find and print the first 10 prime numbers, resulting in the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta530_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs output nothing when n = 0"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2",
+      "mutant_output": "Prime:    2.     Prime:    2",
+      "explanation": "The mutant program erroneously adds an extra prime to the list by accessing an out-of-bound index due to the trap_on_zero function always returning 0. This is caught by the test case where n = 1."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17.     Prime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "The mutant program also adds an extra prime to the list but in a different location than the previous test case. It is caught by the test case where n = 10."
+    }
+  ]
+},{
+  "mutant_program": "muta532_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "The original program and the mutant program will both correctly calculate and output the first prime number which is 2. Thus, they are equivalent for this input."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 (error) \n",
+      "explanation": "The original program will correctly calculate and output the first 5 prime numbers while the mutant program will output the first 4 prime numbers correctly but will also output 11 with an error. Thus, they are not equivalent for this input."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 (error)\n",
+      "explanation": "The original program will correctly calculate and output the first 10 prime numbers while the mutant program will output the first 9 prime numbers correctly but will also output 29 with an error. Thus, they are not equivalent for this input."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "When 0 is input, the programs will not output any prime numbers. Thus, both programs are equivalent and will output an empty string."
+    }
+  ]
+},{
+  "mutant_program": "muta533_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    0 \nPrime:    5 \nPrime:    7 \n",
+      "explanation": "The mutated program uses the TRAP_ON_ZERO function to change the value of the next prime number to be saved in the primes array to 0, if that number is divisible by one of the already found prime numbers. This causes the output to be different from the original program. The test input of 5 shows that the original program outputs the first 5 prime numbers correctly, while the mutated program outputs 0 in place of the 4th prime number (7), which is incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta535_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs print nothing if n = 0"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both programs print 2 if n = 1"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \n",
+      "explanation": "The two programs find the same primes. The mutant misses the last prime, 29."
+    }
+  ]
+},{
+  "mutant_program": "muta538_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \n",
+      "explanation": "The mutant program includes a TRAP_ON_NEGATIVE macro in the for loop that prints the prime numbers. This macro replaces the numPrimes value in its argument with 0 if it is a negative value. Since numPrimes can never be negative in the original program, this change alters the behavior of the mutant program. The original program produces a list of the first n prime numbers, while the mutant program produces a list of the first n prime numbers that are not negative."
+    }
+  ]
+},{
+  "mutant_program": "muta539_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \n",
+      "explanation": "The mutant code replaces a correct expression with a function that returns zero. TRAP_ON_ZERO is defined as 0, so this is equivalent to j <= -1. This means that the output of the mutant code will never print the last prime found by the original code, which in this case is the number 29."
+    }
+  ]
+},{
+  "mutant_program": "muta541_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    -1972999453 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "explanation": "The mutated function replaces the iterator value while printing the prime numbers using a TRAP_ON_NEGATIVE(j) method, which would call the system trap function and stop the program's execution when the value of 'j' becomes negative. In this specific example, 'j' has a negative value in memory which is then printed instead of the expected prime number."
+    }
+  ]
+},{
+  "mutant_program": "muta544_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:      \n",
+      "explanation": "The mutant code added a TRAP_ON_NEGATIVE() function call which is not defined in the original code and thus it results in a compile-time error."
+    }
+  ]
+},{
+  "mutant_program": "muta545_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    0 \nPrime:    29 \n",
+      "explanation": "The mutant program adds a TRAP_ON_ZERO macro to the print statement that prints out the prime number list. This would capture zero values in the list and replace them with a message. In this case, the ninth found prime number in the list, 23, is captured by the trap and replaced with a zero, resulting in a different output than the original."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "In this test, there are no zeros in either the original or mutant output, resulting in the two outputs being equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta630_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0
+      ],
+      "original_output": "",
+      "mutant_output": "",
+      "explanation": "Both programs output nothing when n equals zero."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \n",
+      "explanation": "The original program only finds the first prime number (2) when n is 1, but the mutant program finds the first two primes (2 and 3)."
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "Both programs find the same primes when n is 5."
+    }
+  ]
+},{
+  "mutant_program": "muta685_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \n",
+      "explanation": "The mutant program added an extra prime number, 13, which results in a different output than the original program for n=5"
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \n",
+      "explanation": "The mutant program added an extra prime number, 31, which results in a different output than the original program for n=10"
+    }
+  ]
+},{
+  "mutant_program": "muta686_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "explanation": "Both programs produce the correct list of primes for the input of 5, as there are no changes in the output."
+    },
+    {
+      "input": [
+        10
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \n",
+      "explanation": "The mutant program has a syntactic change from 'numPrimes-1' to 'PRED(numPrimes) - 1' in the for loop condition. This could cause a loop iteration to be skipped, causing the mutant program to produce an incorrect list of primes. However, this is not the case for this input of 10, as there are no issues with skipped iterations. Both programs produce the correct list of primes for the input of 10."
+    },
+    {
+      "input": [
+        20
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \nPrime:    61 \nPrime:    67 \nPrime:    71 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \nPrime:    13 \nPrime:    17 \nPrime:    19 \nPrime:    23 \nPrime:    29 \nPrime:    31 \nPrime:    37 \nPrime:    41 \nPrime:    43 \nPrime:    47 \nPrime:    53 \nPrime:    59 \nPrime:    61 \nPrime:    67 \nPrime:    71 \n",
+      "explanation": "Both programs produce the correct list of primes for the input of 20, as there are no changes in the output."
+    }
+  ]
+},{
+  "mutant_program": "muta688_printPrimes.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Prime:    2 \n",
+      "mutant_output": "Prime:    2 \n",
+      "explanation": "Both programs should output the same primes because they are finding the prime numbers within the range. "
+    },
+    {
+      "input": [
+        5
+      ],
+      "original_output": "Prime:    2 \nPrime:    3 \nPrime:    5 \nPrime:    7 \nPrime:    11 \n",
+      "mutant_output": "Prime:    2 \nPrime:    3 \nPrime:    6 \nPrime:    10 \nPrime:    14 \n",
+      "explanation": "In this case, the mutant program outputs false prime numbers. By using an invalid index PRED(i) inside isDivisible, the program is skipping some prime numbers. The test is providing the first five prime numbers. After 5 rounds of prime number checking, the original program correctly found that the fifth one is 11. However, the mutant missed it and moved to 13 instead."
+    }
+  ]
+}]
