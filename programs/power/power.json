@@ -1,1 +1,536 @@
-[{"mutant_program": "muta0_power.c", "equivalent": false, "tests": [{"input": [2, 3], "original_output": 8, "mutant_output": 16, "explanation": "The original program correctly computes the power of left to right. However, the mutant changes the condition from 'right == 0' to '(right == 1), which means that it will always return 1 when the exponent is 1. This is incorrect and leads to different outputs."}, {"input": [5, 0], "original_output": 1, "mutant_output": 1, "explanation": "Both programs correctly handle the case when the exponent is 0, returning 1."}, {"input": [-2, 4], "original_output": 16, "mutant_output": 16, "explanation": "Both programs correctly handle negative base and positive exponent and return the correct result."}]}]
+[{
+  "mutant_program": "muta103_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 3,
+      "explanation": "The original program correctly computes 2^3=8, while the mutant program changes the calculation to perform a bitwise XOR operation between 'rslt' and 'left' at the beginning of the function, which makes the function not equivalent to the original program. Therefore, the mutated program returns 3, which is incorrect."
+    },
+    {
+      "input": [
+        5,
+        2
+      ],
+      "original_output": 25,
+      "mutant_output": 7,
+      "explanation": "The original program correctly computes 5^2=25, while the mutant program changes the calculation to perform a bitwise XOR operation between 'rslt' and 'left' at the beginning of the function, which makes the function not equivalent to the original program. Therefore, the mutated program returns 7, which is incorrect."
+    },
+    {
+      "input": [
+        4,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The original and mutated programs both correctly compute 4^0=1 because the if-else condition is the same in both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta104_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 2,
+      "explanation": "The original program raises the first input to the power of the second input, so in this case 2 raised to the power of 3 is 8. The mutant program, however, does a bitwise OR operation between the result and the left input, which does not make sense in this context and will produce incorrect results."
+    },
+    {
+      "input": [
+        4,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The original and mutant programs should output the same value for the case where the second input is 0, as this will always result in the answer 1."
+    },
+    {
+      "input": [
+        5,
+        2
+      ],
+      "original_output": 25,
+      "mutant_output": 5,
+      "explanation": "The original program correctly raises 5 to the power of 2, resulting in 25. The mutant program, however, will always produce a result equal to the left input due to the incorrect bitwise OR operation."
+    }
+  ]
+},{
+  "mutant_program": "muta105_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 2,
+      "explanation": "The original program correctly handles the case where the exponent is zero by returning 1 as the result. However, the mutant replaces this logic with a bitwise AND operation, which doesn't modify the value of rslt and doesn't return the correct result. Therefore, the mutant is not equivalent to the original program."
+    },
+    {
+      "input": [
+        3,
+        3
+      ],
+      "original_output": 27,
+      "mutant_output": 27,
+      "explanation": "For this test case, both the original program and the mutant return the correct result. This is because the mutant introduces a non-deterministic change that doesn't affect the control flow of the program or the values of the variables. Therefore, the mutant is functionally equivalent to the original program."
+    },
+    {
+      "input": [
+        -2,
+        3
+      ],
+      "original_output": -8,
+      "mutant_output": -8,
+      "explanation": "For negative base values, the original and mutant implementations of power return the correct result, since the bitwise AND operator introduced by the mutant has no effect on the sign of the output value. Therefore, the mutant is functionally equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta109_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 64,
+      "explanation": "The original program correctly computes 2^3 as 8 while the mutant program, which replaces the initialization of i with a bitwise XOR, computes 2^(2^1) = 2^2 = 4 instead of 2^3."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both the original and mutant program correctly return 0^5 as 0."
+    },
+    {
+      "input": [
+        3,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and mutant program correctly return 3^0 as 1."
+    }
+  ]
+},{
+  "mutant_program": "muta110_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 8,
+      "explanation": "Both programs should output the same for this input"
+    },
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs should output the same for this input"
+    },
+    {
+      "input": [
+        2,
+        4
+      ],
+      "original_output": 16,
+      "mutant_output": 4,
+      "explanation": "For this input, the original program correctly calculates 2^4=16, while the mutant program incorrectly uses a non-deterministic operator and calculates 2^2=4"
+    }
+  ]
+},{
+  "mutant_program": "muta143_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 1,
+      "explanation": "For the original program, the power function calculates 2^3 which equals 8. However, in the mutant code, the condition in the for loop checks for the bitwise AND between i and right. In this case, 2 & 3 is equal to 2 (since 0010 & 0011 = 0010 in binary), causing the loop to exit after one iteration and thus returning 2 instead of 8."
+    },
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and mutant code handle the case where right equals zero, so their outputs are equivalent."
+    },
+    {
+      "input": [
+        0,
+        4
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "For both the original and mutant code, any number raised to the power of zero equals one. However, this test is interesting because the base number is zero, which usually leads to edge cases in programs."
+    }
+  ]
+},{
+  "mutant_program": "muta151_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The input value of 0 for 'right' should always return 1, and both the original and mutant code produce the same output."
+    },
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": 125,
+      "mutant_output": 125,
+      "explanation": "For this input, both the original and mutant code should produce output of 125, and therefore are equivalent."
+    },
+    {
+      "input": [
+        3,
+        -1
+      ],
+      "original_output": 1,
+      "mutant_output": 3,
+      "explanation": "The input value of -1 for 'right' should always return 1, but the mutant code incorrectly calculates 3^(-1) to be 3. Therefore, the original and mutant code are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta196_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        4
+      ],
+      "original_output": 16,
+      "mutant_output": 1,
+      "explanation": "The original code correctly calculates 2^4 as 16. However, the mutant code has a conditional statement that always evaluates to false, resulting in the output always being 1, regardless of the input."
+    },
+    {
+      "input": [
+        3,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and mutant code correctly return 1 when the power is 0."
+    },
+    {
+      "input": [
+        5,
+        3
+      ],
+      "original_output": 125,
+      "mutant_output": 125,
+      "explanation": "Both the original and mutant code correctly return 125 when the power is 3."
+    }
+  ]
+},{
+  "mutant_program": "muta199_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 100,
+      "explanation": "The original program calculates 2^3 = 8. The mutant program has a trap function in the loop condition that is not provided in the original. TRAP_ON_NEGATIVE(i) is not defined and could potentially change the loop condition - in this case, to i <= -3. Therefore, the loop would not iterate and the mutant program would return 2^1 = 2 instead of 2^3."
+    },
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "The inputs in the test set do not change between the original and mutant program, so the output is the same. Both programs follow the precondition (Right >= 0) and evaluate rslt to 1 when right is equal to 0. Therefore, both outputs are 1."
+    },
+    {
+      "input": [
+        4,
+        2
+      ],
+      "original_output": 16,
+      "mutant_output": 16,
+      "explanation": "The inputs in the test set do not change between the original and mutant program, so the output is the same. Both programs follow the loop in the else block and multiply rslt by left twice, resulting in 16."
+    }
+  ]
+},{
+  "mutant_program": "muta200_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 2,
+      "explanation": "The original program raises Left to the power of Right, whereas the mutant program uses a macro function TRAP_ON_ZERO to check if i is less than or equal to right, resulting in an infinite loop when right is greater than or equal to 2. Thus, the mutant program fails to compute the power correctly."
+    },
+    {
+      "input": [
+        3,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant programs return 1 when Right is 0, indicating that the mutation did not affect this condition."
+    },
+    {
+      "input": [
+        -2,
+        4
+      ],
+      "original_output": 16,
+      "mutant_output": -16,
+      "explanation": "The original program correctly computes the power of a negative left operand. However, the mutant program does not handle negative base values well, resulting in a wrong output."
+    }
+  ]
+},{
+  "mutant_program": "muta202_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 64,
+      "explanation": "The original code correctly computes 2 to the power of 3 as 8, but the mutant code uses a macro function TRAP_ON_NEGATIVE which is not defined or provided in the code. As a result, it uses the value of right as the upper bound for the loop that calculates the result, which results in 2 to the power of 3 being calculated as 2 to the power of a very large number and overflow occurs. Hence, the output of the mutant program is 64 instead of 8."
+    },
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and mutant code correctly output 1 for any number to the power of 0."
+    },
+    {
+      "input": [
+        -3,
+        2
+      ],
+      "original_output": 9,
+      "mutant_output": 9,
+      "explanation": "Both the original and mutant code correctly output the square of a negative number as a positive number."
+    }
+  ]
+},{
+  "mutant_program": "muta203_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 0,
+      "explanation": "The original program correctly calculates 2^3 as 8. However, the mutant program uses the function TRAP_ON_ZERO on the second parameter, which substitutes 0 for any negative or zero values. In this case, since 3 is greater than zero, the condition is not satisfied and the loop runs infinitely, resulting in an output of 0. "
+    },
+    {
+      "input": [
+        4,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly return 1 when the second parameter is 0."
+    },
+    {
+      "input": [
+        5,
+        -2
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both programs correctly return 1 when the second parameter is negative."
+    }
+  ]
+},{
+  "mutant_program": "muta206_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and mutant code will return 1 as output since right is equal to 0."
+    },
+    {
+      "input": [
+        3,
+        3
+      ],
+      "original_output": 27,
+      "mutant_output": 81,
+      "explanation": "For the inputs 3 and 3, original code will return 27 whereas the mutant code will return 81. The mutant code replaces the multiplication operator with a custom function TRAP_ON_ZERO which traps the execution if rslt (the value of left raised to some power) becomes zero. The result of this mutation is that the output is incorrect for certain input values where rslt is zero."
+    },
+    {
+      "input": [
+        4,
+        1
+      ],
+      "original_output": 4,
+      "mutant_output": 4,
+      "explanation": "Both the original and mutant code will return 4 as output since right is equal to 1."
+    }
+  ]
+},{
+  "mutant_program": "muta24_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 16,
+      "explanation": "The original code correctly calculates 2 to the power of 3 as 8. However, the mutant code multiplies the result by 2 in each iteration of the loop. So 2 to the power of 3 becomes 16 instead of 8."
+    },
+    {
+      "input": [
+        4,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant code have the same behavior when the power is 0. They return 1."
+    },
+    {
+      "input": [
+        0,
+        5
+      ],
+      "original_output": 0,
+      "mutant_output": 0,
+      "explanation": "Both original and mutant code have the same behavior when the base is 0. They return 0."
+    }
+  ]
+},{
+  "mutant_program": "muta85_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 14,
+      "explanation": "The original program correctly calculates 2 to the power of 3 which is equal to 8. However, the mutant introduces an invalid operation (rslt += left) which alters the calculation and returns 14."
+    },
+    {
+      "input": [
+        5,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both the original and the mutant correctly calculate 5 to the power of 0 which is equal to 1."
+    },
+    {
+      "input": [
+        4,
+        1
+      ],
+      "original_output": 4,
+      "mutant_output": 5,
+      "explanation": "The original program correctly calculates 4 to the power of 1 which is equal to 4. However, the mutant introduces an invalid operation (rslt += left) which alters the calculation and returns 5."
+    }
+  ]
+},{
+  "mutant_program": "muta90_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        3
+      ],
+      "original_output": 8,
+      "mutant_output": 7,
+      "explanation": "The test uses the input values 2 and 3 to compute the power. The original program raises 2 to the power of 3, resulting in 8. The mutant program, however, changes the if statement in the power function to 'rslt += 1' instead of 'rslt = 1', which results in a different output of 7."
+    },
+    {
+      "input": [
+        4,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 2,
+      "explanation": "This test uses the input values 4 and 0 to compute the power, which should always result in 1. The original program correctly returns 1, but the mutant program increments the rslt variable by 1, resulting in an output of 2."
+    }
+  ]
+},{
+  "mutant_program": "muta95_power.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        5
+      ],
+      "original_output": 32,
+      "mutant_output": 64,
+      "explanation": "The original code raises the left operand to the power of the right operand. The mutant code uses an uninitialized variable 'i' in the for loop condition which leads to an infinite loop, hence the wrong output."
+    },
+    {
+      "input": [
+        3,
+        4
+      ],
+      "original_output": 81,
+      "mutant_output": 81,
+      "explanation": "Both original and mutant functions return the same output for this test case due to the fact that the for loop in the mutant code still multiplies 'rslt' with 'left' 'right' times. The difference in the condition of the for loop does not affect the result."
+    },
+    {
+      "input": [
+        4,
+        0
+      ],
+      "original_output": 1,
+      "mutant_output": 1,
+      "explanation": "Both original and mutant functions return the same output for this test case as the right operand is 0 and the power function returns 1."
+    }
+  ]
+}]
