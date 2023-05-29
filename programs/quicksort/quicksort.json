@@ -1,1 +1,2601 @@
-[{"mutant_program": "muta0_quicksort.c", "equivalent": false, "tests": [{"input": [5, 2, 1, 9, 7], "original_output": "Sorted elements: 1 2 5 7 9 \n", "mutant_output": "Sorted elements: 1 2 5 7 9 \n", "explanation": "Both programs sort the input array in ascending order using quicksort algorithm"}, {"input": [3, 6, 2, 8, 1], "original_output": "Sorted elements: 1 2 3 6 8 \n", "mutant_output": "Segmentation Fault (core dumped)", "explanation": "The mutant program has an additional recursive call to the quicksort function before the second partition, causing a stack overflow while sorting the input array. Therefore, it produces an error for this test case while the original program sorts the input array correctly."}]}]
+[{
+  "mutant_program": "muta204_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        8,
+        4,
+        2
+      ],
+      "original_output": "Sorted elements: 2 3 4 5 8\n",
+      "mutant_output": "Sorted elements: 2 3 4 5\n",
+      "explanation": "The test case includes unsorted integers. The expected output of the original program is the sorted sequence of integers. The expected output of the mutated program is a sorted sequence missing the last integer due to a change in the quicksort function that incorrectly omits specifying the upper bound of the second half of the input data array to sort."
+    },
+    {
+      "input": [
+        15,
+        11,
+        36,
+        42,
+        27,
+        14,
+        23
+      ],
+      "original_output": "Sorted elements: 11 14 15 23 27 36 42\n",
+      "mutant_output": null,
+      "explanation": "The test case includes unsorted integers. The expected output of the original program is the sorted sequence of integers. As the mutated program does not have any syntax error, it is impossible to predict if the output will differ from the original program without executing both. Since there is no expected output, null is returned in the 'mutant_output' field."
+    }
+  ]
+},{
+  "mutant_program": "muta268_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        4,
+        6,
+        1,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5 6\n",
+      "explanation": "The original and mutant programs produce the same output for this test."
+    },
+    {
+      "input": [
+        10,
+        8,
+        12,
+        5,
+        3
+      ],
+      "original_output": "Sorted elements: 3 5 8 10 12\n",
+      "mutant_output": "Sorted elements: 3 5 8 10 12\n",
+      "explanation": "The original and mutant programs produce the same output for this test."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Sorted elements: 1\n",
+      "mutant_output": "Sorted elements: 1\n",
+      "explanation": "The original and mutant programs produce the same output for this test."
+    },
+    {
+      "input": [
+        3,
+        6,
+        1,
+        8,
+        4
+      ],
+      "original_output": "Sorted elements: 1 3 4 6 8\n",
+      "mutant_output": "Sorted elements: 1 3 4 6 8\n",
+      "explanation": "The original and mutant programs produce the same output for this test."
+    },
+    {
+      "input": [
+        7,
+        4,
+        1,
+        3,
+        6,
+        2,
+        5
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6 7\n",
+      "mutant_output": "Sorted elements: 7 6 5 4 3 2 1\n",
+      "explanation": "The test input array contains multiple elements in random order. The original program correctly sorts this array in ascending order. However, the mutant program multiplies the variable 'i' by 'first', which causes 'i' to always be zero and results in incorrect sorting. Thus, the mutant program produces the incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta271_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        4,
+        6,
+        1,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6\n",
+      "mutant_output": "Sorted elements: 1 2 4 5 6 3\n",
+      "explanation": "In the mutant code, the line (i+=first) adds first to the value of i, which causes the partitioning step to behave incorrectly. This results in a different order of the sorted elements compared to the original code."
+    },
+    {
+      "input": [
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6 7 8 9 10\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5 6 7 8 9 10\n",
+      "explanation": "Both the original and mutant code correctly sort the elements in ascending order, despite the mutation. This test provides another way to verify that the mutant does not affect the functionality of the program."
+    }
+  ]
+},{
+  "mutant_program": "muta311_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5\n",
+      "explanation": "Both programs should output the same sorted elements."
+    },
+    {
+      "input": [
+        1,
+        3,
+        2,
+        5,
+        4
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 5 4 3\n",
+      "explanation": "The mutant program modifies the initialization of variable i, it does an AND bitwise operation with variable first, which will always return the same value. This affects the iteration in the while loop and the resulting sorting is different."
+    }
+  ]
+},{
+  "mutant_program": "muta312_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 2 3\n",
+      "explanation": "The original and mutant code both perform quicksort correctly on the input array in decreasing order."
+    },
+    {
+      "input": [
+        4,
+        1,
+        3,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3 4\n",
+      "mutant_output": "Sorted elements: 1 2 3 4\n",
+      "explanation": "The original and mutant code both perform quicksort correctly on the input array in unsorted order."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "original_output": "Sorted elements: 1 1 1\n",
+      "mutant_output": "Sorted elements: 1 1 1\n",
+      "explanation": "The original and mutant code both perform quicksort correctly on the input array with repeated elements."
+    },
+    {
+      "input": [
+        3,
+        1,
+        1,
+        2
+      ],
+      "original_output": "Sorted elements: 1 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 1 2 3\n",
+      "explanation": "The original and mutant code both perform quicksort correctly on the input array with repeated elements and unsorted order."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Sorted elements: 1\n",
+      "mutant_output": "Sorted elements: 1\n",
+      "explanation": "The original and mutant code both perform quicksort correctly on the input array with size 1."
+    }
+  ]
+},{
+  "mutant_program": "muta313_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        1,
+        3,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 \n",
+      "mutant_output": "Sorted elements: 1 2 3 4 \n",
+      "explanation": "Both programs correctly sort the input array in ascending order"
+    },
+    {
+      "input": [
+        5,
+        8,
+        2,
+        1,
+        9
+      ],
+      "original_output": "Sorted elements: 1 2 5 8 9 \n",
+      "mutant_output": "Sorted elements: 1 2 5 8 9 \n",
+      "explanation": "Both programs correctly sort the input array in ascending order"
+    },
+    {
+      "input": [
+        3,
+        7,
+        1,
+        4,
+        9,
+        5
+      ],
+      "original_output": "Sorted elements: 1 3 4 5 7 9 \n",
+      "mutant_output": "Sorted elements: 4 5 1 3 9 7 \n",
+      "explanation": "The mutated program produces a different sorted output than the original program due to an incorrect bitwise OR operation in the pivot initialization of the quicksort function."
+    }
+  ]
+},{
+  "mutant_program": "muta319_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        1
+      ],
+      "original_output": "Sorted elements:  1 3 5",
+      "mutant_output": "Sorted elements:  -2147483647 3 -2147483647",
+      "explanation": "The input array [5,3,1] should be sorted in ascending order. The original program correctly sorts the array and outputs 'Sorted elements:  1 3 5'. However, the mutant program uses a bitwise OR operator instead of an assignment operator when swapping values between x[i] and x[j], resulting in strange output."
+    },
+    {
+      "input": [
+        8,
+        2,
+        4,
+        9,
+        3
+      ],
+      "original_output": "Sorted elements:  2 3 4 8 9",
+      "mutant_output": "Sorted elements:  536870914 3 -2147483647 9 -2147483647",
+      "explanation": "The input array [8,2,4,9,3] should be sorted in ascending order. The original program correctly sorts the array and outputs 'Sorted elements:  2 3 4 8 9'. However, the mutant program uses a bitwise OR operator instead of an assignment operator when swapping values between x[i] and x[j], resulting in strange output."
+    },
+    {
+      "input": [
+        6,
+        1,
+        7,
+        5,
+        2,
+        9
+      ],
+      "original_output": "Sorted elements:  1 2 5 6 7 9",
+      "mutant_output": "Sorted elements:  -2147483647 -2147483647 5 6 7 9",
+      "explanation": "The input array [6,1,7,5,2,9] should be sorted in ascending order. The original program correctly sorts the array and outputs 'Sorted elements:  1 2 5 6 7 9'. However, the mutant program uses a bitwise OR operator instead of an assignment operator when swapping values between x[i] and x[j], resulting in strange output."
+    }
+  ]
+},{
+  "mutant_program": "muta337_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements:  1 2 3\n",
+      "mutant_output": "Error: '<<=' : left operand must be l-value\n",
+      "explanation": "The mutant code introduces a non-equivalent change of using the bitwise left shift assignment operator instead of assigning the 'first' value to 'i'. This results in a compilation error and the program terminates without sorting the input elements."
+    },
+    {
+      "input": [
+        5,
+        1,
+        4,
+        2,
+        8
+      ],
+      "original_output": "Sorted elements:  1 2 4 5 8\n",
+      "mutant_output": "Error: '<<=' : left operand must be l-value\n",
+      "explanation": "The mutant code introduces the same non-equivalent change as before, resulting in a compilation error. Therefore, the program cannot sort the input elements and the output is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta338_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements:  1 2 3 4\n",
+      "mutant_output": "Segmentation fault (core dumped)\n",
+      "explanation": "The input is an already sorted array in decreasing order. The original program will sort it successfully and print the output accordingly. However, the mutant program introduces a non-deterministic change by applying a bitwise right shift on 'i' instead of initializing it to 'first'. This will cause 'i' to have a garbage value and the program to crash with a segmentation fault when accessing the 'x' array. Therefore, the outputs are different and the mutant is not equivalent."
+    },
+    {
+      "input": [
+        1,
+        3,
+        2
+      ],
+      "original_output": "Sorted elements:  1 2 3\n",
+      "mutant_output": "Sorted elements:  1 2 3\n",
+      "explanation": "The input is an unsorted array with distinct values. Both the original and mutant program will sort it using the same algorithm, since the only difference is in the non-deterministic change applied to 'i', which is not relevant to this input. Therefore, the outputs are the same and the mutant is equivalent."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "original_output": "Sorted elements:  1 1 1\n",
+      "mutant_output": "Sorted elements:  1 1 1\n",
+      "explanation": "The input is an array with equal values. Both the original and mutant program will sort it using the same algorithm, since the only difference is in the non-deterministic change applied to 'i', which is not relevant to this input. Therefore, the outputs are the same and the mutant is equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta357_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        2,
+        4,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 5 4 3\n",
+      "explanation": "The original program uses the condition x[i]<=x[pivot]&&i<last to determine when to increment i, while the mutant program uses ((x[i] <= x[pivot]) * (i < last)). This condition is not equivalent to the original because of the multiplication, which can cancel out the first part and cause i to not be incremented when it should be. This is demonstrated in the test, where the original program sorts the input array correctly, while the mutant program swaps 3 and 5, resulting in an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta361_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        8,
+        3,
+        6
+      ],
+      "original_output": "Sorted elements: 2 3 5 6 8 \n",
+      "mutant_output": "Sorted elements: 2 3 5 8 6 \n",
+      "explanation": "The mutation changes the condition inside the first while loop in the quicksort function from '&&' to '&', which means that both parts of the condition will always be evaluated regardless of the result of the first part. This results in different swap operations within the function, ultimately leading to a different sorted order for the provided input. The original program sorts the array correctly, while the mutant program produces an incorrect ordering."
+    }
+  ]
+},{
+  "mutant_program": "muta371_quicksort.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5\n",
+      "explanation": "Both programs implement the same quicksort algorithm, only the condition in the first while loop of the mutant code was changed to calculate the bounds of the array more explicitly, but this does not affect the end result."
+    },
+    {
+      "input": [
+        1,
+        5,
+        2,
+        4,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5\n",
+      "explanation": "Both programs implement the same quicksort algorithm and produce the same output for this test case."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 3 2\n",
+      "explanation": "The mutant code changes the order of the last two elements of the array in the second while loop, which results in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta54_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        8,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 5 8\n",
+      "mutant_output": "Sorted elements: 1 2 5 8\n",
+      "explanation": "Both programs produce the correct sorted output for the given input."
+    },
+    {
+      "input": [
+        10,
+        6,
+        4,
+        3
+      ],
+      "original_output": "Sorted elements: 3 4 6 10\n",
+      "mutant_output": "Sorted elements: 3 4 6 10\n",
+      "explanation": "Both programs produce the correct sorted output for the given input."
+    },
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4\n",
+      "mutant_output": "Sorted elements: 1 2 3 4\n",
+      "explanation": "Both programs produce the correct sorted output for the given input."
+    },
+    {
+      "input": [
+        1,
+        3,
+        2,
+        4
+      ],
+      "original_output": "Sorted elements: 1 2 3 4\n",
+      "mutant_output": "Sorted elements: 1 2 3 4\n",
+      "explanation": "Both programs produce the correct sorted output for the given input."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "original_output": "Sorted elements: 1 2 3 4\n",
+      "mutant_output": "Sorted elements: 1 2 3 4\n",
+      "explanation": "Both programs produce the correct sorted output for the given input."
+    }
+  ]
+},{
+  "mutant_program": "muta5_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 5\n",
+      "mutant_output": "Sorted elements: 2 1 5\n",
+      "explanation": "The mutation changes the initial value of i to 1, rather than first. This causes the algorithm to skip the first element of the array, resulting in a different order of sorted elements."
+    },
+    {
+      "input": [
+        4,
+        1,
+        3,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3 4\n",
+      "mutant_output": "Sorted elements: 2 1 4 3\n",
+      "explanation": "The mutation changes the initial value of i to 1, rather than first. This causes the algorithm to skip the first element of the array, resulting in a different order of sorted elements."
+    }
+  ]
+},{
+  "mutant_program": "muta409_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        2,
+        6,
+        8,
+        1,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 6 8\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 6 8\n",
+      "explanation": "The test set is the same for the original program and the mutant program, and both programs produce the same output. However, the mutant code has a different syntax in the while loop inside the quicksort function than the original code, which could potentially produce different outputs for different input arrays."
+    }
+  ]
+},{
+  "mutant_program": "muta434_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        1,
+        7,
+        2,
+        8
+      ],
+      "original_output": "Sorted elements: 1 2 4 7 8\n",
+      "mutant_output": "Sorted elements: 1 2 4 8 7\n",
+      "explanation": "The mutant introduces a bitwise XOR operator (^) in the while loop condition of the first inner while loop. This causes the loop to terminate earlier, not sorting the last element of the array. Thus, the mutated code produces an output that is different from the original code."
+    },
+    {
+      "input": [
+        9,
+        3,
+        6,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 6 9\n",
+      "mutant_output": "Sorted elements: 1 2 3 6 9\n",
+      "explanation": "Since the input is different from the previous test case, the XOR operator in the mutant code does not affect the sorting algorithm and both programs produce the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta454_quicksort.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 2 3\n",
+      "explanation": "The original program code and the mutant code execute the same steps for the quicksort algorithm, so their outputs are equivalent for the same input."
+    },
+    {
+      "input": [
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6 7\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5 6 7\n",
+      "explanation": "The original program code and the mutant code execute the same steps for the quicksort algorithm, so their outputs are equivalent for the same input."
+    }
+  ]
+},{
+  "mutant_program": "muta469_quicksort.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 \n",
+      "mutant_output": "Sorted elements: 1 2 3 \n",
+      "explanation": "Both the original and mutated code output the sorted elements in ascending order for the input [3,2,1]. The mutation changed the while loop condition in the first partition to include a comparison with the last index, but it does not affect the correctness of the algorithm since i will never exceed the last index, making the mutation equivalent to the original code."
+    },
+    {
+      "input": [
+        10,
+        20,
+        30,
+        40,
+        50
+      ],
+      "original_output": "Sorted elements: 10 20 30 40 50 \n",
+      "mutant_output": "Sorted elements: 10 20 30 40 50 \n",
+      "explanation": "Both the original and mutated code output the sorted elements in ascending order for the input [10,20,30,40,50]. The mutation did not affect any important part of the code, making it equivalent to the original."
+    }
+  ]
+},{
+  "mutant_program": "muta472_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 3 2\n",
+      "explanation": "The original program correctly sorts the array and outputs the sorted elements. The mutant program changes the while loop condition in line 28 to ((x[i] <= x[pivot]) && (i != last)), which skips the last element of the array and may cause incorrect ordering of elements. The resulting output is not sorted in ascending order. This is demonstrated in the provided test input."
+    },
+    {
+      "input": [
+        7,
+        10,
+        2,
+        5,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 5 7 10\n",
+      "mutant_output": "Sorted elements: 1 5 2 10 7\n",
+      "explanation": "The original program correctly sorts the array and outputs the sorted elements. The mutant program changes the while loop condition in line 28 to ((x[i] <= x[pivot]) && (i != last)), which may cause incorrect ordering of elements. The resulting output is not sorted in ascending order. This is demonstrated in the provided test input."
+    },
+    {
+      "input": [
+        9,
+        3,
+        8,
+        2,
+        7,
+        5
+      ],
+      "original_output": "Sorted elements: 2 3 5 7 8 9\n",
+      "mutant_output": "Sorted elements: 2 8 5 7 3 9\n",
+      "explanation": "The original program correctly sorts the array and outputs the sorted elements. The mutant program changes the while loop condition in line 28 to ((x[i] <= x[pivot]) && (i != last)), which may cause incorrect ordering of elements. The resulting output is not sorted in ascending order. This is demonstrated in the provided test input."
+    }
+  ]
+},{
+  "mutant_program": "muta479_quicksort.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements:  1 2 3 \n",
+      "mutant_output": "Sorted elements:  1 2 3 \n",
+      "explanation": "Both original and mutant program sort the input array [3, 2, 1] in ascending order"
+    },
+    {
+      "input": [
+        5,
+        7,
+        1,
+        4
+      ],
+      "original_output": "Sorted elements:  1 4 5 7 \n",
+      "mutant_output": "Sorted elements:  1 4 5 7 \n",
+      "explanation": "Both original and mutant program sort the input array [5, 7, 1, 4] in ascending order"
+    }
+  ]
+},{
+  "mutant_program": "muta501_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 3 2\n",
+      "explanation": "The original program sorts the array of integers in ascending order, while the mutant program has a different order due to a change in swapping the values of x[pivot] and x[j]."
+    },
+    {
+      "input": [
+        9,
+        8,
+        7,
+        6
+      ],
+      "original_output": "Sorted elements: 6 7 8 9\n",
+      "mutant_output": "Sorted elements: 7 8 9 6\n",
+      "explanation": "The original program sorts the array of integers in ascending order, while the mutant program has a different order due to a change in swapping the values of x[pivot] and x[j]."
+    }
+  ]
+},{
+  "mutant_program": "muta525_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        1,
+        7,
+        2,
+        9,
+        5
+      ],
+      "original_output": "Sorted elements: 1 2 4 5 7 9 \n",
+      "mutant_output": "Segmentation fault (core dumped)",
+      "explanation": "The mutant code is not equivalent to the original code because it removes the initialization of the variable i in the quicksort function, causing it to be undefined. This leads to unpredictable behavior and in this case, a segmentation fault occurred when trying to access an undefined value of i in the while loop condition."
+    }
+  ]
+},{
+  "mutant_program": "muta572_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        8,
+        4
+      ],
+      "original_output": "Sorted elements: 3 4 5 8\n",
+      "mutant_output": "Sorted elements: 3 4 5 8\n",
+      "explanation": "The original program and the mutant program output the same sorted elements for this input array, indicating that the mutant code did not affect the functionality of the program"
+    },
+    {
+      "input": [
+        9,
+        2,
+        7,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 7 9\n",
+      "mutant_output": "Sorted elements: 1 2 7 9\n",
+      "explanation": "The original program and the mutant program output the same sorted elements for this input array, indicating that the mutant code did not affect the functionality of the program"
+    },
+    {
+      "input": [
+        6,
+        4,
+        5,
+        9
+      ],
+      "original_output": "Sorted elements: 4 5 6 9\n",
+      "mutant_output": "Sorted elements: 4 5 6 9\n",
+      "explanation": "The original program and the mutant program output the same sorted elements for this input array, indicating that the mutant code did not affect the functionality of the program"
+    },
+    {
+      "input": [
+        3,
+        2,
+        4,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4\n",
+      "mutant_output": "Sorted elements: 1 2 3 4\n",
+      "explanation": "The original program and the mutant program output the same sorted elements for this input array, indicating that the mutant code did not affect the functionality of the program"
+    },
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "original_output": "Sorted elements: 1 1 1 1\n",
+      "mutant_output": "Sorted elements: 1 1 1 1\n",
+      "explanation": "The original program and the mutant program output the same sorted elements for this input array, indicating that the mutant code did not affect the functionality of the program"
+    }
+  ]
+},{
+  "mutant_program": "muta574_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4",
+      "mutant_output": "Sorted elements: 1 2 3 4",
+      "explanation": "Both the original and mutant code will sort the input array in ascending order"
+    },
+    {
+      "input": [
+        6,
+        8,
+        1,
+        5,
+        9
+      ],
+      "original_output": "Sorted elements: 1 5 6 8 9 \n",
+      "mutant_output": "Sorted elements: 1 5 9 8 6 \n",
+      "explanation": "The mutant code introduces a do-while loop in the quicksort function, which causes the algorithm to continue swapping elements even if i >= j. This results in a different order of sorted elements and therefore the outputs are different."
+    },
+    {
+      "input": [
+        10,
+        5,
+        7,
+        3
+      ],
+      "original_output": "Sorted elements: 3 5 7 10 \n",
+      "mutant_output": "Sorted elements: 3 5 7 10 \n",
+      "explanation": "Both the original and mutant code will sort the input array in ascending order"
+    }
+  ]
+},{
+  "mutant_program": "muta576_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        8,
+        9,
+        1,
+        7
+      ],
+      "original_output": "Sorted elements: 1 2 5 7 8 9\n",
+      "mutant_output": "Segmentation fault",
+      "explanation": "The mutant code introduces a macro called TRAP_ON_NEGATIVE that wraps the check for the base case condition of the quicksort algorithm. This macro does not properly handle negative values, so when the input array has negative values, the program will enter an infinite loop and eventually crash with a segmentation fault."
+    }
+  ]
+},{
+  "mutant_program": "muta582_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements:  1 2 3 4",
+      "mutant_output": "Runtime Error: TRAP_ON_NEGATIVE",
+      "explanation": "The input array is already sorted in descending order, so the pivot point will be zero, and the mutant program will try to access negative index when it executes TRAP_ON_NEGATIVE. The original program will correctly sort the array in ascending order."
+    },
+    {
+      "input": [
+        5,
+        5,
+        5,
+        0,
+        0
+      ],
+      "original_output": "Sorted elements: 0 0 5 5 5",
+      "mutant_output": "Sorted elements: 5 5 5 2 2",
+      "explanation": "The input array contains duplicates, and the original program correctly handles them. However, the mutant program does not consider the duplicates, and sorts the array incorrectly."
+    }
+  ]
+},{
+  "mutant_program": "muta585_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4\n",
+      "mutant_output": "Error: Negative first element\n",
+      "explanation": "The mutation replaced the initialization of 'i' with a call to 'TRAP_ON_NEGATIVE' function which throws an error when the first element passed to quicksort is negative. Therefore, the mutant will fail when the first element is negative, while the original program is capable of handling negative values."
+    },
+    {
+      "input": [
+        5,
+        1,
+        -4,
+        10,
+        2
+      ],
+      "original_output": "Sorted elements: -4 1 2 5 10\n",
+      "mutant_output": "Error: Negative first element\n",
+      "explanation": "This test is designed to show that the original program can handle negative values while the mutant fails. The input array contains both negative and positive values."
+    }
+  ]
+},{
+  "mutant_program": "muta588_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        1,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 2 3\n",
+      "explanation": "The original program sorts the input numbers in ascending order and prints the sorted elements. The mutant program includes a trap function call on line 22, which does not affect the output of the program since it does not modify the variables used in the sorting algorithm. Therefore, the mutant program is functionally equivalent to the original program."
+    },
+    {
+      "input": [
+        9,
+        7,
+        8
+      ],
+      "original_output": "Sorted elements: 7 8 9\n",
+      "mutant_output": "Sorted elements: 7 9 8\n",
+      "explanation": "In this test case, the original program sorts the input numbers in ascending order and prints the sorted elements. The mutant program includes a trap function call on line 22, which sets the value of 'j' to a negative value if 'last' is negative. This causes the program to enter an infinite loop, since the condition in the second while loop on line 30 is always true. Therefore, the mutant program produces an incorrect output."
+    }
+  ]
+},{
+  "mutant_program": "muta589_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        8,
+        5,
+        2,
+        6,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 5 6 8\n",
+      "mutant_output": "Segmentation fault (core dumped)\n",
+      "explanation": "The changed line in the mutant code, (j = TRAP_ON_ZERO(last)), assigns j a value that may cause an infinite loop and eventually lead to a segmentation fault. This can be seen in the provided test input, where the original program correctly sorts the input array, but the mutant program crashes."
+    },
+    {
+      "input": [
+        3,
+        7,
+        2,
+        9,
+        1,
+        5
+      ],
+      "original_output": "Sorted elements: 1 2 3 5 7 9\n",
+      "mutant_output": "Segmentation fault (core dumped)\n",
+      "explanation": "Similar to the previous test case, the mutant code assigns a potentially problematic value to j, resulting in a segmentation fault. The original program runs without issues and outputs the correctly sorted array."
+    }
+  ]
+},{
+  "mutant_program": "muta591_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 4\n",
+      "mutant_output": "Some error message",
+      "explanation": "The original program will correctly sort the input array, whereas the mutant program's implementation introduces a non-deterministic change that could potentially create an infinite loop due to the condition in the while loop. Therefore, the mutant program will not produce the expected output and might even fail to terminate for certain input arrays."
+    },
+    {
+      "input": [
+        5,
+        1,
+        3,
+        8
+      ],
+      "original_output": "Sorted elements: 1 3 5 8\n",
+      "mutant_output": "Some other error",
+      "explanation": "Again, the original program will correctly sort the input array, whereas the mutant program could produce an incorrect output or not terminate. Therefore, the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta594_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Segmentation fault (core dumped)\n",
+      "explanation": "The original program correctly sorts the input array in descending order. However, the mutant program implements a trap function 'TRAP_ON_NEGATIVE' in the while loop condition, which is not present in the original code. This trap function will cause a segmentation fault because it evaluates a negative value of 'j'."
+    },
+    {
+      "input": [
+        5,
+        7,
+        1
+      ],
+      "original_output": "Sorted elements: 1 5 7\n",
+      "mutant_output": "Segmentation fault (core dumped)\n",
+      "explanation": "Similar to the previous test case, the original program correctly sorts the input array in ascending order. The mutant program's trap function causes a segmentation fault because it evaluates a negative value of 'j'."
+    }
+  ]
+},{
+  "mutant_program": "muta597_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3",
+      "mutant_output": "Sorted elements: 1 2 3",
+      "explanation": "The input is already sorted, so both programs will output the same result."
+    },
+    {
+      "input": [
+        10,
+        -5,
+        7,
+        2
+      ],
+      "original_output": "Sorted elements: -5 2 7 10",
+      "mutant_output": "Sorted elements: -5 2 7 10",
+      "explanation": "The input includes negative values and the mutant code contains an extra check to trap negative array indices, but since there are no negative indices in this code, the output is the same as the original code."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Sorted elements: 1",
+      "mutant_output": "Segmentation Fault",
+      "explanation": "The mutant code has a potential array out-of-bounds access in the while loop condition of the i index. This test case produces an array with only one element, which triggers this faulty array access and causes a Segmentation Fault when executed."
+    }
+  ]
+},{
+  "mutant_program": "muta603_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5",
+      "mutant_output": "Sorted elements: 1 2 3 4 5",
+      "explanation": "Both programs will correctly sort the array in ascending order"
+    },
+    {
+      "input": [
+        1,
+        5,
+        2,
+        4,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5",
+      "mutant_output": "Sorted elements: 2 1 4 3 5",
+      "explanation": "The mutant program uses TRAP_ON_NEGATIVE on the pivot index, which causes array index out of bounds on negative values of pivot. Therefore, the program will not correctly sort arrays with negative numbers"
+    }
+  ]
+},{
+  "mutant_program": "muta609_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        1,
+        5,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 5 4 3\n",
+      "explanation": "The mutation changes the condition in the first while loop of the quicksort function, introducing an additional function call TRAP_ON_NEGATIVE. This function will check if i is negative, which can happen if i surpasses the upper bounds of the input array. Thus, the mutant may enter an infinite loop if the input array has negative values, or is empty, leading to a different output than the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta612_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        2,
+        5,
+        4
+      ],
+      "original_output": "Sorted elements:  1 2 3 4 5\n",
+      "mutant_output": "Sorted elements:  1 2 3 4 5\n",
+      "explanation": "The original and mutated program will produce the same output for this test case, as the mutation only adds a condition to one of the while loops which has no impact on the values being sorted."
+    },
+    {
+      "input": [
+        10,
+        5,
+        8,
+        25,
+        -2
+      ],
+      "original_output": "Sorted elements:  -2 5 8 10 25\n",
+      "mutant_output": "Segmentation fault (core dumped)\n",
+      "explanation": "The two programs produce different outputs for this test case. The mutated program has a trap for negative numbers in the while loop and generates a segmentation fault (core dumped) when trying to access an invalid memory location."
+    }
+  ]
+},{
+  "mutant_program": "muta613_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        4,
+        1,
+        5,
+        9
+      ],
+      "original_output": "Sorted elements: 1 1 3 4 5 9\n",
+      "mutant_output": "Sorted elements: 1 1 3 5 4 9\n",
+      "explanation": "The mutated code changes the condition in the first while loop of the quicksort function, adding a call to a non-existing function TRAP_ON_ZERO. This change modifies the order in which the elements are sorted, leading to different outputs."
+    },
+    {
+      "input": [
+        9,
+        8,
+        7,
+        6,
+        5
+      ],
+      "original_output": "Sorted elements: 5 6 7 8 9\n",
+      "mutant_output": "Sorted elements: 5 7 6 8 9\n",
+      "explanation": "The same mutation as before leads to a different output on a different input."
+    },
+    {
+      "input": [
+        1,
+        3,
+        2,
+        5,
+        4,
+        7,
+        6
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6 7\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 6 7 5\n",
+      "explanation": "The same mutation as before leads to a different output on a different input."
+    }
+  ]
+},{
+  "mutant_program": "muta615_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        1,
+        4,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 3 5 4\n",
+      "explanation": "The mutant code replaces the condition 'while(x[j]>x[pivot])' with 'while ( (x[TRAP_ON_NEGATIVE(j)] > x[pivot]) )', where TRAP_ON_NEGATIVE(j) returns a negative index if j becomes negative. This makes the loop continue indefinitely, producing an incorrect output. The test set verifies the correctness of the original code and shows the discrepancy introduced by the mutation."
+    }
+  ]
+},{
+  "mutant_program": "muta621_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        6,
+        2,
+        4,
+        1,
+        5,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6\n",
+      "mutant_output": "Sorted elements: 1 2 3 6 5 4\n",
+      "explanation": "The original program uses the value of 'pivot' to access the element in x that is being compared to j in the second while loop. The mutant program replaces this with a call to a function that returns 'pivot' if it is non-negative, causing the program to access the element corresponding to x[-1] when pivot is negative. This results in incorrect sorting and a different output."
+    },
+    {
+      "input": [
+        3,
+        1,
+        4,
+        1,
+        5,
+        9,
+        2,
+        6,
+        5,
+        3,
+        5
+      ],
+      "original_output": "Sorted elements: 1 1 2 3 3 4 5 5 5 6 9\n",
+      "mutant_output": "Sorted elements: 1 1 2 6 3 4 5 5 5 3 9\n",
+      "explanation": "The original program correctly sorts the input array. The mutant program also modifies the access to x in the second while loop, resulting in a different output due to incorrect sorting when the value of 'pivot' is negative."
+    }
+  ]
+},{
+  "mutant_program": "muta627_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        8,
+        9,
+        1,
+        10
+      ],
+      "original_output": "Sorted elements: 1 2 5 8 9 10\n",
+      "mutant_output": "Sorted elements: 1 2 5 8 10 9\n",
+      "explanation": "The mutant changes the if condition inside the while loop in the quicksort function by adding a trap on negative values that wraps the swap statement. This changes the behavior of the program and produces a different sorting result from the original."
+    }
+  ]
+},{
+  "mutant_program": "muta628_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 3 5 4\n",
+      "explanation": "The mutant code replaces a comparison operator in the if statement of the while loop with a call to the TRAP_ON_ZERO macro, which is not defined in the original program code. This will cause the while loop to execute one extra time and swap the last two elements of the array in a way that is different from the original program code."
+    }
+  ]
+},{
+  "mutant_program": "muta630_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        8,
+        6,
+        2
+      ],
+      "original_output": "Sorted elements: 2 3 5 6 8\n",
+      "mutant_output": "Sorted elements: 2 3 6 5 8\n",
+      "explanation": "The output of the mutant code is different from the original code. The mutant code introduces a conditional statement in the while loop which causes the if block to execute only if i is less than the return value of the function TRAP_ON_NEGATIVE(j). This means that the mutation causes a deviation in the control flow of the code and hence the output differs."
+    }
+  ]
+},{
+  "mutant_program": "muta633_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        2,
+        5,
+        1,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 5 3 4 2\n",
+      "explanation": "The input array is being sorted in both programs using QuickSort algorithm. However, the mutant program has a TRAP_ON_NEGATIVE() call when assigning 'temp' variable, which introduces a bug that results in a different output compared to the original program. In this case, the element with index 1 and the element with index 4 are swapped in the mutated version, resulting in a different order of the sorted array."
+    },
+    {
+      "input": [
+        7,
+        -2,
+        10,
+        8,
+        0
+      ],
+      "original_output": "Sorted elements: -2 0 7 8 10\n",
+      "mutant_output": "Sorted elements: -2 0 7 10 8\n",
+      "explanation": "The input array has a negative number, which triggers the TRAP_ON_NEGATIVE() call in the mutant program. This causes the mutant program to swap two elements that were correctly sorted in the original program. As a result, the output of the mutated program is different from the output of the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta634_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 2 1 3\n",
+      "explanation": "The input array is sorted in descending order by the mutant, causing the resulting output to be different than the original code."
+    },
+    {
+      "input": [
+        5,
+        1,
+        4,
+        2,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 2 1 3 4 5\n",
+      "explanation": "The input array has a repeating element, causing the mutant to access an out of bounds index with the TRAP_ON_ZERO function. This results in a different output from the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta637_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        5,
+        3,
+        1,
+        6,
+        4
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6\n",
+      "mutant_output": "Sorted elements: 2 5 3 1 6 4\n",
+      "explanation": "The original program sorts the input array in ascending order and prints it out. The mutant program replaces x[i] with the result of applying the TRAP_ON_ZERO macro to x[i], which is a non-deterministic change. The given test input is not sorted, and it is expected to be sorted by both programs. The original program correctly sorts the input and outputs the expected result. However, the mutant program outputs the input array without sorting it, resulting in a different output."
+    }
+  ]
+},{
+  "mutant_program": "muta639_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        9,
+        1
+      ],
+      "original_output": "Sorted elements: 1 3 5 9\n",
+      "mutant_output": "Sorted elements: 5 9 3 1\n",
+      "explanation": "The original code uses the standard swap method to switch the values of x[i] and x[j]. However, the mutant code replaces x[i] with x[j] using a trap function (TRAP_ON_NEGATIVE). This causes the mutant output to be different from the original program output."
+    },
+    {
+      "input": [
+        10,
+        20,
+        30,
+        40
+      ],
+      "original_output": "Sorted elements: 10 20 30 40\n",
+      "mutant_output": "Sorted elements: 40 30 20 10\n",
+      "explanation": "The inputs are already sorted in both the original and mutant programs. Therefore, the outputs are the same."
+    },
+    {
+      "input": [
+        100,
+        75,
+        50,
+        25
+      ],
+      "original_output": "Sorted elements: 25 50 75 100\n",
+      "mutant_output": "Sorted elements: 100 75 50 25\n",
+      "explanation": "The original code and the mutant code both correctly sort the inputs in ascending order. Therefore, the outputs are the same."
+    }
+  ]
+},{
+  "mutant_program": "muta640_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        2,
+        1,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 4\n",
+      "mutant_output": "Sorted elements: 1 4 3 2\n",
+      "explanation": "The input array is not sorting correctly in the mutant code, as it replaces the value of x[i] with x[j] using the macro TRAP_ON_ZERO(i). The macro traps the program when i is zero, which causes the first element of the array to be changed to the last element, leading to incorrect sorting."
+    },
+    {
+      "input": [
+        5,
+        6,
+        3,
+        2,
+        7,
+        9,
+        8,
+        4,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6 7 8 9\n",
+      "mutant_output": "Sorted elements: 1 3 2 4 5 6 7 8 9\n",
+      "explanation": "The input array is not sorting correctly in the mutant code, as it replaces the value of x[i] with x[j] using the macro TRAP_ON_ZERO(i). The macro traps the program when i is zero, which causes the first element of the array to be changed to the last element, leading to incorrect sorting."
+    }
+  ]
+},{
+  "mutant_program": "muta642_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        8,
+        2,
+        1,
+        9,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 5 8 9",
+      "mutant_output": "Sorted elements: 1 2 3 8 5 9",
+      "explanation": "The mutant changes the line that swaps the values between x[i] and x[j]: (x[i] = x[TRAP_ON_NEGATIVE(j)]) instead of (x[i]=x[j]), causing an unpredictable output"
+    },
+    {
+      "input": [
+        -4,
+        2,
+        0,
+        -3,
+        1
+      ],
+      "original_output": "Sorted elements: -4 -3 0 1 2",
+      "mutant_output": "Sorted elements: -3 -4 0 2 1",
+      "explanation": "The mutant changes the line that swaps the values between x[i] and x[j]: (x[i] = x[TRAP_ON_NEGATIVE(j)]) instead of (x[i]=x[j]), causing an unpredictable output"
+    }
+  ]
+},{
+  "mutant_program": "muta643_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        9,
+        2,
+        7,
+        4
+      ],
+      "original_output": "Sorted elements: 2 4 7 9\n",
+      "mutant_output": "Sorted elements: 2 9 7 4\n",
+      "explanation": "The test input contains unsorted numbers, the original program accurately sorts and outputs the sorted elements in ascending order. However, the mutant program switches the elements of index i and TRAP_ON_ZERO(j). This will cause the algorithm to malfunction and generate an output that is not properly sorted as shown in the mutant_output"
+    },
+    {
+      "input": [
+        7,
+        3,
+        1,
+        9,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3 7 9\n",
+      "mutant_output": "Sorted elements: 1 7 3 9 2\n",
+      "explanation": "This test input contains unsorted integers in random order. The output generated by the original program sorts these integers in ascending order as expected. However, the mutant program applies the TRAP_ON_ZERO function to the index j in line 27, which causes the output to be incorrectly sorted in descending order, as shown in the mutant_output."
+    }
+  ]
+},{
+  "mutant_program": "muta648_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        5,
+        2,
+        1,
+        4
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 4 5 3\n",
+      "explanation": "The original program sorts the array in ascending order, while the mutant program sorts it in ascending order but with one element out of place. The mutant program inserts the value of temp into x[TRAP_ON_NEGATIVE(j)], which results in unpredictable behavior depending on the value of j and can lead to incorrect sorting."
+    },
+    {
+      "input": [
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6 7 8\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 7 6 5 8\n",
+      "explanation": "The original program correctly sorts the array in ascending order, while the mutant program sorts it incorrectly with three elements out of place. The mutant program modifies x[TRAP_ON_NEGATIVE(j)], which can cause incorrect sorting."
+    }
+  ]
+},{
+  "mutant_program": "muta649_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 3 2\n",
+      "explanation": "The test input is an array of size 3, with elements in descending order. The expected output of the original program is a sorted array in ascending order, which is correct. However, in the mutant program, a trap is set to modify the array at position j if it is zero, and it replaces the correct swapping of x[i] and x[j] with this trap, causing the output to not be sorted correctly. Therefore, the mutant program is not equivalent to the original program."
+    },
+    {
+      "input": [
+        5,
+        10,
+        1,
+        8,
+        9
+      ],
+      "original_output": "Sorted elements: 1 5 8 9 10\n",
+      "mutant_output": "Sorted elements: 1 5 9 8 10\n",
+      "explanation": "The test input is an array of size 5, with elements in random order. The expected output of the original program is a sorted array in ascending order, which is correct. However, in the mutant program, the trap in the function causes an incorrect swapping of x[i] and x[j], leading to an incorrect output. Therefore, the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta654_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        2,
+        4,
+        1
+      ],
+      "original_output": "Sorted elements:  1 2 3 4 5",
+      "mutant_output": "Sorted elements:  5 2 3 4 1",
+      "explanation": "The mutant program has a TRAP_ON_NEGATIVE(pivot) function call which causes a non-deterministic change in the pivot used for sorting. In this case, it caused the pivot to be changed to -1 which caused the sorting to fail."
+    }
+  ]
+},{
+  "mutant_program": "muta660_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 3 2 1\n",
+      "explanation": "The original program sorts the input array in ascending order and prints it, while the mutant program sorts the array but swaps the pivot element with the j-th element using an invalid index, resulting in the wrong order of the array and different output. The provided test case verifies this difference."
+    }
+  ]
+},{
+  "mutant_program": "muta663_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        8,
+        2,
+        5
+      ],
+      "original_output": "Sorted elements: 2 3 5 8\n",
+      "mutant_output": "Sorted elements: 2 3 5\n",
+      "explanation": "The mutation changes the pivot assignment, now the pivot value is not swapped with x[j], but is directly assigned the value of x[TRAP_ON_NEGATIVE(j)], which can result in incorrect sorting and a different output."
+    },
+    {
+      "input": [
+        10,
+        4,
+        1,
+        7,
+        9
+      ],
+      "original_output": "Sorted elements: 1 4 7 9 10\n",
+      "mutant_output": "Sorted elements: 1 4 7 10 9\n",
+      "explanation": "The mutation again changes the pivot assignment, causing a different swap to happen and the sorting to be incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta669_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 3 2 1\n",
+      "explanation": "The original program correctly sorts the input array in ascending order and outputs the sorted array. However, the mutant program swaps the pivot element with x[TRAP_ON_NEGATIVE(j)], which could result in unexpected behavior and incorrect sorting."
+    },
+    {
+      "input": [
+        7,
+        8,
+        9,
+        4,
+        5,
+        6
+      ],
+      "original_output": "Sorted elements: 4 5 6 7 8 9\n",
+      "mutant_output": "Sorted elements: 7 8 9 4 5 6\n",
+      "explanation": "The original program correctly sorts the input array in ascending order and outputs the sorted array. However, the mutant program's modification to the pivot element swap could lead to incorrect sorting, as shown in this test case where the elements are not sorted correctly."
+    }
+  ]
+},{
+  "mutant_program": "muta675_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        6,
+        1,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 5 6\n",
+      "mutant_output": "Sorted elements: 1 2 3 5 6\n",
+      "explanation": "Both programs output the same result since the mutation only replaces a call to quicksort function by passing a modified parameter, but it does not affect the output"
+    },
+    {
+      "input": [
+        9,
+        3,
+        7,
+        4,
+        2,
+        8,
+        1,
+        6,
+        5
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6 7 8 9\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5 6 7 8 9\n",
+      "explanation": "Both programs output the same result since the mutation only replaces a call to quicksort function by passing a modified parameter, but it does not affect the output"
+    },
+    {
+      "input": [
+        4,
+        9,
+        2,
+        8,
+        10
+      ],
+      "original_output": "Sorted elements: 2 4 8 9 10\n",
+      "mutant_output": "Segmentation Fault",
+      "explanation": "The mutant program produces a segmentation fault since the first parameter passed to the quicksort function is modified by the TRAP_ON_NEGATIVE macro which causes a negative value to be passed as the first parameter in some cases, resulting in an out of bounds memory access. This test case triggers such a case."
+    }
+  ]
+},{
+  "mutant_program": "muta678_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        5,
+        3,
+        2,
+        4
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "",
+      "explanation": "The original program sorts the input array and prints the sorted elements. The mutant program uses a TRAP_ON_NEGATIVE macro on line 30 to modify the recursive call to quicksort, subtracting 1 from the second parameter. This will cause the subarray to sort elements that are shifted one index to the left, excluding the pivot element which is now at position j-1. This will lead to incorrect sorting results, resulting in a different output than the original program."
+    },
+    {
+      "input": [
+        7,
+        2,
+        9,
+        5,
+        3
+      ],
+      "original_output": "Sorted elements: 2 3 5 7 9\n",
+      "mutant_output": "",
+      "explanation": "The original program correctly sorts the input array and prints the sorted elements. The mutant program will produce an incorrect output due to the same issue mentioned in the previous test case."
+    }
+  ]
+},{
+  "mutant_program": "muta681_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        1,
+        4,
+        2,
+        8
+      ],
+      "original_output": "Sorted elements: 1 2 4 5 8\n",
+      "mutant_output": "Sorted elements: 1 2 4 5 8\n",
+      "explanation": "Both programs should produce the same sorted list of elements."
+    },
+    {
+      "input": [
+        3,
+        7,
+        2,
+        1,
+        9
+      ],
+      "original_output": "Sorted elements: 1 2 3 7 9\n",
+      "mutant_output": "Sorted elements: 1 2 3 7 9\n",
+      "explanation": "Both programs should produce the same sorted list of elements."
+    },
+    {
+      "input": [
+        9,
+        1,
+        2,
+        4,
+        7,
+        3
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 7 9\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 7 9\n",
+      "explanation": "Both programs should produce the same sorted list of elements."
+    },
+    {
+      "input": [
+        5,
+        8,
+        2,
+        -3,
+        10
+      ],
+      "original_output": "Sorted elements: -3 2 5 8 10\n",
+      "mutant_output": "Sorted elements: -3 2 5 8 10\n",
+      "explanation": "The mutant program should have introduced a trap for negative values but the provided test set does not contain any negative values."
+    }
+  ]
+},{
+  "mutant_program": "muta684_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        4,
+        3,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3 4\n",
+      "mutant_output": "Sorted elements: 1 2 3 4\n",
+      "explanation": "Both programs produce the same output for this input, as the mutation only changes the call to quicksort in line 41 by adding a new argument that simply traps on negative values, which does not affect the correctness of the sorting algorithm."
+    },
+    {
+      "input": [
+        9,
+        8,
+        7,
+        6
+      ],
+      "original_output": "Sorted elements: 6 7 8 9\n",
+      "mutant_output": "Sorted elements: 6 7\n",
+      "explanation": "For this input, the mutated program produces an incorrect output, as the additional call to quicksort with a negative value in line 41 causes the algorithm to sort only the first two elements of the array before terminating, leading to a partial and incorrect sorting result."
+    }
+  ]
+},{
+  "mutant_program": "muta685_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "4",
+        "2",
+        "6",
+        "1",
+        "3",
+        "5"
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5 6 TRAP\n",
+      "explanation": "The mutant introduces a call to quicksort with invalid parameters in line 27, causing the program to abort with a TRAP message. This output is different from the expected output of the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta705_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 2 3\n",
+      "explanation": "The input is a reversed sorted array, which means that both the original and the mutated code should return the same sorted array."
+    },
+    {
+      "input": [
+        5,
+        3,
+        1,
+        4,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5\n",
+      "explanation": "The input is a random array, which means that both the original and the mutated code should return the same sorted array."
+    },
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 3 2 5 4\n",
+      "explanation": "The input is already a sorted array, which means that both the original and the mutated code should return the same sorted array. However, the mutated code produces a different sorted array, indicating that it is not equivalent to the original code."
+    }
+  ]
+},{
+  "mutant_program": "muta706_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3",
+      "mutant_output": "Sorted elements: 1 2 3",
+      "explanation": "Both programs correctly sort the input array in ascending order."
+    },
+    {
+      "input": [
+        5,
+        9,
+        2,
+        7
+      ],
+      "original_output": "Sorted elements: 2 5 7 9",
+      "mutant_output": "Sorted elements: 2 5 7 9",
+      "explanation": "Both programs correctly sort the input array in ascending order."
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Sorted elements: 1",
+      "mutant_output": "Sorted elements: 1",
+      "explanation": "Both programs correctly sort the input array with a single element."
+    },
+    {
+      "input": [],
+      "original_output": "Sorted elements:",
+      "mutant_output": "Sorted elements:",
+      "explanation": "Both programs correctly handle an empty input array."
+    }
+  ]
+},{
+  "mutant_program": "muta707_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3",
+      "mutant_output": "Sorted elements: 1 2 3",
+      "explanation": "Both programs should output the same sorted sequence."
+    },
+    {
+      "input": [
+        4,
+        6,
+        5
+      ],
+      "original_output": "Sorted elements: 4 5 6",
+      "mutant_output": "Sorted elements: 4 5 6",
+      "explanation": "Both programs should output the same sorted sequence."
+    },
+    {
+      "input": [
+        10,
+        8,
+        9
+      ],
+      "original_output": "Sorted elements: 8 9 10",
+      "mutant_output": "Sorted elements: 8 9 10",
+      "explanation": "Both programs should output the same sorted sequence."
+    },
+    {
+      "input": [
+        5,
+        5,
+        5
+      ],
+      "original_output": "Sorted elements: 5 5 5",
+      "mutant_output": "Sorted elements: 5 5 5",
+      "explanation": "Both programs should output the same sorted sequence."
+    },
+    {
+      "input": [],
+      "original_output": "Sorted elements: ",
+      "mutant_output": "Sorted elements: ",
+      "explanation": "Both programs should output an empty sorted sequence."
+    }
+  ]
+},{
+  "mutant_program": "muta708_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        1,
+        9,
+        8
+      ],
+      "original_output": "Sorted elements: 1 2 5 8 9\n",
+      "mutant_output": "Sorted elements: 1 5 2 8 9\n",
+      "explanation": "The original program correctly sorts the input array in ascending order. However, the mutant program swaps the values of 'first' and 'temp', which results in incorrect sorting and the output is not in ascending order."
+    },
+    {
+      "input": [
+        3,
+        7,
+        2,
+        8,
+        1,
+        4
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 7 8\n",
+      "mutant_output": "Sorted elements: 1 3 2 4 8 7\n",
+      "explanation": "Again, the original program sorts the input array correctly. However, the mutant program swaps 'first' and 'temp', causing incorrect sorting and an output that is not in ascending order."
+    }
+  ]
+},{
+  "mutant_program": "muta709_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        3,
+        2,
+        4,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 3 5 4\n",
+      "explanation": "The mutant code makes no change that affects the functionality of the algorithm, except for the unnecessary statement ' (first = first) ; '. However, due to non-deterministic elements in the sorting algorithm, it is possible to create a test case that results in different outputs. In this case, the test input is an unsorted array of five integers, and the mutant code incorrectly swaps the positions of 4 and 5 in the sorted output."
+    }
+  ]
+},{
+  "mutant_program": "muta711_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        9,
+        2,
+        5,
+        7,
+        3,
+        6,
+        8,
+        1,
+        4
+      ],
+      "original_output": "Sorted elements:  1 2 3 4 5 6 7 8 9\n",
+      "mutant_output": "Sorted elements:  1 2 3 4 5 6 8 7 9\n",
+      "explanation": "The arrays are not sorted in the same way. The mutation changed the initialization of the variable i to i = pivot, which makes the while loop run one less time than it should, resulting in a different sorted array."
+    }
+  ]
+},{
+  "mutant_program": "muta713_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        7,
+        1,
+        8,
+        5
+      ],
+      "original_output": "Sorted elements: 1 3 5 7 8",
+      "mutant_output": "Sorted elements: 1 3 5 8 7",
+      "explanation": "The original program sorts the input array using the quicksort algorithm. The mutated program is almost identical, except for the line (i = i) ; which has no effect on the program logic. However,this causes the output to be different for certain inputs, as seen in this test case."
+    },
+    {
+      "input": [
+        10,
+        2,
+        6,
+        8,
+        1,
+        5
+      ],
+      "original_output": "Sorted elements: 1 2 5 6 8 10",
+      "mutant_output": "Sorted elements: 1 2 5 6 8 10",
+      "explanation": "Both programs correctly sort the input array and produce the same output."
+    },
+    {
+      "input": [
+        9,
+        4,
+        7,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 4 7 9",
+      "mutant_output": "Sorted elements: 1 2 4 7 9",
+      "explanation": "Both programs correctly sort the input array and produce the same output."
+    }
+  ]
+},{
+  "mutant_program": "muta750_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        8,
+        9
+      ],
+      "original_output": "Sorted elements: 2 5 8 9\n",
+      "mutant_output": "Sorted elements: 2 5 8 9\n",
+      "explanation": "Both programs should output the same result because the mutation introduced in the mutant code only changed the pivot index used to partition the array, but it does not affect the sorting algorithm's behavior. The test set has been chosen to cover different cases, including an array with duplicates and unordered elements."
+    },
+    {
+      "input": [
+        10,
+        5,
+        8,
+        3,
+        2
+      ],
+      "original_output": "Sorted elements: 2 3 5 8 10\n",
+      "mutant_output": "Sorted elements: 2 3 5 8 10\n",
+      "explanation": "This test set covers another case with unordered and duplicated elements. Both programs should output the same result."
+    },
+    {
+      "input": [
+        8,
+        5,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 5 8\n",
+      "mutant_output": "Sorted elements: 1 3 2 5 8\n",
+      "explanation": "In this case, the elements of the array are in decreasing order. The mutation introduced in the mutant code creates a faulty partition that results in a different output order. Thus, the original and mutant programs are not equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta764_quicksort.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        "4",
+        "2",
+        "1",
+        "5",
+        "3"
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5\n",
+      "explanation": "Both programs will sort the input array using the quicksort algorithm and output the sorted elements, so they are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta787_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements:  1 2 3 4\n",
+      "mutant_output": "Sorted elements:  4 3 2 1\n",
+      "explanation": "The mutant changes the condition in the second inner while loop of the quicksort function. The original code checks for elements greater than the pivot element whereas the mutant checks for elements greater than the first element. This results in incorrect sorting of the input array for some test cases."
+    },
+    {
+      "input": [
+        10,
+        20,
+        30,
+        40
+      ],
+      "original_output": "Sorted elements:  10 20 30 40\n",
+      "mutant_output": "Sorted elements:  10 20 30 40\n",
+      "explanation": "This test case confirms that both the original and mutant code produce the same output for a sorted input array."
+    },
+    {
+      "input": [
+        3,
+        5,
+        2,
+        6,
+        8,
+        1,
+        9,
+        7,
+        4
+      ],
+      "original_output": "Sorted elements:  1 2 3 4 5 6 7 8 9\n",
+      "mutant_output": "Sorted elements:  1 2 3 4 5 6 7 8 9\n",
+      "explanation": "This test case confirms that both the original and mutant code produce the same output for a randomly shuffled input array."
+    }
+  ]
+},{
+  "mutant_program": "muta872_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 5 3 4 2\n",
+      "explanation": "The original program correctly sorts the input array in ascending order, while the mutant program incorrectly sorts the array in ascending order but has two elements in the wrong positions: 5 and 2."
+    },
+    {
+      "input": [
+        1,
+        3,
+        2,
+        5,
+        4
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 4 3 5 2\n",
+      "explanation": "The original program correctly sorts the input array in ascending order, while the mutant program incorrectly sorts the array in ascending order but has two elements in the wrong positions: 4 and 2."
+    }
+  ]
+},{
+  "mutant_program": "muta883_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 3 2\n",
+      "explanation": "The original program correctly sorts the input array in increasing order. The mutant program, however, swaps the pivot element with x[first] instead of x[j], causing incorrect results. This is demonstrated by the different output when sorting the input [3,2,1]."
+    },
+    {
+      "input": [
+        10,
+        -2,
+        4,
+        8,
+        0
+      ],
+      "original_output": "Sorted elements: -2 0 4 8 10\n",
+      "mutant_output": "Sorted elements: -2 0 4 10 8\n",
+      "explanation": "The original program again correctly sorts the input array in increasing order. The mutant program, using the same incorrect swap operation as in the previous test, again produces a different output, incorrectly sorting the last two elements in the array."
+    }
+  ]
+},{
+  "mutant_program": "muta918_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 2 3\n",
+      "explanation": "Both programs output the same result."
+    },
+    {
+      "input": [
+        5,
+        2,
+        9,
+        1,
+        7
+      ],
+      "original_output": "Sorted elements: 1 2 5 7 9\n",
+      "mutant_output": "",
+      "explanation": "The mutant program has a recursive call to quicksort with different parameters that do not sort the array correctly. Thus, it does not output any result."
+    }
+  ]
+},{
+  "mutant_program": "muta924_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5\n",
+      "explanation": "Both programs produce the same output for this test set."
+    },
+    {
+      "input": [
+        2,
+        8,
+        3,
+        9,
+        5,
+        1,
+        7,
+        6,
+        4
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6 7 8 9\n",
+      "mutant_output": "Sorted elements: 1 2 3 4 5 6 7 8 9\n",
+      "explanation": "Both programs produce the same output for this test set."
+    },
+    {
+      "input": [
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5 6 7 8 9 10\n",
+      "mutant_output": "Sorted elements: 10 9 8 7 6 5 4 3 2 1\n",
+      "explanation": "The original program sorts the input in ascending order, whereas the mutant program sorts it in descending order. This test set shows that the programs produce different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta927_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 2 3 4\n",
+      "explanation": "The input is a reversed array of size 5, the original program sorts it correctly, but the mutant program has an incorrect recursive call that sorts only the left partition of the array, leaving the right partition unsorted."
+    },
+    {
+      "input": [
+        1,
+        3,
+        5,
+        4,
+        2
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 5\n",
+      "mutant_output": "Sorted elements: 1 3 2 4 5\n",
+      "explanation": "The input is an unsorted array of size 5, the original program sorts it correctly, but the mutant program swaps two elements incorrectly, resulting in a partially sorted array."
+    }
+  ]
+},{
+  "mutant_program": "muta928_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        2,
+        8,
+        1,
+        9
+      ],
+      "original_output": "Sorted elements: 1 2 5 8 9",
+      "mutant_output": "Sorted elements: 1 2 5 8 9",
+      "explanation": "The input array is randomly ordered, so both the original and mutant code should sort it in the same way and output the same result."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "original_output": "Sorted elements: 1 1 1 1 1",
+      "mutant_output": "Sorted elements: 1 1 1 1 1",
+      "explanation": "The input array contains only one unique value, so both the original and mutant code should output the same array."
+    },
+    {
+      "input": [
+        9,
+        8,
+        7,
+        6,
+        5
+      ],
+      "original_output": "Sorted elements: 5 6 7 8 9",
+      "mutant_output": "Sorted elements: 5 8 7 6 9",
+      "explanation": "The input array is reverse sorted, so the original code will sort it in ascending order and output the correct result, while the mutant code has a logic error where it makes a recursive call to the quicksort function with the pivot value as the start point instead of the end point, and outputs an incorrect result."
+    }
+  ]
+},{
+  "mutant_program": "muta931_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5,
+        2,
+        6,
+        3
+      ],
+      "original_output": "Sorted elements:  2 3 5 6 10\n",
+      "mutant_output": "Sorted elements:  2 3 5 6 10\n",
+      "explanation": "The original and mutant programs both sort the array of integers in ascending order, so they produce the same output."
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements:  1 2 3\n",
+      "mutant_output": "Sorted elements:  1 3 2\n",
+      "explanation": "The mutant program introduces a non-deterministic change by calling quicksort with a different value for the first parameter. This results in a different order of elements in the sorted array, causing a different output compared to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta938_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        10,
+        5,
+        2
+      ],
+      "original_output": "Sorted elements: 2 5 10\n",
+      "mutant_output": "Sorted elements: 2 5 10\n",
+      "explanation": "Both programs produce the same output for this input, confirming equivalence."
+    },
+    {
+      "input": [
+        3,
+        7,
+        1
+      ],
+      "original_output": "Sorted elements: 1 3 7\n",
+      "mutant_output": "Sorted elements: 1 7 3\n",
+      "explanation": "The mutant program has a modification in the quicksort function, which replaces the condition 'first<last' with '(PRED(first) < last)'. This can result in a different sorting order, as it changes the order in which the pivot is selected. This input shows a different output, confirming non-equivalence."
+    }
+  ]
+},{
+  "mutant_program": "muta941_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements:  1 2 3\n",
+      "mutant_output": "Sorted elements:  1 2 3\n",
+      "explanation": "Both the original and mutant code outputs the same sorted element when given an input of [3,2,1]"
+    },
+    {
+      "input": [
+        5,
+        6,
+        1,
+        8
+      ],
+      "original_output": "Sorted elements:  1 5 6 8\n",
+      "mutant_output": "",
+      "explanation": "The mutant code has an off-by-one error on line 13 which causes the parameter j to be last, resulting in a stack overflow error while running the test input [5,6,1,8], whereas the original code sorts and outputs the correct result"
+    },
+    {
+      "input": [
+        12,
+        4,
+        7,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements:  1 2 4 7 12\n",
+      "mutant_output": "Sorted elements:  1 2 4 7 12\n",
+      "explanation": "Both the original and mutant code outputs the same sorted element when given an input of [12,4,7,2,1]"
+    }
+  ]
+},{
+  "mutant_program": "muta960_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3\n",
+      "mutant_output": "Sorted elements: 1 3 2\n",
+      "explanation": "The input array [3,2,1] should be sorted in ascending order. The original program sorts it correctly and outputs 'Sorted elements: 1 2 3'. However, the mutant program uses PRED(i) instead of (i-1) in the first while loop, causing it to enter the loop even when i==last. This leads to an incorrect sorting of the array and an output of 'Sorted elements: 1 3 2'."
+    },
+    {
+      "input": [
+        4,
+        4,
+        4
+      ],
+      "original_output": "Sorted elements: 4 4 4\n",
+      "mutant_output": "Sorted elements: 4 4 4\n",
+      "explanation": "The input array [4,4,4] is already sorted and both programs correctly output 'Sorted elements: 4 4 4', indicating that the mutants did not affect the execution of the program in this case."
+    },
+    {
+      "input": [
+        5,
+        1,
+        8,
+        3
+      ],
+      "original_output": "Sorted elements: 1 3 5 8\n",
+      "mutant_output": "Sorted elements: 1 3 8 5\n",
+      "explanation": "The input array [5,1,8,3] should be sorted in ascending order. The original program sorts it correctly and outputs 'Sorted elements: 1 3 5 8'. However, the mutant program enters an infinite loop when i=last in the first while loop, causing it to crash and output no result. This indicates that the mutant program is not equivalent to the original program."
+    }
+  ]
+},{
+  "mutant_program": "muta963_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements: 1 2 3",
+      "mutant_output": "Sorted elements: 1 2 3",
+      "explanation": "The input is already in reverse sorted order, so both programs will produce the same sorted output"
+    },
+    {
+      "input": [
+        5,
+        9,
+        1,
+        3,
+        7
+      ],
+      "original_output": "Sorted elements: 1 3 5 7 9",
+      "mutant_output": "Sorted elements: 1 3 5 7 9",
+      "explanation": "The input is randomly ordered, so both programs will produce the same sorted output"
+    },
+    {
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "original_output": "Sorted elements: 1 1 1",
+      "mutant_output": "Sorted elements: 1 1 1",
+      "explanation": "The input elements are identical, so both programs will produce the same output"
+    },
+    {
+      "input": [
+        1
+      ],
+      "original_output": "Sorted elements: 1",
+      "mutant_output": "Sorted elements: 1",
+      "explanation": "The input contains only one element, so both programs will produce the same output"
+    },
+    {
+      "input": [],
+      "original_output": "Sorted elements: ",
+      "mutant_output": "Sorted elements: ",
+      "explanation": "The input is empty, so both programs will produce the same output"
+    },
+    {
+      "input": [
+        9,
+        2,
+        5,
+        1,
+        0,
+        2
+      ],
+      "original_output": "Sorted elements: 0 1 2 2 5 9",
+      "mutant_output": "Sorted elements: 0 1 2 2 5 9",
+      "explanation": "The original program uses 'i<last' as a stopping condition on line 22, while the mutant program uses 'i<SUCC(last)' which always evaluates to true. However, this does not affect the sorting outcome on the given test set."
+    }
+  ]
+},{
+  "mutant_program": "muta972_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        7,
+        2,
+        8,
+        4
+      ],
+      "original_output": "Sorted elements:  2 3 4 7 8\n",
+      "mutant_output": "Sorted elements:  2 7 4 8 3\n",
+      "explanation": "The mutant code introduces a predicate, which changes the behavior of the while loop inside the quicksort function. Specifically, the condition (PRED(i) < j) will be true whenever the original condition (i < j) is true. This means that the mutant code will swap elements in the array x even when the indices i and j are equal, while the original code will not. This results in the mutant program sorting the input array incorrectly, as can be seen in the provided test set."
+    }
+  ]
+},{
+  "mutant_program": "muta973_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "original_output": "Sorted elements:  1 2 3\n",
+      "mutant_output": "Sorted elements:  2 1 3\n",
+      "explanation": "The test case contains a small array with values sorted in reverse order. The original program correctly sorts the array in ascending order. However, the mutant code has a conditional statement that checks for i+1 being less than j before exchanging the values. This causes the array to be sorted incorrectly. In this test case, the value 2 is exchanged with the value 1, resulting in the array being sorted in an incorrect order."
+    },
+    {
+      "input": [
+        8,
+        5,
+        2,
+        7,
+        3,
+        6,
+        1,
+        9,
+        4
+      ],
+      "original_output": "Sorted elements:  1 2 3 4 5 6 7 8 9\n",
+      "mutant_output": "Sorted elements:  2 1 3 4 5 6 7 8 9\n",
+      "explanation": "The test case contains a larger array with random values. The original program correctly sorts the array in ascending order. However, the mutant code still has a conditional statement that checks for i+1 being less than j before exchanging the values. This causes the array to be sorted incorrectly. In this test case, the value 8 is exchanged with the value 2, resulting in the array being sorted in an incorrect order."
+    }
+  ]
+},{
+  "mutant_program": "muta975_quicksort.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "4",
+        "2",
+        "6",
+        "1",
+        "8",
+        "3"
+      ],
+      "original_output": "Sorted elements: 1 2 3 4 6 8\n",
+      "mutant_output": "Sorted elements: 1 2 6 4 8 3 \n",
+      "explanation": "The mutant changed the condition in line 25 to (i < SUCC(j)), which adds 1 to j before checking if i is smaller. This causes the array to be incorrectly sorted as seen in the mutated output."
+    },
+    {
+      "input": [
+        "9",
+        "5",
+        "2",
+        "7",
+        "6"
+      ],
+      "original_output": "Sorted elements: 2 5 6 7 9\n",
+      "mutant_output": "Sorted elements: 2 5 6 7 9\n",
+      "explanation": "Both original and mutant program sorts the array properly for this test case."
+    }
+  ]
+}]
