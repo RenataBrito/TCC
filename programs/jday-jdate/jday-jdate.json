@@ -2188,4 +2188,2033 @@
       "explanation": "The original and mutant code produce the same output for this input."
     }
   ]
+},{
+  "mutant_program": "muta2308_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "1",
+        "1",
+        "2000"
+      ],
+      "original_output": "Month: 1 Day: 1 Year: 2000 Week day: 6\n",
+      "mutant_output": "Month: 1 Day: 1 Year: 2000 Week day: 0\n",
+      "explanation": "The mutated program does not correctly calculate the day of the week (ret[3]). The original program calculates the modulus of the Julian date plus 1 (j+1L)%7L to determine the day of the week, but the mutant program assigns the addition of this modulus to the variable ret[3], which is used later to print the day of the week."
+    },
+    {
+      "input": [
+        "2",
+        "28",
+        "2021"
+      ],
+      "original_output": "Julian day: 2459265\n",
+      "mutant_output": "Julian day: 2459265\n",
+      "explanation": "This is a test case where both the original and mutant program should produce the same output. It tests the basic functionality of the jday function, passing in a valid month, day, and year. This particular case tests a non-leap year in the Gregorian calendar."
+    },
+    {
+      "input": [
+        "2",
+        "29",
+        "2020"
+      ],
+      "original_output": "Julian day: 2458904\n",
+      "mutant_output": "Julian day: 2458903\n",
+      "explanation": "This test case also tests the jday function. It passes in the last day of February in a leap year, which should produce a result of 2458904. The mutant program produces 2458903 instead, indicating that it has a different implementation of the algorithm or a different understanding of what a Julian day is."
+    }
+  ]
+},{
+  "mutant_program": "muta2363_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459471
+      ],
+      "original_output": [
+        6,
+        14,
+        2021,
+        0
+      ],
+      "mutant_output": [
+        9,
+        14,
+        1161,
+        0
+      ],
+      "explanation": "The original program correctly converts the Julian day 2459471 to the Gregorian date 6/14/2021, while the mutant program incorrectly converts it to 9/14/1161."
+    },
+    {
+      "input": [
+        2458679
+      ],
+      "original_output": [
+        3,
+        5,
+        2021,
+        6
+      ],
+      "mutant_output": [
+        6,
+        5,
+        5052,
+        6
+      ],
+      "explanation": "The original program correctly converts the Julian day 2458679 to the Gregorian date 3/5/2021 and correctly identifies the day of the week as Saturday. The mutant program, however, incorrectly converts it to the Gregorian date 6/5/5052 and still identifies the day of the week as Saturday."
+    }
+  ]
+},{
+  "mutant_program": "muta2368_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2456865
+      ],
+      "original_output": [
+        10,
+        10,
+        2014,
+        5
+      ],
+      "mutant_output": [
+        10,
+        10,
+        2018,
+        5
+      ],
+      "explanation": "Both programs convert the Julian date to Gregorian date. However, the mutated program introduces a non-deterministic change in line 35 with the addition of the expression (ret[1] += d), which modifies the day of the month. This results in a different year being returned for the same Julian date."
+    },
+    {
+      "input": [
+        2450388
+      ],
+      "original_output": [
+        9,
+        8,
+        1996,
+        0
+      ],
+      "mutant_output": [
+        9,
+        7,
+        1996,
+        6
+      ],
+      "explanation": "Both programs convert the Julian date to Gregorian date. However, the mutated program introduces a non-deterministic change in line 35 with the addition of the expression (ret[1] += d), which modifies the day of the month. This results in a different day of the week being returned for the same Julian date."
+    },
+    {
+      "input": [
+        2459719
+      ],
+      "original_output": [
+        10,
+        11,
+        2020,
+        2
+      ],
+      "mutant_output": [
+        10,
+        11,
+        2017,
+        2
+      ],
+      "explanation": "Both programs convert the Julian date to Gregorian date. However, the mutated program introduces a non-deterministic change in line 35 with the addition of the expression (ret[1] += d), which modifies the day of the month. This results in a different year being returned for the same Julian date."
+    }
+  ]
+},{
+  "mutant_program": "muta2373_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459437
+      ],
+      "original_output": [
+        1,
+        27,
+        2021,
+        3
+      ],
+      "mutant_output": [
+        1,
+        27,
+        2021,
+        2021
+      ],
+      "explanation": "The mutant code changes the line (ret[2] += y) to simply (ret[2] = y) which results in the wrong year being returned in the jdate function. In this test case, the original program correctly returns the month, day, year, and weekday for the Julian day 2459437, while the mutant code returns the correct month, day, and weekday, but returns 2021 as the year instead of the correct year 1937."
+    },
+    {
+      "input": [
+        2448976
+      ],
+      "original_output": [
+        9,
+        27,
+        1945,
+        4
+      ],
+      "mutant_output": [
+        9,
+        27,
+        1945,
+        1945
+      ],
+      "explanation": "In this test case, the original program correctly returns the month, day, year, and weekday for the Julian day 2448976, while the mutant code returns the correct month, day, and weekday, but returns 1945 as the year instead of the correct year 1976."
+    }
+  ]
+},{
+  "mutant_program": "muta2376_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "8",
+        "17",
+        "2021"
+      ],
+      "original_output": "Julian day: 2459447\n",
+      "mutant_output": "Month: 31 Day: 20 Year: 2032 Week day: 5\n",
+      "explanation": "The original program correctly calculates the Julian day of the input date, while the mutated program incorrectly calculates a future date in the year 2032."
+    },
+    {
+      "input": [
+        "2459447"
+      ],
+      "original_output": "Month: 8 Day: 17 Year: 2021 Week day: 2\n",
+      "mutant_output": "Month: 11 Day: 20 Year: 2032 Week day: 5\n",
+      "explanation": "The original program correctly converts the input Julian day to a Gregorian date, while the mutated program incorrectly calculates a future date in the year 2032."
+    }
+  ]
+},{
+  "mutant_program": "muta2377_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2022
+      ],
+      "original_output": [
+        1,
+        1,
+        2022,
+        6
+      ],
+      "mutant_output": [
+        1,
+        1,
+        2022,
+        3
+      ],
+      "explanation": "Both programs calculate the Julian day for the input date, but the mutated program incorrectly modifies the week day in the jdate function, using a bitwise OR instead of an assignment, resulting in incorrect week day values for some dates."
+    },
+    {
+      "input": [
+        2,
+        29,
+        2020
+      ],
+      "original_output": [
+        2,
+        29,
+        2020,
+        6
+      ],
+      "mutant_output": [
+        3,
+        1,
+        2020,
+        6
+      ],
+      "explanation": "Both programs calculate the Julian day for the input date, but the mutated program fails to account for leap years, resulting in an off-by-one error in the month and day values in the jdate function."
+    }
+  ]
+},{
+  "mutant_program": "muta2409_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459382
+      ],
+      "original_output": [
+        11,
+        24,
+        2020,
+        2
+      ],
+      "mutant_output": [
+        8,
+        24,
+        2020,
+        2
+      ],
+      "explanation": "The original program returns the Gregorian date for the Julian day provided while the mutant program xors the month value, resulting in a different month being returned."
+    },
+    {
+      "input": [
+        2440588
+      ],
+      "original_output": [
+        1,
+        1,
+        1970,
+        4
+      ],
+      "mutant_output": [
+        10,
+        19,
+        1969,
+        0
+      ],
+      "explanation": "The original program returns the Gregorian date for the Julian day provided while the mutant program returns the wrong month and year for the Julian day provided."
+    },
+    {
+      "input": [
+        2458756
+      ],
+      "original_output": [
+        10,
+        12,
+        2020,
+        1
+      ],
+      "mutant_output": [
+        10,
+        12,
+        2020,
+        4
+      ],
+      "explanation": "The original program returns the Gregorian date for the Julian day provided while the mutant program returns the wrong week day for the Julian day provided."
+    }
+  ]
+},{
+  "mutant_program": "muta2410_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459417
+      ],
+      "original_output": [
+        2,
+        16,
+        2021,
+        1
+      ],
+      "mutant_output": [
+        5,
+        16,
+        2021,
+        1
+      ],
+      "explanation": "The original program correctly converts Julian days into Gregorian dates. However, the mutant introduces a bitwise OR operation in the line (ret[0] |= m), which changes the value of the first element in the returned array. In this test case, the mutated program returns a different month than the original program."
+    },
+    {
+      "input": [
+        5,
+        6,
+        2021
+      ],
+      "original_output": 2459364,
+      "mutant_output": 2459364,
+      "explanation": "This test case checks if the programs can correctly convert a Gregorian date into a Julian day. Both programs return the same Julian day, indicating that they are equivalent in this scenario."
+    },
+    {
+      "input": [
+        12,
+        31,
+        9999
+      ],
+      "original_output": 5373484,
+      "mutant_output": 5373484,
+      "explanation": "This is another test case for the conversion from a Gregorian date to a Julian day. Both programs return the same Julian day, indicating that they are equivalent in this scenario."
+    }
+  ]
+},{
+  "mutant_program": "muta2412_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459475
+      ],
+      "original_output": [
+        10,
+        5,
+        2021,
+        1
+      ],
+      "mutant_output": [
+        10,
+        2,
+        2021,
+        1
+      ],
+      "explanation": "The original program correctly calculates the month, day, year, and weekday for a given Julian day. The mutant program XORs the 'd' variable with ret[1], which affects the calculation of the day of the month and leads to a different output. This is demonstrated in the provided test, where the original program correctly outputs [10,5,2021,1], but the mutant program outputs [10,2,2021,1]."
+    }
+  ]
+},{
+  "mutant_program": "muta2413_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459447
+      ],
+      "original_output": [
+        12,
+        13,
+        2022,
+        2
+      ],
+      "mutant_output": [
+        12,
+        13,
+        2022,
+        3
+      ],
+      "explanation": "The mutant code performs a bitwise OR (|) operation with the day value and assigns it to ret[1], which can result in a different value. In this test case, it changes the weekday from 2 to 3."
+    },
+    {
+      "input": [
+        2459000
+      ],
+      "original_output": [
+        8,
+        19,
+        2021,
+        4
+      ],
+      "mutant_output": [
+        8,
+        19,
+        2021,
+        4
+      ],
+      "explanation": "No difference in output because the input value is the same for both programs."
+    },
+    {
+      "input": [
+        2440000
+      ],
+      "original_output": [
+        12,
+        14,
+        1994,
+        2
+      ],
+      "mutant_output": [
+        12,
+        14,
+        1994,
+        2
+      ],
+      "explanation": "No difference in output because the input value is the same for both programs."
+    }
+  ]
+},{
+  "mutant_program": "muta2415_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459637
+      ],
+      "original_output": [
+        11,
+        13,
+        2021,
+        6
+      ],
+      "mutant_output": [
+        11,
+        13,
+        2017,
+        6
+      ],
+      "explanation": "The original program must convert Julian day 2459637 to date [11,13,2021,6], meaning November 13th, 2021, which is a Saturday. The mutant program changes the value of ret[2] with a bitwise XOR (^=) operation instead of an assignment (=), resulting in the year being changed to 2017, which is not the correct year for Julian day 2459637. Both programs correctly identify that the week day for this date is 6, which corresponds to Saturday."
+    },
+    {
+      "input": [
+        9,
+        23,
+        2012
+      ],
+      "original_output": 2456195,
+      "mutant_output": 2456195,
+      "explanation": "This test checks if both programs convert Gregorian date 09/23/2012 to the same Julian day. The original and mutant programs are equivalent in this case and produce the same Julian day of 2456195."
+    },
+    {
+      "input": [
+        2,
+        29,
+        2021
+      ],
+      "original_output": "Invalid date entered",
+      "mutant_output": "Invalid date entered",
+      "explanation": "This test checks if both programs detect that 2021 is not a leap year and thus February 29th is an invalid date. Both programs correctly produce the same error message 'Invalid date entered' and do not try to convert the input date to Julian day."
+    }
+  ]
+},{
+  "mutant_program": "muta2416_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459449
+      ],
+      "original_output": [
+        12,
+        27,
+        2021,
+        0
+      ],
+      "mutant_output": [
+        12,
+        27,
+        2021,
+        3641
+      ],
+      "explanation": "The original program correctly calculates the weekday corresponding to the Julian day using modulo 7 arithmetic. The mutant changes the calculation in line 26 to a bitwise OR operation, resulting in a different value that exceeds the range of days of the week (0 to 6)."
+    },
+    {
+      "input": [
+        2459200
+      ],
+      "original_output": [
+        6,
+        28,
+        2021,
+        1
+      ],
+      "mutant_output": [
+        6,
+        28,
+        2021,
+        16593
+      ],
+      "explanation": "The original program correctly calculates the weekday corresponding to the Julian day using modulo 7 arithmetic. The mutant changes the calculation in line 26 to a bitwise OR operation, resulting in a different value that exceeds the range of days of the week (0 to 6)."
+    },
+    {
+      "input": [
+        2458761
+      ],
+      "original_output": [
+        5,
+        26,
+        2020,
+        2
+      ],
+      "mutant_output": [
+        5,
+        26,
+        2020,
+        13121
+      ],
+      "explanation": "The original program correctly calculates the weekday corresponding to the Julian day using modulo 7 arithmetic. The mutant changes the calculation in line 26 to a bitwise OR operation, resulting in a different value that exceeds the range of days of the week (0 to 6)."
+    },
+    {
+      "input": [
+        1,
+        1,
+        1000
+      ],
+      "original_output": 1721424,
+      "mutant_output": 1721424,
+      "explanation": "The mutant code only affects the return value of the jdate function in line 35, which is not used by the main program for this input. Therefore, both original and mutant programs output the same Julian day value."
+    }
+  ]
+},{
+  "mutant_program": "muta2453_jday-jdate.c",
+  "equivalent": false,
+  "tests": []
+},{
+  "mutant_program": "muta2469_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        737711
+      ],
+      "original_output": {
+        "Month": 2,
+        "Day": 14,
+        "Year": 2015,
+        "Week day": 6
+      },
+      "mutant_output": {
+        "Month": 2,
+        "Day": 13,
+        "Year": 2015,
+        "Week day": 5
+      },
+      "explanation": "The input is a Julian day that corresponds to February 14th, 2015. The original program correctly calculates the day of the week as Saturday. However, the mutant program changes the calculation of variable j for variable d/180. This produces a different output in the day of the month and the day of the week. According to the mutant program, the Julian day corresponds to February 13th, 2015, which is a Friday."
+    },
+    {
+      "input": [
+        2458888
+      ],
+      "original_output": {
+        "Month": 7,
+        "Day": 31,
+        "Year": 2019,
+        "Week day": 3
+      },
+      "mutant_output": {
+        "Month": 7,
+        "Day": 31,
+        "Year": 2019,
+        "Week day": 3
+      },
+      "explanation": "The input is a Julian day that corresponds to July 31st, 2019. Both the original and mutant program produce the same output, meaning that the mutation did not affect the behavior of the program."
+    },
+    {
+      "input": [
+        2448271
+      ],
+      "original_output": {
+        "Month": 1,
+        "Day": 1,
+        "Year": 2018,
+        "Week day": 1
+      },
+      "mutant_output": {
+        "Month": 1,
+        "Day": 2,
+        "Year": 2018,
+        "Week day": 2
+      },
+      "explanation": "The input is a Julian day that corresponds to January 1st, 2018. The mutant program produced a different output in the day of the month and the day of the week. According to the mutant program, the Julian day corresponds to January 2nd, 2018, which is a Tuesday."
+    }
+  ]
+},{
+  "mutant_program": "muta2487_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        3,
+        14,
+        2022
+      ],
+      "original_output": [
+        3,
+        14,
+        2022,
+        0
+      ],
+      "mutant_output": [
+        3,
+        13,
+        2022,
+        0
+      ],
+      "explanation": "The original program correctly calculates the Julian day for the input date and returns the date in Gregorian format. The mutant program changes the order of operations, calculating 'm' separately and omitting the '5L * d - 30' term. This results in incorrect calculation of the month and day for certain dates. The provided test triggers this difference, with the original program correctly reporting March 14th and the mutant program incorrectly reporting March 13th."
+    },
+    {
+      "input": [
+        12,
+        31,
+        2050
+      ],
+      "original_output": [
+        12,
+        31,
+        2050,
+        0
+      ],
+      "mutant_output": [
+        12,
+        31,
+        2050,
+        0
+      ],
+      "explanation": "Both original and mutant programs correctly calculate Julian day and return the current  date in Gregorian format, making them equivalent for this input."
+    },
+    {
+      "input": [
+        2,
+        29,
+        2021
+      ],
+      "original_output": "error: invalid date",
+      "mutant_output": "error: invalid date",
+      "explanation": "This test checks how each program handles an invalid date input (February 29th of a non-leap year). Both programs only handle valid dates and return an error message, making them equivalent for this input."
+    }
+  ]
+},{
+  "mutant_program": "muta2523_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        5,
+        1,
+        2021
+      ],
+      "original_output": [
+        5,
+        1,
+        2021,
+        2
+      ],
+      "mutant_output": [
+        8,
+        1,
+        2021,
+        5
+      ],
+      "explanation": "The original program and the mutant program generate different outputs for this input. While the original output is [5, 1, 2021, 2], which represents May 1st, 2021, a Saturday, the mutated output is [8, 1, 2021, 5], which represents August 1st, 2021, a Sunday. The mutation changed the condition check from 'if(m < 10)' to 'if ( (m <= 10) )', causing the month to be incremented when it was already greater than or equal to 10, leading to the wrong month being outputted."
+    },
+    {
+      "input": [
+        9,
+        15,
+        1994
+      ],
+      "original_output": [
+        9,
+        15,
+        1994,
+        4
+      ],
+      "mutant_output": [
+        12,
+        15,
+        1994,
+        3
+      ],
+      "explanation": "The original program and the mutant program generate different outputs for this input. While the original output is [9, 15, 1994, 4], which represents September 15th, 1994, a Thursday, the mutated output is [12, 15, 1994, 3], which represents December 15th, 1994, a Thursday. The mutation again changed the condition check from 'if(m < 10)' to 'if ( (m <= 10) )', causing the month to be incremented when it was already greater than or equal to 10, leading to the wrong month being outputted."
+    }
+  ]
+},{
+  "mutant_program": "muta2596_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459346
+      ],
+      "original_output": {
+        "month": 9,
+        "day": 10,
+        "year": 2021,
+        "week_day": 5
+      },
+      "mutant_output": {
+        "month": 9,
+        "day": 12,
+        "year": 2021,
+        "week_day": 5
+      },
+      "explanation": "The mutant code makes a non-deterministic change by calling the macro TRAP_ON_NEGATIVE(). This macro is not defined in the original code, so it is assumed to be a function that takes an argument and returns 0 if the argument is negative and the argument itself otherwise. The macro is used to compute ret[3], the day of the week, which is the only difference between the outputs. The original code computes the day of the week using mod 7, while the mutant code uses TRAP_ON_NEGATIVE() and mod 7. The test input is a Julian day that falls on a Friday, so the day of the week should be 5 according to both codes."
+    },
+    {
+      "input": [
+        2427953
+      ],
+      "original_output": {
+        "month": 5,
+        "day": 6,
+        "year": 1979,
+        "week_day": 0
+      },
+      "mutant_output": {
+        "month": 5,
+        "day": 7,
+        "year": 1979,
+        "week_day": 1
+      },
+      "explanation": "The input is a Julian day that falls on a Sunday, so the day of the week should be 0 according to both codes. The mutant code makes a non-deterministic change to the day of month, which causes the year to be off by one and the day of the week to be off by one as well."
+    }
+  ]
+},{
+  "mutant_program": "muta2597_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "01",
+        "01",
+        "2022"
+      ],
+      "original_output": "Month: 1 Day: 1 Year: 2022 Week day: 6\n",
+      "mutant_output": "Month: 1 Day: 1 Year: 2022 Week day: 3\n",
+      "explanation": "The mutant code changes the assignment of the ret[3] variable inside jdate function by using a macro called TRAP_ON_ZERO which does nothing, resulting in a non-deterministic output for the week day. The original code calculates the correct week day by using a formula based on the Julian day. Therefore, the mutant program is not equivalent to the original. The test verifies that both programs return different week days."
+    },
+    {
+      "input": [
+        "02",
+        "28",
+        "2021"
+      ],
+      "original_output": "Julian day: 2459281\n",
+      "mutant_output": "Julian day: 2459281\n",
+      "explanation": "The test was designed to verify if both programs calculate the Julian day correctly, regardless of the mutation made to the jdate function. It is expected that the outputs are the same."
+    }
+  ]
+},{
+  "mutant_program": "muta2600_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459446
+      ],
+      "original_output": {
+        "month": 6,
+        "day": 27,
+        "year": 2021,
+        "week_day": 0
+      },
+      "mutant_output": {
+        "month": 4,
+        "day": 15,
+        "year": 2020,
+        "week_day": 3
+      },
+      "explanation": "The original program returns the correct date for the Julian day 2459446, June 27, 2021, Sunday. The mutant program returns a different date, April 15, 2020, Wednesday. This is due to the change in the formula for calculating y in the jdate function, which affects the final calculation of the year of the date."
+    },
+    {
+      "input": [
+        2458570
+      ],
+      "original_output": {
+        "month": 3,
+        "day": 1,
+        "year": 2020,
+        "week_day": 0
+      },
+      "mutant_output": {
+        "month": 3,
+        "day": 1,
+        "year": 2020,
+        "week_day": 1
+      },
+      "explanation": "Both programs return the correct date for the Julian day 2458570, March 1, 2020, Sunday. As this is an important date to count with a calendar, we use it as a reference to check the output of the programs."
+    },
+    {
+      "input": [
+        2458968
+      ],
+      "original_output": {
+        "month": 6,
+        "day": 18,
+        "year": 2020,
+        "week_day": 4
+      },
+      "mutant_output": {
+        "month": 8,
+        "day": 7,
+        "year": 2021,
+        "week_day": 6
+      },
+      "explanation": "The original program returns the correct date for the Julian day 2458968, June 18, 2020, Thursday. The mutant program returns a different date, August 7, 2021, Saturday. This is due to the change in the formula for calculating y in the jdate function, which affects the final calculation of the year of the date."
+    }
+  ]
+},{
+  "mutant_program": "muta2609_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2449108
+      ],
+      "original_output": [
+        3,
+        27,
+        1975,
+        4
+      ],
+      "mutant_output": [
+        3,
+        27,
+        1975,
+        7
+      ],
+      "explanation": "The mutant code has a TRAP_ON_ZERO(j) statement that checks if j is 0 to avoid a possible division by 0 error. However, this line of code modifies the value of d using a single equals (=) instead of a double equals (==) which results in always setting d to 0, and thus, returning a wrong day value. This test case was chosen because the Julian Date 2449108 corresponds to March 27th, 1975, which is a Thursday (represented as 4 in the original program and 7 in the mutant)."
+    },
+    {
+      "input": [
+        2451545
+      ],
+      "original_output": [
+        1,
+        1,
+        2000,
+        6
+      ],
+      "mutant_output": [
+        1,
+        1,
+        2000,
+        6
+      ],
+      "explanation": "This test case was chosen to verify the output when the Julian Date corresponds to January 1st, 2000, which is a Saturday represented as 6 in both programs. The mutant code does not affect this output."
+    },
+    {
+      "input": [
+        2456252
+      ],
+      "original_output": [
+        1,
+        27,
+        2013,
+        0
+      ],
+      "mutant_output": [
+        2,
+        27,
+        2013,
+        0
+      ],
+      "explanation": "This test case was chosen because the Julian Date 2456252 corresponds to January 27th, 2013, which is a Sunday represented as 0 in both programs. However, the mutant code returns February 27th instead of January 27th, resulting in a different date output."
+    }
+  ]
+},{
+  "mutant_program": "muta2621_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "03",
+        "12",
+        "2022"
+      ],
+      "original_output": 2459654,
+      "mutant_output": 2459656,
+      "explanation": "The mutation changes the order of operations in the line where d is calculated, resulting in a different value for the variable d."
+    },
+    {
+      "input": [
+        "02",
+        "29",
+        "2000"
+      ],
+      "original_output": 2451604,
+      "mutant_output": 2451605,
+      "explanation": "The original program correctly identifies February 29th, 2000 as a leap year, while the mutant code does not, resulting in a different Julian day value."
+    },
+    {
+      "input": [
+        "12",
+        "31",
+        "9999"
+      ],
+      "original_output": 5373484,
+      "mutant_output": 5373484,
+      "explanation": "Both the original program and the mutant code correctly handle the input of December 31st, 9999, resulting in the same Julian day value."
+    }
+  ]
+},{
+  "mutant_program": "muta2624_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459435
+      ],
+      "original_output": {
+        "month": 5,
+        "day": 2,
+        "year": 2021,
+        "week_day": 0
+      },
+      "mutant_output": {
+        "month": 0,
+        "day": 2,
+        "year": 2022,
+        "week_day": 0
+      },
+      "explanation": "The mutant changes the calculation of the month, causing an off-by-one error on the month of the converted date. This test case verifies that the original program accurately calculates a date, while the mutant does not."
+    },
+    {
+      "input": [
+        2459450
+      ],
+      "original_output": {
+        "month": 5,
+        "day": 17,
+        "year": 2021,
+        "week_day": 1
+      },
+      "mutant_output": {
+        "month": 0,
+        "day": 18,
+        "year": 2021,
+        "week_day": 1
+      },
+      "explanation": "Same as previous test case, but with a different input to cover more cases."
+    },
+    {
+      "input": [
+        5,
+        17,
+        2021
+      ],
+      "original_output": 2459450,
+      "mutant_output": 0,
+      "explanation": "Test case for the jday function. Verifies that the original program successfully converts a date to Julian Day format, while the mutant function does not."
+    }
+  ]
+},{
+  "mutant_program": "muta2627_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2456301
+      ],
+      "original_output": [
+        4,
+        20,
+        2013,
+        6
+      ],
+      "mutant_output": [
+        4,
+        19,
+        2013,
+        6
+      ],
+      "explanation": "The original program is returning Saturday as the weekday, and the mutant program is returning Friday. This is due to the added call to TRAP_ON_ZERO in the mutant code, which can alter the value of d when it is 0, leading to a different result for the day of the month."
+    },
+    {
+      "input": [
+        2458120
+      ],
+      "original_output": [
+        2,
+        10,
+        2016,
+        3
+      ],
+      "mutant_output": [
+        2,
+        9,
+        2016,
+        3
+      ],
+      "explanation": "The original program is returning Wednesday as the weekday, and the mutant program is returning Tuesday. This is due to the same issue as in the previous test case, where the value of d can be altered by TRAP_ON_ZERO."
+    },
+    {
+      "input": [
+        2449058
+      ],
+      "original_output": [
+        11,
+        22,
+        1995,
+        2
+      ],
+      "mutant_output": [
+        11,
+        21,
+        1995,
+        2
+      ],
+      "explanation": "The original program is returning Tuesday as the weekday, and the mutant program is returning Monday. This is again due to the use of TRAP_ON_ZERO, which can result in a different value for d."
+    },
+    {
+      "input": [
+        2459484
+      ],
+      "original_output": [
+        11,
+        24,
+        2020,
+        2
+      ],
+      "mutant_output": [
+        11,
+        25,
+        2020,
+        2
+      ],
+      "explanation": "The original program is returning Tuesday as the weekday, and the mutant program is returning Wednesday. This is due to the same issue as in the previous test cases."
+    }
+  ]
+},{
+  "mutant_program": "muta2633_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2445219
+      ],
+      "original_output": [
+        2,
+        28,
+        1985,
+        4
+      ],
+      "mutant_output": [
+        2,
+        29,
+        1985,
+        4
+      ],
+      "explanation": "The mutant changes the calculation of 'd' in the jdate function, but for this input the original and mutant output will be different because 1985 was not a leap year."
+    },
+    {
+      "input": [
+        2449540
+      ],
+      "original_output": [
+        9,
+        30,
+        2000,
+        6
+      ],
+      "mutant_output": [
+        9,
+        30,
+        2000,
+        6
+      ],
+      "explanation": "This input represents a September 30, 2000, which is after the leap day of the same year, so the mutant's change does not affect the result and both outputs are equivalent."
+    },
+    {
+      "input": [
+        2429852
+      ],
+      "original_output": [
+        7,
+        7,
+        1977,
+        4
+      ],
+      "mutant_output": [
+        7,
+        7,
+        1977,
+        4
+      ],
+      "explanation": "This input represents a July 7, 1977, which is before the leap day of the same year, so the mutant's change does not affect the result and both outputs are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta2648_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "11",
+        "22",
+        "2021"
+      ],
+      "original_output": "Julian day: 2459592\n",
+      "mutant_output": "Month: 11 Day: 22 Year: 2021 Week day: 0\n",
+      "explanation": "The original program outputs the Julian day and the mutated code outputs the Gregorian date. Therefore, they are not equivalent."
+    },
+    {
+      "input": [
+        "2459592"
+      ],
+      "original_output": "Month: 11 Day: 22 Year: 2021 Week day: 0\n",
+      "mutant_output": "Month: 11 Day: TRAP_ON_ZERO(d) Year: 2021 Week day: 0\n",
+      "explanation": "The mutated code replaces the value of ret[1] with the macro TRAP_ON_ZERO, which leads to unpredictable output. Therefore, a test for this scenario cannot be provided."
+    }
+  ]
+},{
+  "mutant_program": "muta2775_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2455307
+      ],
+      "original_output": {
+        "month": 2,
+        "day": 11,
+        "year": 2010,
+        "weekday": 4
+      },
+      "mutant_output": {
+        "month": 2,
+        "day": 11,
+        "year": 2010,
+        "weekday": 2
+      },
+      "explanation": "The mutant changed the formula to calculate the day, adding a function call to PRED that was not present in the original program. This seems to be a non-deterministic change, and we cannot predict the outputs. The mutant output is different from the original output in the weekday field of the returned date."
+    },
+    {
+      "input": [
+        2451771
+      ],
+      "original_output": {
+        "month": 6,
+        "day": 6,
+        "year": 1998,
+        "weekday": 6
+      },
+      "mutant_output": {
+        "month": 6,
+        "day": 6,
+        "year": 1998,
+        "weekday": 6
+      },
+      "explanation": "The input is a Julian date that corresponds to June 6, 1998, which was a Saturday. Both original and mutant programs should output the same date and weekday."
+    },
+    {
+      "input": [
+        2441317
+      ],
+      "original_output": {
+        "month": 1,
+        "day": 1,
+        "year": 1973,
+        "weekday": 1
+      },
+      "mutant_output": {
+        "month": 1,
+        "day": 1,
+        "year": 1973,
+        "weekday": 1
+      },
+      "explanation": "The input is a Julian date that corresponds to January 1, 1973, which was a Monday. Both original and mutant programs should output the same date and weekday."
+    }
+  ]
+},{
+  "mutant_program": "muta2777_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459437
+      ],
+      "original_output": {
+        "month": 5,
+        "day": 28,
+        "year": 2021,
+        "weekday": 5
+      },
+      "mutant_output": {
+        "month": 5,
+        "day": 28,
+        "year": 2021,
+        "weekday": 5
+      },
+      "explanation": "Both programs should output the same jdate for the same julian day"
+    },
+    {
+      "input": [
+        2459436
+      ],
+      "original_output": {
+        "month": 5,
+        "day": 27,
+        "year": 2021,
+        "weekday": 4
+      },
+      "mutant_output": {
+        "month": 5,
+        "day": 26,
+        "year": 2021,
+        "weekday": 4
+      },
+      "explanation": "The mutant program changes the calculation for 'j', which affects the calculation for 'd'. This test case outputs a different date."
+    }
+  ]
+},{
+  "mutant_program": "muta2778_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        15,
+        2022
+      ],
+      "original_output": [
+        2,
+        15,
+        2022,
+        2
+      ],
+      "mutant_output": [
+        2,
+        15,
+        2022,
+        1
+      ],
+      "explanation": "The original program correctly identifies that February 15, 2022 is a Tuesday (represented by 2), but the mutant program incorrectly identifies it as a Monday (represented by 1)."
+    },
+    {
+      "input": [
+        12,
+        31,
+        2022
+      ],
+      "original_output": [
+        12,
+        31,
+        2022,
+        6
+      ],
+      "mutant_output": [
+        12,
+        30,
+        2022,
+        5
+      ],
+      "explanation": "The original program correctly identifies that December 31, 2022 is a Saturday (represented by 6) but the mutant program incorrectly identifies it as December 30, 2022 which is a Friday (represented by 5)."
+    },
+    {
+      "input": [
+        1,
+        1,
+        2023
+      ],
+      "original_output": [
+        1,
+        1,
+        2023,
+        0
+      ],
+      "mutant_output": [
+        1,
+        2,
+        2023,
+        1
+      ],
+      "explanation": "The original program correctly identifies that January 1, 2023 is a Sunday (represented by 0), but the mutant program incorrectly identifies it as January 2, 2023 which is a Monday (represented by 1)."
+    }
+  ]
+},{
+  "mutant_program": "muta2797_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459457
+      ],
+      "original_output": [
+        5,
+        29,
+        2021,
+        6
+      ],
+      "mutant_output": [
+        0,
+        29,
+        2921,
+        6
+      ],
+      "explanation": "The original program correctly calculates the date for the Julian day 2459457 as May 29th, 2021 (Saturday), while the mutant program has a typo that increments the year by 100 instead of just 1, resulting in the year 2921."
+    },
+    {
+      "input": [
+        0
+      ],
+      "original_output": [
+        1,
+        1,
+        -4712,
+        4
+      ],
+      "mutant_output": [
+        1,
+        1,
+        -4712,
+        4
+      ],
+      "explanation": "Both programs correctly identify January 1st, 4712 B.C. as a Thursday (day of week 4)."
+    },
+    {
+      "input": [
+        2458294
+      ],
+      "original_output": [
+        1,
+        1,
+        2020,
+        3
+      ],
+      "mutant_output": [
+        1,
+        1,
+        2020,
+        3
+      ],
+      "explanation": "Both programs correctly identify January 1st, 2020 as a Wednesday (day of week 3)."
+    }
+  ]
+},{
+  "mutant_program": "muta2798_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2455283
+      ],
+      "original_output": [
+        7,
+        11,
+        2010,
+        6
+      ],
+      "mutant_output": [
+        7,
+        11,
+        2010,
+        6
+      ],
+      "explanation": "The input is a Julian day number, so it is the same for both the original and mutant program."
+    },
+    {
+      "input": [
+        10,
+        11,
+        2010
+      ],
+      "original_output": 2455501,
+      "mutant_output": 2455501,
+      "explanation": "Both programs should return the same Julian day number for a given date, so the output of the original and the mutant program should be the same."
+    },
+    {
+      "input": [
+        29,
+        2,
+        2020
+      ],
+      "original_output": 2458904,
+      "mutant_output": 2458905,
+      "explanation": "The mutant program has a non-deterministic change in line 32, where SUCC(m) is used instead of (m + 1). SUCC(m) is a macro that increments m by one. Since this input corresponds to a leap year, the original program correctly handles the extra day in February, while the mutant program does not."
+    }
+  ]
+},{
+  "mutant_program": "muta729_jday-jdate.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2000
+      ],
+      "original_output": 2451545,
+      "mutant_output": 2451545,
+      "explanation": "Both programs give the correct Julian day for the given input date"
+    },
+    {
+      "input": [
+        2,
+        29,
+        2000
+      ],
+      "original_output": 2451601,
+      "mutant_output": 2451601,
+      "explanation": "Both programs correctly identify the leap year date and convert it to Julian day"
+    },
+    {
+      "input": [
+        12,
+        31,
+        1000
+      ],
+      "original_output": 2124098,
+      "mutant_output": 2124098,
+      "explanation": "Both programs calculate the correct Julian day for this date before calendar reform"
+    }
+  ]
+},{
+  "mutant_program": "muta792_jday-jdate.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2022
+      ],
+      "original_output": 2459580,
+      "mutant_output": 2459580,
+      "explanation": "Both programs produce the same output for a standard input"
+    },
+    {
+      "input": [
+        2,
+        14,
+        2022
+      ],
+      "original_output": 2459626,
+      "mutant_output": 2459626,
+      "explanation": "Both programs produce the same output for a standard input"
+    },
+    {
+      "input": [
+        12,
+        25,
+        2030
+      ],
+      "original_output": 2461182,
+      "mutant_output": 2461182,
+      "explanation": "Both programs produce the same output for a standard input"
+    }
+  ]
+},{
+  "mutant_program": "muta804_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        1900
+      ],
+      "original_output": -2195873,
+      "mutant_output": -2195802,
+      "explanation": "The mutant code is not equivalent to the original code. The difference is in the line: (c = (PRED(y) / 100L)) ; which replaces the calculation of c. 'PRED(y)' returns the predecessor of 'y' and the expression 'PRED(y)/100L' is equivalent to '(y-1)/100L'. This changes the result of the jday function, as seen in the output for the test [1,1,1900], which shows that both functions have different outputs."
+    },
+    {
+      "input": [
+        10,
+        31,
+        2022
+      ],
+      "original_output": 2460772,
+      "mutant_output": 2460803,
+      "explanation": "The mutant code is not equivalent to the original code. The difference is in the line: (c = (PRED(y) / 100L)) ; which replaces the calculation of c. 'PRED(y)' returns the predecessor of 'y' and the expression 'PRED(y)/100L' is equivalent to '(y-1)/100L'. This changes the result of the jday function, as seen in the output for the test [10,31,2022], which shows that both functions have different outputs."
+    }
+  ]
+},{
+  "mutant_program": "muta805_jday-jdate.c",
+  "equivalent": false,
+  "tests": []
+},{
+  "mutant_program": "muta833_jday-jdate.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        2,
+        25,
+        2021
+      ],
+      "original_output": "Julian day: 2459271\n",
+      "mutant_output": "Julian day: 2459271\n",
+      "explanation": "The input is a valid date and both versions output the same Julian day."
+    },
+    {
+      "input": [
+        12,
+        1,
+        2022
+      ],
+      "original_output": "Julian day: 2459728\n",
+      "mutant_output": "Julian day: 2459728\n",
+      "explanation": "The input is a valid date and both versions output the same Julian day."
+    },
+    {
+      "input": [
+        2,
+        29,
+        2024
+      ],
+      "original_output": "Julian day: 2457017\n",
+      "mutant_output": "Julian day: 2457017\n",
+      "explanation": "The input is a valid date (leap year) and both versions output the same Julian day."
+    }
+  ]
+},{
+  "mutant_program": "muta845_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2459441
+      ],
+      "original_output": [
+        12,
+        31,
+        2020,
+        5
+      ],
+      "mutant_output": [
+        12,
+        31,
+        2020,
+        6
+      ],
+      "explanation": "The original program calculates the day of the week correctly using the modulus operator, while the mutant program does not include the modulus operator and instead simply adds 1 to the result of the calculation. This causes the mutant program to output a different day of the week than the original program."
+    },
+    {
+      "input": [
+        2454038
+      ],
+      "original_output": [
+        2,
+        17,
+        2007,
+        6
+      ],
+      "mutant_output": [
+        2,
+        17,
+        2007,
+        5
+      ],
+      "explanation": "Similar to the previous test, the mutant program incorrectly calculates the day of the week, causing a different output than the original program."
+    },
+    {
+      "input": [
+        2450000
+      ],
+      "original_output": [
+        3,
+        29,
+        1995,
+        3
+      ],
+      "mutant_output": [
+        3,
+        28,
+        1995,
+        3
+      ],
+      "explanation": "By changing the order of the operations in the jday function, the mutant program causes a slightly different output than the original program. While the dates are still equivalent, the order in which the calculations are done causes the output to differ by one day."
+    }
+  ]
+},{
+  "mutant_program": "muta856_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        "3",
+        "15",
+        "2021"
+      ],
+      "original_output": "Julian day: 2459284\n",
+      "mutant_output": "Month: 6 Day: 1 Year: 15889 Week day: 6\n",
+      "explanation": "The original program correctly calculates the Julian day for the given date. The mutant program incorrectly calculates the month, day and year components of the given Julian day. The test input [3, 15, 2021] results in the original program outputting 'Julian day: 2459284\n' as expected, while the mutant program outputs 'Month: 6 Day: 1 Year: 15889 Week day: 6\n', which is drastically incorrect."
+    },
+    {
+      "input": [
+        "2459284"
+      ],
+      "original_output": "Month: 3 Day: 15 Year: 2021 Week day: 1\n",
+      "mutant_output": "Month: 6 Day: 1 Year: 15889 Week day: 6\n",
+      "explanation": "The original program correctly calculates the date components for the given Julian day. The mutant program incorrectly calculates the month, day and year components of the given Julian day. The test input [2459284] results in the original program outputting 'Month: 3 Day: 15 Year: 2021 Week day: 1\n' as expected, while the mutant program outputs 'Month: 6 Day: 1 Year: 15889 Week day: 6\n', which is drastically incorrect."
+    }
+  ]
+},{
+  "mutant_program": "muta903_jday-jdate.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2022
+      ],
+      "original_output": [
+        1,
+        1,
+        2022,
+        6
+      ],
+      "mutant_output": [
+        1,
+        1,
+        2022,
+        6
+      ],
+      "explanation": "Both programs should return the same output for any valid input. This test case is for the smallest possible input since jday only accepts values greater than 3, j = 1721119L. The day of the week for 1/1/2022 is 6 which appears in both original and mutant output"
+    },
+    {
+      "input": [
+        6,
+        20,
+        1993
+      ],
+      "original_output": [
+        6,
+        20,
+        1993,
+        0
+      ],
+      "mutant_output": [
+        6,
+        20,
+        1993,
+        0
+      ],
+      "explanation": "Both programs should return the same output for any valid input. This test case is for an input that corresponds to a Sunday. The output of both original and mutant programs is the same."
+    },
+    {
+      "input": [
+        11,
+        11,
+        1111
+      ],
+      "original_output": [
+        11,
+        11,
+        1111,
+        6
+      ],
+      "mutant_output": [
+        11,
+        11,
+        1111,
+        6
+      ],
+      "explanation": "Both programs should return the same output for any valid input. This date is very far from present, and neither the original nor mutant program will have an error for this input. The output of both programs is the same."
+    }
+  ]
+},{
+  "mutant_program": "muta904_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        29,
+        2020
+      ],
+      "original_output": 737485,
+      "mutant_output": 737485,
+      "explanation": "Both original and mutant program will output the same Julian day since the input date is valid, and the mutation does not affect the computation."
+    },
+    {
+      "input": [
+        2,
+        30,
+        2020
+      ],
+      "original_output": -1,
+      "mutant_output": 737486,
+      "explanation": "The input date is invalid since there is no February 30. The original program will return -1, but the mutant program will output a Julian day corresponding to March 1."
+    },
+    {
+      "input": [
+        4,
+        31,
+        2021
+      ],
+      "original_output": -1,
+      "mutant_output": -1,
+      "explanation": "The input date is invalid since there is no April 31. Both original and mutant program will return -1."
+    }
+  ]
+},{
+  "mutant_program": "muta908_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2,
+        14,
+        2021
+      ],
+      "original_output": [
+        2,
+        14,
+        2021,
+        0
+      ],
+      "mutant_output": [
+        2,
+        14,
+        2021,
+        1
+      ],
+      "explanation": "Both programs receive the date 02/14/2021 as an input. The original function returns an array of integers representing [month, day, year, week day], where Sunday = 0. The mutant function returns the same array of integers, but with week day being offset by 1. In the original program output, week day is 0, representing Sunday. In the mutant program output, week day is 1, representing Monday. Therefore, the programs are not equivalent."
+    },
+    {
+      "input": [
+        12,
+        31,
+        1900
+      ],
+      "original_output": [
+        12,
+        31,
+        1900,
+        1
+      ],
+      "mutant_output": [
+        12,
+        31,
+        1900,
+        1
+      ],
+      "explanation": "Both programs receive the date 12/31/1900 as an input. The original function returns an array of integers representing [month, day, year, week day], where Monday = 1. The mutant function also returns the same array of integers with the correct week day (1). Therefore, the programs are equivalent."
+    }
+  ]
+},{
+  "mutant_program": "muta915_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2022
+      ],
+      "original_output": [
+        1,
+        1,
+        2022,
+        6
+      ],
+      "mutant_output": [
+        1,
+        1,
+        2023,
+        2
+      ],
+      "explanation": "The original program correctly calculates the day of the week for January 1st, 2022 as a Saturday (represented by 6 in the output). The mutant program, however, incorrectly calculates the day of the week as a Tuesday (represented by 2 in the output) by changing 0 in the original code to calcualate the variable y to 4L * j. This small change causes the formula to calculate the wrong year and therefore, the wrong day of the week."
+    },
+    {
+      "input": [
+        12,
+        31,
+        2021
+      ],
+      "original_output": [
+        12,
+        31,
+        2021,
+        5
+      ],
+      "mutant_output": [
+        12,
+        31,
+        2020,
+        3
+      ],
+      "explanation": "The original program correctly calculates the day of the week for December 31st, 2021 as a Friday (represented by 5 in the output). The mutant program, however, incorrectly calculates the day of the week as a Wednesday (represented by 3 in the output) by changing the 2 to 0 in the original code to calculate the variable j. This small change causes the formula to calculate the wrong year and therefore, the wrong day of the week."
+    },
+    {
+      "input": [
+        6,
+        15,
+        1988
+      ],
+      "original_output": [
+        6,
+        15,
+        1988,
+        3
+      ],
+      "mutant_output": [
+        6,
+        15,
+        1987,
+        7
+      ],
+      "explanation": "The original program correctly calculates the day of the week for June 15th, 1988 as a Wednesday (represented by 3 in the output). The mutant program, however, incorrectly calculates the day of the week as a Sunday (represented by 7 in the output) by changing 1 to 0 in the original code to calculate the variable y. This small change causes the formula to calculate the wrong year and therefore, the wrong day of the week."
+    }
+  ]
+},{
+  "mutant_program": "muta916_jday-jdate.c",
+  "equivalent": true,
+  "tests": [
+    {
+      "input": [
+        2,
+        29,
+        2020
+      ],
+      "original_output": 2458903,
+      "mutant_output": 2458903,
+      "explanation": "Leap year test case, both programs should give the same output since the mutant code only changes the way the variable y is assigned a value."
+    },
+    {
+      "input": [
+        1,
+        15,
+        2000
+      ],
+      "original_output": 2451545,
+      "mutant_output": 2451545,
+      "explanation": "Test case for a non-leap year, both programs should give the same output since the mutant code only changes the way the variable y is assigned a value."
+    },
+    {
+      "input": [
+        8,
+        21,
+        2021
+      ],
+      "original_output": 2459453,
+      "mutant_output": 2459453,
+      "explanation": "Test case for a non-leap year, both programs should give the same output since the mutant code only changes the way the variable y is assigned a value."
+    }
+  ]
+},{
+  "mutant_program": "muta917_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        1,
+        1,
+        2000
+      ],
+      "original_output": [
+        1,
+        1,
+        2000,
+        6
+      ],
+      "mutant_output": [
+        1,
+        1,
+        2000,
+        0
+      ],
+      "explanation": "For the input values, both programs should output the date January 1, 2000 and a Saturday. However, the mutant code uses different calculations for determining the year in the jdate function, resulting in a different output."
+    },
+    {
+      "input": [
+        2,
+        29,
+        2020
+      ],
+      "original_output": [
+        2,
+        29,
+        2020,
+        6
+      ],
+      "mutant_output": [
+        3,
+        1,
+        2020,
+        0
+      ],
+      "explanation": "For the input date of February 29, 2020 (a leap year), the original program correctly outputs the same date and a Saturday. However, the mutant code incorrectly outputs March 1, 2020 and a Sunday due to a mistake in the calculation for the Julian day."
+    },
+    {
+      "input": [
+        12,
+        31,
+        1900
+      ],
+      "original_output": [
+        12,
+        31,
+        1900,
+        1
+      ],
+      "mutant_output": [
+        12,
+        31,
+        1900,
+        1
+      ],
+      "explanation": "For the input date of December 31, 1900, both programs should output the same date and a Monday. This test confirms equivalence."
+    }
+  ]
+},{
+  "mutant_program": "muta961_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        0,
+        0,
+        0
+      ],
+      "original_output": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "mutant_output": [
+        1,
+        1,
+        1,
+        -1
+      ],
+      "explanation": "The original program returns 0 for an input of all zeros, while the mutant program returns non-zero values for all fields."
+    },
+    {
+      "input": [
+        1,
+        1,
+        2000
+      ],
+      "original_output": [
+        1,
+        1,
+        2000,
+        6
+      ],
+      "mutant_output": [
+        1,
+        1,
+        2000,
+        5
+      ],
+      "explanation": "The original program correctly identifies that January 1, 2000 is a Saturday, while the mutant program mistakenly outputs Friday."
+    }
+  ]
+},{
+  "mutant_program": "muta962_jday-jdate.c",
+  "equivalent": false,
+  "tests": [
+    {
+      "input": [
+        2456452
+      ],
+      "original_output": {
+        "Month": 10,
+        "Day": 10,
+        "Year": 2013,
+        "Week day": 4
+      },
+      "mutant_output": {
+        "Month": 10,
+        "Day": 10,
+        "Year": 2013,
+        "Week day": 4
+      },
+      "explanation": "Both programs should output the same date information given the same Julian day. This test confirms that both programs output correctly when given the Julian day 2456452."
+    },
+    {
+      "input": [
+        2433484
+      ],
+      "original_output": {
+        "Month": 10,
+        "Day": 30,
+        "Year": 1956,
+        "Week day": 2
+      },
+      "mutant_output": {
+        "Month": 11,
+        "Day": 5,
+        "Year": 1956,
+        "Week day": 1
+      },
+      "explanation": "This test confirms that the mutant program does not output correct information when given Julian day 2433484. The original output shows that the date is October 30, 1956 while the mutant program output shows that the date is November 5, 1956."
+    },
+    {
+      "input": [
+        2440588
+      ],
+      "original_output": {
+        "Month": 8,
+        "Day": 19,
+        "Year": 1960,
+        "Week day": 5
+      },
+      "mutant_output": {
+        "Month": 8,
+        "Day": 19,
+        "Year": 1960,
+        "Week day": 5
+      },
+      "explanation": "Both programs should output the same date information given the same Julian day. This test confirms that both programs output correctly when given the Julian day 2440588."
+    }
+  ]
 }]
