@@ -415,7 +415,7 @@
   ]
 },{
   "mutant_program": "muta196_testPad.c",
-  "equivalent": "False",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta201_testPad.c",
@@ -767,7 +767,7 @@
   ]
 },{
   "mutant_program": "muta288_testPad.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta291_testPad.c",
@@ -1284,7 +1284,7 @@
   ]
 },{
   "mutant_program": "muta435_testPad.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta436_testPad.c",

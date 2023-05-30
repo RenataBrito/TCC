@@ -1453,7 +1453,7 @@
   ]
 },{
   "mutant_program": "muta439_InversePermutation.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta442_InversePermutation.c",

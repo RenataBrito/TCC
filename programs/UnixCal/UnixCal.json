@@ -1,6 +1,6 @@
 [{
   "mutant_program": "muta12_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta19_UnixCal.c",
@@ -33,11 +33,11 @@
   ]
 },{
   "mutant_program": "muta33_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta72_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta73_UnixCal.c",
@@ -160,11 +160,11 @@
   ]
 },{
   "mutant_program": "muta110_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta111_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta112_UnixCal.c",
@@ -247,7 +247,7 @@
   ]
 },{
   "mutant_program": "muta115_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta116_UnixCal.c",
@@ -274,7 +274,7 @@
   ]
 },{
   "mutant_program": "muta117_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta118_UnixCal.c",
@@ -300,7 +300,7 @@
   ]
 },{
   "mutant_program": "muta119_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta132_UnixCal.c",
@@ -620,11 +620,11 @@
   ]
 },{
   "mutant_program": "muta175_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta176_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta177_UnixCal.c",
@@ -722,7 +722,7 @@
   ]
 },{
   "mutant_program": "muta238_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta262_UnixCal.c",
@@ -846,7 +846,7 @@
   ]
 },{
   "mutant_program": "muta267_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta268_UnixCal.c",
@@ -874,11 +874,11 @@
   ]
 },{
   "mutant_program": "muta269_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta270_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta271_UnixCal.c",
@@ -914,7 +914,7 @@
   ]
 },{
   "mutant_program": "muta272_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta273_UnixCal.c",
@@ -1051,7 +1051,7 @@
   ]
 },{
   "mutant_program": "muta324_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta325_UnixCal.c",
@@ -1087,7 +1087,7 @@
   ]
 },{
   "mutant_program": "muta345_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta373_UnixCal.c",
@@ -1227,11 +1227,11 @@
   ]
 },{
   "mutant_program": "muta394_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta394_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta395_UnixCal.c",
@@ -1258,11 +1258,11 @@
   ]
 },{
   "mutant_program": "muta409_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta549_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta600_UnixCal.c",
@@ -1321,7 +1321,7 @@
   ]
 },{
   "mutant_program": "muta602_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta603_UnixCal.c",
@@ -1357,7 +1357,7 @@
   ]
 },{
   "mutant_program": "muta604_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta605_UnixCal.c",
@@ -1375,7 +1375,7 @@
   ]
 },{
   "mutant_program": "muta606_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta607_UnixCal.c",
@@ -1402,7 +1402,7 @@
   ]
 },{
   "mutant_program": "muta608_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta609_UnixCal.c",
@@ -1526,7 +1526,7 @@
   ]
 },{
   "mutant_program": "muta728_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta832_UnixCal.c",
@@ -1630,7 +1630,7 @@
   ]
 },{
   "mutant_program": "muta1502_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1507_UnixCal.c",
@@ -1686,7 +1686,7 @@
   ]
 },{
   "mutant_program": "muta1533_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1536_UnixCal.c",
@@ -1731,11 +1731,11 @@
   ]
 },{
   "mutant_program": "muta1539_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1542_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1568_UnixCal.c",
@@ -1864,11 +1864,11 @@
   ]
 },{
   "mutant_program": "muta1578_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1579_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1583_UnixCal.c",
@@ -1976,19 +1976,19 @@
   ]
 },{
   "mutant_program": "muta1588_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1589_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1591_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1609_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1615_UnixCal.c",
@@ -2030,11 +2030,11 @@
   ]
 },{
   "mutant_program": "muta1621_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1709_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1719_UnixCal.c",
@@ -2222,11 +2222,11 @@
   ]
 },{
   "mutant_program": "muta1771_UnixCal.c",
-  "equivalent": "true",
+  "equivalent": true,
   "tests": []
 },{
   "mutant_program": "muta1780_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1783_UnixCal.c",
@@ -2336,7 +2336,7 @@
   ]
 },{
   "mutant_program": "muta1845_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1860_UnixCal.c",
@@ -2392,7 +2392,7 @@
   ]
 },{
   "mutant_program": "muta1865_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1870_UnixCal.c",
@@ -2511,11 +2511,11 @@
   ]
 },{
   "mutant_program": "muta1931_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1951_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2000_UnixCal.c",
@@ -2584,7 +2584,7 @@
   ]
 },{
   "mutant_program": "muta2063_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2065_UnixCal.c",
@@ -2641,7 +2641,7 @@
   ]
 },{
   "mutant_program": "muta2068_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2069_UnixCal.c",
@@ -2668,7 +2668,7 @@
   ]
 },{
   "mutant_program": "muta2071_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2072_UnixCal.c",
@@ -3084,7 +3084,7 @@
   ]
 },{
   "mutant_program": "muta2098_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2101_UnixCal.c",
@@ -3144,15 +3144,15 @@
   ]
 },{
   "mutant_program": "muta2107_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2108_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2110_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2111_UnixCal.c",
@@ -3209,15 +3209,15 @@
   ]
 },{
   "mutant_program": "muta2116_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2119_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2122_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2125_UnixCal.c",
@@ -3373,7 +3373,7 @@
   ]
 },{
   "mutant_program": "muta2135_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2137_UnixCal.c",
@@ -3400,7 +3400,7 @@
   ]
 },{
   "mutant_program": "muta2140_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2141_UnixCal.c",
@@ -3567,7 +3567,7 @@
   ]
 },{
   "mutant_program": "muta2149_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2152_UnixCal.c",
@@ -3746,7 +3746,7 @@
   ]
 },{
   "mutant_program": "muta2439_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2440_UnixCal.c",
@@ -3829,15 +3829,15 @@
   ]
 },{
   "mutant_program": "muta2542_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2544_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2567_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2574_UnixCal.c",
@@ -3862,7 +3862,7 @@
   ]
 },{
   "mutant_program": "muta2583_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2584_UnixCal.c",
@@ -4222,7 +4222,7 @@
   ]
 },{
   "mutant_program": "muta2741_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2742_UnixCal.c",
@@ -4328,11 +4328,11 @@
   ]
 },{
   "mutant_program": "muta2746_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2751_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2765_UnixCal.c",
@@ -4370,7 +4370,7 @@
   ]
 },{
   "mutant_program": "muta2766_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2769_UnixCal.c",
@@ -4421,11 +4421,11 @@
   ]
 },{
   "mutant_program": "muta2772_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2775_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2789_UnixCal.c",
@@ -4489,11 +4489,11 @@
   ]
 },{
   "mutant_program": "muta2805_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2883_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3222_UnixCal.c",
@@ -4547,7 +4547,7 @@
   ]
 },{
   "mutant_program": "muta3248_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3480_UnixCal.c",
@@ -4717,7 +4717,7 @@
   ]
 },{
   "mutant_program": "muta3633_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3644_UnixCal.c",
@@ -4752,11 +4752,11 @@
   ]
 },{
   "mutant_program": "muta3649_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3651_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3659_UnixCal.c",
@@ -4977,15 +4977,15 @@
   ]
 },{
   "mutant_program": "muta3681_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3682_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3683_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3716_UnixCal.c",
@@ -5009,11 +5009,11 @@
   ]
 },{
   "mutant_program": "muta3720_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3773_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3776_UnixCal.c",
@@ -5404,7 +5404,7 @@
   ]
 },{
   "mutant_program": "muta3984_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3986_UnixCal.c",
@@ -5431,7 +5431,7 @@
   ]
 },{
   "mutant_program": "muta3989_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta3990_UnixCal.c",
@@ -5715,7 +5715,7 @@
   ]
 },{
   "mutant_program": "muta4007_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4008_UnixCal.c",
@@ -5886,7 +5886,7 @@
   ]
 },{
   "mutant_program": "muta4016_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4017_UnixCal.c",
@@ -5969,7 +5969,7 @@
   ]
 },{
   "mutant_program": "muta4022_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4023_UnixCal.c",
@@ -6091,7 +6091,7 @@
   ]
 },{
   "mutant_program": "muta4029_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4031_UnixCal.c",
@@ -6231,7 +6231,7 @@
   ]
 },{
   "mutant_program": "muta4036_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4036_UnixCal.c",
@@ -6287,7 +6287,7 @@
   ]
 },{
   "mutant_program": "muta4075_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4080_UnixCal.c",
@@ -6416,7 +6416,7 @@
   ]
 },{
   "mutant_program": "muta4305_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4306_UnixCal.c",
@@ -6632,7 +6632,7 @@
   ]
 },{
   "mutant_program": "muta4783_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4784_UnixCal.c",
@@ -6771,7 +6771,7 @@
   ]
 },{
   "mutant_program": "muta4792_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4793_UnixCal.c",
@@ -6978,7 +6978,7 @@
   ]
 },{
   "mutant_program": "muta4804_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4805_UnixCal.c",
@@ -7052,7 +7052,7 @@
   ]
 },{
   "mutant_program": "muta4815_UnixCal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta4816_UnixCal.c",

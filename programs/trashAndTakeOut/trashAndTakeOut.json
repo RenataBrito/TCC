@@ -29,7 +29,7 @@
   ]
 },{
   "mutant_program": "muta121_trashAndTakeOut.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta124_trashAndTakeOut.c",
@@ -162,7 +162,7 @@
   ]
 },{
   "mutant_program": "muta146_trashAndTakeOut.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta147_trashAndTakeOut.c",
@@ -366,7 +366,7 @@
   ]
 },{
   "mutant_program": "muta222_trashAndTakeOut.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta251_trashAndTakeOut.c",
@@ -449,7 +449,7 @@
   ]
 },{
   "mutant_program": "muta257_trashAndTakeOut.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta260_trashAndTakeOut.c",

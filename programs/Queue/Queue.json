@@ -21,7 +21,7 @@
   ]
 },{
   "mutant_program": "muta122_Queue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta124_Queue.c",
@@ -86,7 +86,7 @@
   ]
 },{
   "mutant_program": "muta14_Queue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta168_Queue.c",
@@ -117,11 +117,11 @@
   ]
 },{
   "mutant_program": "muta174_Queue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta189_Queue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1_Queue.c",
@@ -209,7 +209,7 @@
   ]
 },{
   "mutant_program": "muta233_Queue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta249_Queue.c",
@@ -308,7 +308,7 @@
   ]
 },{
   "mutant_program": "muta304_Queue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta388_Queue.c",

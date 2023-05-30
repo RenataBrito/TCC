@@ -487,7 +487,7 @@
   ]
 },{
   "mutant_program": "muta308_printPrimes.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta310_printPrimes.c",
@@ -746,7 +746,7 @@
   ]
 },{
   "mutant_program": "muta372_printPrimes.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta384_printPrimes.c",
@@ -1219,7 +1219,7 @@
   ]
 },{
   "mutant_program": "muta521_printPrimes.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta523_printPrimes.c",

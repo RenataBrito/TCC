@@ -424,7 +424,7 @@
   ]
 },{
   "mutant_program": "muta30_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta31_LRS.c",
@@ -578,7 +578,7 @@
   ]
 },{
   "mutant_program": "muta37_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta38_LRS.c",
@@ -997,7 +997,7 @@
   ]
 },{
   "mutant_program": "muta56_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta57_LRS.c",
@@ -1063,7 +1063,7 @@
   ]
 },{
   "mutant_program": "muta59_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta5_LRS.c",
@@ -1123,7 +1123,7 @@
   ]
 },{
   "mutant_program": "muta61_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta62_LRS.c",
@@ -1206,7 +1206,7 @@
   ]
 },{
   "mutant_program": "muta65_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta66_LRS.c",
@@ -1702,7 +1702,7 @@
   ]
 },{
   "mutant_program": "muta163_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta165_LRS.c",
@@ -1964,7 +1964,7 @@
   ]
 },{
   "mutant_program": "muta208_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta209_LRS.c",
@@ -2697,7 +2697,7 @@
   ]
 },{
   "mutant_program": "muta376_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta377_LRS.c",
@@ -2796,7 +2796,7 @@
   ]
 },{
   "mutant_program": "muta381_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta382_LRS.c",
@@ -2863,7 +2863,7 @@
   ]
 },{
   "mutant_program": "muta407_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta421_LRS.c",
@@ -3245,7 +3245,7 @@
   ]
 },{
   "mutant_program": "muta505_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta506_LRS.c",
@@ -3732,7 +3732,7 @@
   ]
 },{
   "mutant_program": "muta581_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta586_LRS.c",
@@ -5161,7 +5161,7 @@
   ]
 },{
   "mutant_program": "muta1046_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1049_LRS.c",
@@ -5653,7 +5653,7 @@
   ]
 },{
   "mutant_program": "muta927_LRS.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta930_LRS.c",

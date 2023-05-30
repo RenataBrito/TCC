@@ -172,7 +172,7 @@
   ]
 },{
   "mutant_program": "muta11_Stack.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta122_Stack.c",
@@ -805,7 +805,7 @@
   ]
 },{
   "mutant_program": "muta288_Stack.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2_Stack.c",

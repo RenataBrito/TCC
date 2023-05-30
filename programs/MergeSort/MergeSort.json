@@ -1,10 +1,10 @@
 [{
   "mutant_program": "muta124_MergeSort.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta128_MergeSort.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta129_MergeSort.c",

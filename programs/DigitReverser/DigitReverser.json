@@ -1,6 +1,6 @@
 [{
   "mutant_program": "muta14_DigitReverser.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta165_DigitReverser.c",
@@ -46,7 +46,7 @@
   ]
 },{
   "mutant_program": "muta20_DigitReverser.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta268_DigitReverser.c",
@@ -63,15 +63,15 @@
   ]
 },{
   "mutant_program": "muta288_DigitReverser.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta29_DigitReverser.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2_DigitReverser.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta304_DigitReverser.c",

@@ -214,7 +214,7 @@
   ]
 },{
   "mutant_program": "muta367_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta368_date-plus.c",
@@ -559,7 +559,7 @@
   ]
 },{
   "mutant_program": "muta500_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta501_date-plus.c",
@@ -627,7 +627,7 @@
   ]
 },{
   "mutant_program": "muta516_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta517_date-plus.c",
@@ -799,7 +799,7 @@
   ]
 },{
   "mutant_program": "muta548_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta549_date-plus.c",
@@ -1401,7 +1401,7 @@
   ]
 },{
   "mutant_program": "muta732_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta739_date-plus.c",
@@ -1675,11 +1675,11 @@
   ]
 },{
   "mutant_program": "muta850_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta859_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta868_date-plus.c",
@@ -2061,7 +2061,7 @@
   ]
 },{
   "mutant_program": "muta1035_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1036_date-plus.c",
@@ -2623,11 +2623,11 @@
   ]
 },{
   "mutant_program": "muta1393_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1432_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1437_date-plus.c",
@@ -3575,7 +3575,7 @@
   ]
 },{
   "mutant_program": "muta1891_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1894_date-plus.c",
@@ -3848,7 +3848,7 @@
   ]
 },{
   "mutant_program": "muta2096_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2098_date-plus.c",
@@ -3999,7 +3999,7 @@
   ]
 },{
   "mutant_program": "muta2110_date-plus.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2111_date-plus.c",

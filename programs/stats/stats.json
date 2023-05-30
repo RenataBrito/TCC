@@ -735,7 +735,7 @@
   ]
 },{
   "mutant_program": "muta337_stats.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta339_stats.c",
@@ -1590,7 +1590,7 @@
   ]
 },{
   "mutant_program": "muta521_stats.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta524_stats.c",
@@ -1669,7 +1669,7 @@
   ]
 },{
   "mutant_program": "muta528_stats.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta530_stats.c",
@@ -1923,7 +1923,7 @@
   ]
 },{
   "mutant_program": "muta558_stats.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta560_stats.c",

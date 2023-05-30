@@ -1014,7 +1014,7 @@
   ]
 },{
   "mutant_program": "muta378_RecursiveSelectionSort.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta381_RecursiveSelectionSort.c",

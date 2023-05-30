@@ -216,7 +216,7 @@
   ]
 },{
   "mutant_program": "muta136_CheckPalindrome.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta138_CheckPalindrome.c",

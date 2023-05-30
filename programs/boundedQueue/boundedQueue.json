@@ -2326,7 +2326,7 @@
   ]
 },{
   "mutant_program": "muta421_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": "createQueue(3)",
@@ -2345,7 +2345,7 @@
         }
       ],
       "original_output": "true",
-      "mutant_output": "false",
+      "mutant_output": false,
       "explanation": "The original program checks if the size of the queue is equal to its capacity to determine if it is full. The mutant program checks if the capacity of the queue is equal to zero to determine if it is full. This is not equivalent because the size of the queue can be less than its capacity while the capacity is not zero. The test first creates a queue with capacity of 3 and enqueues 3 elements. The original program should return true because the queue is full, while the mutant program should return false because the capacity is not zero."
     },
     {
@@ -2363,14 +2363,14 @@
           "value": "2"
         }
       ],
-      "original_output": "false",
-      "mutant_output": "false",
+      "original_output": false,
+      "mutant_output": false,
       "explanation": "The original and mutant programs should be equivalent in this test. A queue with capacity of 2 is created and an element is enqueued and dequeued before enqueueing a second element. The queue is never full in this test. Both programs should return false."
     }
   ]
 },{
   "mutant_program": "muta446_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2415,7 +2415,7 @@
   ]
 },{
   "mutant_program": "muta450_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2444,7 +2444,7 @@
   ]
 },{
   "mutant_program": "muta456_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2465,7 +2465,7 @@
   ]
 },{
   "mutant_program": "muta459_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2494,7 +2494,7 @@
   ]
 },{
   "mutant_program": "muta494_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2523,7 +2523,7 @@
   ]
 },{
   "mutant_program": "muta499_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2552,7 +2552,7 @@
   ]
 },{
   "mutant_program": "muta505_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2573,7 +2573,7 @@
   ]
 },{
   "mutant_program": "muta554_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2602,7 +2602,7 @@
   ]
 },{
   "mutant_program": "muta555_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2623,7 +2623,7 @@
   ]
 },{
   "mutant_program": "muta569_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2660,7 +2660,7 @@
   ]
 },{
   "mutant_program": "muta570_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2694,7 +2694,7 @@
   ]
 },{
   "mutant_program": "muta588_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2715,7 +2715,7 @@
   ]
 },{
   "mutant_program": "muta596_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2744,7 +2744,7 @@
   ]
 },{
   "mutant_program": "muta680_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2773,7 +2773,7 @@
   ]
 },{
   "mutant_program": "muta684_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2828,7 +2828,7 @@
   ]
 },{
   "mutant_program": "muta698_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2857,7 +2857,7 @@
   ]
 },{
   "mutant_program": "muta743_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -2878,7 +2878,7 @@
   ]
 },{
   "mutant_program": "muta746_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [
@@ -3059,7 +3059,7 @@
   ]
 },{
   "mutant_program": "muta761_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": [0],
@@ -3183,7 +3183,7 @@
   ]
 },{
   "mutant_program": "muta770_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": [
     {
       "input": ["createQueue(5)", 1, 2, 3, 4, 5],
@@ -3194,51 +3194,51 @@
   ]
 },{
   "mutant_program": "muta806_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta817_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta820_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta940_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta950_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta972_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta977_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta983_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta986_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta995_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1000_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1041_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1044_boundedQueue.c",
@@ -3318,7 +3318,7 @@
   ]
 },{
   "mutant_program": "muta1054_boundedQueue.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1062_boundedQueue.c",

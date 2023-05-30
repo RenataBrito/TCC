@@ -100,7 +100,7 @@
   ]
 },{
   "mutant_program": "muta230_Heap.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta231_Heap.c",
@@ -251,7 +251,7 @@
   ]
 },{
   "mutant_program": "muta288_Heap.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta2_Heap.c",
@@ -308,7 +308,7 @@
   ]
 },{
   "mutant_program": "muta408_Heap.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta410_Heap.c",
@@ -328,7 +328,7 @@
   ]
 },{
   "mutant_program": "muta53_Heap.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta74_Heap.c",
@@ -1106,7 +1106,7 @@
   ]
 },{
   "mutant_program": "muta600_Heap.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta602_Heap.c",
@@ -1478,7 +1478,7 @@
   ]
 },{
   "mutant_program": "muta751_Heap.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta753_Heap.c",

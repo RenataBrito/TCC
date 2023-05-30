@@ -432,7 +432,7 @@
   ]
 },{
   "mutant_program": "muta38_cal.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta392_cal.c",

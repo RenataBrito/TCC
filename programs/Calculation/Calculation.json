@@ -964,11 +964,11 @@
   ]
 },{
   "mutant_program": "muta381_Calculation.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta396_Calculation.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta369_Calculation.c",
@@ -1544,7 +1544,7 @@
   ]
 },{
   "mutant_program": "muta511_Calculation.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta515_Calculation.c",
@@ -1831,7 +1831,7 @@
   ]
 },{
   "mutant_program": "muta584_Calculation.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta585_Calculation.c",
@@ -1931,7 +1931,7 @@
   ]
 },{
   "mutant_program": "muta610_Calculation.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta611_Calculation.c",
@@ -2151,7 +2151,7 @@
   ]
 },{
   "mutant_program": "muta751_Calculation.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta752_Calculation.c",
@@ -2585,7 +2585,7 @@
   ]
 },{
   "mutant_program": "muta862_Calculation.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta863_Calculation.c",
@@ -2804,7 +2804,7 @@
   ]
 },{
   "mutant_program": "muta899_Calculation.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta908_Calculation.c",
@@ -3256,7 +3256,7 @@
   ]
 },{
   "mutant_program": "muta1022_Calculation.c",
-  "equivalent": "false",
+  "equivalent": false,
   "tests": []
 },{
   "mutant_program": "muta1042_Calculation.c",
