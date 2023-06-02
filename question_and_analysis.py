@@ -56,7 +56,7 @@ def get_big_string(original, mutant, program):
         #print("message_content: ", message_content)
         #print("\n"*2)
         try:
-            message_content_handled = remover_quebra_linha(message_content)
+            message_content_handled = remove_newlines(message_content)
             message_content_handled = handle_response(message_content_handled)
             message_json = json.loads(message_content_handled)
         except json.JSONDecodeError as e:

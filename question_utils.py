@@ -1,8 +1,8 @@
-from dotenv import load_dotenv
 import requests
 import json
 import os
 import re
+from dotenv import load_dotenv
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
@@ -70,15 +70,14 @@ def format_json(json_str):
         print("error_json: ", error_json)
         print("response: ", json_str)
         return error_json
-        #return None
 
 def transform_to_json(input_dict):
     json_object = json.dumps(input_dict)
     return json_object
 
-def remover_quebra_linha(string):
-    padrao = re.compile(r'\n')
-    return re.sub(padrao, '', string)
+def remove_newlines(string):
+    pattern = re.compile(r'\n')
+    return re.sub(pattern, '', string)
 
 def read_file(file_path):
     with open(file_path, "r") as file:

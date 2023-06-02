@@ -1,50 +1,63 @@
-import sys
+import argparse
+import os
 import matplotlib.pyplot as plt
-import numpy as np
 
-#example: python3 .\graphic.py programs\sum\analise_sum.txt
+def create_charts(data, option):
+    if option == 0:
+            data = [item for item in data if item[2]]  # Filter data where the 3rd element is True
+    elif option == 1:
+        data = [item for item in data if not item[2]]  # Filter data where the 3rd element is False
 
-filename = sys.argv[1]
+    # Calculate the percentage of True values in the fourth element of each vector
+    true_percentages = sum(1 for item in data if item[3]) / len(data) * 100
+    false_percentages = 100 - true_percentages
 
-# Ler o arquivo e armazenar os vetores em uma lista
-with open(filename, 'r') as f:
-    data = [eval(line.strip()) for line in f]
+    # Create the pie chart
+    labels = ['True', 'False']
+    sizes = [true_percentages, false_percentages]
+    colors = ['#ff9999', '#66b3ff']
+    explode = (0.1, 0)  # Explode the 'True' slice
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
 
-# Calcular a proporção de acertos na quarta informação
-num_correct = sum(vec[3] for vec in data)
-prop_correct = num_correct / len(data)
+    # Add legends for colors
+    legend_labels = ['True', 'False']
+    plt.legend(legend_labels, loc='upper right')
 
-# Criar um dicionário para armazenar a contagem de valores True e False para cada posição
-counts = {}
+    plt.axis('equal')  # Equal aspect ratio ensures that the pie is drawn as a circle
+    if option == 0:
+        plt.title('Porcentagem de sucesso do ChatGPT - equivalentes')
+    elif option == 1:
+        plt.title('Porcentagem de sucesso do ChatGPT - minimais')
+    else:
+        plt.title('Porcentagem de sucesso do ChatGPT - todos')
+    plt.show()
 
-# Percorrer a lista de vetores e atualizar a contagem no dicionário
-for vec in data:
-    pos = vec[0]
-    val = int(vec[3])
-    if pos not in counts:
-        counts[pos] = [0, 0]
-    counts[pos][val] += 1
 
-# Gerar um gráfico de pizza com a proporção calculada
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
-labels = ['True', 'False']
-sizes = [prop_correct, 1 - prop_correct]
-colors = ['lightgreen' if label == 'True' else 'salmon' for label in labels]
-ax1.pie(sizes, labels=labels, autopct='%1.1f%%', colors=colors)
-ax1.set_title('Proporção de acertos')
+def process_files(folder_path):
+    data = []
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            if file.startswith("analysis_"):
+                file_path = os.path.join(root, file)
+                with open(file_path, 'r') as file:
+                    for line in file:
+                        line = line.strip()[1:-1]  # Remove square brackets and leading/trailing spaces
+                        values = line.split(', ')
+                        values = [int(values[0])] + [value == 'True' for value in values[1:]]
+                        data.append(values)
+    
+    return data
 
-# Gerar um gráfico de barras com os dados do dicionário
-x = np.arange(max(counts.keys()) + 1)
-width = 0.35
-rects1 = [counts[i][1] if i in counts else 0 for i in range(len(x))]
-colors = ['lightgreen' if h > 0 else 'gray' for h in rects1]
-rects1 = ax2.bar(x, rects1, width, color=colors)
-ax2.set_ylabel('Acertou?', labelpad=-25)
-ax2.set_xlabel('Mutante')
-ax2.set_xticks(x)
-ax2.set_xticklabels([str(i) for i in x])
-ax2.set_yticks([0, 1])
-ax2.set_yticklabels(['FALSE', 'TRUE'])
-ax2.set_title('Contagem de acertos por mutante')
 
-plt.show()
+# Example usage
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Create pie chart based on file data.')
+    parser.add_argument('path', type=str, help='Path to the folder')
+    parser.add_argument('option', type=int, choices=[0, 1, 2], help='Option to filter the data')
+    args = parser.parse_args()
+
+    if os.path.isdir(args.path):
+        data = process_files(args.path)
+        create_charts(data, args.option)
+    else:
+        print("Invalid folder path.")

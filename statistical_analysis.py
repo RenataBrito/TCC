@@ -5,7 +5,7 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 from mlxtend.plotting import plot_confusion_matrix
 
-# Example: python3 statistical_analysis.py C:\Users\renat\Desktop\TCC\projeto\TCC\programs
+# Example: python3 statistical_analysis.py programs
 
 directory_path = sys.argv[1]
 
