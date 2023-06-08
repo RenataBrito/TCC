@@ -13,6 +13,7 @@ A função **clearing_proteum_data** serve para limpar o codigo dos mutantes ger
 **Exemplo de como utilizar:**
 
 ```python3 clearing_proteum_data.py /mnt/c/Users/renat/Desktop/TCC/projeto/TCC/programs/sum sum 0 2 funlockfile ```
+```python3 clearing_proteum_data.py /mnt/c/Users/renat/Desktop/TCC/projeto/TCC/programs/sum sum /mnt/c/Users/renat/Desktop/TCC/projeto/TCC/programs/sum/equivalents_sum.txt funlockfile ```
 
 Assim, na pasta de cada programa, será criado uma pasta **mutants** com os mutantes sem as variaveis geradas pela Proteum.
 
@@ -33,7 +34,9 @@ Onde:
 
 **Exemplo de como utilizar:**
 
-```python3 question.py sum```
+```python3 question_and_analysis.py sum >> logs\sum_logs.txt```
+
+Assim vai salvar algumas informações no arquivo de log.
 
 ## graphic.py
 
@@ -41,6 +44,14 @@ Para executar o script, é necessario passar como parametro a pasta onde foi ger
 
 **Exemplo de como utilizar:**
 
-```python3 .\graphic.py programs\sum\analise_sum.txt```
+```python3 .\graphic.py programs\sum\analysis_sum.txt```
 
-O script irá gerar dois gráficos, o primeiro sendo um gráfico em formato de pizza mostrando a porcentagem de acerto do ChatGPT e o segundo sendo um gráfico de barra onde apresenta para cada mutante se o ChatGPT acertou ou não.
+O script irá gerar um gráfico de pizza.
+
+## statistical_analysis.py
+
+Esse script gera a matriz de confusão
+
+**Exemplo de como utilizar:**
+
+```python3 statistical_analysis.py programs```
